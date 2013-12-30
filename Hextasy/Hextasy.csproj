@@ -138,6 +138,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Hextasy.FourInARow\Hextasy.FourInARow.csproj">
+      <Project>{a30347e1-ea0e-4945-a50a-98f37bfd79b2}</Project>
+      <Name>Hextasy.FourInARow</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Hextasy.Framework\Hextasy.Framework.csproj">
       <Project>{870BE3B8-1F0E-4422-A3B5-FDE8BAB6FDA3}</Project>
       <Name>Hextasy.Framework</Name>

@@ -1,8 +1,8 @@
 ﻿namespace Hextasy.LightsOff
 {
-    public partial class LightsOffView
+    public partial class LightsOffGameView
     {
-        public LightsOffView()
+        public LightsOffGameView()
         {
             InitializeComponent();
         }

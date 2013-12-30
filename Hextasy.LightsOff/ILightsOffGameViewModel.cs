@@ -3,7 +3,7 @@ using Caliburn.Micro;
 
 namespace Hextasy.LightsOff
 {
-    public interface ILightsOffViewModel : IScreen
+    public interface ILightsOffGameViewModel : IScreen
     {
         IEnumerable<HexagonField> Fields { get; }
 

@@ -9,12 +9,12 @@ namespace Hextasy.LightsOff
     public class LightsOffGame : IGame
     {
         private readonly Lazy<ILightsOffSettingsViewModel> _lightsOffSettingsViewModel;
-        private readonly Lazy<ILightsOffViewModel> _lightsOffViewModel;
+        private readonly Lazy<ILightsOffGameViewModel> _lightsOffViewModel;
 
         [ImportingConstructor]
         public LightsOffGame(
             Lazy<ILightsOffSettingsViewModel> lightsOffSettingsViewModel,
-            Lazy<ILightsOffViewModel> lightsOffViewModel)
+            Lazy<ILightsOffGameViewModel> lightsOffViewModel)
         {
             _lightsOffSettingsViewModel = lightsOffSettingsViewModel;
             _lightsOffViewModel = lightsOffViewModel;

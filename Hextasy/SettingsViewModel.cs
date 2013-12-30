@@ -8,7 +8,7 @@ namespace Hextasy
     public class SettingsViewModel : Screen, ISettingsViewModel, IHandle<GameSelected>
     {
         private readonly IEventAggregator _eventAggregator;
-        private IGame _game;
+        private IGame Game { get; set; }
 
         [ImportingConstructor]
         public SettingsViewModel(IEventAggregator eventAggregator)
@@ -17,17 +17,17 @@ namespace Hextasy
             _eventAggregator.Subscribe(this);
         }
 
-        public IScreen Settings { get { return _game.SettingsScreen; } }
+        public IScreen Settings { get { return Game.SettingsScreen; } }
 
         public void StartGame()
         {
-            _game.Start();
-            _eventAggregator.Publish(new SettingsConfirmed(_game));
+            Game.Start();
+            _eventAggregator.Publish(new SettingsConfirmed(Game));
         }
 
         public void Handle(GameSelected message)
         {
-            _game = message.Game;
+            Game = message.Game;
         }
     }
 }

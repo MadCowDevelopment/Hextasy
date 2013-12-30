@@ -5,11 +5,11 @@ using Hextasy.Framework;
 
 namespace Hextasy.LightsOff
 {
-    [Export(typeof(ILightsOffViewModel))]
-    public class LightsOffViewModel : GameScreen<LightsOffGameLogic>, ILightsOffViewModel
+    [Export(typeof(ILightsOffGameViewModel))]
+    public class LightsOffGameViewModel : GameScreen<LightsOffGameLogic>, ILightsOffGameViewModel
     {
         [ImportingConstructor]
-        public LightsOffViewModel(LightsOffGameLogic gameLogic, IEventAggregator eventAggregator)
+        public LightsOffGameViewModel(LightsOffGameLogic gameLogic, IEventAggregator eventAggregator)
             : base(gameLogic, eventAggregator)
         {
         }

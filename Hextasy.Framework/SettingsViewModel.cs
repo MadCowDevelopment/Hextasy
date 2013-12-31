@@ -6,7 +6,7 @@ namespace Hextasy.Framework
         where TSettings : Settings
     {
         #region Public Properties
-
+        
         public int Columns
         {
             get;

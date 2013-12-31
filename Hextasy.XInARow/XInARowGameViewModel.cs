@@ -33,6 +33,7 @@ namespace Hextasy.XInARow
         public void SelectTile(HexagonField field)
         {
             Game.SelectTile(field);
+            NotifyOfPropertyChange(() => CurrentPlayer);
         }
 
         #endregion Public Methods

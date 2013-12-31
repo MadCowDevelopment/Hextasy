@@ -32,9 +32,9 @@ namespace Hextasy.Framework
 
         #region Public Methods
 
-        public IEnumerable<TField> GetFields()
+        public IEnumerable<TField> Fields
         {
-            return HexMap != null ? HexMap.Tiles : Enumerable.Empty<TField>();
+            get { return HexMap != null ? HexMap.Tiles : Enumerable.Empty<TField>(); }
         }
 
         public void Initialize(TSettings settings)

@@ -22,6 +22,14 @@
                               Fill="{TemplateBinding Background}" 
                               HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" 
                               Height="Auto" x:Name="Path" Stretch="Fill"
+                                  RenderTransformOrigin="0.5, 0.5"
+                              Data="M 250,0 L 750,0 L 1000,433 L 750,866 L 250,866 L 0,433 Z">
+                            </Path>
+                            <Path Margin="1" 
+                              Fill="WhiteSmoke" 
+                              HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" 
+                              Height="Auto" x:Name="Overlay" Stretch="Fill" Opacity="0"
+                                  RenderTransformOrigin="0.5, 0.5"
                               Data="M 250,0 L 750,0 L 1000,433 L 750,866 L 250,866 L 0,433 Z">
                             </Path>
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -37,10 +45,20 @@
                                 <Setter TargetName="Path" Property="Fill" Value="Blue"/>
                             </DataTrigger>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="Path" Property="Fill" Value="Yellow"/>
+                                <Setter TargetName="Overlay" Property="Opacity" Value="0.5"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="Path" Property="Fill" Value="Orange"/>
+                                <Setter TargetName="Overlay" Property="Opacity" Value="0.5"/>
+                                <Setter TargetName="Overlay" Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter TargetName="Path" Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
+                                    </Setter.Value>
+                                </Setter>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>

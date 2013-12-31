@@ -9,6 +9,11 @@ namespace Hextasy.XInARow
     [Export(typeof(XInARowGameLogic))]
     public class XInARowGameLogic : GameLogic<XInARowSettings, HexagonField>
     {
+        public XInARowGameLogic()
+        {
+            Player1Active = true;
+        }
+
         #region Public Properties
 
         public bool Player1Active

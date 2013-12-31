@@ -35,7 +35,7 @@ namespace Hextasy.Framework
 
         public IEnumerable<TField> Fields
         {
-            get { return Game.GetFields(); }
+            get { return Game.Fields; }
         }
 
         #endregion Public Properties
@@ -60,6 +60,7 @@ namespace Hextasy.Framework
         {
             Settings = settings;
             Game.Initialize(Settings);
+            NotifyOfPropertyChange(() => Fields);
             OnSettingsInitialized();
         }
 

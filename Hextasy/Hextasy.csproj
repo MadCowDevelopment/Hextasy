@@ -96,8 +96,6 @@
       <DependentUpon>SettingsShellView.xaml</DependentUpon>
     </Compile>
     <Compile Include="SettingsShellViewModel.cs" />
-    <Compile Include="ShowSettingsRequested.cs" />
-    <Compile Include="StartSelectedGameRequest.cs" />
     <Compile Include="MefBootstrapper.cs" />
     <Compile Include="MainWindowView.xaml.cs">
       <DependentUpon>MainWindowView.xaml</DependentUpon>

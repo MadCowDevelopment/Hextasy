@@ -35,11 +35,6 @@ namespace Hextasy.Framework
             get { return GameViewModel; }
         }
 
-        public GameViewModel<TGameLogic, TSettings, TField> GameViewModel
-        {
-            get { return _gameViewModel.Value; }
-        }
-
         public abstract string Name
         {
             get;
@@ -50,12 +45,21 @@ namespace Hextasy.Framework
             get { return SettingsViewModel; }
         }
 
-        public SettingsViewModel<TSettings> SettingsViewModel
+        #endregion Public Properties
+
+        #region Private Properties
+
+        private GameViewModel<TGameLogic, TSettings, TField> GameViewModel
+        {
+            get { return _gameViewModel.Value; }
+        }
+
+        private SettingsViewModel<TSettings> SettingsViewModel
         {
             get { return _settingsViewModel.Value; }
         }
 
-        #endregion Public Properties
+        #endregion Private Properties
 
         #region Public Methods
 

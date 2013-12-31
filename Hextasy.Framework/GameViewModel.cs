@@ -60,14 +60,14 @@ namespace Hextasy.Framework
         {
             Settings = settings;
             Game.Initialize(Settings);
-            OnInitialize(Settings);
+            OnSettingsInitialized();
         }
 
         #endregion Public Methods
 
         #region Protected Methods
 
-        protected virtual void OnInitialize(TSettings settings)
+        protected virtual void OnSettingsInitialized()
         {
         }
 

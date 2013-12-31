@@ -1,6 +1,6 @@
 ﻿using Caliburn.Micro;
 
-namespace Hextasy.FourInARow
+namespace Hextasy.XInARow
 {
     public class HexagonField : PropertyChangedBase
     {

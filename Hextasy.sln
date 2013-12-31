@@ -16,7 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{9D2BD3
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hextasy.FourInARow", "Hextasy.FourInARow\Hextasy.FourInARow.csproj", "{A30347E1-EA0E-4945-A50A-98F37BFD79B2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hextasy.XInARow", "Hextasy.XInARow\Hextasy.XInARow.csproj", "{A30347E1-EA0E-4945-A50A-98F37BFD79B2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Games", "Games", "{55D77D55-902E-464E-9CD3-BDBD31641C81}"
 EndProject

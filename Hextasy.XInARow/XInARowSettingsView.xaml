@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Hextasy.FourInARow.FourInARowSettingsView"
+﻿<UserControl x:Class="Hextasy.XInARow.XInARowSettingsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,6 +7,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Margin="5">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -21,15 +22,18 @@
 
         <TextBlock Grid.Row="0" Grid.Column="0" Text="Number of rows: "/>
         <TextBlock Grid.Row="1" Grid.Column="0"  Text="Number of columns: "/>
-        <TextBlock Grid.Row="2" Grid.Column="0"  Text="Player 1 name: "/>
-        <TextBlock Grid.Row="3" Grid.Column="0"  Text="Player 2 name: "/>
+        <TextBlock Grid.Row="2" Grid.Column="0"  Text="Required for win: "/>
+        <TextBlock Grid.Row="3" Grid.Column="0"  Text="Player 1 name: "/>
+        <TextBlock Grid.Row="4" Grid.Column="0"  Text="Player 2 name: "/>
 
         <Slider Grid.Row="0" Grid.Column="1" Minimum="7" Maximum="25" Value="{Binding Rows}"/>
         <Slider Grid.Row="1" Grid.Column="1" Minimum="7" Maximum="25" Value="{Binding Columns}"/>
-        <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Player1}"/>
-        <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Player2}"/>
+        <Slider Grid.Row="2" Grid.Column="1" Minimum="4" Maximum="8" Value="{Binding RequiredForWin}"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Player1}"/>
+        <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Player2}"/>
 
         <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding Rows}"/>
         <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding Columns}"/>
+        <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding RequiredForWin}"/>
     </Grid>
 </UserControl>

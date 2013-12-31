@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Hextasy.FourInARow.Properties {
+namespace Hextasy.XInARow.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

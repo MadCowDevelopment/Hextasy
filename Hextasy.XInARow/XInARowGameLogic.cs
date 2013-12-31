@@ -3,15 +3,18 @@ using System.ComponentModel.Composition;
 using System.Linq;
 using Hextasy.Framework;
 
-namespace Hextasy.FourInARow
+namespace Hextasy.XInARow
 {
-    [Export(typeof(FourInARowGameLogic))]
-    public class FourInARowGameLogic : GameLogic
+    [Export(typeof(XInARowGameLogic))]
+    public class XInARowGameLogic : GameLogic
     {
         private bool _player1Active = true;
 
-        public void Initialize(int rows, int columns)
+        private int _requiredForWin;
+
+        public void Initialize(int rows, int columns, int requiredForWin)
         {
+            _requiredForWin = requiredForWin;
             var items = CreateFields(rows * columns);
             HexMap = new HexMap<HexagonField>(items, columns);
         }
@@ -64,7 +67,7 @@ namespace Hextasy.FourInARow
                 if (hexField.Owner == previousOwner && hexField.Owner != Owner.None)
                 {
                     consecutiveFields++;
-                    if (consecutiveFields == 4) return true;
+                    if (consecutiveFields == _requiredForWin) return true;
                 }
                 else
                 {

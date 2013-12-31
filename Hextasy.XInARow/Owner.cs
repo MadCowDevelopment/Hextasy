@@ -1,4 +1,4 @@
-﻿namespace Hextasy.FourInARow
+﻿namespace Hextasy.XInARow
 {
     public enum Owner
     {

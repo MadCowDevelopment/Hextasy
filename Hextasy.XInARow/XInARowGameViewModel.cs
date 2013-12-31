@@ -3,24 +3,24 @@ using System.ComponentModel.Composition;
 using Caliburn.Micro;
 using Hextasy.Framework;
 
-namespace Hextasy.FourInARow
+namespace Hextasy.XInARow
 {
-    [Export(typeof(IFourInARowGameViewModel))]
-    public class FourInARowGameViewModel : GameScreen<FourInARowGameLogic>, IFourInARowGameViewModel
+    [Export(typeof(IXInARowGameViewModel))]
+    public class XInARowGameViewModel : GameScreen<XInARowGameLogic>, IXInARowGameViewModel
     {
         [ImportingConstructor]
-        public FourInARowGameViewModel(FourInARowGameLogic game, IEventAggregator eventAggregator)
+        public XInARowGameViewModel(XInARowGameLogic game, IEventAggregator eventAggregator)
             : base(game, eventAggregator)
         {
         }
 
-        public void Initialize(FourInARowSettings settings)
+        public void Initialize(XInARowSettings settings)
         {
             Columns = settings.Columns;
             Player1 = settings.Player1;
             Player2 = settings.Player2;
             CurrentPlayer = Player1;
-            Game.Initialize(settings.Rows, settings.Columns);
+            Game.Initialize(settings.Rows, settings.Columns, settings.RequiredForWin);
             Fields = Game.GetFields();
         }
 

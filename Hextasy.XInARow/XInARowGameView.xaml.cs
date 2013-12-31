@@ -1,11 +1,11 @@
-﻿namespace Hextasy.FourInARow
+﻿namespace Hextasy.XInARow
 {
     /// <summary>
     /// Interaction logic for FiveInARowGameView.xaml
     /// </summary>
-    public partial class FourInARowGameView
+    public partial class XInARowGameView
     {
-        public FourInARowGameView()
+        public XInARowGameView()
         {
             InitializeComponent();
         }

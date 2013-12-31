@@ -1,13 +1,21 @@
-﻿using Caliburn.Micro;
+﻿using System.Collections.Generic;
+
+using Caliburn.Micro;
 
 namespace Hextasy.Framework
 {
-    public abstract class GameViewModel<TGameLogic, TSettings> : Screen, IGameViewModel<TSettings> 
-        where TGameLogic : GameLogic<TSettings>
+    public abstract class GameViewModel<TGameLogic, TSettings, TField> : Screen
+        where TGameLogic : GameLogic<TSettings, TField>
         where TSettings : Settings
+        where TField : class
     {
+        #region Fields
+
         private readonly IEventAggregator _eventAggregator;
-        protected TGameLogic Game { get; private set; }
+
+        #endregion Fields
+
+        #region Constructors
 
         protected GameViewModel(TGameLogic game, IEventAggregator eventAggregator)
         {
@@ -16,17 +24,62 @@ namespace Hextasy.Framework
             Game.Finished += GameFinished;
         }
 
+        #endregion Constructors
+
+        #region Public Properties
+
+        public int Columns
+        {
+            get { return Settings.Columns; }
+        }
+
+        public IEnumerable<TField> Fields
+        {
+            get { return Game.GetFields(); }
+        }
+
+        #endregion Public Properties
+
+        #region Protected Properties
+
+        protected TGameLogic Game
+        {
+            get; private set;
+        }
+
+        protected TSettings Settings
+        {
+            get; private set;
+        }
+
+        #endregion Protected Properties
+
+        #region Public Methods
+
+        public void Initialize(TSettings settings)
+        {
+            Settings = settings;
+            Game.Initialize(Settings);
+            OnInitialize(Settings);
+        }
+
+        #endregion Public Methods
+
+        #region Protected Methods
+
+        protected virtual void OnInitialize(TSettings settings)
+        {
+        }
+
+        #endregion Protected Methods
+
+        #region Private Methods
+
         private void GameFinished(object sender, GameFinishedEventArgs e)
         {
             _eventAggregator.Publish(new ShowGameSelectionRequest());
         }
 
-        public void Initialize(TSettings settings)
-        {
-            Game.Initialize(settings);
-            OnInitialize(settings);
-        }
-
-        protected abstract void OnInitialize(TSettings settings);
+        #endregion Private Methods
     }
 }

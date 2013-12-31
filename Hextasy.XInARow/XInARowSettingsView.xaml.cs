@@ -5,9 +5,13 @@
     /// </summary>
     public partial class XInARowSettingsView
     {
+        #region Constructors
+
         public XInARowSettingsView()
         {
             InitializeComponent();
         }
+
+        #endregion Constructors
     }
 }

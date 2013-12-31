@@ -1,11 +1,14 @@
 ﻿using System.ComponentModel.Composition;
+
 using Hextasy.Framework;
 
 namespace Hextasy.XInARow
 {
-    [Export(typeof(IXInARowSettingsViewModel))]
-    public class XInARowSettingsViewModel : SettingsViewModel<XInARowSettings>, IXInARowSettingsViewModel
+    [Export(typeof(XInARowSettingsViewModel))]
+    public class XInARowSettingsViewModel : SettingsViewModel<XInARowSettings>
     {
+        #region Constructors
+
         public XInARowSettingsViewModel()
         {
             Rows = 9;
@@ -15,19 +18,30 @@ namespace Hextasy.XInARow
             Player2 = "Player 2";
         }
 
+        #endregion Constructors
+
+        #region Public Properties
+
+        public string Player1
+        {
+            get; set;
+        }
+
+        public string Player2
+        {
+            get; set;
+        }
+
+        public int RequiredForWin
+        {
+            get; set;
+        }
+
         public override XInARowSettings Settings
         {
             get { return new XInARowSettings(Rows, Columns, RequiredForWin, Player1, Player2); }
         }
 
-        public int Rows { get; set; }
-
-        public int Columns { get; set; }
-
-        public int RequiredForWin { get; set; }
-
-        public string Player1 { get; set; }
-
-        public string Player2 { get; set; }
+        #endregion Public Properties
     }
 }

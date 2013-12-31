@@ -65,8 +65,6 @@
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="HexagonField.cs" />
-    <Compile Include="ILightsOffSettingsViewModel.cs" />
-    <Compile Include="ILightsOffGameViewModel.cs" />
     <Compile Include="LightsOffGame.cs" />
     <Compile Include="LightsOffGameLogic.cs" />
     <Compile Include="LightsOffSettings.cs" />

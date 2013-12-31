@@ -4,17 +4,28 @@ using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.Linq;
 using System.Reflection;
+
 using Caliburn.Micro;
 
 namespace Hextasy
 {
-    public class MefBootstrapper : Bootstrapper<IMainWindowViewModel>
+    public class MefBootstrapper : Bootstrapper<MainWindowViewModel>
     {
+        #region Fields
+
         private CompositionContainer _container;
+
+        #endregion Fields
+
+        #region Protected Methods
+
+        protected override void BuildUp(object instance)
+        {
+            _container.SatisfyImportsOnce(instance);
+        }
 
         protected override void Configure()
         {
-
             var catalog =
                 new AggregateCatalog(
                     new AssemblyCatalog(Assembly.GetExecutingAssembly()),
@@ -29,11 +40,9 @@ namespace Hextasy
             _container.Compose(batch);
         }
 
-        protected override IEnumerable<Assembly> SelectAssemblies()
+        protected override IEnumerable<object> GetAllInstances(Type serviceType)
         {
-            var assemblies = new DirectoryCatalog(".").LoadedFiles.Select(Assembly.LoadFrom).ToList();
-            assemblies.Add(Assembly.GetExecutingAssembly());
-            return assemblies.ToArray();
+            return _container.GetExportedValues<object>(AttributedModelServices.GetContractName(serviceType));
         }
 
         protected override object GetInstance(Type serviceType, string key)
@@ -47,14 +56,13 @@ namespace Hextasy
             throw new Exception(string.Format("Could not locate any instances of contract {0}.", contract));
         }
 
-        protected override IEnumerable<object> GetAllInstances(Type serviceType)
+        protected override IEnumerable<Assembly> SelectAssemblies()
         {
-            return _container.GetExportedValues<object>(AttributedModelServices.GetContractName(serviceType));
+            var assemblies = new DirectoryCatalog(".").LoadedFiles.Select(Assembly.LoadFrom).ToList();
+            assemblies.Add(Assembly.GetExecutingAssembly());
+            return assemblies.ToArray();
         }
 
-        protected override void BuildUp(object instance)
-        {
-            _container.SatisfyImportsOnce(instance);
-        }
+        #endregion Protected Methods
     }
 }

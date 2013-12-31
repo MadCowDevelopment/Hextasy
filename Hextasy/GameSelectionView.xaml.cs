@@ -5,9 +5,13 @@
     /// </summary>
     public partial class GameSelectionView
     {
+        #region Constructors
+
         public GameSelectionView()
         {
             InitializeComponent();
         }
+
+        #endregion Constructors
     }
 }

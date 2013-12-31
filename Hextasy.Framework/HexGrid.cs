@@ -6,11 +6,15 @@ namespace Hextasy.Framework
 {
     public class HexGrid : Panel
     {
-        #region Columns
+        #region Fields
 
-        public static readonly DependencyProperty ColumnsProperty =
+        public static readonly DependencyProperty ColumnsProperty = 
             DependencyProperty.Register("Columns", typeof(int), typeof(HexGrid),
                 new FrameworkPropertyMetadata(1, FrameworkPropertyMetadataOptions.AffectsMeasure));
+
+        #endregion Fields
+
+        #region Public Properties
 
         public int Columns
         {
@@ -18,24 +22,9 @@ namespace Hextasy.Framework
             set { SetValue(ColumnsProperty, value); }
         }
 
-        #endregion
+        #endregion Public Properties
 
-        protected override Size MeasureOverride(Size constraint)
-        {
-            var rows = CalculateRequiredRows();
-            var measurements = CalculateMeasurements(constraint, rows);
-
-            foreach (FrameworkElement child in InternalChildren)
-            {
-                child.Measure(measurements.ChildSize);
-            }
-
-            var totalHeight = rows * measurements.CellSize.Height;
-            if (Columns > 1) totalHeight += (0.5 * measurements.CellSize.Height);
-            var totalWidth = (Columns * measurements.CellSize.Width) + (0.5 * measurements.ChildSize.Width / 2);
-
-            return new Size(totalWidth, totalHeight);
-        }
+        #region Protected Methods
 
         protected override Size ArrangeOverride(Size arrangeSize)
         {
@@ -58,12 +47,26 @@ namespace Hextasy.Framework
             return arrangeSize;
         }
 
-        private int CalculateRequiredRows()
+        protected override Size MeasureOverride(Size constraint)
         {
-            return InternalChildren.Count == 0
-                ? 0
-                : Math.Max(1, (int) Math.Round((double) InternalChildren.Count/Columns));
+            var rows = CalculateRequiredRows();
+            var measurements = CalculateMeasurements(constraint, rows);
+
+            foreach (FrameworkElement child in InternalChildren)
+            {
+                child.Measure(measurements.ChildSize);
+            }
+
+            var totalHeight = rows * measurements.CellSize.Height;
+            if (Columns > 1) totalHeight += (0.5 * measurements.CellSize.Height);
+            var totalWidth = (Columns * measurements.CellSize.Width) + (0.5 * measurements.ChildSize.Width / 2);
+
+            return new Size(totalWidth, totalHeight);
         }
+
+        #endregion Protected Methods
+
+        #region Private Methods
 
         private Measurements CalculateMeasurements(Size constraint, int rows)
         {
@@ -87,16 +90,44 @@ namespace Hextasy.Framework
             return new Measurements(new Size(width, height), new Size(colWidth, rowHeight));
         }
 
+        private int CalculateRequiredRows()
+        {
+            return InternalChildren.Count == 0
+                ? 0
+                : Math.Max(1, (int) Math.Round((double) InternalChildren.Count/Columns));
+        }
+
+        #endregion Private Methods
+
+        #region Nested Types
+
         private class Measurements
         {
-            public Size ChildSize { get; private set; }
-            public Size CellSize { get; private set; }
+            #region Constructors
 
             public Measurements(Size childSize, Size cellSize)
             {
                 ChildSize = childSize;
                 CellSize = cellSize;
             }
+
+            #endregion Constructors
+
+            #region Public Properties
+
+            public Size CellSize
+            {
+                get; private set;
+            }
+
+            public Size ChildSize
+            {
+                get; private set;
+            }
+
+            #endregion Public Properties
         }
+
+        #endregion Nested Types
     }
 }

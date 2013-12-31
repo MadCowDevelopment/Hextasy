@@ -4,6 +4,13 @@ namespace Hextasy.XInARow
 {
     public class HexagonField : PropertyChangedBase
     {
-        public Owner Owner { get; set; }
+        #region Public Properties
+
+        public Owner Owner
+        {
+            get; set;
+        }
+
+        #endregion Public Properties
     }
 }

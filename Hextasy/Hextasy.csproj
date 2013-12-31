@@ -91,9 +91,6 @@
       <DependentUpon>GameSelectionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="GameSelectionViewModel.cs" />
-    <Compile Include="IGameSelectionViewModel.cs" />
-    <Compile Include="IMainWindowViewModel.cs" />
-    <Compile Include="ISettingsShellViewModel.cs" />
     <Compile Include="SettingsConfirmed.cs" />
     <Compile Include="SettingsShellView.xaml.cs">
       <DependentUpon>SettingsShellView.xaml</DependentUpon>
@@ -154,6 +151,7 @@
   <ItemGroup>
     <Resource Include="FodyWeavers.xml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="Fody.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

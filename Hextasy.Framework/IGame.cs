@@ -2,17 +2,31 @@
 
 namespace Hextasy.Framework
 {
-    public interface IGame<TSettings> : IGame where TSettings : Settings
-    {
-        IGameViewModel<TSettings> GameViewModel { get; }
-        ISettingsViewModel<TSettings> SettingsViewModel { get; }
-    }
-
     public interface IGame
     {
-        string Name { get; }
+        #region Properties
+
+        IScreen GameScreen
+        {
+            get;
+        }
+
+        string Name
+        {
+            get;
+        }
+
+        IScreen SettingsScreen
+        {
+            get;
+        }
+
+        #endregion Properties
+
+        #region Methods
+
         void Start();
-        IScreen GameScreen { get; }
-        IScreen SettingsScreen { get; }
+
+        #endregion Methods
     }
 }

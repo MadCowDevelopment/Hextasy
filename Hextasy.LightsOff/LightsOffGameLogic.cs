@@ -1,27 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
+
 using Hextasy.Framework;
 
 namespace Hextasy.LightsOff
 {
     [Export(typeof(LightsOffGameLogic))]
-    public class LightsOffGameLogic : GameLogic<LightsOffSettings>
+    public class LightsOffGameLogic : GameLogic<LightsOffSettings, HexagonField>
     {
+        #region Fields
+
         private readonly Random _random = new Random((int)DateTime.Now.Ticks);
 
-        protected override void OnInitialize(LightsOffSettings settings)
-        {
-            var items = CreateFields(settings.Rows * settings.Columns);
-            HexMap = new HexMap<HexagonField>(items, settings.Columns);
-            Enumerable.Range(0, settings.Toggles).ToList().ForEach(p =>
-            {
-                var randomTile = HexMap.Tiles[_random.Next(HexMap.Tiles.Count)];
-                randomTile.IsChecked = !randomTile.IsChecked;
-                ToggleNeighbors(randomTile);
-            });
-        }
+        #endregion Fields
+
+        #region Public Methods
 
         public void ToggleNeighbors(HexagonField item)
         {
@@ -32,23 +26,25 @@ namespace Hextasy.LightsOff
             }
         }
 
-        private HexMap<HexagonField> HexMap { get; set; }
+        #endregion Public Methods
 
+        #region Protected Methods
 
-        private static IEnumerable<HexagonField> CreateFields(int numberOfFields)
+        protected override HexagonField CreateField(int index)
         {
-            var result = new List<HexagonField>();
-            for (int i = 0; i < numberOfFields; i++)
+            return new HexagonField();
+        }
+
+        protected override void OnInitialize(LightsOffSettings settings)
+        {
+            Enumerable.Range(0, settings.Toggles).ToList().ForEach(p =>
             {
-                result.Add(new HexagonField());
-            }
-
-            return result;
+                var randomTile = HexMap.Tiles[_random.Next(HexMap.Tiles.Count)];
+                randomTile.IsChecked = !randomTile.IsChecked;
+                ToggleNeighbors(randomTile);
+            });
         }
 
-        public IEnumerable<HexagonField> GetFields()
-        {
-            return HexMap.Tiles;
-        }
+        #endregion Protected Methods
     }
 }

@@ -5,9 +5,13 @@
     /// </summary>
     public partial class SettingsShellView
     {
+        #region Constructors
+
         public SettingsShellView()
         {
             InitializeComponent();
         }
+
+        #endregion Constructors
     }
 }

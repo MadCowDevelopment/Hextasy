@@ -1,23 +1,28 @@
 ﻿using System.ComponentModel.Composition;
+
 using Caliburn.Micro;
+
 using Hextasy.Framework;
 
 namespace Hextasy
 {
-    [Export(typeof(IMainWindowViewModel))]
-    public class MainWindowViewModel : Screen, IMainWindowViewModel, 
-        IHandle<GameSelected>,
-        IHandle<ShowGameSelectionRequest>,
-        IHandle<SettingsConfirmed>
+    [Export(typeof(MainWindowViewModel))]
+    public class MainWindowViewModel : Screen, IHandle<GameSelected>, IHandle<ShowGameSelectionRequest>, IHandle<SettingsConfirmed>
     {
-        private readonly IGameSelectionViewModel _gameSelectionViewModel;
-        private readonly ISettingsShellViewModel _settingsShellViewModel;
+        #region Fields
+
+        private readonly GameSelectionViewModel _gameSelectionViewModel;
+        private readonly SettingsShellViewModel _settingsShellViewModel;
+
+        #endregion Fields
+
+        #region Constructors
 
         [ImportingConstructor]
         public MainWindowViewModel(
-            IEventAggregator eventAggregator, 
-            IGameSelectionViewModel gameSelectionViewModel,
-            ISettingsShellViewModel settingsShellViewModel)
+            IEventAggregator eventAggregator,
+            GameSelectionViewModel gameSelectionViewModel,
+            SettingsShellViewModel settingsShellViewModel)
         {
             eventAggregator.Subscribe(this);
             _gameSelectionViewModel = gameSelectionViewModel;
@@ -25,7 +30,18 @@ namespace Hextasy
             MainContent = _gameSelectionViewModel;
         }
 
-        public IScreen MainContent { get; private set; }
+        #endregion Constructors
+
+        #region Public Properties
+
+        public IScreen MainContent
+        {
+            get; private set;
+        }
+
+        #endregion Public Properties
+
+        #region Public Methods
 
         public void Handle(ShowGameSelectionRequest message)
         {
@@ -41,5 +57,7 @@ namespace Hextasy
         {
             MainContent = message.Game.GameScreen;
         }
+
+        #endregion Public Methods
     }
 }

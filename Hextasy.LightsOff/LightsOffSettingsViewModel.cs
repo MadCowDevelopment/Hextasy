@@ -1,11 +1,14 @@
 ﻿using System.ComponentModel.Composition;
+
 using Hextasy.Framework;
 
 namespace Hextasy.LightsOff
 {
-    [Export(typeof(ILightsOffSettingsViewModel))]
-    public class LightsOffSettingsViewModel : SettingsViewModel<LightsOffSettings>, ILightsOffSettingsViewModel
+    [Export(typeof(LightsOffSettingsViewModel))]
+    public class LightsOffSettingsViewModel : SettingsViewModel<LightsOffSettings>
     {
+        #region Constructors
+
         public LightsOffSettingsViewModel()
         {
             Rows = 7;
@@ -13,12 +16,20 @@ namespace Hextasy.LightsOff
             Toggles = 10;
         }
 
-        public override LightsOffSettings Settings { get { return new LightsOffSettings(Rows, Columns, Toggles); } }
+        #endregion Constructors
 
-        public int Toggles { get; set; }
+        #region Public Properties
 
-        public int Columns { get; set; }
+        public override LightsOffSettings Settings
+        {
+            get { return new LightsOffSettings(Rows, Columns, Toggles); }
+        }
 
-        public int Rows { get; set; }
+        public int Toggles
+        {
+            get; set;
+        }
+
+        #endregion Public Properties
     }
 }

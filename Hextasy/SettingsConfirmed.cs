@@ -4,11 +4,22 @@ namespace Hextasy
 {
     public class SettingsConfirmed
     {
-        public IGame Game { get; private set; }
+        #region Constructors
 
         public SettingsConfirmed(IGame game)
         {
             Game = game;
         }
+
+        #endregion Constructors
+
+        #region Public Properties
+
+        public IGame Game
+        {
+            get; private set;
+        }
+
+        #endregion Public Properties
     }
 }

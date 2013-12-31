@@ -2,14 +2,28 @@
 
 namespace Hextasy.Framework
 {
-    public abstract class SettingsViewModel<TSettings> : Screen, ISettingsViewModel<TSettings> 
+    public abstract class SettingsViewModel<TSettings> : Screen
         where TSettings : Settings
     {
-        public abstract TSettings Settings { get; }
-    }
+        #region Public Properties
 
-    public interface ISettingsViewModel<out TSettings> : IScreen where TSettings : Settings
-    {
-        TSettings Settings { get; }
+        public int Columns
+        {
+            get;
+            set;
+        }
+
+        public int Rows
+        {
+            get;
+            set;
+        }
+
+        public abstract TSettings Settings
+        {
+            get;
+        }
+
+        #endregion Public Properties
     }
 }

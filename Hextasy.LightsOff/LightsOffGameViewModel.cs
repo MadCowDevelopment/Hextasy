@@ -1,32 +1,31 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.Composition;
+﻿using System.ComponentModel.Composition;
+
 using Caliburn.Micro;
+
 using Hextasy.Framework;
 
 namespace Hextasy.LightsOff
 {
-    [Export(typeof(ILightsOffGameViewModel))]
-    public class LightsOffGameViewModel : GameViewModel<LightsOffGameLogic, LightsOffSettings>, ILightsOffGameViewModel
+    [Export(typeof(LightsOffGameViewModel))]
+    public class LightsOffGameViewModel : GameViewModel<LightsOffGameLogic, LightsOffSettings, HexagonField>
     {
+        #region Constructors
+
         [ImportingConstructor]
         public LightsOffGameViewModel(LightsOffGameLogic gameLogic, IEventAggregator eventAggregator)
             : base(gameLogic, eventAggregator)
         {
         }
 
-        public IEnumerable<HexagonField> Fields { get; private set; }
+        #endregion Constructors
 
-        public int Columns { get; private set; }
-
-        protected override void OnInitialize(LightsOffSettings settings)
-        {
-            Columns = settings.Columns;
-            Fields = Game.GetFields();
-        }
+        #region Public Methods
 
         public void ToggleButton(HexagonField item)
         {
             Game.ToggleNeighbors(item);
         }
+
+        #endregion Public Methods
     }
 }

@@ -1,44 +1,40 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.Composition;
+﻿using System.ComponentModel.Composition;
+
 using Caliburn.Micro;
+
 using Hextasy.Framework;
 
 namespace Hextasy.XInARow
 {
-    [Export(typeof(IXInARowGameViewModel))]
-    public class XInARowGameViewModel : GameViewModel<XInARowGameLogic, XInARowSettings>, IXInARowGameViewModel
+    [Export(typeof(XInARowGameViewModel))]
+    public class XInARowGameViewModel : GameViewModel<XInARowGameLogic, XInARowSettings, HexagonField>
     {
+        #region Constructors
+
         [ImportingConstructor]
         public XInARowGameViewModel(XInARowGameLogic game, IEventAggregator eventAggregator)
             : base(game, eventAggregator)
         {
         }
 
-        protected override void OnInitialize(XInARowSettings settings)
+        #endregion Constructors
+
+        #region Public Properties
+
+        public string CurrentPlayer
         {
-            Columns = settings.Columns;
-            Player1 = settings.Player1;
-            Player2 = settings.Player2;
-            CurrentPlayer = Player1;
-            Fields = Game.GetFields();
+            get { return Game.Player1Active ? Settings.Player1 : Settings.Player2; }
         }
+
+        #endregion Public Properties
+
+        #region Public Methods
 
         public void SelectTile(HexagonField field)
         {
-            if (Game.SelectTile(field))
-            {
-                CurrentPlayer = CurrentPlayer == Player1 ? Player2 : Player1;
-            }
+            Game.SelectTile(field);
         }
 
-        public IEnumerable<HexagonField> Fields { get; private set; }
-
-        public int Columns { get; private set; }
-
-        public string Player1 { get; private set; }
-
-        public string Player2 { get; private set; }
-
-        public string CurrentPlayer { get; private set; }
+        #endregion Public Methods
     }
 }

@@ -4,7 +4,13 @@ namespace Hextasy.LightsOff
 {
     public class HexagonField : PropertyChangedBase
     {
+        #region Fields
+
         private bool _isChecked;
+
+        #endregion Fields
+
+        #region Public Properties
 
         public bool IsChecked
         {
@@ -16,5 +22,7 @@ namespace Hextasy.LightsOff
                 NotifyOfPropertyChange(() => IsChecked);
             }
         }
+
+        #endregion Public Properties
     }
 }

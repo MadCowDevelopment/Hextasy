@@ -78,8 +78,6 @@
     </Compile>
     <Compile Include="XInARowSettingsViewModel.cs" />
     <Compile Include="HexagonField.cs" />
-    <Compile Include="IXInARowGameViewModel.cs" />
-    <Compile Include="IXInARowSettingsViewModel.cs" />
     <Compile Include="Owner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

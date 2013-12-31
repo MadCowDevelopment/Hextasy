@@ -4,15 +4,23 @@ namespace Hextasy.LightsOff
 {
     public class LightsOffSettings : Settings
     {
-        public int Rows { get; private set; }
-        public int Columns { get; private set; }
-        public int Toggles { get; private set; }
+        #region Constructors
 
         public LightsOffSettings(int rows, int columns, int toggles)
+            : base(rows, columns)
         {
-            Rows = rows;
-            Columns = columns;
             Toggles = toggles;
         }
+
+        #endregion Constructors
+
+        #region Public Properties
+
+        public int Toggles
+        {
+            get; private set;
+        }
+
+        #endregion Public Properties
     }
 }

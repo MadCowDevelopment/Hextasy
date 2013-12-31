@@ -1,15 +1,24 @@
 ﻿using System;
+
 using Caliburn.Micro;
 
 namespace Hextasy.Framework
 {
-    public abstract class Game<TSettingsViewModel, TGameViewModel, TSettings> : IGame<TSettings>
-        where TSettingsViewModel : ISettingsViewModel<TSettings>
-        where TGameViewModel : IGameViewModel<TSettings>
+    public abstract class Game<TSettingsViewModel, TGameViewModel, TGameLogic, TSettings, TField> : IGame
+        where TSettingsViewModel : SettingsViewModel<TSettings>
+        where TGameViewModel : GameViewModel<TGameLogic, TSettings, TField>
+        where TGameLogic : GameLogic<TSettings, TField>
         where TSettings : Settings
+        where TField : class
     {
-        private readonly Lazy<TSettingsViewModel> _settingsViewModel;
+        #region Fields
+
         private readonly Lazy<TGameViewModel> _gameViewModel;
+        private readonly Lazy<TSettingsViewModel> _settingsViewModel;
+
+        #endregion Fields
+
+        #region Constructors
 
         protected Game(Lazy<TSettingsViewModel> settingsViewModel, Lazy<TGameViewModel> gameViewModel)
         {
@@ -17,16 +26,44 @@ namespace Hextasy.Framework
             _gameViewModel = gameViewModel;
         }
 
-        public abstract string Name { get; }
-        public IGameViewModel<TSettings> GameViewModel { get { return _gameViewModel.Value; } }
-        public ISettingsViewModel<TSettings> SettingsViewModel { get { return _settingsViewModel.Value; } }
+        #endregion Constructors
+
+        #region Public Properties
+
+        public IScreen GameScreen
+        {
+            get { return GameViewModel; }
+        }
+
+        public GameViewModel<TGameLogic, TSettings, TField> GameViewModel
+        {
+            get { return _gameViewModel.Value; }
+        }
+
+        public abstract string Name
+        {
+            get;
+        }
+
+        public IScreen SettingsScreen
+        {
+            get { return SettingsViewModel; }
+        }
+
+        public SettingsViewModel<TSettings> SettingsViewModel
+        {
+            get { return _settingsViewModel.Value; }
+        }
+
+        #endregion Public Properties
+
+        #region Public Methods
 
         public void Start()
         {
             GameViewModel.Initialize(SettingsViewModel.Settings);
         }
 
-        public IScreen GameScreen { get { return GameViewModel; } }
-        public IScreen SettingsScreen { get { return SettingsViewModel; } }
+        #endregion Public Methods
     }
 }

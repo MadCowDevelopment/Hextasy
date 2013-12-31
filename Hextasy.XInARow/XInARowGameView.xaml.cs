@@ -5,9 +5,13 @@
     /// </summary>
     public partial class XInARowGameView
     {
+        #region Constructors
+
         public XInARowGameView()
         {
             InitializeComponent();
         }
+
+        #endregion Constructors
     }
 }

@@ -6,21 +6,21 @@ using Hextasy.Framework;
 namespace Hextasy.XInARow
 {
     [Export(typeof(XInARowGameLogic))]
-    public class XInARowGameLogic : GameLogic
+    public class XInARowGameLogic : GameLogic<XInARowSettings>
     {
         private bool _player1Active = true;
 
         private int _requiredForWin;
 
-        public void Initialize(int rows, int columns, int requiredForWin)
+        protected override void OnInitialize(XInARowSettings settings)
         {
-            _requiredForWin = requiredForWin;
-            var items = CreateFields(rows * columns);
-            HexMap = new HexMap<HexagonField>(items, columns);
+            _requiredForWin = settings.RequiredForWin;
+            var items = CreateFields(settings.Rows * settings.Columns);
+            HexMap = new HexMap<HexagonField>(items, settings.Columns);
         }
 
         private HexMap<HexagonField> HexMap { get; set; }
-        
+
         private static IEnumerable<HexagonField> CreateFields(int numberOfFields)
         {
             var result = new List<HexagonField>();

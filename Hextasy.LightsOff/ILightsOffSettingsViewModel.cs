@@ -1,9 +1,8 @@
-﻿using Caliburn.Micro;
+﻿using Hextasy.Framework;
 
 namespace Hextasy.LightsOff
 {
-    public interface ILightsOffSettingsViewModel : IScreen
+    public interface ILightsOffSettingsViewModel : ISettingsViewModel<LightsOffSettings>
     {
-        LightsOffSettings Settings { get; }
     }
 }

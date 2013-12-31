@@ -1,16 +1,14 @@
 ﻿using System.Collections.Generic;
-using Caliburn.Micro;
+using Hextasy.Framework;
 
 namespace Hextasy.LightsOff
 {
-    public interface ILightsOffGameViewModel : IScreen
+    public interface ILightsOffGameViewModel : IGameViewModel<LightsOffSettings>
     {
         IEnumerable<HexagonField> Fields { get; }
 
         void ToggleButton(HexagonField item);
 
         int Columns { get; }
-
-        void Initialize(LightsOffSettings settings);
     }
 }

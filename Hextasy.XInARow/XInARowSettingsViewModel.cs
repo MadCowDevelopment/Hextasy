@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel.Composition;
-using Caliburn.Micro;
+using Hextasy.Framework;
 
 namespace Hextasy.XInARow
 {
     [Export(typeof(IXInARowSettingsViewModel))]
-    public class XInARowSettingsViewModel : Screen, IXInARowSettingsViewModel
+    public class XInARowSettingsViewModel : SettingsViewModel<XInARowSettings>, IXInARowSettingsViewModel
     {
         public XInARowSettingsViewModel()
         {
@@ -15,7 +15,7 @@ namespace Hextasy.XInARow
             Player2 = "Player 2";
         }
 
-        public XInARowSettings Settings
+        public override XInARowSettings Settings
         {
             get { return new XInARowSettings(Rows, Columns, RequiredForWin, Player1, Player2); }
         }

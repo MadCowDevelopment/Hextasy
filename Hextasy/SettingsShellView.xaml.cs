@@ -3,9 +3,9 @@
     /// <summary>
     /// Interaction logic for SettingsView.xaml
     /// </summary>
-    public partial class SettingsView
+    public partial class SettingsShellView
     {
-        public SettingsView()
+        public SettingsShellView()
         {
             InitializeComponent();
         }

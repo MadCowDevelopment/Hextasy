@@ -71,7 +71,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SettingsView.xaml">
+    <Page Include="SettingsShellView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -93,12 +93,12 @@
     <Compile Include="GameSelectionViewModel.cs" />
     <Compile Include="IGameSelectionViewModel.cs" />
     <Compile Include="IMainWindowViewModel.cs" />
-    <Compile Include="ISettingsViewModel.cs" />
+    <Compile Include="ISettingsShellViewModel.cs" />
     <Compile Include="SettingsConfirmed.cs" />
-    <Compile Include="SettingsView.xaml.cs">
-      <DependentUpon>SettingsView.xaml</DependentUpon>
+    <Compile Include="SettingsShellView.xaml.cs">
+      <DependentUpon>SettingsShellView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SettingsViewModel.cs" />
+    <Compile Include="SettingsShellViewModel.cs" />
     <Compile Include="ShowSettingsRequested.cs" />
     <Compile Include="StartSelectedGameRequest.cs" />
     <Compile Include="MefBootstrapper.cs" />
@@ -138,6 +138,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Hextasy.LightsOff\Hextasy.LightsOff.csproj">
+      <Project>{4ddaf828-7805-4e58-9596-8c935c638175}</Project>
+      <Name>Hextasy.LightsOff</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Hextasy.XInARow\Hextasy.XInARow.csproj">
       <Project>{a30347e1-ea0e-4945-a50a-98f37bfd79b2}</Project>
       <Name>Hextasy.XInARow</Name>
@@ -145,10 +149,6 @@
     <ProjectReference Include="..\Hextasy.Framework\Hextasy.Framework.csproj">
       <Project>{870BE3B8-1F0E-4422-A3B5-FDE8BAB6FDA3}</Project>
       <Name>Hextasy.Framework</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Hextasy.LightsOff\Hextasy.LightsOff.csproj">
-      <Project>{4ddaf828-7805-4e58-9596-8c935c638175}</Project>
-      <Name>Hextasy.LightsOff</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

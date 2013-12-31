@@ -1,6 +1,8 @@
-﻿namespace Hextasy.XInARow
+﻿using Hextasy.Framework;
+
+namespace Hextasy.XInARow
 {
-    public class XInARowSettings
+    public class XInARowSettings : Settings
     {
         public int Rows { get; private set; }
         public int Columns { get; private set; }

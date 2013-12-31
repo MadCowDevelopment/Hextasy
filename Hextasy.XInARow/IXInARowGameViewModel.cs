@@ -1,11 +1,9 @@
-﻿using Caliburn.Micro;
+﻿using Hextasy.Framework;
 
 namespace Hextasy.XInARow
 {
-    public interface IXInARowGameViewModel : IScreen
+    public interface IXInARowGameViewModel : IGameViewModel<XInARowSettings>
     {
-        void Initialize(XInARowSettings settings);
-
         void SelectTile(HexagonField field);
     }
 }

@@ -1,6 +1,8 @@
-﻿namespace Hextasy.LightsOff
+﻿using Hextasy.Framework;
+
+namespace Hextasy.LightsOff
 {
-    public class LightsOffSettings
+    public class LightsOffSettings : Settings
     {
         public int Rows { get; private set; }
         public int Columns { get; private set; }

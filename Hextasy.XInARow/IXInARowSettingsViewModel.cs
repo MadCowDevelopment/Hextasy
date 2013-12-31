@@ -1,9 +1,8 @@
-﻿using Caliburn.Micro;
+﻿using Hextasy.Framework;
 
 namespace Hextasy.XInARow
 {
-    public interface IXInARowSettingsViewModel : IScreen
+    public interface IXInARowSettingsViewModel : ISettingsViewModel<XInARowSettings>
     {
-        XInARowSettings Settings { get; }
     }
 }

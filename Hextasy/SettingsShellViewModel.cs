@@ -4,14 +4,14 @@ using Hextasy.Framework;
 
 namespace Hextasy
 {
-    [Export(typeof(ISettingsViewModel))]
-    public class SettingsViewModel : Screen, ISettingsViewModel, IHandle<GameSelected>
+    [Export(typeof(ISettingsShellViewModel))]
+    public class SettingsShellViewModel : Screen, ISettingsShellViewModel, IHandle<GameSelected>
     {
         private readonly IEventAggregator _eventAggregator;
         private IGame Game { get; set; }
 
         [ImportingConstructor]
-        public SettingsViewModel(IEventAggregator eventAggregator)
+        public SettingsShellViewModel(IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
             _eventAggregator.Subscribe(this);

@@ -6,7 +6,7 @@ using Hextasy.Framework;
 namespace Hextasy.LightsOff
 {
     [Export(typeof(ILightsOffGameViewModel))]
-    public class LightsOffGameViewModel : GameScreen<LightsOffGameLogic>, ILightsOffGameViewModel
+    public class LightsOffGameViewModel : GameViewModel<LightsOffGameLogic, LightsOffSettings>, ILightsOffGameViewModel
     {
         [ImportingConstructor]
         public LightsOffGameViewModel(LightsOffGameLogic gameLogic, IEventAggregator eventAggregator)
@@ -18,10 +18,9 @@ namespace Hextasy.LightsOff
 
         public int Columns { get; private set; }
 
-        public void Initialize(LightsOffSettings settings)
+        protected override void OnInitialize(LightsOffSettings settings)
         {
             Columns = settings.Columns;
-            Game.Initialize(settings.Rows, settings.Columns, settings.Toggles);
             Fields = Game.GetFields();
         }
 

@@ -2,8 +2,15 @@
 
 namespace Hextasy.Framework
 {
-    public class GameLogic : IGameLogic
+    public abstract class GameLogic<TSettings>/* : IGameLogic<TSettings> */where TSettings : Settings
     {
+        public void Initialize(TSettings settings)
+        {
+            OnInitialize(settings);
+        }
+
+        protected abstract void OnInitialize(TSettings settings);
+
         public event EventHandler<GameFinishedEventArgs> Finished;
 
         protected void RaiseFinished(GameFinishedEventArgs args)

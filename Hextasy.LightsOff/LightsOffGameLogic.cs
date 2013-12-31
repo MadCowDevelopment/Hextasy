@@ -7,16 +7,15 @@ using Hextasy.Framework;
 namespace Hextasy.LightsOff
 {
     [Export(typeof(LightsOffGameLogic))]
-    public class LightsOffGameLogic : GameLogic
+    public class LightsOffGameLogic : GameLogic<LightsOffSettings>
     {
         private readonly Random _random = new Random((int)DateTime.Now.Ticks);
 
-
-        public void Initialize(int rows, int columns, int toggles)
+        protected override void OnInitialize(LightsOffSettings settings)
         {
-            var items = CreateFields(rows*columns);
-            HexMap = new HexMap<HexagonField>(items, columns);
-            Enumerable.Range(0, toggles).ToList().ForEach(p =>
+            var items = CreateFields(settings.Rows * settings.Columns);
+            HexMap = new HexMap<HexagonField>(items, settings.Columns);
+            Enumerable.Range(0, settings.Toggles).ToList().ForEach(p =>
             {
                 var randomTile = HexMap.Tiles[_random.Next(HexMap.Tiles.Count)];
                 randomTile.IsChecked = !randomTile.IsChecked;

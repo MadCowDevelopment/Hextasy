@@ -6,7 +6,7 @@ using Hextasy.Framework;
 namespace Hextasy.XInARow
 {
     [Export(typeof(IXInARowGameViewModel))]
-    public class XInARowGameViewModel : GameScreen<XInARowGameLogic>, IXInARowGameViewModel
+    public class XInARowGameViewModel : GameViewModel<XInARowGameLogic, XInARowSettings>, IXInARowGameViewModel
     {
         [ImportingConstructor]
         public XInARowGameViewModel(XInARowGameLogic game, IEventAggregator eventAggregator)
@@ -14,13 +14,12 @@ namespace Hextasy.XInARow
         {
         }
 
-        public void Initialize(XInARowSettings settings)
+        protected override void OnInitialize(XInARowSettings settings)
         {
             Columns = settings.Columns;
             Player1 = settings.Player1;
             Player2 = settings.Player2;
             CurrentPlayer = Player1;
-            Game.Initialize(settings.Rows, settings.Columns, settings.RequiredForWin);
             Fields = Game.GetFields();
         }
 

@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel.Composition;
-using Caliburn.Micro;
+using Hextasy.Framework;
 
 namespace Hextasy.LightsOff
 {
     [Export(typeof(ILightsOffSettingsViewModel))]
-    public class LightsOffSettingsViewModel : Screen, ILightsOffSettingsViewModel
+    public class LightsOffSettingsViewModel : SettingsViewModel<LightsOffSettings>, ILightsOffSettingsViewModel
     {
         public LightsOffSettingsViewModel()
         {
@@ -13,7 +13,8 @@ namespace Hextasy.LightsOff
             Toggles = 10;
         }
 
-        public LightsOffSettings Settings { get { return new LightsOffSettings(Rows, Columns, Toggles); } }
+        public override LightsOffSettings Settings { get { return new LightsOffSettings(Rows, Columns, Toggles); } }
+
         public int Toggles { get; set; }
 
         public int Columns { get; set; }

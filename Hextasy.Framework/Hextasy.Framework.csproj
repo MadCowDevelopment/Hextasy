@@ -58,13 +58,15 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Game.cs" />
     <Compile Include="GameFinishedEventArgs.cs" />
     <Compile Include="GameLogic.cs" />
-    <Compile Include="GameScreen.cs" />
+    <Compile Include="GameViewModel.cs" />
     <Compile Include="HexGrid.cs" />
     <Compile Include="HexMap.cs" />
     <Compile Include="IGame.cs" />
     <Compile Include="IGameLogic.cs" />
+    <Compile Include="IGameViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -78,6 +80,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Settings.cs" />
+    <Compile Include="SettingsViewModel.cs" />
     <Compile Include="ShowGameSelectionRequest.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

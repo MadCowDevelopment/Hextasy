@@ -11,17 +11,17 @@ namespace Hextasy
         IHandle<SettingsConfirmed>
     {
         private readonly IGameSelectionViewModel _gameSelectionViewModel;
-        private readonly ISettingsViewModel _settingsViewModel;
+        private readonly ISettingsShellViewModel _settingsShellViewModel;
 
         [ImportingConstructor]
         public MainWindowViewModel(
             IEventAggregator eventAggregator, 
             IGameSelectionViewModel gameSelectionViewModel,
-            ISettingsViewModel settingsViewModel)
+            ISettingsShellViewModel settingsShellViewModel)
         {
             eventAggregator.Subscribe(this);
             _gameSelectionViewModel = gameSelectionViewModel;
-            _settingsViewModel = settingsViewModel;
+            _settingsShellViewModel = settingsShellViewModel;
             MainContent = _gameSelectionViewModel;
         }
 
@@ -34,7 +34,7 @@ namespace Hextasy
 
         public void Handle(GameSelected message)
         {
-            MainContent = _settingsViewModel;
+            MainContent = _settingsShellViewModel;
         }
 
         public void Handle(SettingsConfirmed message)

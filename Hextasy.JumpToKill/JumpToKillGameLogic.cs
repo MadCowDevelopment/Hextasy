@@ -29,10 +29,9 @@ namespace Hextasy.JumpToKill
             var neighbours = HexMap.GetNeighbours(tile, distance).ToList();
             result.AddRange(neighbours.Where(p => p.Owner == Owner.None));
 
-            var opponentOwner = _player1Active ? Owner.Player2 : Owner.Player1;
-            var neighboursWithOpponent = HexMap.GetNeighbours(tile).Where(p => p.Owner == opponentOwner);
+            var occupiedNeighbours = HexMap.GetNeighbours(tile).Where(p => p.Owner == Owner.Player1 || p.Owner == Owner.Player2);
             result.AddRange(
-                neighboursWithOpponent.Select(opponentTile => HexMap.GetNextInLine(tile, opponentTile))
+                occupiedNeighbours.Select(opponentTile => HexMap.GetNextInLine(tile, opponentTile))
                     .Where(nextInLine => nextInLine != null && nextInLine.Owner == Owner.None));
 
             return result.Distinct().ToList();
@@ -46,6 +45,7 @@ namespace Hextasy.JumpToKill
                 if (previousTile == tile) return;
                 if (previousTile != null) previousTile.IsSelected = false;
                 tile.IsSelected = true;
+                Tiles.Apply(p => p.IsLegalMoveTarget = false);
                 GetLegalMoves(tile).Apply(p => p.IsLegalMoveTarget = true);
                 return;
             }

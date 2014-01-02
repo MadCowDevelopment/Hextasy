@@ -7,7 +7,7 @@ using Hextasy.Framework;
 namespace Hextasy.LightsOff
 {
     [Export(typeof(LightsOffGameLogic))]
-    public class LightsOffGameLogic : GameLogic<LightsOffSettings, HexagonField>
+    public class LightsOffGameLogic : GameLogic<LightsOffSettings, LightsOffTile>
     {
         #region Fields
 
@@ -17,7 +17,7 @@ namespace Hextasy.LightsOff
 
         #region Public Methods
 
-        public void ToggleNeighbors(HexagonField item)
+        public void ToggleNeighbors(LightsOffTile item)
         {
             HexMap.GetNeighbours(item).ToList().ForEach(p => p.IsChecked = !p.IsChecked);
             if (HexMap.Tiles.All(p => !p.IsChecked))
@@ -30,14 +30,14 @@ namespace Hextasy.LightsOff
 
         #region Protected Methods
 
-        protected override HexagonField CreateField(int index)
+        protected override LightsOffTile CreateTile(int index)
         {
-            return new HexagonField();
+            return new LightsOffTile();
         }
 
-        protected override void OnInitialize(LightsOffSettings settings)
+        protected override void OnSettingsInitialized()
         {
-            Enumerable.Range(0, settings.Toggles).ToList().ForEach(p =>
+            Enumerable.Range(0, Settings.Toggles).ToList().ForEach(p =>
             {
                 var randomTile = HexMap.Tiles[_random.Next(HexMap.Tiles.Count)];
                 randomTile.IsChecked = !randomTile.IsChecked;

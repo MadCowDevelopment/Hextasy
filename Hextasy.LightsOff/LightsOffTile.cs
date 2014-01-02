@@ -1,8 +1,8 @@
-﻿using Caliburn.Micro;
+﻿using Hextasy.Framework;
 
 namespace Hextasy.LightsOff
 {
-    public class HexagonField : PropertyChangedBase
+    public class LightsOffTile : HexagonTile
     {
         #region Fields
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Hextasy.Framework
@@ -26,7 +27,8 @@ namespace Hextasy.Framework
 
         public List<T> Tiles
         {
-            get; private set;
+            get;
+            private set;
         }
 
         #endregion Public Properties
@@ -47,32 +49,101 @@ namespace Hextasy.Framework
 
         public IEnumerable<IEnumerable<T>> GetLines(T item)
         {
-            var indexOfItem = Tiles.IndexOf(item);
-            if (indexOfItem < 0) return Enumerable.Empty<IEnumerable<T>>();
-            var x = indexOfItem % _columns;
-            var y = indexOfItem / _columns;
-            return GetLines(x, y);
+            var coordinate = GetTileCoordinate(item);
+            return coordinate == null ? Enumerable.Empty<IEnumerable<T>>() : GetLines(coordinate.X, coordinate.Y);
         }
 
         public IEnumerable<T> GetNeighbours(T item)
         {
-            var indexOfItem = Tiles.IndexOf(item);
-            if (indexOfItem < 0) return Enumerable.Empty<T>();
-            var x = indexOfItem % _columns;
-            var y = indexOfItem / _columns;
-            return GetNeighbours(x, y);
+            return GetNeighbours(item, 1);
+        }
+
+        public IEnumerable<T> GetNeighbours(T item, int distance)
+        {
+            var coordinate = GetTileCoordinate(item);
+            return coordinate == null ? Enumerable.Empty<T>() : GetNeighbours(coordinate.X, coordinate.Y, distance);
+        }
+
+        public IEnumerable<T> GetTilesBetween(T tile1, T tile2)
+        {
+            var tile1Coordinate = GetTileCoordinate(tile1);
+            var tile2Coordinate = GetTileCoordinate(tile2);
+            if (tile1Coordinate == null || tile2Coordinate == null ||
+                tile1Coordinate.X == tile2Coordinate.X && tile1Coordinate.Y == tile2Coordinate.Y) return null;
+
+            var lines = GetLines(tile1).Select(p => p.ToList());
+            foreach (var line in lines)
+            {
+                if (!line.Contains(tile2)) continue;
+                var min = Math.Min(line.IndexOf(tile1), line.IndexOf(tile2));
+                var max = Math.Max(line.IndexOf(tile1), line.IndexOf(tile2));
+                return line.GetRange(min + 1, max - min - 1);
+            }
+
+            return Enumerable.Empty<T>();
+        }
+
+        public T GetNextInLine(T tile1, T tile2)
+        {
+            var tile1Coordinate = GetTileCoordinate(tile1);
+            var tile2Coordinate = GetTileCoordinate(tile2);
+            if (tile1Coordinate == null || tile2Coordinate == null ||
+                tile1Coordinate.X == tile2Coordinate.X && tile1Coordinate.Y == tile2Coordinate.Y) return null;
+
+            var downwardLine = GetStraightDownLine(tile1Coordinate.X);
+            if (downwardLine.Contains(tile2))
+            {
+                return downwardLine.IndexOf(tile1) < downwardLine.IndexOf(tile2)
+                    ? GetBottomNeighbour(tile2Coordinate.X, tile2Coordinate.Y)
+                    : GetTopNeighbour(tile2Coordinate.X, tile2Coordinate.Y);
+            }
+
+            var diagonalDownwardLine = GetDiagonalDownwardsLine(tile1Coordinate.X, tile1Coordinate.Y);
+            if (diagonalDownwardLine.Contains(tile2))
+            {
+                return diagonalDownwardLine.IndexOf(tile1) < diagonalDownwardLine.IndexOf(tile2)
+                    ? GetBottomRightNeighbour(tile2Coordinate.X, tile2Coordinate.Y)
+                    : GetTopLeftNeighbour(tile2Coordinate.X, tile2Coordinate.Y);
+            }
+
+            var diagonalUpwardLine = GetDiagonalUpwardsLine(tile1Coordinate.X, tile1Coordinate.Y);
+            if (diagonalUpwardLine.Contains(tile2))
+            {
+                return diagonalUpwardLine.IndexOf(tile1) < diagonalUpwardLine.IndexOf(tile2)
+                    ? GetTopRightNeighbour(tile2Coordinate.X, tile2Coordinate.Y)
+                    : GetBottomLeftNeighbour(tile2Coordinate.X, tile2Coordinate.Y);
+            }
+
+            return null;
         }
 
         #endregion Public Methods
 
         #region Private Methods
 
+        private T GetBottomLeftNeighbour(int x, int y)
+        {
+            var isEvenColumn = x % 2 == 0;
+            return isEvenColumn ? GetTileAt(x - 1, y) : GetTileAt(x - 1, y + 1);
+        }
+
+        private T GetBottomNeighbour(int x, int y)
+        {
+            return GetTileAt(x, y + 1);
+        }
+
+        private T GetBottomRightNeighbour(int x, int y)
+        {
+            var isEvenColumn = x % 2 == 0;
+            return isEvenColumn ? GetTileAt(x + 1, y) : GetTileAt(x + 1, y + 1);
+        }
+
         private List<T> GetDiagonalDownwardsLine(int x, int y)
         {
             var result = new List<T>();
             var x1 = x;
             var y1 = y;
-            while (x1 > 0 && y1 > 0 || (x1%2 != 0 && y1 == 0))
+            while (x1 > 0 && y1 > 0 || (x1 % 2 != 0 && y1 == 0))
             {
                 if (x1 % 2 == 0)
                 {
@@ -109,7 +180,7 @@ namespace Hextasy.Framework
             var y1 = y;
             while (x1 > 0 && y1 < Rows - 1)
             {
-                if (x1%2 == 0)
+                if (x1 % 2 == 0)
                 {
                     x1--;
                 }
@@ -123,7 +194,7 @@ namespace Hextasy.Framework
             while (x1 < _columns && y1 >= 0)
             {
                 result.AddNotNull(GetTileAt(x1, y1));
-                if (x1%2 == 0)
+                if (x1 % 2 == 0)
                 {
                     x1++;
                     y1--;
@@ -149,16 +220,30 @@ namespace Hextasy.Framework
             return result;
         }
 
+        private IEnumerable<T> GetNeighbours(int x, int y, int distance)
+        {
+            if (distance == 0) return Enumerable.Empty<T>();
+
+            var result = new List<T>();
+            var directNeighbours = GetNeighbours(x, y).ToList();
+            result.AddRange(directNeighbours);
+            foreach (var directNeighbour in directNeighbours)
+            {
+                result.AddRange(GetNeighbours(directNeighbour, distance - 1));
+            }
+
+            return result.Distinct().ToList();
+        }
+
         private IEnumerable<T> GetNeighbours(int x, int y)
         {
-            var isEvenColumn = x % 2 == 0;
             var neighbours = new List<T>();
-            neighbours.AddNotNull(isEvenColumn ? GetTileAt(x - 1, y - 1) : GetTileAt(x - 1, y));
-            neighbours.AddNotNull(GetTileAt(x, y - 1));
-            neighbours.AddNotNull(isEvenColumn ? GetTileAt(x + 1, y - 1) : GetTileAt(x + 1, y));
-            neighbours.AddNotNull(isEvenColumn ? GetTileAt(x - 1, y) : GetTileAt(x - 1, y + 1));
-            neighbours.AddNotNull(isEvenColumn ? GetTileAt(x + 1, y) : GetTileAt(x + 1, y + 1));
-            neighbours.AddNotNull(GetTileAt(x, y + 1));
+            neighbours.AddNotNull(GetTopLeftNeighbour(x, y));
+            neighbours.AddNotNull(GetTopNeighbour(x, y));
+            neighbours.AddNotNull(GetTopRightNeighbour(x, y));
+            neighbours.AddNotNull(GetBottomLeftNeighbour(x, y));
+            neighbours.AddNotNull(GetBottomRightNeighbour(x, y));
+            neighbours.AddNotNull(GetBottomNeighbour(x, y));
             return neighbours;
         }
 
@@ -180,22 +265,62 @@ namespace Hextasy.Framework
             return tileIndex >= Tiles.Count ? null : Tiles[tileIndex];
         }
 
-        #endregion Private Methods
-    }
-
-    public static class ListExtensions
-    {
-        #region Public Static Methods
-
-        public static void AddNotNull<T>(this IList<T> enumerable, T objToAdd)
-            where T : class
+        private Coordinate GetTileCoordinate(T item)
         {
-            if (objToAdd != null)
-            {
-                enumerable.Add(objToAdd);
-            }
+            var indexOfItem = Tiles.IndexOf(item);
+            return indexOfItem < 0 ? null : new Coordinate(indexOfItem % _columns, indexOfItem / _columns);
         }
 
-        #endregion Public Static Methods
+        private T GetTopLeftNeighbour(int x, int y)
+        {
+            var isEvenColumn = x % 2 == 0;
+            return isEvenColumn ? GetTileAt(x - 1, y - 1) : GetTileAt(x - 1, y);
+        }
+
+        private T GetTopNeighbour(int x, int y)
+        {
+            return GetTileAt(x, y - 1);
+        }
+
+        private T GetTopRightNeighbour(int x, int y)
+        {
+            var isEvenColumn = x % 2 == 0;
+            return isEvenColumn ? GetTileAt(x + 1, y - 1) : GetTileAt(x + 1, y);
+        }
+
+        #endregion Private Methods
+
+        #region Nested Types
+
+        private class Coordinate
+        {
+            #region Constructors
+
+            public Coordinate(int x, int y)
+            {
+                X = x;
+                Y = y;
+            }
+
+            #endregion Constructors
+
+            #region Public Properties
+
+            public int X
+            {
+                get;
+                private set;
+            }
+
+            public int Y
+            {
+                get;
+                private set;
+            }
+
+            #endregion Public Properties
+        }
+
+        #endregion Nested Types
     }
 }

@@ -7,7 +7,7 @@ using Hextasy.Framework;
 namespace Hextasy.XInARow
 {
     [Export(typeof(XInARowGameViewModel))]
-    public class XInARowGameViewModel : GameViewModel<XInARowGameLogic, XInARowSettings, HexagonField>
+    public class XInARowGameViewModel : GameViewModel<XInARowGameLogic, XInARowSettings, XInARowTile>
     {
         #region Constructors
 
@@ -30,9 +30,9 @@ namespace Hextasy.XInARow
 
         #region Public Methods
 
-        public void SelectTile(HexagonField field)
+        public void SelectTile(XInARowTile tile)
         {
-            Game.SelectTile(field);
+            Game.SelectTile(tile);
             NotifyOfPropertyChange(() => CurrentPlayer);
         }
 

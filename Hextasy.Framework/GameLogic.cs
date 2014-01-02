@@ -6,9 +6,9 @@ using Caliburn.Micro;
 
 namespace Hextasy.Framework
 {
-    public abstract class GameLogic<TSettings, TField> : PropertyChangedBase
+    public abstract class GameLogic<TSettings, TTile> : PropertyChangedBase
         where TSettings : Settings
-        where TField : class
+        where TTile : HexagonTile
     {
         #region Events
 
@@ -18,7 +18,7 @@ namespace Hextasy.Framework
 
         #region Protected Properties
 
-        protected HexMap<TField> HexMap
+        protected HexMap<TTile> HexMap
         {
             get; private set;
         }
@@ -32,26 +32,26 @@ namespace Hextasy.Framework
 
         #region Public Methods
 
-        public IEnumerable<TField> Fields
+        public IEnumerable<TTile> Tiles
         {
-            get { return HexMap != null ? HexMap.Tiles : Enumerable.Empty<TField>(); }
+            get { return HexMap != null ? HexMap.Tiles : Enumerable.Empty<TTile>(); }
         }
 
         public void Initialize(TSettings settings)
         {
             Settings = settings;
-            var items = CreateFields(settings.Rows * settings.Columns);
-            HexMap = new HexMap<TField>(items, settings.Columns);
-            OnInitialize(settings);
+            var items = CreateTiles(settings.Rows * settings.Columns);
+            HexMap = new HexMap<TTile>(items, settings.Columns);
+            OnSettingsInitialized();
         }
 
         #endregion Public Methods
 
         #region Protected Methods
 
-        protected abstract TField CreateField(int index);
+        protected abstract TTile CreateTile(int index);
 
-        protected virtual void OnInitialize(TSettings settings)
+        protected virtual void OnSettingsInitialized()
         {
         }
 
@@ -65,12 +65,12 @@ namespace Hextasy.Framework
 
         #region Private Methods
 
-        private IEnumerable<TField> CreateFields(int numberOfFields)
+        private IEnumerable<TTile> CreateTiles(int numberOfTiles)
         {
-            var result = new List<TField>();
-            for (var i = 0; i < numberOfFields; i++)
+            var result = new List<TTile>();
+            for (var i = 0; i < numberOfTiles; i++)
             {
-                result.Add(CreateField(i));
+                result.Add(CreateTile(i));
             }
 
             return result;

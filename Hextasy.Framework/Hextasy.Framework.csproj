@@ -67,9 +67,11 @@
     <Compile Include="GameFinishedEventArgs.cs" />
     <Compile Include="GameLogic.cs" />
     <Compile Include="GameViewModel.cs" />
+    <Compile Include="HexagonTile.cs" />
     <Compile Include="HexGrid.cs" />
     <Compile Include="HexMap.cs" />
     <Compile Include="IGame.cs" />
+    <Compile Include="ListExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

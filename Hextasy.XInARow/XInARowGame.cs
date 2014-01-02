@@ -6,7 +6,7 @@ using Hextasy.Framework;
 namespace Hextasy.XInARow
 {
     [Export(typeof(IGame))]
-    public class XInARowGame : Game<XInARowSettingsViewModel, XInARowGameViewModel, XInARowGameLogic, XInARowSettings, HexagonField>
+    public class XInARowGame : Game<XInARowSettingsViewModel, XInARowGameViewModel, XInARowGameLogic, XInARowSettings, XInARowTile>
     {
         #region Constructors
 

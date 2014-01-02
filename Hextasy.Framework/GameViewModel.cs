@@ -4,10 +4,10 @@ using Caliburn.Micro;
 
 namespace Hextasy.Framework
 {
-    public abstract class GameViewModel<TGameLogic, TSettings, TField> : Screen
-        where TGameLogic : GameLogic<TSettings, TField>
+    public abstract class GameViewModel<TGameLogic, TSettings, TTile> : Screen
+        where TGameLogic : GameLogic<TSettings, TTile>
         where TSettings : Settings
-        where TField : class
+        where TTile : HexagonTile
     {
         #region Fields
 
@@ -33,9 +33,9 @@ namespace Hextasy.Framework
             get { return Settings.Columns; }
         }
 
-        public IEnumerable<TField> Fields
+        public IEnumerable<TTile> Tiles
         {
-            get { return Game.Fields; }
+            get { return Game.Tiles; }
         }
 
         #endregion Public Properties
@@ -60,7 +60,7 @@ namespace Hextasy.Framework
         {
             Settings = settings;
             Game.Initialize(Settings);
-            NotifyOfPropertyChange(() => Fields);
+            NotifyOfPropertyChange(() => Tiles);
             OnSettingsInitialized();
         }
 

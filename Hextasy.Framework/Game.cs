@@ -4,12 +4,12 @@ using Caliburn.Micro;
 
 namespace Hextasy.Framework
 {
-    public abstract class Game<TSettingsViewModel, TGameViewModel, TGameLogic, TSettings, TField> : IGame
+    public abstract class Game<TSettingsViewModel, TGameViewModel, TGameLogic, TSettings, TTile> : IGame
         where TSettingsViewModel : SettingsViewModel<TSettings>
-        where TGameViewModel : GameViewModel<TGameLogic, TSettings, TField>
-        where TGameLogic : GameLogic<TSettings, TField>
+        where TGameViewModel : GameViewModel<TGameLogic, TSettings, TTile>
+        where TGameLogic : GameLogic<TSettings, TTile>
         where TSettings : Settings
-        where TField : class
+        where TTile : HexagonTile
     {
         #region Fields
 
@@ -49,7 +49,7 @@ namespace Hextasy.Framework
 
         #region Private Properties
 
-        private GameViewModel<TGameLogic, TSettings, TField> GameViewModel
+        private GameViewModel<TGameLogic, TSettings, TTile> GameViewModel
         {
             get { return _gameViewModel.Value; }
         }

@@ -77,7 +77,7 @@
       <DependentUpon>XInARowSettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="XInARowSettingsViewModel.cs" />
-    <Compile Include="HexagonField.cs" />
+    <Compile Include="XInARowTile.cs" />
     <Compile Include="Owner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

@@ -7,7 +7,7 @@ using Hextasy.Framework;
 namespace Hextasy.XInARow
 {
     [Export(typeof(XInARowGameLogic))]
-    public class XInARowGameLogic : GameLogic<XInARowSettings, HexagonField>
+    public class XInARowGameLogic : GameLogic<XInARowSettings, XInARowTile>
     {
         public XInARowGameLogic()
         {
@@ -25,54 +25,54 @@ namespace Hextasy.XInARow
 
         #region Public Methods
 
-        public void SelectTile(HexagonField field)
+        public void SelectTile(XInARowTile tile)
         {
-            if (field.Owner != Owner.None) return;
+            if (tile.Owner != Owner.None) return;
 
-            field.Owner = Player1Active ? Owner.Player1 : Owner.Player2;
+            tile.Owner = Player1Active ? Owner.Player1 : Owner.Player2;
             Player1Active = !Player1Active;
-            CheckWinCondition(field);
+            CheckWinCondition(tile);
         }
 
         #endregion Public Methods
 
         #region Protected Methods
 
-        protected override HexagonField CreateField(int index)
+        protected override XInARowTile CreateTile(int index)
         {
-            return new HexagonField();
+            return new XInARowTile();
         }
 
         #endregion Protected Methods
 
         #region Private Methods
 
-        private bool CheckLineForFourInARow(IEnumerable<HexagonField> rows)
+        private bool CheckLineForFourInARow(IEnumerable<XInARowTile> rows)
         {
             var previousOwner = Owner.None;
-            var consecutiveFields = 0;
-            foreach (var hexField in rows)
+            var consecutiveTiles = 0;
+            foreach (var hexTile in rows)
             {
-                if (hexField.Owner == previousOwner && hexField.Owner != Owner.None)
+                if (hexTile.Owner == previousOwner && hexTile.Owner != Owner.None)
                 {
-                    consecutiveFields++;
-                    if (consecutiveFields == Settings.RequiredForWin) return true;
+                    consecutiveTiles++;
+                    if (consecutiveTiles == Settings.RequiredForWin) return true;
                 }
                 else
                 {
-                    previousOwner = hexField.Owner;
-                    consecutiveFields = 1;
+                    previousOwner = hexTile.Owner;
+                    consecutiveTiles = 1;
                 }
             }
 
             return false;
         }
 
-        private void CheckWinCondition(HexagonField field)
+        private void CheckWinCondition(XInARowTile tile)
         {
             if(HexMap.Tiles.All(p=>p.Owner != Owner.None)) RaiseFinished(new GameFinishedEventArgs());
 
-            var lines = HexMap.GetLines(field);
+            var lines = HexMap.GetLines(tile);
             foreach (var line in lines)
             {
                 if(CheckLineForFourInARow(line)) RaiseFinished(new GameFinishedEventArgs());

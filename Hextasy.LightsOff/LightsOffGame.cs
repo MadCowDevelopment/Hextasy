@@ -6,7 +6,7 @@ using Hextasy.Framework;
 namespace Hextasy.LightsOff
 {
     [Export(typeof(IGame))]
-    public class LightsOffGame : Game<LightsOffSettingsViewModel, LightsOffGameViewModel, LightsOffGameLogic, LightsOffSettings, HexagonField>
+    public class LightsOffGame : Game<LightsOffSettingsViewModel, LightsOffGameViewModel, LightsOffGameLogic, LightsOffSettings, LightsOffTile>
     {
         #region Constructors
 

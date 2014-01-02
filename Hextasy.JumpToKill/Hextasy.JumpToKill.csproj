@@ -4,22 +4,20 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F1A2186A-9020-4289-881B-2139A022ECC9}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <ProjectGuid>{F3E4C333-CB73-444F-8640-517C96D76DB2}</ProjectGuid>
+    <OutputType>library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Hextasy</RootNamespace>
-    <AssemblyName>Hextasy</AssemblyName>
+    <RootNamespace>Hextasy.JumpToKill</RootNamespace>
+    <AssemblyName>Hextasy.JumpToKill</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <FodyPath>..\packages\Fody.1.19.1.0</FodyPath>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <FodyPath>..\packages\Fody.1.19.1.0</FodyPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -29,7 +27,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,6 +40,7 @@
     </Reference>
     <Reference Include="PropertyChanged">
       <HintPath>..\packages\PropertyChanged.Fody.1.43.1.0\Lib\NET35\PropertyChanged.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -63,47 +61,19 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Page Include="GameSelectionView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SettingsShellView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MainWindowView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Compile Include="..\CommonAssemblyInfo.cs">
-      <Link>CommonAssemblyInfo.cs</Link>
+    <Compile Include="JumpToKillTile.cs" />
+    <Compile Include="JumpToKillGame.cs" />
+    <Compile Include="JumpToKillGameLogic.cs" />
+    <Compile Include="JumpToKillGameView.xaml.cs">
+      <DependentUpon>JumpToKillGameView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
+    <Compile Include="JumpToKillGameViewModel.cs" />
+    <Compile Include="JumpToKillSettings.cs" />
+    <Compile Include="JumpToKillSettingsView.xaml.cs">
+      <DependentUpon>JumpToKillSettingsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GameSelected.cs" />
-    <Compile Include="GameSelectionView.xaml.cs">
-      <DependentUpon>GameSelectionView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="GameSelectionViewModel.cs" />
-    <Compile Include="SettingsConfirmed.cs" />
-    <Compile Include="SettingsShellView.xaml.cs">
-      <DependentUpon>SettingsShellView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SettingsShellViewModel.cs" />
-    <Compile Include="MefBootstrapper.cs" />
-    <Compile Include="MainWindowView.xaml.cs">
-      <DependentUpon>MainWindowView.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="JumpToKillSettingsViewModel.cs" />
+    <Compile Include="Owner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -130,33 +100,27 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <Resource Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Hextasy.JumpToKill\Hextasy.JumpToKill.csproj">
-      <Project>{f3e4c333-cb73-444f-8640-517c96d76db2}</Project>
-      <Name>Hextasy.JumpToKill</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Hextasy.LightsOff\Hextasy.LightsOff.csproj">
-      <Project>{4ddaf828-7805-4e58-9596-8c935c638175}</Project>
-      <Name>Hextasy.LightsOff</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Hextasy.XInARow\Hextasy.XInARow.csproj">
-      <Project>{a30347e1-ea0e-4945-a50a-98f37bfd79b2}</Project>
-      <Name>Hextasy.XInARow</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Hextasy.Framework\Hextasy.Framework.csproj">
       <Project>{870BE3B8-1F0E-4422-A3B5-FDE8BAB6FDA3}</Project>
       <Name>Hextasy.Framework</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="FodyWeavers.xml" />
+    <Page Include="JumpToKillGameView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="JumpToKillSettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="Fody.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Import Project="Fody.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

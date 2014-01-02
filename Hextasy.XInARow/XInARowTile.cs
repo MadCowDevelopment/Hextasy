@@ -1,8 +1,8 @@
-﻿using Caliburn.Micro;
+﻿using Hextasy.Framework;
 
 namespace Hextasy.XInARow
 {
-    public class HexagonField : PropertyChangedBase
+    public class XInARowTile : HexagonTile
     {
         #region Public Properties
 

@@ -7,7 +7,7 @@ using Hextasy.Framework;
 namespace Hextasy.LightsOff
 {
     [Export(typeof(LightsOffGameViewModel))]
-    public class LightsOffGameViewModel : GameViewModel<LightsOffGameLogic, LightsOffSettings, HexagonField>
+    public class LightsOffGameViewModel : GameViewModel<LightsOffGameLogic, LightsOffSettings, LightsOffTile>
     {
         #region Constructors
 
@@ -21,7 +21,7 @@ namespace Hextasy.LightsOff
 
         #region Public Methods
 
-        public void ToggleButton(HexagonField item)
+        public void ToggleButton(LightsOffTile item)
         {
             Game.ToggleNeighbors(item);
         }

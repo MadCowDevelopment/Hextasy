@@ -66,7 +66,7 @@
             </Setter>
         </Style>
 
-        <DataTemplate DataType="{x:Type xInARow:HexagonField}">
+        <DataTemplate DataType="{x:Type xInARow:XInARowTile}">
             <Button Style="{StaticResource HexagonButtonStyle}"
                           Background="DarkGray"
                           cal:Message.Attach="SelectTile($dataContext)"/>
@@ -80,7 +80,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Text="{Binding CurrentPlayer}" HorizontalAlignment="Center" FontSize="24" FontWeight="Bold"/>
-        <ItemsControl Grid.Row="1" ItemsSource="{Binding Fields}" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <ItemsControl Grid.Row="1" ItemsSource="{Binding Tiles}" HorizontalAlignment="Center" VerticalAlignment="Center">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <framework:HexGrid Columns="{Binding Columns}"/>

@@ -64,7 +64,7 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="HexagonField.cs" />
+    <Compile Include="LightsOffTile.cs" />
     <Compile Include="LightsOffGame.cs" />
     <Compile Include="LightsOffGameLogic.cs" />
     <Compile Include="LightsOffSettings.cs" />

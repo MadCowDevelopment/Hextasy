@@ -49,7 +49,7 @@ namespace Hextasy.Framework
 
         public IEnumerable<IEnumerable<T>> GetLines(T item)
         {
-            var coordinate = GetTileCoordinate(item);
+            var coordinate = GetCoordinateByItem(item);
             return coordinate == null ? Enumerable.Empty<IEnumerable<T>>() : GetLines(coordinate.X, coordinate.Y);
         }
 
@@ -60,14 +60,14 @@ namespace Hextasy.Framework
 
         public IEnumerable<T> GetNeighbours(T item, int distance)
         {
-            var coordinate = GetTileCoordinate(item);
+            var coordinate = GetCoordinateByItem(item);
             return coordinate == null ? Enumerable.Empty<T>() : GetNeighbours(coordinate.X, coordinate.Y, distance);
         }
 
         public IEnumerable<T> GetTilesBetween(T tile1, T tile2)
         {
-            var tile1Coordinate = GetTileCoordinate(tile1);
-            var tile2Coordinate = GetTileCoordinate(tile2);
+            var tile1Coordinate = GetCoordinateByItem(tile1);
+            var tile2Coordinate = GetCoordinateByItem(tile2);
             if (tile1Coordinate == null || tile2Coordinate == null ||
                 tile1Coordinate.X == tile2Coordinate.X && tile1Coordinate.Y == tile2Coordinate.Y) return null;
 
@@ -85,8 +85,8 @@ namespace Hextasy.Framework
 
         public T GetNextInLine(T tile1, T tile2)
         {
-            var tile1Coordinate = GetTileCoordinate(tile1);
-            var tile2Coordinate = GetTileCoordinate(tile2);
+            var tile1Coordinate = GetCoordinateByItem(tile1);
+            var tile2Coordinate = GetCoordinateByItem(tile2);
             if (tile1Coordinate == null || tile2Coordinate == null ||
                 tile1Coordinate.X == tile2Coordinate.X && tile1Coordinate.Y == tile2Coordinate.Y) return null;
 
@@ -265,10 +265,15 @@ namespace Hextasy.Framework
             return tileIndex >= Tiles.Count ? null : Tiles[tileIndex];
         }
 
-        private Coordinate GetTileCoordinate(T item)
+        public Coordinate GetCoordinateByItem(T item)
         {
             var indexOfItem = Tiles.IndexOf(item);
-            return indexOfItem < 0 ? null : new Coordinate(indexOfItem % _columns, indexOfItem / _columns);
+            return GetCoordinateByIndex(indexOfItem);
+        }
+
+        private Coordinate GetCoordinateByIndex(int index)
+        {
+            return index < 0 ? null : new Coordinate(index % _columns, index / _columns);
         }
 
         private T GetTopLeftNeighbour(int x, int y)
@@ -289,38 +294,5 @@ namespace Hextasy.Framework
         }
 
         #endregion Private Methods
-
-        #region Nested Types
-
-        private class Coordinate
-        {
-            #region Constructors
-
-            public Coordinate(int x, int y)
-            {
-                X = x;
-                Y = y;
-            }
-
-            #endregion Constructors
-
-            #region Public Properties
-
-            public int X
-            {
-                get;
-                private set;
-            }
-
-            public int Y
-            {
-                get;
-                private set;
-            }
-
-            #endregion Public Properties
-        }
-
-        #endregion Nested Types
     }
 }

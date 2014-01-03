@@ -37,10 +37,15 @@ namespace Hextasy.Framework
             get { return HexMap != null ? HexMap.Tiles : Enumerable.Empty<TTile>(); }
         }
 
+        protected IEnumerable<TTile> NotNullTiles
+        {
+            get { return Tiles.Where(p => p != null); }
+        }
+
         public void Initialize(TSettings settings)
         {
             Settings = settings;
-            var items = CreateTiles(settings.Rows * settings.Columns);
+            var items = CreateTiles(settings.Columns, settings.Rows);
             HexMap = new HexMap<TTile>(items, settings.Columns);
             OnSettingsInitialized();
         }
@@ -49,7 +54,7 @@ namespace Hextasy.Framework
 
         #region Protected Methods
 
-        protected abstract TTile CreateTile(int index);
+        protected abstract TTile CreateTile(int column, int row);
 
         protected virtual void OnSettingsInitialized()
         {
@@ -65,12 +70,15 @@ namespace Hextasy.Framework
 
         #region Private Methods
 
-        private IEnumerable<TTile> CreateTiles(int numberOfTiles)
+        private IEnumerable<TTile> CreateTiles(int columns, int rows)
         {
             var result = new List<TTile>();
-            for (var i = 0; i < numberOfTiles; i++)
+            for (int y = 0; y < rows; y++)
             {
-                result.Add(CreateTile(i));
+                for (int x = 0; x < columns; x++)
+                {
+                    result.Add(CreateTile(x, y));
+                }
             }
 
             return result;

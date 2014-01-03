@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-
+using System.Linq;
 using Caliburn.Micro;
 
 namespace Hextasy.Framework
@@ -36,6 +36,11 @@ namespace Hextasy.Framework
         public IEnumerable<TTile> Tiles
         {
             get { return Game.Tiles; }
+        }
+
+        public IEnumerable<TTile> NotNullTiles
+        {
+            get { return Game.Tiles.Where(p => p != null); }
         }
 
         #endregion Public Properties

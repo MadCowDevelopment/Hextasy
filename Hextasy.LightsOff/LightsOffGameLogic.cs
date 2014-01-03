@@ -30,7 +30,7 @@ namespace Hextasy.LightsOff
 
         #region Protected Methods
 
-        protected override LightsOffTile CreateTile(int index)
+        protected override LightsOffTile CreateTile(int column, int row)
         {
             return new LightsOffTile();
         }

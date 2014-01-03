@@ -38,7 +38,7 @@ namespace Hextasy.XInARow
 
         #region Protected Methods
 
-        protected override XInARowTile CreateTile(int index)
+        protected override XInARowTile CreateTile(int column, int row)
         {
             return new XInARowTile();
         }

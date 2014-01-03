@@ -74,7 +74,7 @@ namespace Hextasy.JumpToKill
 
         #region Protected Methods
 
-        protected override JumpToKillTile CreateTile(int index)
+        protected override JumpToKillTile CreateTile(int column, int row)
         {
             return new JumpToKillTile();
         }

@@ -191,6 +191,8 @@ namespace Hextasy.Framework
                 }
             }
 
+            if (x1 > 0 && y1 == Rows - 1 && x1 % 2 == 0) x1--;
+
             while (x1 < _columns && y1 >= 0)
             {
                 result.AddNotNull(GetTileAt(x1, y1));

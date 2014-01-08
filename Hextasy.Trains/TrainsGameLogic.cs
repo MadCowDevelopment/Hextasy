@@ -15,8 +15,8 @@ namespace Hextasy.Trains
 
         private readonly List<string> _availableStations = new List<string>
         {
-            "Kiel", "Rostock", "Bremen", "Hannover", "Berlin", "Kassel", "Dresden", "Frankfurt", "Mannheim",
-            "Stuttgart", "München"
+            "Kiel", "Rostock", "Bremen", "Hannover", "Berlin", "Kassel", 
+            "Dresden", "Frankfurt", "Mannheim", "Stuttgart", "München"
         };
 
         public TrainsTile TileToPlace { get; private set; }
@@ -26,9 +26,9 @@ namespace Hextasy.Trains
             if (!tileToPlace.CanBePlaced) return;
             tileToPlace.IsFixed = true;
             tileToPlace.CanBePlaced = false;
-            CheckForWinCondition();
             _isPlayer1Active = !_isPlayer1Active;
             InitializeTileToPlace();
+            CheckForWinCondition();
         }
 
         private bool TileCanBePlaced(TrainsTile tileToPlace)
@@ -100,11 +100,13 @@ namespace Hextasy.Trains
 
         private void CheckForWinCondition()
         {
-            CheckWinCondition(Owner.Player1);
-            CheckWinCondition(Owner.Player2);
+            var player1Win = CheckWinCondition(Owner.Player1);
+            var player2Win = CheckWinCondition(Owner.Player2);
+
+            if(player1Win || player2Win) RaiseFinished(new GameFinishedEventArgs());
         }
 
-        private void CheckWinCondition(Owner owner)
+        private bool CheckWinCondition(Owner owner)
         {
             var visitedTiles = new List<TrainsTile>();
             var tilesToVisit = new List<TrainsTile>();
@@ -118,46 +120,54 @@ namespace Hextasy.Trains
                     visitedTiles.Add(tileToVisit);
                     if (visitedTiles.Count(p => p.Owner == owner) == 4)
                     {
-                        RaiseFinished(new GameFinishedEventArgs());
+                        return true;
                     }
 
                     if (tileToVisit.HasTopExit)
                     {
                         var neighbour = HexMap.GetTopNeighbour(tileToVisit);
-                        if(!visitedTiles.Contains(neighbour)) tilesToVisit.AddNotNull(neighbour);
+                        if(!visitedTiles.Contains(neighbour) && !tilesToVisit.Contains(neighbour))
+                            tilesToVisit.AddNotNull(neighbour);
                     }
 
                     if (tileToVisit.HasTopRightExit)
                     {
                         var neighbour = HexMap.GetTopRightNeighbour(tileToVisit);
-                        if (!visitedTiles.Contains(neighbour)) tilesToVisit.AddNotNull(neighbour);
+                        if (!visitedTiles.Contains(neighbour) && !tilesToVisit.Contains(neighbour)) 
+                            tilesToVisit.AddNotNull(neighbour);
                     }
 
                     if (tileToVisit.HasBottomRightExit)
                     {
                         var neighbour = HexMap.GetBottomRightNeighbour(tileToVisit);
-                        if (!visitedTiles.Contains(neighbour)) tilesToVisit.AddNotNull(neighbour);
+                        if (!visitedTiles.Contains(neighbour) && !tilesToVisit.Contains(neighbour)) 
+                            tilesToVisit.AddNotNull(neighbour);
                     }
 
                     if (tileToVisit.HasBottomExit)
                     {
                         var neighbour = HexMap.GetBottomNeighbour(tileToVisit);
-                        if (!visitedTiles.Contains(neighbour)) tilesToVisit.AddNotNull(neighbour);
+                        if (!visitedTiles.Contains(neighbour) && !tilesToVisit.Contains(neighbour)) 
+                            tilesToVisit.AddNotNull(neighbour);
                     }
 
                     if (tileToVisit.HasBottomLeftExit)
                     {
                         var neighbour = HexMap.GetBottomLeftNeighbour(tileToVisit);
-                        if (!visitedTiles.Contains(neighbour)) tilesToVisit.AddNotNull(neighbour);
+                        if (!visitedTiles.Contains(neighbour) && !tilesToVisit.Contains(neighbour)) 
+                            tilesToVisit.AddNotNull(neighbour);
                     }
 
                     if (tileToVisit.HasTopLeftExit)
                     {
                         var neighbour = HexMap.GetTopLeftNeighbour(tileToVisit);
-                        if (!visitedTiles.Contains(neighbour)) tilesToVisit.AddNotNull(neighbour);
+                        if (!visitedTiles.Contains(neighbour) && !tilesToVisit.Contains(neighbour)) 
+                            tilesToVisit.AddNotNull(neighbour);
                     }
                 }
             } while (tilesToVisit.Count > 0);
+
+            return false;
         }
 
         public void ReplaceTile(TrainsTile oldTile, TrainsTile newTile)

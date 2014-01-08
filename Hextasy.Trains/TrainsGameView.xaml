@@ -1,0 +1,353 @@
+﻿<UserControl x:Class="Hextasy.Trains.TrainsGameView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:framework="clr-namespace:Hextasy.Framework;assembly=Hextasy.Framework"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:trains="clr-namespace:Hextasy.Trains"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <trains:DoubleMultiplierConverter x:Key="DoubleMultiplierConverter"/>
+        <Style x:Key="HexagonButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="29"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid x:Name="TemplateGrid" RenderTransformOrigin="0.5, 0.5">
+                            <Path Margin="1" x:Name="Path" 
+                              StrokeThickness="{TemplateBinding BorderThickness}" 
+                              Stroke="{TemplateBinding BorderBrush}" 
+                              Fill="{TemplateBinding Background}" 
+                              HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" 
+                              Height="Auto" Stretch="Fill" RenderTransformOrigin="0.5, 0.5">
+                                <Path.Data>
+                                    <PathGeometry>
+                                        <PathGeometry.Figures>
+                                            <PathFigureCollection>
+                                                <PathFigure IsClosed="True" StartPoint="250,0">
+                                                    <PathFigure.Segments>
+                                                        <PathSegmentCollection>
+                                                            <LineSegment Point="750,0" />
+                                                            <LineSegment Point="1000,433" />
+                                                            <LineSegment Point="750,866" />
+                                                            <LineSegment Point="250,866" />
+                                                            <LineSegment Point="0,433" />
+                                                        </PathSegmentCollection>
+                                                    </PathFigure.Segments>
+                                                </PathFigure>
+                                            </PathFigureCollection>
+                                        </PathGeometry.Figures>
+                                    </PathGeometry>
+                                </Path.Data>
+                            </Path>
+                            <Path Margin="1" x:Name="TopExit"
+                              StrokeThickness="0" 
+                              Fill="Black" Visibility="Hidden" RenderTransformOrigin="0.5, 0.5"
+                              HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" 
+                              Height="Auto" Stretch="Fill">
+                                <Path.Data>
+                                    <PathGeometry>
+                                        <PathGeometry.Figures>
+                                            <PathFigureCollection>
+                                                <PathFigure IsFilled="False" IsClosed="True" StartPoint="250,0">
+                                                    <PathFigure.Segments>
+                                                        <PathSegmentCollection>
+                                                            <LineSegment Point="750,0" />
+                                                            <LineSegment Point="1000,433" />
+                                                            <LineSegment Point="750,866" />
+                                                            <LineSegment Point="250,866" />
+                                                            <LineSegment Point="0,433" />
+                                                        </PathSegmentCollection>
+                                                    </PathFigure.Segments>
+                                                </PathFigure>
+                                                <PathFigure IsFilled="True" IsClosed="True" StartPoint="480,0">
+                                                    <PathFigure.Segments>
+                                                        <PathSegmentCollection>
+                                                            <LineSegment Point="520,0" />
+                                                            <LineSegment Point="520,433" />
+                                                            <LineSegment Point="480,433" />
+                                                        </PathSegmentCollection>
+                                                    </PathFigure.Segments>
+                                                </PathFigure>
+                                            </PathFigureCollection>
+                                        </PathGeometry.Figures>
+                                    </PathGeometry>
+                                </Path.Data>
+                            </Path>
+                            <Path Margin="1" x:Name="BottomExit"
+                              StrokeThickness="0" 
+                              Fill="Black" Visibility="Hidden"
+                              HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" 
+                              Height="Auto" Stretch="Fill">
+                                <Path.Data>
+                                    <PathGeometry>
+                                        <PathGeometry.Figures>
+                                            <PathFigureCollection>
+                                                <PathFigure IsFilled="False" IsClosed="True" StartPoint="250,0">
+                                                    <PathFigure.Segments>
+                                                        <PathSegmentCollection>
+                                                            <LineSegment Point="750,0" />
+                                                            <LineSegment Point="1000,433" />
+                                                            <LineSegment Point="750,866" />
+                                                            <LineSegment Point="250,866" />
+                                                            <LineSegment Point="0,433" />
+                                                        </PathSegmentCollection>
+                                                    </PathFigure.Segments>
+                                                </PathFigure>
+                                                <PathFigure IsFilled="True" IsClosed="True" StartPoint="480,433">
+                                                    <PathFigure.Segments>
+                                                        <PathSegmentCollection>
+                                                            <LineSegment Point="520,433" />
+                                                            <LineSegment Point="520,866" />
+                                                            <LineSegment Point="480,866" />
+                                                        </PathSegmentCollection>
+                                                    </PathFigure.Segments>
+                                                </PathFigure>
+                                            </PathFigureCollection>
+                                        </PathGeometry.Figures>
+                                    </PathGeometry>
+                                </Path.Data>
+                            </Path>
+                            <Path Margin="1" x:Name="TopRightExit"
+                              StrokeThickness="0" 
+                              Fill="Black" Visibility="Hidden" RenderTransformOrigin="0.5, 0.5"
+                              HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" 
+                              Height="Auto" Stretch="Fill">
+                                <Path.Data>
+                                    <PathGeometry>
+                                        <PathGeometry.Figures>
+                                            <PathFigureCollection>
+                                                <PathFigure IsFilled="False" IsClosed="True" StartPoint="250,0">
+                                                    <PathFigure.Segments>
+                                                        <PathSegmentCollection>
+                                                            <LineSegment Point="750,0" />
+                                                            <LineSegment Point="1000,433" />
+                                                            <LineSegment Point="750,866" />
+                                                            <LineSegment Point="250,866" />
+                                                            <LineSegment Point="0,433" />
+                                                        </PathSegmentCollection>
+                                                    </PathFigure.Segments>
+                                                </PathFigure>
+                                                <PathFigure IsFilled="True" IsClosed="True" StartPoint="865,199">
+                                                    <PathFigure.Segments>
+                                                        <PathSegmentCollection>
+                                                            <LineSegment Point="885,234" />
+                                                            <LineSegment Point="510,450" />
+                                                            <LineSegment Point="490,416" />
+                                                        </PathSegmentCollection>
+                                                    </PathFigure.Segments>
+                                                </PathFigure>
+                                            </PathFigureCollection>
+                                        </PathGeometry.Figures>
+                                    </PathGeometry>
+                                </Path.Data>
+                            </Path>
+                            <Path Margin="1" x:Name="BottomRightExit"
+                              StrokeThickness="0" 
+                              Fill="Black" Visibility="Hidden" RenderTransformOrigin="0.5, 0.5"
+                              HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" 
+                              Height="Auto" Stretch="Fill">
+                                <Path.Data>
+                                    <PathGeometry>
+                                        <PathGeometry.Figures>
+                                            <PathFigureCollection>
+                                                <PathFigure IsFilled="False" IsClosed="True" StartPoint="250,0">
+                                                    <PathFigure.Segments>
+                                                        <PathSegmentCollection>
+                                                            <LineSegment Point="750,0" />
+                                                            <LineSegment Point="1000,433" />
+                                                            <LineSegment Point="750,866" />
+                                                            <LineSegment Point="250,866" />
+                                                            <LineSegment Point="0,433" />
+                                                        </PathSegmentCollection>
+                                                    </PathFigure.Segments>
+                                                </PathFigure>
+                                                <PathFigure IsFilled="True" IsClosed="True" StartPoint="885,632">
+                                                    <PathFigure.Segments>
+                                                        <PathSegmentCollection>
+                                                            <LineSegment Point="865,667" />
+                                                            <LineSegment Point="490,447" />
+                                                            <LineSegment Point="519,416" />
+                                                        </PathSegmentCollection>
+                                                    </PathFigure.Segments>
+                                                </PathFigure>
+                                            </PathFigureCollection>
+                                        </PathGeometry.Figures>
+                                    </PathGeometry>
+                                </Path.Data>
+                            </Path>
+                            <Path Margin="1" x:Name="TopLeftExit"
+                              StrokeThickness="0"
+                              Fill="Black" Visibility="Hidden" RenderTransformOrigin="0.5, 0.5"
+                              HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" 
+                              Height="Auto" Stretch="Fill">
+                                <Path.Data>
+                                    <PathGeometry>
+                                        <PathGeometry.Figures>
+                                            <PathFigureCollection>
+                                                <PathFigure IsFilled="False" IsClosed="True" StartPoint="250,0">
+                                                    <PathFigure.Segments>
+                                                        <PathSegmentCollection>
+                                                            <LineSegment Point="750,0" />
+                                                            <LineSegment Point="1000,433" />
+                                                            <LineSegment Point="750,866" />
+                                                            <LineSegment Point="250,866" />
+                                                            <LineSegment Point="0,433" />
+                                                        </PathSegmentCollection>
+                                                    </PathFigure.Segments>
+                                                </PathFigure>
+                                                <PathFigure IsFilled="True" IsClosed="True" StartPoint="115,234">
+                                                    <PathFigure.Segments>
+                                                        <PathSegmentCollection>
+                                                            <LineSegment Point="135,199" />
+                                                            <LineSegment Point="519,416" />
+                                                            <LineSegment Point="490,447" />
+                                                        </PathSegmentCollection>
+                                                    </PathFigure.Segments>
+                                                </PathFigure>
+                                            </PathFigureCollection>
+                                        </PathGeometry.Figures>
+                                    </PathGeometry>
+                                </Path.Data>
+                            </Path>
+                            <Path Margin="1" x:Name="BottomLeftExit"
+                              StrokeThickness="0" Stroke="Black" Fill="Black" 
+                                  Visibility="Hidden" RenderTransformOrigin="0.5, 0.5"
+                              HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" 
+                              Height="Auto" Stretch="Fill">
+                                <Path.Data>
+                                    <PathGeometry>
+                                        <PathGeometry.Figures>
+                                            <PathFigureCollection>
+                                                <PathFigure IsFilled="False" IsClosed="True" StartPoint="250,0">
+                                                    <PathFigure.Segments>
+                                                        <PathSegmentCollection>
+                                                            <LineSegment Point="750,0" />
+                                                            <LineSegment Point="1000,433" />
+                                                            <LineSegment Point="750,866" />
+                                                            <LineSegment Point="250,866" />
+                                                            <LineSegment Point="0,433" />
+                                                        </PathSegmentCollection>
+                                                    </PathFigure.Segments>
+                                                </PathFigure>
+                                                <PathFigure IsFilled="True" IsClosed="True" StartPoint="135,667">
+                                                    <PathFigure.Segments>
+                                                        <PathSegmentCollection>
+                                                            <LineSegment Point="115,632" />
+                                                            <LineSegment Point="490,416" />
+                                                            <LineSegment Point="510,450" />
+                                                        </PathSegmentCollection>
+                                                    </PathFigure.Segments>
+                                                </PathFigure>
+                                            </PathFigureCollection>
+                                        </PathGeometry.Figures>
+                                    </PathGeometry>
+                                </Path.Data>
+                            </Path>
+                            <Path Margin="1" x:Name="Overlay" 
+                              Fill="WhiteSmoke"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" 
+                              Height="Auto" Stretch="Fill" Opacity="0" RenderTransformOrigin="0.5, 0.5"
+                              Data="M 250,0 L 750,0 L 1000,433 L 750,866 L 250,866 L 0,433 Z"/>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <DataTrigger Binding="{Binding HasTopExit}" Value="True">
+                                <Setter TargetName="TopExit" Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding HasTopRightExit}" Value="True">
+                                <Setter TargetName="TopRightExit" Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding HasBottomRightExit}" Value="True">
+                                <Setter TargetName="BottomRightExit" Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding HasBottomExit}" Value="True">
+                                <Setter TargetName="BottomExit" Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding HasBottomLeftExit}" Value="True">
+                                <Setter TargetName="BottomLeftExit" Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding HasTopLeftExit}" Value="True">
+                                <Setter TargetName="TopLeftExit" Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Overlay" Property="Opacity" Value="0.5"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="TemplateGrid" Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <DataTrigger Binding="{Binding CanBePlaced}" Value="True">
+                                <Setter TargetName="Overlay" Property="Fill" Value="LawnGreen"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding CanBePlaced}" Value="False">
+                                <Setter TargetName="Overlay" Property="Fill" Value="IndianRed"/>
+                            </DataTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <DataTemplate DataType="{x:Type trains:TrainsTile}">
+            <Button Style="{StaticResource HexagonButtonStyle}"
+                          Background="DarkGray"
+                          cal:Message.Attach="[Event Click] = [Action Click($dataContext)];[Event MouseEnter] = [Action MouseEnter($dataContext)];[Event MouseLeave] = [Action MouseLeave($dataContext)]"/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type trains:StationTile}">
+            <Button Style="{StaticResource HexagonButtonStyle}"
+                          Background="LawnGreen">
+                <Button.Content>
+                    <Grid>
+                        <Border CornerRadius="4" x:Name="StationNameBorder"
+                            Height="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Button}, 
+                        Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.3}"
+                             Width="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Button}, 
+                        Path=ActualWidth, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.85}">
+                            <Border.Style>
+                                <Style TargetType="{x:Type Border}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Owner}" Value="None">
+                                            <Setter Property="Background" Value="LightGray"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Owner}" Value="Player1">
+                                            <Setter Property="Background" Value="PaleVioletRed"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Owner}" Value="Player2">
+                                            <Setter Property="Background" Value="DeepSkyBlue"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                        </Border>
+                        <Viewbox Height="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Button}, 
+                        Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.25}"
+                             MaxWidth="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Button}, 
+                        Path=ActualWidth, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.8}"
+                             StretchDirection="Both" Stretch="Uniform">
+                            <TextBlock Text="{Binding Name}"/>
+                        </Viewbox>
+                    </Grid>
+                </Button.Content>
+            </Button>
+        </DataTemplate>
+
+    </UserControl.Resources>
+
+    <Grid>
+        <ItemsControl ItemsSource="{Binding Tiles}" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <framework:HexGrid Columns="{Binding Columns}"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+    </Grid>
+
+</UserControl>

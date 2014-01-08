@@ -145,6 +145,10 @@
       <Project>{4ddaf828-7805-4e58-9596-8c935c638175}</Project>
       <Name>Hextasy.LightsOff</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Hextasy.Trains\Hextasy.Trains.csproj">
+      <Project>{8ad4738d-0fc5-4b1f-ab22-9f3d0ec379a9}</Project>
+      <Name>Hextasy.Trains</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Hextasy.XInARow\Hextasy.XInARow.csproj">
       <Project>{a30347e1-ea0e-4945-a50a-98f37bfd79b2}</Project>
       <Name>Hextasy.XInARow</Name>

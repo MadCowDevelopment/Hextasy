@@ -61,6 +61,9 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\CommonAssemblyInfo.cs">
+      <Link>CommonAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="HalmaGame.cs" />
     <Compile Include="HalmaGameLogic.cs" />
     <Compile Include="HalmaGameView.xaml.cs">

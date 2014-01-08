@@ -17,6 +17,7 @@ namespace Hextasy.Halma
         private bool _jumpedOverPlayerTile;
         private bool _player1Active = true;
         private bool _playerMoved;
+        private bool _selectedSameTileAgain;
 
         #endregion Fields
 
@@ -41,13 +42,14 @@ namespace Hextasy.Halma
                     .Where(nextInLine => nextInLine != null && nextInLine.Owner == Owner.None));
 
             if (previousTile != null) result.Remove(previousTile);
+            if (_jumpedOverPlayerTile && result.Count > 0) result.Add(tile);
             return result.Distinct().ToList();
         }
 
         public void SelectTile(HalmaTile tile)
         {
             var previousTile = NotNullTiles.SingleOrDefault(p => p.IsSelected);
-            if (TileCanBeSelectedByCurrentPlayer(tile))
+            if (TileCanBeSelectedByCurrentPlayer(tile) && !_jumpedOverPlayerTile)
             {
                 SelectTile(tile, previousTile);
             }
@@ -55,7 +57,7 @@ namespace Hextasy.Halma
             {
                 MoveTile(previousTile, tile);
                 CheckWinCondition();
-                if (ThereAreNoLegalMoves(tile, previousTile)) ChangePlayer(tile);
+                if (ThereAreNoLegalMoves(tile, previousTile) || _selectedSameTileAgain) ChangePlayer(tile);
             }
         }
 
@@ -99,6 +101,7 @@ namespace Hextasy.Halma
             _jumpedOverPlayerTile = false;
             _playerMoved = false;
             tile.IsSelected = false;
+            _selectedSameTileAgain = false;
         }
 
         private void CheckWinCondition()
@@ -118,7 +121,8 @@ namespace Hextasy.Halma
         private void MoveTile(HalmaTile previousTile, HalmaTile tile)
         {
             tile.Owner = previousTile.Owner;
-            previousTile.Owner = Owner.None;
+            if (tile != previousTile) previousTile.Owner = Owner.None;
+            else _selectedSameTileAgain = true;
             previousTile.IsSelected = false;
             tile.IsSelected = true;
             _playerMoved = true;

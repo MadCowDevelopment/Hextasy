@@ -69,7 +69,8 @@ namespace Hextasy.Framework
             var tile1Coordinate = GetCoordinateByItem(tile1);
             var tile2Coordinate = GetCoordinateByItem(tile2);
             if (tile1Coordinate == null || tile2Coordinate == null ||
-                tile1Coordinate.X == tile2Coordinate.X && tile1Coordinate.Y == tile2Coordinate.Y) return null;
+                tile1Coordinate.X == tile2Coordinate.X && tile1Coordinate.Y == tile2Coordinate.Y)
+                return Enumerable.Empty<T>();
 
             var lines = GetLines(tile1).Select(p => p.ToList());
             foreach (var line in lines)

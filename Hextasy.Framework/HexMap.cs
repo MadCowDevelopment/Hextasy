@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace Hextasy.Framework
@@ -17,7 +18,7 @@ namespace Hextasy.Framework
 
         public HexMap(IEnumerable<T> tiles, int columns)
         {
-            Tiles = new List<T>(tiles);
+            Tiles = new ObservableCollection<T>(tiles);
             _columns = columns;
         }
 
@@ -25,7 +26,7 @@ namespace Hextasy.Framework
 
         #region Public Properties
 
-        public List<T> Tiles
+        public ObservableCollection<T> Tiles
         {
             get;
             private set;
@@ -121,15 +122,33 @@ namespace Hextasy.Framework
 
         #region Private Methods
 
+        public T GetBottomLeftNeighbour(T item)
+        {
+            var coords = GetCoordinateByItem(item);
+            return GetBottomLeftNeighbour(coords.X, coords.Y);
+        }
+
         private T GetBottomLeftNeighbour(int x, int y)
         {
             var isEvenColumn = x % 2 == 0;
             return isEvenColumn ? GetTileAt(x - 1, y) : GetTileAt(x - 1, y + 1);
         }
 
+        public T GetBottomNeighbour(T item)
+        {
+            var coords = GetCoordinateByItem(item);
+            return GetBottomNeighbour(coords.X, coords.Y);
+        }
+
         private T GetBottomNeighbour(int x, int y)
         {
             return GetTileAt(x, y + 1);
+        }
+
+        public T GetBottomRightNeighbour(T item)
+        {
+            var coords = GetCoordinateByItem(item);
+            return GetBottomRightNeighbour(coords.X, coords.Y);
         }
 
         private T GetBottomRightNeighbour(int x, int y)
@@ -278,15 +297,33 @@ namespace Hextasy.Framework
             return index < 0 ? null : new Coordinate(index % _columns, index / _columns);
         }
 
+        public T GetTopLeftNeighbour(T item)
+        {
+            var coords = GetCoordinateByItem(item);
+            return GetTopLeftNeighbour(coords.X, coords.Y);
+        }
+
         private T GetTopLeftNeighbour(int x, int y)
         {
             var isEvenColumn = x % 2 == 0;
             return isEvenColumn ? GetTileAt(x - 1, y - 1) : GetTileAt(x - 1, y);
         }
 
+        public T GetTopNeighbour(T item)
+        {
+            var coords = GetCoordinateByItem(item);
+            return GetTopNeighbour(coords.X, coords.Y);
+        }
+
         private T GetTopNeighbour(int x, int y)
         {
             return GetTileAt(x, y - 1);
+        }
+
+        public T GetTopRightNeighbour(T item)
+        {
+            var coords = GetCoordinateByItem(item);
+            return GetTopRightNeighbour(coords.X, coords.Y);
         }
 
         private T GetTopRightNeighbour(int x, int y)

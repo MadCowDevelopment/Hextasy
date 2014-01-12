@@ -126,43 +126,43 @@ namespace Hextasy.Trains
                     if (tileToVisit.HasTopExit)
                     {
                         var neighbour = HexMap.GetTopNeighbour(tileToVisit);
-                        if(!visitedTiles.Contains(neighbour) && !tilesToVisit.Contains(neighbour))
-                            tilesToVisit.AddNotNull(neighbour);
+                        if(neighbour != null && neighbour.HasBottomExit && !visitedTiles.Contains(neighbour) && !tilesToVisit.Contains(neighbour) && !currentlyVisiting.Contains(neighbour))
+                            tilesToVisit.Add(neighbour);
                     }
 
                     if (tileToVisit.HasTopRightExit)
                     {
                         var neighbour = HexMap.GetTopRightNeighbour(tileToVisit);
-                        if (!visitedTiles.Contains(neighbour) && !tilesToVisit.Contains(neighbour)) 
-                            tilesToVisit.AddNotNull(neighbour);
+                        if (neighbour != null && neighbour.HasBottomLeftExit && !visitedTiles.Contains(neighbour) && !tilesToVisit.Contains(neighbour) && !currentlyVisiting.Contains(neighbour)) 
+                            tilesToVisit.Add(neighbour);
                     }
 
                     if (tileToVisit.HasBottomRightExit)
                     {
                         var neighbour = HexMap.GetBottomRightNeighbour(tileToVisit);
-                        if (!visitedTiles.Contains(neighbour) && !tilesToVisit.Contains(neighbour)) 
-                            tilesToVisit.AddNotNull(neighbour);
+                        if (neighbour != null && neighbour.HasTopLeftExit && !visitedTiles.Contains(neighbour) && !tilesToVisit.Contains(neighbour) && !currentlyVisiting.Contains(neighbour)) 
+                            tilesToVisit.Add(neighbour);
                     }
 
                     if (tileToVisit.HasBottomExit)
                     {
                         var neighbour = HexMap.GetBottomNeighbour(tileToVisit);
-                        if (!visitedTiles.Contains(neighbour) && !tilesToVisit.Contains(neighbour)) 
-                            tilesToVisit.AddNotNull(neighbour);
+                        if (neighbour != null && neighbour.HasTopExit && !visitedTiles.Contains(neighbour) && !tilesToVisit.Contains(neighbour) && !currentlyVisiting.Contains(neighbour)) 
+                            tilesToVisit.Add(neighbour);
                     }
 
                     if (tileToVisit.HasBottomLeftExit)
                     {
                         var neighbour = HexMap.GetBottomLeftNeighbour(tileToVisit);
-                        if (!visitedTiles.Contains(neighbour) && !tilesToVisit.Contains(neighbour)) 
-                            tilesToVisit.AddNotNull(neighbour);
+                        if (neighbour != null && neighbour.HasTopRightExit && !visitedTiles.Contains(neighbour) && !tilesToVisit.Contains(neighbour) && !currentlyVisiting.Contains(neighbour)) 
+                            tilesToVisit.Add(neighbour);
                     }
 
                     if (tileToVisit.HasTopLeftExit)
                     {
                         var neighbour = HexMap.GetTopLeftNeighbour(tileToVisit);
-                        if (!visitedTiles.Contains(neighbour) && !tilesToVisit.Contains(neighbour)) 
-                            tilesToVisit.AddNotNull(neighbour);
+                        if (neighbour != null && neighbour.HasBottomRightExit && !visitedTiles.Contains(neighbour) && !tilesToVisit.Contains(neighbour) && !currentlyVisiting.Contains(neighbour)) 
+                            tilesToVisit.Add(neighbour);
                     }
                 }
             } while (tilesToVisit.Count > 0);

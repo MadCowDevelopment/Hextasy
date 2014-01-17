@@ -30,6 +30,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hextasy.Halma", "Hextasy.Ha
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hextasy.Trains", "Hextasy.Trains\Hextasy.Trains.csproj", "{8AD4738D-0FC5-4B1F-AB22-9F3D0EC379A9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{CDE2A1EE-83B2-4D68-A7BA-711B19E0D80A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hextasy.MapExporter", "Hextasy.MapExporter\Hextasy.MapExporter.csproj", "{39B9193E-B167-4004-8555-0396A75105C7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -68,6 +72,10 @@ Global
 		{8AD4738D-0FC5-4B1F-AB22-9F3D0EC379A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8AD4738D-0FC5-4B1F-AB22-9F3D0EC379A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8AD4738D-0FC5-4B1F-AB22-9F3D0EC379A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39B9193E-B167-4004-8555-0396A75105C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39B9193E-B167-4004-8555-0396A75105C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39B9193E-B167-4004-8555-0396A75105C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39B9193E-B167-4004-8555-0396A75105C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -81,5 +89,6 @@ Global
 		{F3E4C333-CB73-444F-8640-517C96D76DB2} = {55D77D55-902E-464E-9CD3-BDBD31641C81}
 		{B6FCD5DC-E9F4-466E-9A32-B2FB69F15F4C} = {55D77D55-902E-464E-9CD3-BDBD31641C81}
 		{8AD4738D-0FC5-4B1F-AB22-9F3D0EC379A9} = {55D77D55-902E-464E-9CD3-BDBD31641C81}
+		{39B9193E-B167-4004-8555-0396A75105C7} = {CDE2A1EE-83B2-4D68-A7BA-711B19E0D80A}
 	EndGlobalSection
 EndGlobal

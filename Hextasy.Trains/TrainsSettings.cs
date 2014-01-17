@@ -6,11 +6,14 @@ namespace Hextasy.Trains
     {
         public string Player1 { get; private set; }
         public string Player2 { get; private set; }
+        public IMap SelectedMap { get; private set; }
 
-        public TrainsSettings(string player1, string player2) : base(14, 12)
+        public TrainsSettings(string player1, string player2, IMap selectedMap)
+            : base(selectedMap.Rows, selectedMap.Columns)
         {
             Player1 = player1;
             Player2 = player2;
+            SelectedMap = selectedMap;
         }
     }
 }

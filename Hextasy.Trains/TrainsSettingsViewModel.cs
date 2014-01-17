@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.Composition;
+﻿using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Linq;
 using Hextasy.Framework;
 
 namespace Hextasy.Trains
@@ -6,8 +8,12 @@ namespace Hextasy.Trains
     [Export(typeof(TrainsSettingsViewModel))]
     public class TrainsSettingsViewModel : SettingsViewModel<TrainsSettings>
     {
-        public TrainsSettingsViewModel()
+        [ImportingConstructor]
+        public TrainsSettingsViewModel([ImportMany]IEnumerable<IMap> maps)
         {
+            Maps = maps;
+            SelectedMap = Maps.FirstOrDefault();
+
             Player1 = "Player 1";
             Player2 = "Player 2";
         }
@@ -24,9 +30,19 @@ namespace Hextasy.Trains
             set;
         }
 
+        public IMap SelectedMap
+        {
+            get; set;
+        }
+
+        public IEnumerable<IMap> Maps
+        {
+            get; set;
+        }
+
         public override TrainsSettings Settings
         {
-            get { return new TrainsSettings(Player1, Player2); }
+            get { return new TrainsSettings(Player1, Player2, SelectedMap); }
         }
     }
 }

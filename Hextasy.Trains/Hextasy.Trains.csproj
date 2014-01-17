@@ -66,6 +66,9 @@
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="DoubleMultiplierConverter.cs" />
+    <Compile Include="IMap.cs" />
+    <Compile Include="MapChina.cs" />
+    <Compile Include="MapGermany.cs" />
     <Compile Include="Owner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

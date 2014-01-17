@@ -9,6 +9,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -18,8 +19,11 @@
 
         <TextBlock Grid.Row="0" Grid.Column="0"  Text="Player 1 name: "/>
         <TextBlock Grid.Row="1" Grid.Column="0"  Text="Player 2 name: "/>
+        <TextBlock Grid.Row="2" Grid.Column="0"  Text="Map: "/>
 
         <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Player1}"/>
         <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Player2}"/>
+        <ComboBox Grid.Row="2" Grid.Column="1" DisplayMemberPath="Name" 
+                  ItemsSource="{Binding Maps}" SelectedItem="{Binding SelectedMap}"/>
     </Grid>
 </UserControl>

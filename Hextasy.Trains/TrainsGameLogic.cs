@@ -16,7 +16,7 @@ namespace Hextasy.Trains
         private readonly List<string> _availableStations = new List<string>
         {
             "Kiel", "Rostock", "Bremen", "Hannover", "Berlin", "Kassel", 
-            "Dresden", "Frankfurt", "Mannheim", "Stuttgart", "München"
+            "Dresden", "Frankfurt", "Mannheim", "Nürnberg", "Stuttgart", "München"
         };
 
         public TrainsTile TileToPlace { get; private set; }

@@ -1,0 +1,4 @@
+All tiles have been drawn by David E. Gervais, and are published under the Creative Commons licence. (http://creativecommons.org/licenses/by/3.0/#)
+You are free to to copy, distribute and transmit those tiles as long as you credit David Gervais as their creator.
+
+The tiles have been slightly modified to make the background transparent.

@@ -64,6 +64,7 @@
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Coordinate.cs" />
+    <Compile Include="DoubleMultiplierConverter.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameFinishedEventArgs.cs" />
     <Compile Include="GameLogic.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="HexMap.cs" />
     <Compile Include="IGame.cs" />
     <Compile Include="ListExtensions.cs" />
+    <Compile Include="Owner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -86,6 +88,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="RNG.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="SettingsViewModel.cs" />
     <Compile Include="ShowGameSelectionRequest.cs" />

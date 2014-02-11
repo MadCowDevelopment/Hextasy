@@ -4,18 +4,19 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8AD4738D-0FC5-4B1F-AB22-9F3D0EC379A9}</ProjectGuid>
+    <ProjectGuid>{AD3B527C-225A-4A10-A5F2-F86235CA1754}</ProjectGuid>
     <OutputType>library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Hextasy.Trains</RootNamespace>
-    <AssemblyName>Hextasy.Trains</AssemblyName>
+    <RootNamespace>Hextasy.CardWars</RootNamespace>
+    <AssemblyName>Hextasy.CardWars</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
-    <FodyPath>..\packages\Fody.1.19.1.0</FodyPath>
+    <FodyPath>..\packages\Fody.1.20.0.0</FodyPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,7 +41,7 @@
       <HintPath>..\packages\Caliburn.Micro.1.5.2\lib\net45\Caliburn.Micro.dll</HintPath>
     </Reference>
     <Reference Include="PropertyChanged">
-      <HintPath>..\packages\PropertyChanged.Fody.1.43.1.0\Lib\NET35\PropertyChanged.dll</HintPath>
+      <HintPath>..\packages\PropertyChanged.Fody.1.45.0.0\Lib\NET35\PropertyChanged.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -65,12 +66,26 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="IMap.cs" />
-    <Compile Include="MapBavaria.cs" />
-    <Compile Include="MapChina.cs" />
-    <Compile Include="MapGermany.cs" />
-    <Compile Include="MapUnitedStates.cs" />
-    <Compile Include="Owner.cs" />
+    <Compile Include="CardControl.xaml.cs">
+      <DependentUpon>CardControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Cards\Card.cs" />
+    <Compile Include="CardWarsGame.cs" />
+    <Compile Include="CardWarsGameLogic.cs" />
+    <Compile Include="CardWarsGameView.xaml.cs">
+      <DependentUpon>CardWarsGameView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CardWarsGameViewModel.cs" />
+    <Compile Include="CardWarsSettings.cs" />
+    <Compile Include="CardWarsSettingsView.xaml.cs">
+      <DependentUpon>CardWarsSettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CardWarsSettingsViewModel.cs" />
+    <Compile Include="CardWarsTile.cs" />
+    <Compile Include="Player.cs" />
+    <Compile Include="PlayerControl.xaml.cs">
+      <DependentUpon>PlayerControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -84,19 +99,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="StationTile.cs" />
-    <Compile Include="TrainsGame.cs" />
-    <Compile Include="TrainsGameLogic.cs" />
-    <Compile Include="TrainsGameView.xaml.cs">
-      <DependentUpon>TrainsGameView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="TrainsGameViewModel.cs" />
-    <Compile Include="TrainsSettings.cs" />
-    <Compile Include="TrainsSettingsView.xaml.cs">
-      <DependentUpon>TrainsSettingsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="TrainsSettingsViewModel.cs" />
-    <Compile Include="TrainsTile.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -111,22 +113,33 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Hextasy.Framework\Hextasy.Framework.csproj">
-      <Project>{870BE3B8-1F0E-4422-A3B5-FDE8BAB6FDA3}</Project>
+      <Project>{870be3b8-1f0e-4422-a3b5-fde8bab6fda3}</Project>
       <Name>Hextasy.Framework</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="FodyWeavers.xml" />
+    <Page Include="CardControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CardWarsGameView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CardWarsSettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PlayerControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="TrainsGameView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="TrainsSettingsView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Resource Include="Cards\Images\FallenAngel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="FodyWeavers.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

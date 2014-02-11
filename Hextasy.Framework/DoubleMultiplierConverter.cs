@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows.Data;
 
-namespace Hextasy.Trains
+namespace Hextasy.Framework
 {
     public class DoubleMultiplierConverter : IValueConverter
     {

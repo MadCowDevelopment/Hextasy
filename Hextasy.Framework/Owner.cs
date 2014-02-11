@@ -1,4 +1,4 @@
-﻿namespace Hextasy.JumpToKill
+﻿namespace Hextasy.Framework
 {
     public enum Owner
     {

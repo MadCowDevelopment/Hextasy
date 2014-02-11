@@ -76,7 +76,6 @@
       <DependentUpon>JumpToKillSettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="JumpToKillSettingsViewModel.cs" />
-    <Compile Include="Owner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -9,7 +9,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
-        <trains:DoubleMultiplierConverter x:Key="DoubleMultiplierConverter"/>
+        <framework:DoubleMultiplierConverter x:Key="DoubleMultiplierConverter"/>
         <Style x:Key="HexagonButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="BorderBrush" Value="Black"/>
             <Setter Property="BorderThickness" Value="29"></Setter>

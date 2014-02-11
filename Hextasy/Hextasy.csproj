@@ -133,6 +133,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Hextasy.CardWars\Hextasy.CardWars.csproj">
+      <Project>{ad3b527c-225a-4a10-a5f2-f86235ca1754}</Project>
+      <Name>Hextasy.CardWars</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Hextasy.Halma\Hextasy.Halma.csproj">
       <Project>{b6fcd5dc-e9f4-466e-9a32-b2fb69f15f4c}</Project>
       <Name>Hextasy.Halma</Name>

@@ -22,7 +22,7 @@
               <Path Margin="1" 
                     StrokeThickness="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Button}, 
                         Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.05}"
-                    Stroke="Black" 
+                    Stroke="Gray" 
                     Fill="{TemplateBinding Background}" 
                     HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" 
                     Height="Auto" x:Name="Path" Stretch="Fill"
@@ -60,7 +60,7 @@
                 <Setter TargetName="Path" Property="Fill" Value="Orange"/>
               </DataTrigger>
               <Trigger Property="IsMouseOver" Value="True">
-                <Setter TargetName="Overlay" Property="Opacity" Value="0.75"/>
+                <Setter TargetName="Overlay" Property="Opacity" Value="0.5"/>
               </Trigger>
               <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -92,7 +92,7 @@
                 </MultiTrigger.EnterActions>
                 <Setter TargetName="RotateImage" Property="Opacity" Value="1"/>
               </MultiTrigger>
-              
+
               <Trigger Property="IsPressed" Value="True">
                 <Setter Property="RenderTransform">
                   <Setter.Value>
@@ -175,17 +175,106 @@
       <ColumnDefinition Width="Auto"/>
       <ColumnDefinition Width="*"/>
     </Grid.ColumnDefinitions>
-    
+
     <Grid>
-      <ListBox ItemsSource="{Binding CurrentCards}">
+      <ListBox ItemsSource="{Binding CurrentCards}" Width="370" HorizontalContentAlignment="Center">
+        <ListBox.Resources>
+          <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
+          <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent" />
+        </ListBox.Resources>
+        <ListBox.ItemContainerStyle>
+          <Style TargetType="{x:Type ListBoxItem}">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Template">
+              <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                  <Border x:Name="TemplateBorder" Width="350" Height="54"
+                           RenderTransformOrigin="0.5, 0.5" Margin="2"
+                          Background="BurlyWood" CornerRadius="10" BorderBrush="Black" BorderThickness="2">
+                    <Border.RenderTransform>
+                      <ScaleTransform/>
+                    </Border.RenderTransform>
+                    <ContentPresenter/>
+                  </Border>
+                  <ControlTemplate.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                      <Setter Property="RenderTransform">
+                        <Setter.Value>
+                          <ScaleTransform CenterX="185" CenterY="25"/>
+                        </Setter.Value>
+                      </Setter>
+                      <Trigger.EnterActions>
+                        <BeginStoryboard>
+                          <BeginStoryboard.Storyboard>
+                            <Storyboard>
+                              <DoubleAnimation
+                              Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleX)"
+                              To="1.04" Duration="0:0:0.12" >
+                              </DoubleAnimation>
+                              <DoubleAnimation
+                              Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleY)"
+                              To="1.04" Duration="0:0:0.12" >
+                              </DoubleAnimation>
+                            </Storyboard>
+                          </BeginStoryboard.Storyboard>
+                        </BeginStoryboard>
+                      </Trigger.EnterActions>
+                    </Trigger>
+                    <Trigger Property="IsSelected" Value="True">
+                      <Setter TargetName="TemplateBorder" Property="Background" Value="#FFF79800"/>
+                      <Setter Property="RenderTransform">
+                        <Setter.Value>
+                          <ScaleTransform CenterX="185" CenterY="25"/>
+                        </Setter.Value>
+                      </Setter>
+                    <Trigger.EnterActions>
+                      <BeginStoryboard>
+                        <BeginStoryboard.Storyboard>
+                          <Storyboard>
+                            <DoubleAnimation
+                              Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleX)"
+                              To="1.04" Duration="0:0:0.12" >
+                            </DoubleAnimation>
+                            <DoubleAnimation
+                              Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleY)"
+                              To="1.04" Duration="0:0:0.12" >
+                            </DoubleAnimation>
+                          </Storyboard>
+                        </BeginStoryboard.Storyboard>
+                      </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                          <BeginStoryboard.Storyboard>
+                            <Storyboard>
+                              <DoubleAnimation
+                              Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleX)"
+                              To="1" Duration="0:0:0.12" >
+                              </DoubleAnimation>
+                              <DoubleAnimation
+                              Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleY)"
+                              To="1" Duration="0:0:0.12" >
+                              </DoubleAnimation>
+                            </Storyboard>
+                          </BeginStoryboard.Storyboard>
+                        </BeginStoryboard>
+                      </Trigger.ExitActions>
+                    </Trigger>
+                  </ControlTemplate.Triggers>
+                </ControlTemplate>
+              </Setter.Value>
+            </Setter>
+          </Style>
+        </ListBox.ItemContainerStyle>
         <ListBox.ItemTemplate>
           <DataTemplate>
-            <cardWars:CardControl DataContext="{Binding}"/>
+            <cardWars:CardControl/>
           </DataTemplate>
         </ListBox.ItemTemplate>
       </ListBox>
     </Grid>
-    
+
     <Grid Grid.Column="1">
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto"/>
@@ -202,7 +291,7 @@
       </ItemsControl>
       <cardWars:PlayerControl Grid.Row="2" DataContext="{Binding Player2}" Margin="5"/>
     </Grid>
-    
+
   </Grid>
 
 </UserControl>

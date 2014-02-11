@@ -9,5 +9,6 @@ namespace Hextasy.CardWars
         public Owner Owner { get; set; }
         public Card Card { get; set; }
         public bool IsSelected { get; set; }
+        public bool IsTarget { get { return true; } }
     }
 }

@@ -37,6 +37,14 @@
                     Data="M 250,0 L 750,0 L 1000,433 L 750,866 L 250,866 L 0,433 Z">
               </Path>
               <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+              <Image x:Name="RotateImage" Stretch="Uniform" 
+                     Margin="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Button}, 
+                        Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.20}"
+                     Source="Images\crosshair.png" Opacity="0" RenderTransformOrigin="0.5, 0.5">
+                <Image.RenderTransform>
+                  <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1" ScaleY="1"/>
+                </Image.RenderTransform>
+              </Image>
             </Grid>
             <ControlTemplate.Triggers>
               <DataTrigger Binding="{Binding Owner}" Value="Player1">
@@ -52,8 +60,39 @@
                 <Setter TargetName="Path" Property="Fill" Value="Orange"/>
               </DataTrigger>
               <Trigger Property="IsMouseOver" Value="True">
-                <Setter TargetName="Overlay" Property="Opacity" Value="0.5"/>
+                <Setter TargetName="Overlay" Property="Opacity" Value="0.75"/>
               </Trigger>
+              <MultiTrigger>
+                <MultiTrigger.Conditions>
+                  <Condition Property="IsMouseOver" Value="True"></Condition>
+                </MultiTrigger.Conditions>
+                <MultiTrigger.EnterActions>
+                  <BeginStoryboard>
+                    <BeginStoryboard.Storyboard>
+                      <Storyboard RepeatBehavior="Forever">
+                        <DoubleAnimation
+                              Storyboard.TargetName="RotateImage"
+                              Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                              From="1" To="1.1" Duration="0:0:1" >
+                          <DoubleAnimation.EasingFunction>
+                            <ElasticEase Oscillations="3" EasingMode="EaseOut"/>
+                          </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                        <DoubleAnimation
+                              Storyboard.TargetName="RotateImage"
+                              Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                              From="1" To="1.1" Duration="0:0:1" >
+                          <DoubleAnimation.EasingFunction>
+                            <ElasticEase Oscillations="3" EasingMode="EaseOut"/>
+                          </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                      </Storyboard>
+                    </BeginStoryboard.Storyboard>
+                  </BeginStoryboard>
+                </MultiTrigger.EnterActions>
+                <Setter TargetName="RotateImage" Property="Opacity" Value="1"/>
+              </MultiTrigger>
+              
               <Trigger Property="IsPressed" Value="True">
                 <Setter Property="RenderTransform">
                   <Setter.Value>

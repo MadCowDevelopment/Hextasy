@@ -13,15 +13,23 @@
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type ListBoxItem}">
-          <Border x:Name="TemplateBorder" Width="350" Height="54"
-                  RenderTransformOrigin="0.5, 0.5" Margin="2"
-                  Background="BurlyWood" CornerRadius="10" BorderBrush="Black" BorderThickness="2">
+          <Border x:Name="SelectionBorder" Width="350" Height="54" 
+                  Background="BurlyWood" CornerRadius="10" BorderBrush="Black" BorderThickness="2"
+                   RenderTransformOrigin="0.5, 0.5" Margin="2">
             <Border.RenderTransform>
               <ScaleTransform/>
             </Border.RenderTransform>
-            <ContentPresenter/>
+            <Grid>
+              <ContentPresenter/>
+              <Rectangle x:Name="DisabledOverlay" 
+                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Opacity="0" Fill="WhiteSmoke"/>
+            </Grid>
           </Border>
           <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding CanBeBought}" Value="False">
+              <Setter Property="IsEnabled" Value="False"/>
+              <Setter TargetName="DisabledOverlay" Property="Opacity" Value="0.75"/>
+            </DataTrigger>
             <Trigger Property="IsMouseOver" Value="True">
               <Setter Property="RenderTransform">
                 <Setter.Value>
@@ -46,7 +54,7 @@
               </Trigger.EnterActions>
             </Trigger>
             <Trigger Property="IsSelected" Value="True">
-              <Setter TargetName="TemplateBorder" Property="Background" Value="#FFF79800"/>
+              <Setter TargetName="SelectionBorder" Property="Background" Value="#FFF79800"/>
               <Setter Property="RenderTransform">
                 <Setter.Value>
                   <ScaleTransform CenterX="185" CenterY="25"/>
@@ -181,6 +189,6 @@
     </Setter>
   </Style>
 
-  
+
 
 </ResourceDictionary>

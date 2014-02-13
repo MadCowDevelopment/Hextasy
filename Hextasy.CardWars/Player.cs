@@ -8,7 +8,8 @@ namespace Hextasy.CardWars
         public string Name { get; private set; }
         public Owner Owner { get; private set; }
         public int RemainingLife { get; private set; }
-        public int Resources { get; set; }
+        public int MaximumResources { get; set; }
+        public int RemainingResources { get; set; }
         public bool IsActive { get; set; }
 
         public Player(string name, Owner owner)
@@ -16,7 +17,8 @@ namespace Hextasy.CardWars
             Name = name;
             Owner = owner;
             RemainingLife = 30;
-            Resources = 20;
+            MaximumResources = 10;
+            RemainingResources = 8;
         }
     }
 }

@@ -60,13 +60,15 @@ namespace Hextasy.CardWars
             get { return Tiles.SingleOrDefault(p => p.IsSelected); }
         }
 
-        public void AssignCard(CardWarsTile tile, Card selectedCard)
+        public void PlayCard(CardWarsTile tile, Card selectedCard)
         {
             if (tile.IsFixed) return;
             tile.Card = selectedCard;
             tile.IsFixed = true;
             tile.Owner = CurrentPlayer.Owner;
+            CurrentPlayer.RemainingResources -= selectedCard.Cost;
             CurrentCards.Remove(selectedCard);
+            UpdateBuyableCards();
         }
 
         public void AttackCard(CardWarsTile tile)
@@ -140,6 +142,12 @@ namespace Hextasy.CardWars
             CurrentCards.Add(new FallenAngelCard());
             CurrentCards.Add(new FallenAngelCard());
             CurrentCards.Add(new FallenAngelCard());
+            UpdateBuyableCards();
+        }
+
+        private void UpdateBuyableCards()
+        {
+            CurrentCards.Apply(p => p.CanBeBought = p.Cost < CurrentPlayer.RemainingResources);
         }
 
         private void ResolveStartTurnEffects()

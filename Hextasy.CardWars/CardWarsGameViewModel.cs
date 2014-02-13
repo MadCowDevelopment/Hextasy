@@ -49,6 +49,11 @@ namespace Hextasy.CardWars
             get { return Game.SelectedTile != null; }
         }
 
+        public Player CurrentPlayer
+        {
+            get { return Game.CurrentPlayer; }
+        }
+
         public Player Player1
         {
             get { return Game.Player1; }
@@ -63,7 +68,7 @@ namespace Hextasy.CardWars
         {
             if (IsInCardPlacementMode)
             {
-                Game.AssignCard(tile, SelectedCard);
+                Game.PlayCard(tile, SelectedCard);
             }
             else if (IsInTargetMode)
             {
@@ -90,6 +95,7 @@ namespace Hextasy.CardWars
         public void EndTurn()
         {
             Game.EndTurn();
+            NotifyOfPropertyChange((() => CurrentPlayer));
         }
 
         public void PreviewKeyUp(KeyEventArgs e)

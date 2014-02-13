@@ -28,10 +28,15 @@
 
     <Grid>
       <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
         <RowDefinition Height="*"/>
         <RowDefinition Height="Auto"/>
       </Grid.RowDefinitions>
-      <ListBox ItemsSource="{Binding CurrentCards}" SelectedItem="{Binding SelectedCard}"
+      <cardWars:ResourceControl Width="360"
+        RemainingResources="{Binding CurrentPlayer.RemainingResources}"
+        MaximumResources="{Binding CurrentPlayer.MaximumResources}"/>
+      <ListBox Grid.Row="1"
+        ItemsSource="{Binding CurrentCards}" SelectedItem="{Binding SelectedCard}"
                Width="370" HorizontalContentAlignment="Center" ItemContainerStyle="{StaticResource CardSelectionContainerStyle}">
         <ListBox.Resources>
           <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
@@ -43,7 +48,7 @@
           </DataTemplate>
         </ListBox.ItemTemplate>
       </ListBox>
-      <Button Grid.Row="1" Content="End Turn" 
+      <Button Grid.Row="2" Content="End Turn" 
               cal:Message.Attach="[Event Click] = [Action EndTurn()]"/>
     </Grid>
 

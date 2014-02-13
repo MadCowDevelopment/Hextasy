@@ -84,6 +84,7 @@
     <Compile Include="CardWarsSettingsViewModel.cs" />
     <Compile Include="CardWarsTile.cs" />
     <Compile Include="CurrentPlayerChangedEventArgs.cs" />
+    <Compile Include="NullToVisibilityConverter.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PlayerControl.xaml.cs">
       <DependentUpon>PlayerControl.xaml</DependentUpon>

@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:framework="clr-namespace:Hextasy.Framework;assembly=Hextasy.Framework">
+                    xmlns:framework="clr-namespace:Hextasy.Framework;assembly=Hextasy.Framework"
+                    xmlns:cardWars="clr-namespace:Hextasy.CardWars">
 
   <framework:DoubleMultiplierConverter x:Key="DoubleMultiplierConverter" />
-
+  <cardWars:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
 </ResourceDictionary>

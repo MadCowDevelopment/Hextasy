@@ -7,14 +7,23 @@
     <ResourceDictionary Source="Styles.xaml"/>
     <ResourceDictionary Source="Converters.xaml"/>
   </ResourceDictionary.MergedDictionaries>
-  
+
   <DataTemplate DataType="{x:Type cardWars:CardWarsTile}">
     <Button x:Name="B1" Style="{StaticResource HexagonButtonStyle}" Background="LightGray"
                     cal:Message.Attach="[Event Click] = [Action OnTileClick($dataContext)];[Event MouseEnter] = [Action OnTileEnter($dataContext)];[Event MouseLeave] = [Action OnTileLeave($dataContext)]">
       <Button.Content>
         <cardWars:TileControl/>
       </Button.Content>
+      <Button.ToolTip>
+        <ToolTip Visibility="{Binding Card, Converter={StaticResource NullToVisibilityConverter}}" 
+                 BorderThickness="0" Background="Transparent">
+          <Border Width="350" Height="54" Background="BurlyWood" 
+                  CornerRadius="10" BorderBrush="Black" BorderThickness="2">
+            <cardWars:CardControl DataContext="{Binding Card}"/>
+          </Border>
+        </ToolTip>
+      </Button.ToolTip>
     </Button>
   </DataTemplate>
-  
+
 </ResourceDictionary>

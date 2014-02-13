@@ -92,12 +92,14 @@ namespace Hextasy.CardWars
             {
                 attacker.Die();
                 SelectedTile.Card = null;
+                SelectedTile.Owner = Owner.None;
             }
 
             if (defender.Health <= 0)
             {
                 defender.Die();
                 tile.Card = null;
+                tile.Owner = Owner.None;
             }
 
             UnselectTile();
@@ -126,10 +128,11 @@ namespace Hextasy.CardWars
         public void EndTurn()
         {
             ResolveEndTurnEffects();
+            ExhaustCards();
             SwitchCurrentPlayer();
             ResolveStartTurnEffects();
             CheckWinCondition();
-            RefreshTiles();
+            RefreshCards();
             RefreshHand();
         }
 
@@ -166,7 +169,12 @@ namespace Hextasy.CardWars
             // TODO
         }
 
-        private void RefreshTiles()
+        private void ExhaustCards()
+        {
+            Tiles.Where(p => p.Owner == CurrentPlayer.Owner).Apply(p => p.Card.IsExhausted = true);
+        }
+
+        private void RefreshCards()
         {
             Tiles.Where(p => p.Owner == CurrentPlayer.Owner).Apply(p => p.Card.IsExhausted = false);
         }
@@ -174,6 +182,7 @@ namespace Hextasy.CardWars
         private void SwitchCurrentPlayer()
         {
             CurrentPlayer = CurrentPlayer == Player1 ? Player2 : Player1;
+            CurrentPlayer.PrepareTurn();
         }
     }
 }

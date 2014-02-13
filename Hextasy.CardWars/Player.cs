@@ -20,5 +20,11 @@ namespace Hextasy.CardWars
             MaximumResources = 10;
             RemainingResources = 8;
         }
+
+        public void PrepareTurn()
+        {
+            if (MaximumResources < 12) MaximumResources++;
+            RemainingResources = MaximumResources;
+        }
     }
 }

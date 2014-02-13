@@ -35,19 +35,19 @@
 
   <Storyboard x:Key="CardKilledStoryboard">
     <DoubleAnimation Storyboard.TargetName="Skull" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
-                       From="0" To="1" Duration="0:0:0.5">
+                       From="0" To="1" Duration="0:0:0.2">
     </DoubleAnimation>
     <DoubleAnimation Storyboard.TargetName="Skull" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
-                       From="0" To="1" Duration="0:0:0.5">
+                       From="0" To="1" Duration="0:0:0.2">
     </DoubleAnimation>
     <DoubleAnimation Storyboard.TargetName="Skull" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
-                       From="1" To="1.1" BeginTime="0:0:0.5" Duration="0:0:1">
+                       From="1" To="1.2" BeginTime="0:0:0.2" Duration="0:0:1">
       <DoubleAnimation.EasingFunction>
         <ElasticEase Oscillations="3" EasingMode="EaseInOut"/>
       </DoubleAnimation.EasingFunction>
     </DoubleAnimation>
     <DoubleAnimation Storyboard.TargetName="Skull" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
-                       From="1" To="1.1" BeginTime="0:0:0.5" Duration="0:0:1" >
+                       From="1" To="1.1" BeginTime="0:0:0.2" Duration="0:0:1" >
       <DoubleAnimation.EasingFunction>
         <ElasticEase Oscillations="3" EasingMode="EaseInOut"/>
       </DoubleAnimation.EasingFunction>

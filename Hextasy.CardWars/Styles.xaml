@@ -134,6 +134,8 @@
               </Image.RenderTransform>
             </Image>
             <Image x:Name="Skull" Stretch="Uniform"
+                   Margin="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Button}, 
+                        Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.20}"
                      Source="Images\skull.png" RenderTransformOrigin="0.5, 0.5">
               <Image.RenderTransform>
                 <ScaleTransform ScaleX="0" ScaleY="0"/>
@@ -168,13 +170,11 @@
                 <BeginStoryboard Storyboard="{StaticResource CrosshairStoryboard}"/>
               </MultiDataTrigger.EnterActions>
             </MultiDataTrigger>
-
             <DataTrigger Binding="{Binding Card.IsKilled}" Value="True">
               <DataTrigger.EnterActions>
                 <BeginStoryboard Storyboard="{StaticResource CardKilledStoryboard}"/>
               </DataTrigger.EnterActions>
             </DataTrigger>
-
             <Trigger Property="IsPressed" Value="True">
               <Setter Property="RenderTransform">
                 <Setter.Value>

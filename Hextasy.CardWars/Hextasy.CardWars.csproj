@@ -184,6 +184,10 @@
   <ItemGroup>
     <Resource Include="Images\skull.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\crown-blue.png" />
+    <Resource Include="Images\crown-red.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Import Project="Fody.targets" />

@@ -23,6 +23,7 @@ namespace Hextasy.CardWars.Cards
         public int Health { get { return BaseHealth + HealthBonus; } }
         public int HealthBonus { get; set; }
 
+        public bool IsKilled { get; private set; }
         public bool IsExhausted { get; protected internal set; }
 
         public bool HasIncreasedAttack
@@ -48,6 +49,11 @@ namespace Hextasy.CardWars.Cards
         public void TakeDamage(int attackValue)
         {
             HealthBonus -= attackValue;
+        }
+
+        public void Die()
+        {
+            IsKilled = true;
         }
     }
 }

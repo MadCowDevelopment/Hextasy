@@ -7,7 +7,7 @@ namespace Hextasy.CardWars.Cards
     {
         public override string ImageSource
         {
-            get { return @"Cards\Images\FallenAngel.png"; }
+            get { return @"Images\Cards\FallenAngel.png"; }
         }
 
         public override string Name
@@ -32,7 +32,7 @@ namespace Hextasy.CardWars.Cards
 
         public override int Cost
         {
-            get { return 10; }
+            get { return 5; }
         }
     }
 }

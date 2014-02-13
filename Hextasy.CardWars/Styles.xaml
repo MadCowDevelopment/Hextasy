@@ -4,39 +4,10 @@
                     xmlns:cardWars="clr-namespace:Hextasy.CardWars"
                     xmlns:cal="http://www.caliburnproject.org">
 
-  <framework:DoubleMultiplierConverter x:Key="DoubleMultiplierConverter" />
-
-  <Storyboard x:Key="CrosshairStoryboard" RepeatBehavior="Forever">
-    <DoubleAnimation Storyboard.TargetName="Crosshair"
-                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
-                       From="1" To="1.1" Duration="0:0:1" >
-      <DoubleAnimation.EasingFunction>
-        <ElasticEase Oscillations="3" EasingMode="EaseOut"/>
-      </DoubleAnimation.EasingFunction>
-    </DoubleAnimation>
-    <DoubleAnimation Storyboard.TargetName="Crosshair"
-                       Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
-                       From="1" To="1.1" Duration="0:0:1" >
-      <DoubleAnimation.EasingFunction>
-        <ElasticEase Oscillations="3" EasingMode="EaseOut"/>
-      </DoubleAnimation.EasingFunction>
-    </DoubleAnimation>
-  </Storyboard>
-
-  <Storyboard x:Key="CardPlacementStoryboard" RepeatBehavior="Forever">
-    <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
-                       From="1" To="1.1" Duration="0:0:1">
-      <DoubleAnimation.EasingFunction>
-        <ElasticEase Oscillations="3" EasingMode="EaseOut"/>
-      </DoubleAnimation.EasingFunction>
-    </DoubleAnimation>
-    <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
-                       From="1" To="1.1" Duration="0:0:1" >
-      <DoubleAnimation.EasingFunction>
-        <ElasticEase Oscillations="3" EasingMode="EaseOut"/>
-      </DoubleAnimation.EasingFunction>
-    </DoubleAnimation>
-  </Storyboard>
+  <ResourceDictionary.MergedDictionaries>
+    <ResourceDictionary Source="Storyboards.xaml"/>
+    <ResourceDictionary Source="Converters.xaml"/>
+  </ResourceDictionary.MergedDictionaries>
 
   <Style x:Key="CardSelectionContainerStyle" TargetType="{x:Type ListBoxItem}">
     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -147,13 +118,19 @@
                     RenderTransformOrigin="0.5, 0.5"
                     Data="M 250,0 L 750,0 L 1000,433 L 750,866 L 250,866 L 0,433 Z">
             </Path>
-            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <ContentPresenter />
             <Image x:Name="Crosshair" Stretch="Uniform" 
                      Margin="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Button}, 
                         Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.20}"
                      Source="Images\crosshair.png" Opacity="0" RenderTransformOrigin="0.5, 0.5">
               <Image.RenderTransform>
                 <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1" ScaleY="1"/>
+              </Image.RenderTransform>
+            </Image>
+            <Image x:Name="Skull" Stretch="Uniform"
+                     Source="Images\skull.png" RenderTransformOrigin="0.5, 0.5">
+              <Image.RenderTransform>
+                <ScaleTransform ScaleX="0" ScaleY="0"/>
               </Image.RenderTransform>
             </Image>
           </Grid>
@@ -177,6 +154,7 @@
               <MultiDataTrigger.Conditions>
                 <Condition Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=DataContext.IsInTargetMode}"
                              Value="True"/>
+                <Condition Binding="{Binding IsValidTarget}" Value="True"/>
                 <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True"/>
               </MultiDataTrigger.Conditions>
               <Setter TargetName="Crosshair" Property="Opacity" Value="1"/>
@@ -184,6 +162,12 @@
                 <BeginStoryboard Storyboard="{StaticResource CrosshairStoryboard}"/>
               </MultiDataTrigger.EnterActions>
             </MultiDataTrigger>
+
+            <DataTrigger Binding="{Binding Card.IsKilled}" Value="True">
+              <DataTrigger.EnterActions>
+                <BeginStoryboard Storyboard="{StaticResource CardKilledStoryboard}"/>
+              </DataTrigger.EnterActions>
+            </DataTrigger>
 
             <Trigger Property="IsPressed" Value="True">
               <Setter Property="RenderTransform">
@@ -199,91 +183,6 @@
     </Setter>
   </Style>
 
-  <DataTemplate DataType="{x:Type cardWars:CardWarsTile}">
-    <Button x:Name="B1" Style="{StaticResource HexagonButtonStyle}" Background="LightGray"
-                    cal:Message.Attach="[Event Click] = [Action OnTileClick($dataContext)];[Event MouseEnter] = [Action OnTileEnter($dataContext)];[Event MouseLeave] = [Action OnTileLeave($dataContext)]">
-      <Button.Content>
-        <Grid>
-          <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="3*"/>
-          </Grid.RowDefinitions>
-          <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20*"/>
-            <ColumnDefinition Width="35*"/>
-            <ColumnDefinition Width="20*"/>
-          </Grid.ColumnDefinitions>
-
-          <Image x:Name="CardImage" 
-                   Source="{Binding Card.ImageSource}" Grid.ColumnSpan="3" Grid.RowSpan="3" 
-                   Margin="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Button}, 
-                        Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.15}"
-                   RenderTransformOrigin="0.5, 0.5">
-            <Image.RenderTransform>
-              <ScaleTransform/>
-            </Image.RenderTransform>
-            <Image.Style>
-              <Style>
-                <Style.Triggers>
-                  <MultiDataTrigger>
-                    <MultiDataTrigger.Conditions>
-                      <Condition Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=DataContext.IsInCardPlacementMode}"
-                             Value="True"/>
-                      <Condition Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type Button}}, Path=IsMouseOver}" Value="True"/>
-                      <Condition Binding="{Binding IsFixed}" Value="False"/>
-                    </MultiDataTrigger.Conditions>
-                    <MultiDataTrigger.EnterActions>
-                      <BeginStoryboard Name="SB1" Storyboard="{StaticResource CardPlacementStoryboard}"/>
-                    </MultiDataTrigger.EnterActions>
-                    <MultiDataTrigger.ExitActions>
-                      <StopStoryboard BeginStoryboardName="SB1"/>
-                    </MultiDataTrigger.ExitActions>
-                  </MultiDataTrigger>
-                </Style.Triggers>
-              </Style>
-            </Image.Style>
-          </Image>
-
-          <Viewbox Grid.Row="1" Grid.Column="0" StretchDirection="Both" Stretch="Uniform">
-            <TextBlock Text="{Binding Card.Attack}" FontWeight="Bold"
-                           HorizontalAlignment="Center" VerticalAlignment="Center">
-              <TextBlock.Style>
-                <Style>
-                  <Style.Triggers>
-                    <DataTrigger Binding="{Binding Card.HasIncreasedAttack}" Value="True">
-                      <Setter  Property="TextBlock.Foreground" Value="LimeGreen"></Setter>
-                    </DataTrigger>
-                    <DataTrigger Binding="{Binding Card.HasDecreasedAttack}" Value="True">
-                      <Setter  Property="TextBlock.Foreground" Value="Red"></Setter>
-                    </DataTrigger>
-                  </Style.Triggers>
-                </Style>
-              </TextBlock.Style>
-            </TextBlock>
-          </Viewbox>
-
-          <Viewbox Grid.Row="1" Grid.Column="2" StretchDirection="Both" Stretch="Uniform">
-            <TextBlock Text="{Binding Card.Health}" FontWeight="Bold"
-                           HorizontalAlignment="Center" VerticalAlignment="Center">
-              <TextBlock.Style>
-                <Style>
-                  <Style.Triggers>
-                    <DataTrigger Binding="{Binding Card.HasIncreasedHealth}" Value="True">
-                      <Setter  Property="TextBlock.Foreground" Value="LimeGreen"></Setter>
-                    </DataTrigger>
-                    <DataTrigger Binding="{Binding Card.HasDecreasedHealth}" Value="True">
-                      <Setter  Property="TextBlock.Foreground" Value="Red"></Setter>
-                    </DataTrigger>
-                  </Style.Triggers>
-                </Style>
-              </TextBlock.Style>
-            </TextBlock>
-          </Viewbox>
-
-        </Grid>
-      </Button.Content>
-    </Button>
-  </DataTemplate>
   
+
 </ResourceDictionary>

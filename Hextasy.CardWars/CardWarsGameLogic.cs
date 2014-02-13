@@ -37,6 +37,7 @@ namespace Hextasy.CardWars
         {
             if (tile.Card == null || tile.Card.IsExhausted) return;
             tile.IsSelected = true;
+            Tiles.Where(p => p.Card != null && p.Card != tile.Card).Apply(p => p.IsValidTarget = true);
         }
 
         public Player Player1 { get; private set; }
@@ -48,7 +49,7 @@ namespace Hextasy.CardWars
             get { return _currentPlayer; }
             private set
             {
-                if(_currentPlayer != null) _currentPlayer.IsActive = false;
+                if (_currentPlayer != null) _currentPlayer.IsActive = false;
                 _currentPlayer = value;
                 _currentPlayer.IsActive = true;
             }
@@ -84,6 +85,20 @@ namespace Hextasy.CardWars
             attacker.TakeDamage(defender.Attack);
 
             attacker.IsExhausted = true;
+
+            if (attacker.Health <= 0)
+            {
+                attacker.Die();
+                SelectedTile.Card = null;
+            }
+
+            if (defender.Health <= 0)
+            {
+                defender.Die();
+                tile.Card = null;
+            }
+
+            UnselectTile();
         }
 
         public void UnselectTile()

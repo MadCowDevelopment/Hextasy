@@ -103,7 +103,8 @@ namespace Hextasy.CardWars
             switch (e.Key)
             {
                 case Key.Escape:
-                    Game.UnselectTile();
+                    if (SelectedCard != null) SelectedCard = null;
+                    else Game.UnselectTile();
                     break;
                 case Key.Enter:
                     Game.EndTurn();

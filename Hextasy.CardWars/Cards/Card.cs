@@ -1,6 +1,4 @@
-﻿
-using System.ComponentModel.Composition;
-using Caliburn.Micro;
+﻿using Caliburn.Micro;
 
 namespace Hextasy.CardWars.Cards
 {
@@ -46,39 +44,10 @@ namespace Hextasy.CardWars.Cards
         {
             get { return Health < BaseHealth; }
         }
-    }
 
-    [Export(typeof(Card))]
-    public class FallenAngelCard : Card
-    {
-        public override string ImageSource
+        public void TakeDamage(int attackValue)
         {
-            get { return @"Cards\Images\FallenAngel.png"; }
-        }
-
-        public override string Name
-        {
-            get { return "Fallen Angel"; }
-        }
-
-        public override string Description
-        {
-            get { return "The fallen angel will bring you down. And it will bring down your mother."; }
-        }
-
-        public override int BaseAttack
-        {
-            get { return 90; }
-        }
-
-        public override int BaseHealth
-        {
-            get { return 90; }
-        }
-
-        public override int Cost
-        {
-            get { return 10; }
+            HealthBonus -= attackValue;
         }
     }
 }

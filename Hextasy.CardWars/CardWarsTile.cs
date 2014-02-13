@@ -10,5 +10,6 @@ namespace Hextasy.CardWars
         public Card Card { get; set; }
         public bool IsSelected { get; set; }
         public bool IsTarget { get { return true; } }
+        public bool IsFixed { get; set; }
     }
 }

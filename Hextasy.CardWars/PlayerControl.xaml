@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" 
+             d:DesignWidth="300"
              Height="50">
   <Grid>
     <Border BorderThickness="2" CornerRadius="10" BorderBrush="Black">
@@ -31,6 +31,22 @@
             </DataTrigger>
             <DataTrigger Binding="{Binding Owner}" Value="Player2">
               <Setter Property="Background" Value="Blue"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding IsActive}" Value="True">
+              <Setter Property="Effect">
+                <Setter.Value>
+                  <DropShadowEffect x:Name="ActivePlayerEffect" BlurRadius="30" Color="Orange" 
+                                    Direction="160" RenderingBias="Quality" ShadowDepth="0"/>
+                </Setter.Value>
+              </Setter>
+              <DataTrigger.EnterActions>
+                <BeginStoryboard>
+                  <Storyboard TargetProperty="(Effect).Color">
+                    <ColorAnimation
+                      To="GreenYellow" RepeatBehavior="Forever" AutoReverse="True" Duration="0:0:0.75"/>
+                  </Storyboard>
+                </BeginStoryboard>
+              </DataTrigger.EnterActions>
             </DataTrigger>
           </Style.Triggers>
         </Style>

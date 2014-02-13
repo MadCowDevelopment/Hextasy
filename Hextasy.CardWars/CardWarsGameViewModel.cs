@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
+using System.Windows.Input;
 using Caliburn.Micro;
 using Hextasy.CardWars.Cards;
 using Hextasy.Framework;
@@ -9,16 +10,43 @@ namespace Hextasy.CardWars
     [Export(typeof(CardWarsGameViewModel))]
     public class CardWarsGameViewModel : GameViewModel<CardWarsGameLogic, CardWarsSettings, CardWarsTile>
     {
+        private Card _selectedCard;
+
         [ImportingConstructor]
         public CardWarsGameViewModel(CardWarsGameLogic game, IEventAggregator eventAggregator)
             : base(game, eventAggregator)
         {
-
         }
 
         public ObservableCollection<Card> CurrentCards
         {
             get { return Game.CurrentCards; }
+        }
+
+        public Card SelectedCard
+        {
+            get
+            {
+                return _selectedCard;
+            }
+
+            set
+            {
+                _selectedCard = value;
+                Game.UnselectTile();
+                NotifyOfPropertyChange(() => IsInTargetMode);
+            }
+        }
+
+
+        public bool IsInCardPlacementMode
+        {
+            get { return SelectedCard != null; }
+        }
+
+        public bool IsInTargetMode
+        {
+            get { return Game.SelectedTile != null; }
         }
 
         public Player Player1
@@ -31,29 +59,50 @@ namespace Hextasy.CardWars
             get { return Game.Player2; }
         }
 
-        public void OnMouseClick(CardWarsTile tile)
+        public void OnTileClick(CardWarsTile tile)
         {
-            Game.SelectTile(tile);
+            if (IsInCardPlacementMode)
+            {
+                Game.AssignCard(tile, SelectedCard);
+            }
+            else if (IsInTargetMode)
+            {
+                Game.AttackCard(tile);
+            }
+            else
+            {
+                Game.SelectTile(tile);
+            }
+
+            NotifyOfPropertyChange(() => IsInTargetMode);
         }
 
-        public void OnMouseEnter(CardWarsTile tile)
+        public void OnTileEnter(CardWarsTile tile)
         {
+            Game.PreviewAssignCard(tile, SelectedCard);
         }
 
-        public void OnMouseLeave(CardWarsTile tile)
+        public void OnTileLeave(CardWarsTile tile)
         {
+            Game.PreviewRemoveCard(tile, SelectedCard);
         }
 
-        //public void OnMouseClick(Player player)
-        //{
-        //}
+        public void EndTurn()
+        {
+            Game.EndTurn();
+        }
 
-        //public void OnMouseEnter(Player player)
-        //{
-        //}
-
-        //public void OnMouseLeave(Player player)
-        //{
-        //}
+        public void PreviewKeyUp(KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.Escape:
+                    Game.UnselectTile();
+                    break;
+                case Key.Enter:
+                    Game.EndTurn();
+                    break;
+            }
+        }
     }
 }

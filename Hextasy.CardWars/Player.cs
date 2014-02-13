@@ -17,8 +17,8 @@ namespace Hextasy.CardWars
             Name = name;
             Owner = owner;
             RemainingLife = 30;
-            MaximumResources = 10;
-            RemainingResources = 8;
+            MaximumResources = 5;
+            RemainingResources = 5;
         }
 
         public void PrepareTurn()

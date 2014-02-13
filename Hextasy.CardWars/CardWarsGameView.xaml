@@ -32,7 +32,7 @@
         <RowDefinition Height="*"/>
         <RowDefinition Height="Auto"/>
       </Grid.RowDefinitions>
-      <cardWars:ResourceControl Width="360"
+      <cardWars:ResourceControl Width="360" Height="80" HorizontalAlignment="Center" VerticalAlignment="Center"
         RemainingResources="{Binding CurrentPlayer.RemainingResources}"
         MaximumResources="{Binding CurrentPlayer.MaximumResources}"/>
       <ListBox Grid.Row="1"

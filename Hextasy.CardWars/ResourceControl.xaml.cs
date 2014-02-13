@@ -29,14 +29,14 @@ namespace Hextasy.CardWars
 
         public static readonly DependencyProperty MaximumResourcesProperty = DependencyProperty.RegisterAttached(
             "MaximumResources",
-            typeof(int),
-            typeof(ResourceControl),
+            typeof (int),
+            typeof (ResourceControl),
             new FrameworkPropertyMetadata(0, OnMaximumResourcesChanged));
 
         public static readonly DependencyProperty RemainingResourcesProperty = DependencyProperty.RegisterAttached(
             "RemainingResources",
-            typeof(int),
-            typeof(ResourceControl),
+            typeof (int),
+            typeof (ResourceControl),
             new FrameworkPropertyMetadata(0, OnRemainingResourcesChanged));
 
         private static void OnRemainingResourcesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -80,8 +80,8 @@ namespace Hextasy.CardWars
         private static Image CreateImage(string source)
         {
             var finalImage = new Image();
-            finalImage.Width = 30;
-            finalImage.Height = 19;
+            finalImage.Width = 60;
+            finalImage.Height = 38;
             var logo = new BitmapImage();
             logo.BeginInit();
             logo.UriSource = new Uri(source);

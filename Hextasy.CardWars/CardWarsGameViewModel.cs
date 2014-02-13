@@ -95,7 +95,7 @@ namespace Hextasy.CardWars
         public void EndTurn()
         {
             Game.EndTurn();
-            NotifyOfPropertyChange((() => CurrentPlayer));
+            NotifyOfPropertyChange(() => CurrentPlayer);
         }
 
         public void PreviewKeyUp(KeyEventArgs e)
@@ -107,7 +107,7 @@ namespace Hextasy.CardWars
                     else Game.UnselectTile();
                     break;
                 case Key.Enter:
-                    Game.EndTurn();
+                    EndTurn();
                     break;
             }
         }

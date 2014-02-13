@@ -26,7 +26,7 @@ namespace Hextasy.CardWars.Cards
         public bool IsKilled { get; private set; }
         public bool IsExhausted { get; protected internal set; }
 
-        public bool CanBeBought { get; set; }
+        public bool CanBePlayed { get; set; }
 
         public bool HasIncreasedAttack
         {

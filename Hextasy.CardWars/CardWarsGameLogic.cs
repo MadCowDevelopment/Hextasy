@@ -37,7 +37,8 @@ namespace Hextasy.CardWars
         {
             if (tile.Card == null || tile.Card.IsExhausted) return;
             tile.IsSelected = true;
-            Tiles.Where(p => p.Card != null && p.Card != tile.Card).Apply(p => p.IsValidTarget = true);
+            Tiles.Where(p => p.Card != null).Apply(p => p.IsValidTarget = true);
+            tile.IsValidTarget = false;
         }
 
         public Player Player1 { get; private set; }
@@ -68,7 +69,7 @@ namespace Hextasy.CardWars
             tile.Owner = CurrentPlayer.Owner;
             CurrentPlayer.RemainingResources -= selectedCard.Cost;
             CurrentCards.Remove(selectedCard);
-            UpdateBuyableCards();
+            UpdatePlayabeCards();
         }
 
         public void AttackCard(CardWarsTile tile)
@@ -145,12 +146,12 @@ namespace Hextasy.CardWars
             CurrentCards.Add(new FallenAngelCard());
             CurrentCards.Add(new FallenAngelCard());
             CurrentCards.Add(new FallenAngelCard());
-            UpdateBuyableCards();
+            UpdatePlayabeCards();
         }
 
-        private void UpdateBuyableCards()
+        private void UpdatePlayabeCards()
         {
-            CurrentCards.Apply(p => p.CanBeBought = p.Cost < CurrentPlayer.RemainingResources);
+            CurrentCards.Apply(p => p.CanBePlayed = p.Cost <= CurrentPlayer.RemainingResources);
         }
 
         private void ResolveStartTurnEffects()

@@ -26,7 +26,7 @@
             </Grid>
           </Border>
           <ControlTemplate.Triggers>
-            <DataTrigger Binding="{Binding CanBeBought}" Value="False">
+            <DataTrigger Binding="{Binding CanBePlayed}" Value="False">
               <Setter Property="IsEnabled" Value="False"/>
               <Setter TargetName="DisabledOverlay" Property="Opacity" Value="0.75"/>
             </DataTrigger>

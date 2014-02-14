@@ -202,8 +202,8 @@
             <ContentPresenter />
             <Image x:Name="Crosshair" Stretch="Uniform" 
                      Margin="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Button}, 
-                        Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.20}"
-                     Source="Images\crosshair.png" Opacity="0" RenderTransformOrigin="0.5, 0.5">
+                        Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.30}"
+                     Source="Images\attack.png" Opacity="0" RenderTransformOrigin="0.5, 0.5">
               <Image.RenderTransform>
                 <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1" ScaleY="1"/>
               </Image.RenderTransform>

@@ -1,10 +1,13 @@
-﻿using Caliburn.Micro;
+﻿using System.ComponentModel;
+using Caliburn.Micro;
 using Hextasy.Framework;
 
 namespace Hextasy.CardWars.Cards
 {
     public abstract class Card : PropertyChangedBase
     {
+        private Player _player;
+
         protected Card()
         {
             IsExhausted = true;
@@ -16,7 +19,7 @@ namespace Hextasy.CardWars.Cards
         public abstract int BaseAttack { get; }
         public abstract int BaseHealth { get; }
         public abstract int Cost { get; }
-        
+
         public string ImageSource { get { return @"Images\Cards\" + ImageFilename; } }
 
         public int Attack { get { return BaseAttack + AttackBonus; } }
@@ -28,7 +31,7 @@ namespace Hextasy.CardWars.Cards
         public bool IsKilled { get; set; }
         public bool IsExhausted { get; protected internal set; }
 
-        public bool CanBePlayed { get; set; }
+        public bool CanBePlayed { get { return Player.RemainingResources >= Cost; } }
 
         public bool HasIncreasedAttack
         {
@@ -50,7 +53,27 @@ namespace Hextasy.CardWars.Cards
             get { return Health < BaseHealth; }
         }
 
-        public Owner Owner { get; set; }
+        public Owner Owner { get { return Player.Owner; } }
+
+        public Player Player
+        {
+            get { return _player; }
+            set
+            {
+                if (_player != null) Player.PropertyChanged -= OnPlayerPropertyChanged;
+                _player = value;
+                if (_player != null) Player.PropertyChanged += OnPlayerPropertyChanged;
+            }
+        }
+
+        private void OnPlayerPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            var player = sender as Player;
+            if (e.PropertyName == player.GetPropertyName(p => p.RemainingResources))
+            {
+                NotifyOfPropertyChange(() => CanBePlayed);
+            }
+        }
 
         public void TakeDamage(int attackValue)
         {

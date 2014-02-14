@@ -24,7 +24,12 @@ namespace Hextasy.CardWars
                 Tiles.Select(p => p.Card).OfType<RedKingCard>().Single());
             Player2 = new Player(Settings.Player2, Owner.Player2,
                 Tiles.Select(p => p.Card).OfType<BlueKingCard>().Single());
+
+            Player1.Died += (sender, args) => CheckWinCondition();
+            Player2.Died += (sender, args) => CheckWinCondition();
+
             CurrentPlayer = Player1;
+
             RefreshHand();
         }
 
@@ -81,7 +86,6 @@ namespace Hextasy.CardWars
             tile.AssignCard(selectedCard);
             CurrentPlayer.RemainingResources -= selectedCard.Cost;
             CurrentCards.Remove(selectedCard);
-            UpdatePlayabeCards();
         }
 
         public void AttackCard(CardWarsTile tile)
@@ -123,7 +127,6 @@ namespace Hextasy.CardWars
             ExhaustCards();
             SwitchCurrentPlayer();
             ResolveStartTurnEffects();
-            CheckWinCondition();
             RefreshCards();
             RefreshHand();
         }
@@ -132,17 +135,11 @@ namespace Hextasy.CardWars
         {
             CurrentCards.Clear();
             // TODO: Get the real cards from the player's deck.
-            CurrentCards.Add(new BarbarianPriestCard { Owner = CurrentPlayer.Owner });
-            CurrentCards.Add(new BarbarianWarlordCard { Owner = CurrentPlayer.Owner });
-            CurrentCards.Add(new BasiliskCard { Owner = CurrentPlayer.Owner });
-            CurrentCards.Add(new BatCard { Owner = CurrentPlayer.Owner });
-            CurrentCards.Add(new FallenAngelCard { Owner = CurrentPlayer.Owner });
-            UpdatePlayabeCards();
-        }
-
-        private void UpdatePlayabeCards()
-        {
-            CurrentCards.Apply(p => p.CanBePlayed = p.Cost <= CurrentPlayer.RemainingResources);
+            CurrentCards.Add(new BarbarianPriestCard { Player = CurrentPlayer });
+            CurrentCards.Add(new BarbarianWarlordCard { Player = CurrentPlayer });
+            CurrentCards.Add(new BasiliskCard { Player = CurrentPlayer });
+            CurrentCards.Add(new BatCard { Player = CurrentPlayer });
+            CurrentCards.Add(new FallenAngelCard { Player = CurrentPlayer });
         }
 
         private void ResolveStartTurnEffects()

@@ -182,9 +182,6 @@
     <Resource Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\crosshair.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\diamond-empty.png" />
     <Resource Include="Images\diamond-full.png" />
   </ItemGroup>

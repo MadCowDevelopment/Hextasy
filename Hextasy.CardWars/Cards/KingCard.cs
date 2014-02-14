@@ -1,4 +1,6 @@
-﻿namespace Hextasy.CardWars.Cards
+﻿using System;
+
+namespace Hextasy.CardWars.Cards
 {
     public abstract class KingCard : Card
     {
@@ -19,7 +21,7 @@
 
         public override int BaseHealth
         {
-            get { return 50; }
+            get { return 30; }
         }
 
         public override int Cost

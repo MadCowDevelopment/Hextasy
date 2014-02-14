@@ -81,27 +81,9 @@ namespace Hextasy.CardWars
                 return;
             }
 
-            var attacker = SelectedTile.Card;
-            var defender = tile.Card;
+            SelectedTile.Attack(tile);
 
-            defender.TakeDamage(attacker.Attack);
-            attacker.TakeDamage(defender.Attack);
-
-            attacker.IsExhausted = true;
-
-            if (attacker.Health <= 0)
-            {
-                attacker.Die();
-                SelectedTile.Card = null;
-                SelectedTile.Owner = Owner.None;
-            }
-
-            if (defender.Health <= 0)
-            {
-                defender.Die();
-                tile.Card = null;
-                tile.Owner = Owner.None;
-            }
+            
 
             UnselectTile();
         }

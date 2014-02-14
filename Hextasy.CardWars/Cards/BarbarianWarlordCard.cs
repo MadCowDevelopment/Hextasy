@@ -3,21 +3,21 @@
 namespace Hextasy.CardWars.Cards
 {
     [Export(typeof(Card))]
-    public class FallenAngelCard : Card
+    public class BarbarianWarlordCard : Card
     {
-        public override string ImageSource
-        {
-            get { return @"Images\Cards\AngelGray2.png"; }
-        }
-
         public override string Name
         {
-            get { return "Fallen Angel"; }
+            get { return "Barbarian Warlord"; }
         }
 
         public override string Description
         {
-            get { return "The fallen angel will bring you down. And it will bring down your mother."; }
+            get { return "SMASH!"; }
+        }
+
+        public override string ImageSource
+        {
+            get { return @"Images\Cards\BarbarianFighter2.png"; }
         }
 
         public override int BaseAttack

@@ -132,10 +132,10 @@ namespace Hextasy.CardWars
         {
             CurrentCards.Clear();
             // TODO: Get the real cards from the player's deck.
-            CurrentCards.Add(new FallenAngelCard { Owner = CurrentPlayer.Owner });
-            CurrentCards.Add(new FallenAngelCard { Owner = CurrentPlayer.Owner });
-            CurrentCards.Add(new FallenAngelCard { Owner = CurrentPlayer.Owner });
-            CurrentCards.Add(new FallenAngelCard { Owner = CurrentPlayer.Owner });
+            CurrentCards.Add(new BarbarianPriestCard { Owner = CurrentPlayer.Owner });
+            CurrentCards.Add(new BarbarianWarlordCard { Owner = CurrentPlayer.Owner });
+            CurrentCards.Add(new BasiliskCard { Owner = CurrentPlayer.Owner });
+            CurrentCards.Add(new BatCard { Owner = CurrentPlayer.Owner });
             CurrentCards.Add(new FallenAngelCard { Owner = CurrentPlayer.Owner });
             UpdatePlayabeCards();
         }

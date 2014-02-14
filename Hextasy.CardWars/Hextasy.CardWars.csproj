@@ -69,6 +69,10 @@
     <Compile Include="CardControl.xaml.cs">
       <DependentUpon>CardControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Cards\BarbarianPriestCard.cs" />
+    <Compile Include="Cards\BarbarianWarlordCard.cs" />
+    <Compile Include="Cards\BasiliskCard.cs" />
+    <Compile Include="Cards\BatCard.cs" />
     <Compile Include="Cards\BlueKingCard.cs" />
     <Compile Include="Cards\Card.cs" />
     <Compile Include="Cards\FallenAngelCard.cs" />
@@ -172,7 +176,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Cards\FallenAngel.png" />
+    <Resource Include="Images\Cards\AngelGray2.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="FodyWeavers.xml" />
@@ -190,6 +194,16 @@
   <ItemGroup>
     <Resource Include="Images\crown-blue.png" />
     <Resource Include="Images\crown-red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\BarbarianFighter2.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\BarbarianPriest.PNG" />
+    <Resource Include="Images\Cards\BasiliskBrown.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\BatGrey.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

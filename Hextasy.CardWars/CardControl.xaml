@@ -6,9 +6,16 @@
              mc:Ignorable="d" 
              Height="50"
              d:DesignHeight="50" d:DesignWidth="250">
+  <UserControl.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Converters.xaml"/>
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </UserControl.Resources>
   <Grid>
     <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="Auto"/>
+      <ColumnDefinition Width="55"/>
       <ColumnDefinition Width="Auto"/>
       <ColumnDefinition Width="*"/>
       <ColumnDefinition Width="Auto"/>
@@ -19,10 +26,27 @@
         <RowDefinition Height="*"/>
         <RowDefinition Height="Auto"/>
       </Grid.RowDefinitions>
-      <Viewbox Margin="4" StretchDirection="Both" Stretch="Uniform">
-        <Border Width="26" Height="26" Margin="1" BorderBrush="Black" BorderThickness="2" CornerRadius="13" Background="BlueViolet">
-          <TextBlock Margin="1" Text="{Binding Cost}" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-        </Border>
+      <Viewbox StretchDirection="Both" Stretch="Uniform">
+        <Grid>
+          <Image Source="Images\diamond-full.png"/>
+          
+          <Viewbox Margin="2, 0, 2, 20" StretchDirection="Both" Stretch="Uniform">
+            <Border CornerRadius="10" Width="15" Height="10" Background="White" 
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
+              <Border.OpacityMask>
+                <RadialGradientBrush Center="0.5,0.5">
+                  <GradientStop Color="#00000000" Offset="1" />
+                  <GradientStop Color="#20000000" Offset="0.9" />
+                  <GradientStop Color="#FF000000" Offset="0" />
+                </RadialGradientBrush>
+              </Border.OpacityMask>
+            </Border>
+          </Viewbox>
+          <Viewbox Margin="0, -4, 0, 18" StretchDirection="Both" Stretch="Uniform">
+            <TextBlock Text="9" Foreground="Black" FontWeight="Bold" 
+                     HorizontalAlignment="Center" VerticalAlignment="Center"/>
+          </Viewbox>
+        </Grid>
       </Viewbox>
     </Grid>
     <Image Grid.Column="1" Grid.Row="0" Source="{Binding ImageSource}"/>

@@ -20,8 +20,10 @@ namespace Hextasy.CardWars
         protected override void OnSettingsInitialized()
         {
             base.OnSettingsInitialized();
-            Player1 = new Player(Settings.Player1, Owner.Player1);
-            Player2 = new Player(Settings.Player2, Owner.Player2);
+            Player1 = new Player(Settings.Player1, Owner.Player1,
+                Tiles.Select(p => p.Card).OfType<RedKingCard>().Single());
+            Player2 = new Player(Settings.Player2, Owner.Player2,
+                Tiles.Select(p => p.Card).OfType<BlueKingCard>().Single());
             CurrentPlayer = Player1;
             RefreshHand();
         }

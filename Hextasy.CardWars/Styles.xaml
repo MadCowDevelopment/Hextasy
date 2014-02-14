@@ -7,6 +7,81 @@
     <ResourceDictionary Source="Converters.xaml"/>
   </ResourceDictionary.MergedDictionaries>
 
+  <Style TargetType="ListBox" xmlns:s="clr-namespace:System;assembly=mscorlib">
+    <Style.Resources>
+      <ResourceDictionary />
+    </Style.Resources>
+    <Setter Property="Panel.Background">
+      <Setter.Value>
+        <DynamicResource ResourceKey="{x:Static SystemColors.WindowBrushKey}" />
+      </Setter.Value>
+    </Setter>
+    <Setter Property="Border.BorderBrush">
+      <Setter.Value>
+        <SolidColorBrush>#FF7F9DB9</SolidColorBrush>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="Border.BorderThickness">
+      <Setter.Value>
+        <Thickness>0,0,0,0</Thickness>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="TextElement.Foreground">
+      <Setter.Value>
+        <DynamicResource ResourceKey="{x:Static SystemColors.ControlTextBrushKey}" />
+      </Setter.Value>
+    </Setter>
+    <Setter Property="ScrollViewer.HorizontalScrollBarVisibility">
+      <Setter.Value>
+        <x:Static Member="ScrollBarVisibility.Auto" />
+      </Setter.Value>
+    </Setter>
+    <Setter Property="ScrollViewer.VerticalScrollBarVisibility">
+      <Setter.Value>
+        <x:Static Member="ScrollBarVisibility.Auto" />
+      </Setter.Value>
+    </Setter>
+    <Setter Property="ScrollViewer.CanContentScroll">
+      <Setter.Value>
+        <s:Boolean>True</s:Boolean>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="VerticalContentAlignment">
+      <Setter.Value>
+        <x:Static Member="VerticalAlignment.Center" />
+      </Setter.Value>
+    </Setter>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="ListBox">
+          <Border BorderBrush="{TemplateBinding Border.BorderBrush}" BorderThickness="{TemplateBinding Border.BorderThickness}" Name="Bd" Background="{TemplateBinding Panel.Background}" SnapsToDevicePixels="True" Padding="0">
+            <ScrollViewer Focusable="False" Padding="{TemplateBinding Control.Padding}">
+              <ItemsPresenter SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
+            </ScrollViewer>
+          </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="UIElement.IsEnabled">
+              <Setter Property="Panel.Background" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
+              <Trigger.Value>
+                <s:Boolean>False</s:Boolean>
+              </Trigger.Value>
+            </Trigger>
+            <Trigger Property="ItemsControl.IsGrouping">
+              <Setter Property="ScrollViewer.CanContentScroll">
+                <Setter.Value>
+                  <s:Boolean>False</s:Boolean>
+                </Setter.Value>
+              </Setter>
+              <Trigger.Value>
+                <s:Boolean>True</s:Boolean>
+              </Trigger.Value>
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
   <Style x:Key="CardSelectionContainerStyle" TargetType="{x:Type ListBoxItem}">
     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
     <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
@@ -188,7 +263,5 @@
       </Setter.Value>
     </Setter>
   </Style>
-
-
 
 </ResourceDictionary>

@@ -22,6 +22,13 @@ namespace Hextasy.CardWars
             KingCard = kingCard;
             MaximumResources = 5;
             RemainingResources = 5;
+
+            KingCard.PropertyChanged += KingCardPropertyChanged;
+        }
+
+        private void KingCardPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            NotifyOfPropertyChange(() => RemainingLife);
         }
 
         public void PrepareTurn()

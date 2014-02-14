@@ -21,13 +21,15 @@
       <RowDefinition Height="3*"/>
     </Grid.RowDefinitions>
     <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="20*"/>
-      <ColumnDefinition Width="35*"/>
-      <ColumnDefinition Width="20*"/>
+      <ColumnDefinition Width="*"/>
+      <ColumnDefinition Width="2*"/>
+      <ColumnDefinition Width="5*"/>
+      <ColumnDefinition Width="2*"/>
+      <ColumnDefinition Width="*"/>
     </Grid.ColumnDefinitions>
 
     <Image x:Name="CardImage" Grid.Row="0" Grid.Column="0"
-                   Source="{Binding Card.ImageSource}" Grid.ColumnSpan="3" Grid.RowSpan="3" 
+                   Source="{Binding Card.ImageSource}" Grid.ColumnSpan="5" Grid.RowSpan="3" 
                    Margin="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Button}, 
                         Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.15}"
                    RenderTransformOrigin="0.5, 0.5">
@@ -56,7 +58,7 @@
       </Image.Style>
     </Image>
 
-    <Viewbox Grid.Row="1" Grid.Column="0" StretchDirection="Both" Stretch="Uniform">
+    <Viewbox Grid.Row="1" Grid.Column="1" StretchDirection="Both" Stretch="Uniform">
       <TextBlock Text="{Binding Card.Attack}" FontWeight="Bold"
                            HorizontalAlignment="Center" VerticalAlignment="Center">
         <TextBlock.Style>
@@ -74,7 +76,7 @@
       </TextBlock>
     </Viewbox>
 
-    <Viewbox Grid.Row="1" Grid.Column="2" StretchDirection="Both" Stretch="Uniform">
+    <Viewbox Grid.Row="1" Grid.Column="3" StretchDirection="Both" Stretch="Uniform">
       <TextBlock Text="{Binding Card.Health}" FontWeight="Bold"
                            HorizontalAlignment="Center" VerticalAlignment="Center">
         <TextBlock.Style>

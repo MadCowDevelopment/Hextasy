@@ -30,6 +30,18 @@ namespace Hextasy.CardWars
 
         protected override CardWarsTile CreateTile(int column, int row)
         {
+            if (column == 0 && row == 0)
+            {
+                var tile = new CardWarsTile();
+                tile.AssignCard(new RedKingCard());
+                return tile;
+            }
+            if (column == Settings.Columns - 1 && row == Settings.Rows - 1)
+            {
+                var tile = new CardWarsTile();
+                tile.AssignCard(new BlueKingCard());
+                return tile;
+            }
             return new CardWarsTile();
         }
 
@@ -64,9 +76,7 @@ namespace Hextasy.CardWars
         public void PlayCard(CardWarsTile tile, Card selectedCard)
         {
             if (tile.IsFixed) return;
-            tile.Card = selectedCard;
-            tile.IsFixed = true;
-            tile.Owner = CurrentPlayer.Owner;
+            tile.AssignCard(selectedCard);
             CurrentPlayer.RemainingResources -= selectedCard.Cost;
             CurrentCards.Remove(selectedCard);
             UpdatePlayabeCards();
@@ -82,9 +92,6 @@ namespace Hextasy.CardWars
             }
 
             SelectedTile.Attack(tile);
-
-            
-
             UnselectTile();
         }
 
@@ -123,11 +130,11 @@ namespace Hextasy.CardWars
         {
             CurrentCards.Clear();
             // TODO: Get the real cards from the player's deck.
-            CurrentCards.Add(new FallenAngelCard());
-            CurrentCards.Add(new FallenAngelCard());
-            CurrentCards.Add(new FallenAngelCard());
-            CurrentCards.Add(new FallenAngelCard());
-            CurrentCards.Add(new FallenAngelCard());
+            CurrentCards.Add(new FallenAngelCard { Owner = CurrentPlayer.Owner });
+            CurrentCards.Add(new FallenAngelCard { Owner = CurrentPlayer.Owner });
+            CurrentCards.Add(new FallenAngelCard { Owner = CurrentPlayer.Owner });
+            CurrentCards.Add(new FallenAngelCard { Owner = CurrentPlayer.Owner });
+            CurrentCards.Add(new FallenAngelCard { Owner = CurrentPlayer.Owner });
             UpdatePlayabeCards();
         }
 

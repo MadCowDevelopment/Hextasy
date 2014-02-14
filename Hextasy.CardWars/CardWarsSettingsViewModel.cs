@@ -10,14 +10,17 @@ namespace Hextasy.CardWars
         {
             Player1 = "Player1";
             Player2 = "Player2";
+            Columns = 5;
+            Rows = 5;
         }
 
         public string Player1 { get; set; }
+
         public string Player2 { get; set; }
 
         public override CardWarsSettings Settings
         {
-            get { return new CardWarsSettings(8, 8, Player1, Player2); }
+            get { return new CardWarsSettings(Rows, Columns, Player1, Player2); }
         }
     }
 }

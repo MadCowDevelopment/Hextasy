@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using Hextasy.Framework;
 
 namespace Hextasy.CardWars.Cards
 {
@@ -47,6 +48,8 @@ namespace Hextasy.CardWars.Cards
         {
             get { return Health < BaseHealth; }
         }
+
+        public Owner Owner { get; set; }
 
         public void TakeDamage(int attackValue)
         {

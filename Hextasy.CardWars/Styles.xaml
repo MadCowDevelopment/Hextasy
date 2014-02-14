@@ -158,7 +158,7 @@
             <Trigger Property="IsMouseOver" Value="True">
               <Setter TargetName="Overlay" Property="Opacity" Value="0.5"/>
             </Trigger>
-            <MultiDataTrigger>
+            <MultiDataTrigger x:Name="CrosshairVisibilityTrigger">
               <MultiDataTrigger.Conditions>
                 <Condition Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=DataContext.IsInTargetMode}"
                              Value="True"/>

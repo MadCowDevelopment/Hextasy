@@ -25,8 +25,8 @@ namespace Hextasy.CardWars
             Player2 = new Player(Settings.Player2, Owner.Player2,
                 Tiles.Select(p => p.Card).OfType<BlueKingCard>().Single());
 
-            Player1.Died += (sender, args) => CheckWinCondition();
-            Player2.Died += (sender, args) => CheckWinCondition();
+            Player1.Died += (sender, args) => RaiseFinished(new GameFinishedEventArgs());
+            Player2.Died += (sender, args) => RaiseFinished(new GameFinishedEventArgs());
 
             CurrentPlayer = Player1;
 
@@ -145,12 +145,6 @@ namespace Hextasy.CardWars
         private void ResolveStartTurnEffects()
         {
             // TODO
-        }
-
-        private void CheckWinCondition()
-        {
-            if (Player1.RemainingLife <= 0 || Player2.RemainingLife <= 0)
-                RaiseFinished(new GameFinishedEventArgs());
         }
 
         private void ResolveEndTurnEffects()

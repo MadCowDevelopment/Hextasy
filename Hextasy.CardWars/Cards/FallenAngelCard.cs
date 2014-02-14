@@ -5,9 +5,9 @@ namespace Hextasy.CardWars.Cards
     [Export(typeof(Card))]
     public class FallenAngelCard : Card
     {
-        public override string ImageSource
+        protected override string ImageFilename
         {
-            get { return @"Images\Cards\AngelGray2.png"; }
+            get { return @"AngelGray2.png"; }
         }
 
         public override string Name

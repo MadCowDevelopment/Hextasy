@@ -192,8 +192,8 @@
     <Resource Include="Images\skull.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\crown-blue.png" />
-    <Resource Include="Images\crown-red.png" />
+    <Resource Include="Images\Cards\crown-blue.png" />
+    <Resource Include="Images\Cards\crown-red.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Cards\BarbarianFighter2.PNG" />

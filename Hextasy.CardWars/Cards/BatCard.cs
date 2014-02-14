@@ -15,9 +15,9 @@ namespace Hextasy.CardWars.Cards
             get { return string.Empty; }
         }
 
-        public override string ImageSource
+        protected override string ImageFilename
         {
-            get { return @"Images\Cards\BatGrey.png"; }
+            get { return @"BatGrey.png"; }
         }
 
         public override int BaseAttack

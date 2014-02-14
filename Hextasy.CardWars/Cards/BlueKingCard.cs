@@ -2,9 +2,9 @@
 {
     public class BlueKingCard : KingCard
     {
-        public override string ImageSource
+        protected override string ImageFilename
         {
-            get { return @"Images\crown-blue.png"; }
+            get { return @"crown-blue.png"; }
         }
     }
 }

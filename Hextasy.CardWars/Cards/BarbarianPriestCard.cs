@@ -15,9 +15,9 @@ namespace Hextasy.CardWars.Cards
             get { return "The lord is mighty but unforgiving."; }
         }
 
-        public override string ImageSource
+        protected override string ImageFilename
         {
-            get { return @"Images\Cards\BarbarianPriest.png"; }
+            get { return @"BarbarianPriest.png"; }
         }
 
         public override int BaseAttack

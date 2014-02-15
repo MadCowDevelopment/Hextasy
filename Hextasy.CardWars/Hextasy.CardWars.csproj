@@ -78,6 +78,7 @@
     <Compile Include="Cards\Card.cs" />
     <Compile Include="Cards\FallenAngelCard.cs" />
     <Compile Include="Cards\KingCard.cs" />
+    <Compile Include="Cards\MonsterCard.cs" />
     <Compile Include="Cards\RedKingCard.cs" />
     <Compile Include="Cards\TurtleCard.cs" />
     <Compile Include="Cards\WarElephantCard.cs" />
@@ -227,6 +228,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Cards\AntRed2.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\Spells\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

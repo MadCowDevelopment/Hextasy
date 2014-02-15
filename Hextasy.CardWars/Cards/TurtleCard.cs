@@ -3,7 +3,7 @@
 namespace Hextasy.CardWars.Cards
 {
     [Export(typeof(Card))]
-    public class TurtleCard : Card
+    public class TurtleCard : MonsterCard
     {
         public override string Name
         {

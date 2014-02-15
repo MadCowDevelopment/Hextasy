@@ -20,7 +20,7 @@ namespace Hextasy.CardWars.Cards
         public abstract int BaseHealth { get; }
         public abstract int Cost { get; }
 
-        public string ImageSource { get { return @"Images\Cards\" + ImageFilename; } }
+        public string ImageSource { get { return ImageFolder + ImageFilename; } }
 
         public int Attack { get { return BaseAttack + AttackBonus; } }
         public int AttackBonus { get; set; }
@@ -81,5 +81,6 @@ namespace Hextasy.CardWars.Cards
         }
 
         protected abstract string ImageFilename { get; }
+        protected abstract string ImageFolder { get; }
     }
 }

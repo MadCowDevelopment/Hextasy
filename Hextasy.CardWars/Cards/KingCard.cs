@@ -1,8 +1,7 @@
-﻿using System;
-
+﻿
 namespace Hextasy.CardWars.Cards
 {
-    public abstract class KingCard : Card
+    public abstract class KingCard : MonsterCard
     {
         public override string Name
         {

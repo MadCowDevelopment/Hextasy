@@ -84,8 +84,12 @@
     <Compile Include="Cards\Monsters\WarElephantCard.cs" />
     <Compile Include="Cards\Monsters\WolfCard.cs" />
     <Compile Include="Cards\Monsters\WormCard.cs" />
+    <Compile Include="Cards\Spells\EnchantWeaponFrostCard.cs" />
     <Compile Include="Cards\Spells\FireballCard.cs" />
     <Compile Include="Cards\SpellCard.cs" />
+    <Compile Include="Cards\Spells\GreaterHealCard.cs" />
+    <Compile Include="Cards\Spells\HealCard.cs" />
+    <Compile Include="Cards\Spells\LesserHealCard.cs" />
     <Compile Include="CardWarsGame.cs" />
     <Compile Include="CardWarsGameLogic.cs" />
     <Compile Include="CardWarsGameView.xaml.cs">

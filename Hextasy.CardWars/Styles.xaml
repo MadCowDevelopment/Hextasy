@@ -206,10 +206,18 @@
                     Data="M 250,0 L 750,0 L 1000,433 L 750,866 L 250,866 L 0,433 Z">
             </Path>
             <ContentPresenter />
-            <Image x:Name="Crosshair" Stretch="Uniform" 
+            <Image x:Name="Attack" Stretch="Uniform" 
                      Margin="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Button}, 
                         Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.30}"
                      Source="Images\attack.png" Opacity="0" RenderTransformOrigin="0.5, 0.5">
+              <Image.RenderTransform>
+                <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1" ScaleY="1"/>
+              </Image.RenderTransform>
+            </Image>
+            <Image x:Name="Crosshair" Stretch="Uniform" 
+                     Margin="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Button}, 
+                        Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.30}"
+                     Source="Images\crosshair.png" Opacity="0" RenderTransformOrigin="0.5, 0.5">
               <Image.RenderTransform>
                 <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1" ScaleY="1"/>
               </Image.RenderTransform>
@@ -239,11 +247,23 @@
             <Trigger Property="IsMouseOver" Value="True">
               <Setter TargetName="Overlay" Property="Opacity" Value="0.5"/>
             </Trigger>
-            <MultiDataTrigger x:Name="CrosshairVisibilityTrigger">
+            <MultiDataTrigger x:Name="AttackVisibilityTrigger">
               <MultiDataTrigger.Conditions>
                 <Condition Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=DataContext.IsInTargetMode}"
                              Value="True"/>
                 <Condition Binding="{Binding IsValidTarget}" Value="True"/>
+                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True"/>
+              </MultiDataTrigger.Conditions>
+              <Setter TargetName="Attack" Property="Opacity" Value="1"/>
+              <MultiDataTrigger.EnterActions>
+                <BeginStoryboard Storyboard="{StaticResource AttackStoryboard}"/>
+              </MultiDataTrigger.EnterActions>
+            </MultiDataTrigger>
+            <MultiDataTrigger x:Name="CrosshairVisibilityTrigger">
+              <MultiDataTrigger.Conditions>
+                <Condition Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=DataContext.IsInSpellTargetMode}"
+                             Value="True"/>
+                <Condition Binding="{Binding IsValidSpellTarget}" Value="True"/>
                 <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True"/>
               </MultiDataTrigger.Conditions>
               <Setter TargetName="Crosshair" Property="Opacity" Value="1"/>

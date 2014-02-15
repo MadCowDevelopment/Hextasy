@@ -91,6 +91,14 @@ namespace Hextasy.CardWars
             CurrentCards.Remove(selectedCard);
         }
 
+        public void PlaySpellCard(CardWarsTile tile, SpellCard selectedCard)
+        {
+            if (!tile.IsValidSpellTarget) return;
+            CurrentPlayer.RemainingResources -= selectedCard.Cost;
+            CurrentCards.Remove(selectedCard);
+            // TODO: Let the spell have some effect.
+        }
+
         public void AttackCard(CardWarsTile tile)
         {
             if (tile.Card == null || SelectedTile == null || SelectedTile.Card == null) return;
@@ -103,6 +111,8 @@ namespace Hextasy.CardWars
             SelectedTile.Attack(tile);
             UnselectTile();
         }
+
+
 
         public void UnselectTile()
         {
@@ -161,5 +171,7 @@ namespace Hextasy.CardWars
             CurrentPlayer = CurrentPlayer == Player1 ? Player2 : Player1;
             CurrentPlayer.PrepareTurn();
         }
+
+
     }
 }

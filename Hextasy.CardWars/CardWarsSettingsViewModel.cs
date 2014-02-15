@@ -17,18 +17,23 @@ namespace Hextasy.CardWars
             Columns = 7;
             Rows = 5;
 
-            Decks = new List<Deck>();
-            Decks.Add(CreateDefaultDeck());
+            Player1Decks = new List<Deck>();
+            Player1Decks.Add(CreateDefaultDeck());
 
-            Player1Deck = Decks[0];
-            Player2Deck = Decks[0];
+            Player2Decks = new List<Deck>();
+            Player2Decks.Add(CreateDefaultDeck());
+
+            Player1Deck = Player1Decks[0];
+            Player2Deck = Player2Decks[0];
         }
 
         public string Player1 { get; set; }
 
         public string Player2 { get; set; }
 
-        public List<Deck> Decks { get; private set; }
+        public List<Deck> Player1Decks { get; private set; }
+
+        public List<Deck> Player2Decks { get; private set; }
 
         public Deck Player1Deck { get; set; }
 

@@ -13,6 +13,8 @@ namespace Hextasy.CardWars
 
         public bool IsValidTarget { get; set; }
 
+        public bool IsValidSpellTarget { get { return Card != null; } }
+
         private void Die()
         {
             Card.IsKilled = true;

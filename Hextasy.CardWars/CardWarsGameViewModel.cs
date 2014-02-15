@@ -49,6 +49,11 @@ namespace Hextasy.CardWars
             get { return Game.SelectedTile != null; }
         }
 
+        public bool IsInSpellTargetMode
+        {
+            get { return SelectedCard is SpellCard; }
+        }
+
         public Player CurrentPlayer
         {
             get { return Game.CurrentPlayer; }
@@ -73,6 +78,10 @@ namespace Hextasy.CardWars
             else if (IsInTargetMode)
             {
                 Game.AttackCard(tile);
+            }
+            else if (IsInSpellTargetMode)
+            {
+                Game.PlaySpellCard(tile, SelectedCard as SpellCard);
             }
             else
             {

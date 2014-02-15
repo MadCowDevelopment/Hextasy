@@ -1,13 +1,13 @@
 ﻿using System.ComponentModel.Composition;
 
-namespace Hextasy.CardWars.Cards
+namespace Hextasy.CardWars.Cards.Monsters
 {
     [Export(typeof(Card))]
-    public class WormCard : MonsterCard
+    public class WolfCard : MonsterCard
     {
         public override string Name
         {
-            get { return "Worm"; }
+            get { return "Wolf"; }
         }
 
         public override string Description
@@ -17,7 +17,7 @@ namespace Hextasy.CardWars.Cards
 
         public override int BaseAttack
         {
-            get { return 1; }
+            get { return 3; }
         }
 
         public override int BaseHealth
@@ -27,12 +27,12 @@ namespace Hextasy.CardWars.Cards
 
         public override int Cost
         {
-            get { return 1; }
+            get { return 2; }
         }
 
         protected override string ImageFilename
         {
-            get { return "WormGreen.png"; }
+            get { return "Wolf.png"; }
         }
     }
 }

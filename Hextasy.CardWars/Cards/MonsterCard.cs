@@ -4,7 +4,7 @@
     {
         protected override string ImageFolder
         {
-            get { return @"Images\Cards\"; }
+            get { return @"Images\Cards\Monsters\"; }
         }
     }
 }

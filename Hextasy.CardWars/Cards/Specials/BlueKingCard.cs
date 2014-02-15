@@ -1,4 +1,4 @@
-﻿namespace Hextasy.CardWars.Cards
+﻿namespace Hextasy.CardWars.Cards.Specials
 {
     public class BlueKingCard : KingCard
     {

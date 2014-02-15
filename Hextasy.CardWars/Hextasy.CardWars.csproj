@@ -69,21 +69,21 @@
     <Compile Include="CardControl.xaml.cs">
       <DependentUpon>CardControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Cards\FireAntCard.cs" />
-    <Compile Include="Cards\BarbarianPriestCard.cs" />
-    <Compile Include="Cards\BarbarianWarlordCard.cs" />
-    <Compile Include="Cards\BasiliskCard.cs" />
-    <Compile Include="Cards\BatCard.cs" />
-    <Compile Include="Cards\BlueKingCard.cs" />
+    <Compile Include="Cards\Monsters\FireAntCard.cs" />
+    <Compile Include="Cards\Monsters\BarbarianPriestCard.cs" />
+    <Compile Include="Cards\Monsters\BarbarianWarlordCard.cs" />
+    <Compile Include="Cards\Monsters\BasiliskCard.cs" />
+    <Compile Include="Cards\Monsters\BatCard.cs" />
+    <Compile Include="Cards\Specials\BlueKingCard.cs" />
     <Compile Include="Cards\Card.cs" />
-    <Compile Include="Cards\FallenAngelCard.cs" />
-    <Compile Include="Cards\KingCard.cs" />
+    <Compile Include="Cards\Monsters\FallenAngelCard.cs" />
+    <Compile Include="Cards\Specials\KingCard.cs" />
     <Compile Include="Cards\MonsterCard.cs" />
-    <Compile Include="Cards\RedKingCard.cs" />
-    <Compile Include="Cards\TurtleCard.cs" />
-    <Compile Include="Cards\WarElephantCard.cs" />
-    <Compile Include="Cards\WolfCard.cs" />
-    <Compile Include="Cards\WormCard.cs" />
+    <Compile Include="Cards\Specials\RedKingCard.cs" />
+    <Compile Include="Cards\Monsters\TurtleCard.cs" />
+    <Compile Include="Cards\Monsters\WarElephantCard.cs" />
+    <Compile Include="Cards\Monsters\WolfCard.cs" />
+    <Compile Include="Cards\Monsters\WormCard.cs" />
     <Compile Include="CardWarsGame.cs" />
     <Compile Include="CardWarsGameLogic.cs" />
     <Compile Include="CardWarsGameView.xaml.cs">
@@ -182,7 +182,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Cards\AngelGray2.png" />
+    <Resource Include="Images\Cards\Monsters\AngelGray2.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="FodyWeavers.xml" />
@@ -195,18 +195,18 @@
     <Resource Include="Images\skull.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Cards\crown-blue.png" />
-    <Resource Include="Images\Cards\crown-red.png" />
+    <Resource Include="Images\Cards\Specials\crown-blue.png" />
+    <Resource Include="Images\Cards\Specials\crown-red.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Cards\BarbarianFighter2.PNG" />
+    <Resource Include="Images\Cards\Monsters\BarbarianFighter2.PNG" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Cards\BarbarianPriest.PNG" />
-    <Resource Include="Images\Cards\BasiliskBrown.PNG" />
+    <Resource Include="Images\Cards\Monsters\BarbarianPriest.PNG" />
+    <Resource Include="Images\Cards\Monsters\BasiliskBrown.PNG" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Cards\BatGrey.PNG" />
+    <Resource Include="Images\Cards\Monsters\BatGrey.PNG" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\blooddrop.png" />
@@ -215,22 +215,23 @@
     <Resource Include="Images\attack.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Cards\TurtleBrown.PNG" />
+    <Resource Include="Images\Cards\Monsters\TurtleBrown.PNG" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Cards\Wolf.PNG" />
+    <Resource Include="Images\Cards\Monsters\Wolf.PNG" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Cards\WarElephantGrey.PNG" />
+    <Resource Include="Images\Cards\Monsters\WarElephantGrey.PNG" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Cards\WormGreen.PNG" />
+    <Resource Include="Images\Cards\Monsters\WormGreen.PNG" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Cards\AntRed2.PNG" />
+    <Resource Include="Images\Cards\Monsters\AntRed2.PNG" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Images\Spells\" />
+    <Folder Include="Cards\Spells\" />
+    <Folder Include="Images\Cards\Spells\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

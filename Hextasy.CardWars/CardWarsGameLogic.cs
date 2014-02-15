@@ -3,6 +3,8 @@ using System.ComponentModel.Composition;
 using System.Linq;
 using Caliburn.Micro;
 using Hextasy.CardWars.Cards;
+using Hextasy.CardWars.Cards.Monsters;
+using Hextasy.CardWars.Cards.Specials;
 using Hextasy.Framework;
 
 namespace Hextasy.CardWars

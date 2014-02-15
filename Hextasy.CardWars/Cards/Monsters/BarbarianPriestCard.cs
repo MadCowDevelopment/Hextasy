@@ -1,33 +1,33 @@
 ﻿using System.ComponentModel.Composition;
 
-namespace Hextasy.CardWars.Cards
+namespace Hextasy.CardWars.Cards.Monsters
 {
     [Export(typeof(Card))]
-    public class BasiliskCard : MonsterCard
+    public class BarbarianPriestCard : MonsterCard
     {
         public override string Name
         {
-            get { return "Basilisk"; }
+            get { return "Barbarian Priest"; }
         }
 
         public override string Description
         {
-            get { return string.Empty; }
+            get { return "The lord is mighty but unforgiving."; }
         }
 
         protected override string ImageFilename
         {
-            get { return @"BasiliskBrown.png"; }
+            get { return @"BarbarianPriest.png"; }
         }
 
         public override int BaseAttack
         {
-            get { return 4; }
+            get { return 2; }
         }
 
         public override int BaseHealth
         {
-            get { return 2; }
+            get { return 3; }
         }
 
         public override int Cost

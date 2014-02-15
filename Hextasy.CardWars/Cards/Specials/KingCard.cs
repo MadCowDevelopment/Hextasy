@@ -1,8 +1,13 @@
 ﻿
-namespace Hextasy.CardWars.Cards
+namespace Hextasy.CardWars.Cards.Specials
 {
     public abstract class KingCard : MonsterCard
     {
+        protected override string ImageFolder
+        {
+            get { return @"Images\Cards\Specials\"; }
+        }
+
         public override string Name
         {
             get { return "King"; }

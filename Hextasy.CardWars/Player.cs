@@ -1,6 +1,7 @@
 using System;
 using Caliburn.Micro;
 using Hextasy.CardWars.Cards;
+using Hextasy.CardWars.Cards.Specials;
 using Hextasy.Framework;
 
 namespace Hextasy.CardWars
@@ -31,7 +32,7 @@ namespace Hextasy.CardWars
         private void KingCardPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             var card = sender as Card;
-            if(e.PropertyName == card.GetPropertyName(p=>p.Health))
+            if (e.PropertyName == card.GetPropertyName(p => p.Health))
             {
                 NotifyOfPropertyChange(() => RemainingLife);
                 if (RemainingLife < 0) RaiseDied();

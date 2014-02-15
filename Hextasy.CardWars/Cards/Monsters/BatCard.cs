@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.Composition;
 
-namespace Hextasy.CardWars.Cards
+namespace Hextasy.CardWars.Cards.Monsters
 {
     [Export(typeof(Card))]
     public class BatCard : MonsterCard

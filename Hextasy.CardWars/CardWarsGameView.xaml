@@ -50,29 +50,14 @@
       <Button Grid.Row="3" Content="End Turn" FontSize="20" Margin="10" cal:Message.Attach="[Event Click] = [Action EndTurn()]"/>
     </Grid>
 
-    <Grid Grid.Column="1">
-      <Grid.RowDefinitions>
-        <RowDefinition Height="Auto"/>
-        <RowDefinition Height="*"/>
-        <RowDefinition Height="Auto"/>
-      </Grid.RowDefinitions>
-      <cardWars:PlayerControl Grid.Row="0" DataContext="{Binding Player1}" Margin="10"
-        HorizontalAlignment="Left"
-        Width="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Grid}, 
-          Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.4}"/>
-      <ItemsControl Grid.Row="1" ItemsSource="{Binding Tiles}" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <ItemsControl.ItemsPanel>
-          <ItemsPanelTemplate>
-            <framework:HexGrid Columns="{Binding Columns}"/>
-          </ItemsPanelTemplate>
-        </ItemsControl.ItemsPanel>
-      </ItemsControl>
-      <cardWars:PlayerControl Grid.Row="2" DataContext="{Binding Player2}" Margin="10"
-        HorizontalAlignment="Right"
-        Width="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Grid}, 
-          Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.4}"/>
-    </Grid>
-
+    <ItemsControl Grid.Column="1" ItemsSource="{Binding Tiles}" HorizontalAlignment="Center" VerticalAlignment="Center">
+      <ItemsControl.ItemsPanel>
+        <ItemsPanelTemplate>
+          <framework:HexGrid Columns="{Binding Columns}"/>
+        </ItemsPanelTemplate>
+      </ItemsControl.ItemsPanel>
+    </ItemsControl>
+    
   </Grid>
 
 </UserControl>

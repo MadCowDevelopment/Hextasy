@@ -6,7 +6,7 @@ namespace Hextasy.CardWars
     public class CardWarsTile : HexagonTile
     {
         public Owner Owner { get { return Card != null ? Card.Owner : Owner.None; } }
-        public Card Card { get; set; }
+        public MonsterCard Card { get; set; }
         public bool IsSelected { get; set; }
 
         public bool IsFixed { get; set; }
@@ -42,7 +42,7 @@ namespace Hextasy.CardWars
             }
         }
 
-        public void AssignCard(Card card)
+        public void AssignCard(MonsterCard card)
         {
             Card = card;
             IsFixed = true;

@@ -82,7 +82,7 @@ namespace Hextasy.CardWars
             get { return Tiles.SingleOrDefault(p => p.IsSelected); }
         }
 
-        public void PlayCard(CardWarsTile tile, Card selectedCard)
+        public void PlayMonsterCard(CardWarsTile tile, MonsterCard selectedCard)
         {
             if (tile.IsFixed) return;
             tile.AssignCard(selectedCard);
@@ -109,14 +109,14 @@ namespace Hextasy.CardWars
             SelectedTile.IsSelected = false;
         }
 
-        public void PreviewAssignCard(CardWarsTile tile, Card selectedCard)
+        public void PreviewAssignCard(CardWarsTile tile, MonsterCard selectedCard)
         {
             if (selectedCard == null) return;
             if (tile.Card != null) return;
             tile.Card = selectedCard;
         }
 
-        public void PreviewRemoveCard(CardWarsTile tile, Card selectedCard)
+        public void PreviewRemoveCard(CardWarsTile tile, MonsterCard selectedCard)
         {
             if (selectedCard == null) return;
             if (tile.Card != selectedCard) return;

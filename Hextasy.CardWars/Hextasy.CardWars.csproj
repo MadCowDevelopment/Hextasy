@@ -84,6 +84,8 @@
     <Compile Include="Cards\Monsters\WarElephantCard.cs" />
     <Compile Include="Cards\Monsters\WolfCard.cs" />
     <Compile Include="Cards\Monsters\WormCard.cs" />
+    <Compile Include="Cards\Spells\FireballCard.cs" />
+    <Compile Include="Cards\SpellCard.cs" />
     <Compile Include="CardWarsGame.cs" />
     <Compile Include="CardWarsGameLogic.cs" />
     <Compile Include="CardWarsGameView.xaml.cs">
@@ -229,9 +231,13 @@
   <ItemGroup>
     <Resource Include="Images\Cards\Monsters\AntRed2.PNG" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Cards\Spells\" />
-    <Folder Include="Images\Cards\Spells\" />
+    <Resource Include="Images\Cards\Spells\enchant-blue-3.png" />
+    <Resource Include="Images\Cards\Spells\fireball-red-3.png" />
+    <Resource Include="Images\Cards\Spells\heal-jade-1.png" />
+    <Resource Include="Images\Cards\Spells\heal-jade-2.png" />
+    <Resource Include="Images\Cards\Spells\heal-jade-3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

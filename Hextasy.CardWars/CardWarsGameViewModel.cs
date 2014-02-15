@@ -68,7 +68,7 @@ namespace Hextasy.CardWars
         {
             if (IsInCardPlacementMode)
             {
-                Game.PlayCard(tile, SelectedCard);
+                Game.PlayMonsterCard(tile, SelectedCard as MonsterCard);
             }
             else if (IsInTargetMode)
             {
@@ -84,12 +84,18 @@ namespace Hextasy.CardWars
 
         public void OnTileEnter(CardWarsTile tile)
         {
-            Game.PreviewAssignCard(tile, SelectedCard);
+            if (SelectedCard is MonsterCard)
+            {
+                Game.PreviewAssignCard(tile, SelectedCard as MonsterCard);
+            }
         }
 
         public void OnTileLeave(CardWarsTile tile)
         {
-            Game.PreviewRemoveCard(tile, SelectedCard);
+            if (SelectedCard is MonsterCard)
+            {
+                Game.PreviewRemoveCard(tile, SelectedCard as MonsterCard);
+            }
         }
 
         public void EndTurn()

@@ -11,5 +11,7 @@
         {
             get { return CardType.Spell; }
         }
+
+        public abstract void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile);
     }
 }

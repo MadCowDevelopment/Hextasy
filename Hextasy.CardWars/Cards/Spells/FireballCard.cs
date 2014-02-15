@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.Composition;
+using System.Linq;
+using Caliburn.Micro;
 
 namespace Hextasy.CardWars.Cards.Spells
 {
@@ -23,6 +25,14 @@ namespace Hextasy.CardWars.Cards.Spells
         protected override string ImageFilename
         {
             get { return "fireball-red-3.png"; }
+        }
+
+        public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
+        {
+            targetTile.Card.TakeDamage(4);
+            cardWarsGameLogic.HexMap.GetNeighbours(targetTile)
+                .Where(p => p.Card != null)
+                .Apply(p => p.Card.TakeDamage(2));
         }
     }
 }

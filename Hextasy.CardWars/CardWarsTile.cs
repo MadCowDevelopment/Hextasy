@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using Hextasy.CardWars.Cards;
 using Hextasy.Framework;
 
@@ -5,8 +6,30 @@ namespace Hextasy.CardWars
 {
     public class CardWarsTile : HexagonTile
     {
+        private MonsterCard _card;
         public Owner Owner { get { return Card != null ? Card.Owner : Owner.None; } }
-        public MonsterCard Card { get; set; }
+
+        public MonsterCard Card
+        {
+            get { return _card; }
+            set
+            {
+                if (_card != null) _card.PropertyChanged -= CardPropertyChanged;
+                _card = value;
+                if (_card != null) _card.PropertyChanged += CardPropertyChanged;
+            }
+        }
+
+        private void CardPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            var card = sender as MonsterCard;
+            if (card == null) return;
+            if (e.PropertyName == card.GetPropertyName(p => p.Health))
+            {
+                if (card.Health < 0) Die();
+            }
+        }
+
         public bool IsSelected { get; set; }
 
         public bool IsFixed { get; set; }
@@ -32,16 +55,6 @@ namespace Hextasy.CardWars
             attacker.TakeDamage(defender.Attack);
 
             attacker.IsExhausted = true;
-
-            if (attacker.Health <= 0)
-            {
-                Die();
-            }
-
-            if (defender.Health <= 0)
-            {
-                target.Die();
-            }
         }
 
         public void AssignCard(MonsterCard card)

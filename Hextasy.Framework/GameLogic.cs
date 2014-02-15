@@ -18,7 +18,7 @@ namespace Hextasy.Framework
 
         #region Protected Properties
 
-        protected HexMap<TTile> HexMap
+        public HexMap<TTile> HexMap
         {
             get; private set;
         }

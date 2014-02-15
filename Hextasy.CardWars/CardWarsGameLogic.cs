@@ -29,7 +29,7 @@ namespace Hextasy.CardWars
             CurrentPlayer = Player1;
             CurrentPlayer.PrepareTurn();
         }
-        
+
         public ObservableCollection<Card> CurrentCards
         {
             get
@@ -96,7 +96,7 @@ namespace Hextasy.CardWars
             if (!tile.IsValidSpellTarget) return;
             CurrentPlayer.RemainingResources -= selectedCard.Cost;
             CurrentCards.Remove(selectedCard);
-            // TODO: Let the spell have some effect.
+            selectedCard.Activate(this, tile);
         }
 
         public void AttackCard(CardWarsTile tile)
@@ -111,8 +111,6 @@ namespace Hextasy.CardWars
             SelectedTile.Attack(tile);
             UnselectTile();
         }
-
-
 
         public void UnselectTile()
         {
@@ -171,7 +169,5 @@ namespace Hextasy.CardWars
             CurrentPlayer = CurrentPlayer == Player1 ? Player2 : Player1;
             CurrentPlayer.PrepareTurn();
         }
-
-
     }
 }

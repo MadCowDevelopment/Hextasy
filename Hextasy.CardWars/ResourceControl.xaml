@@ -9,7 +9,7 @@
     <ItemsControl x:Name="ResouceList">
       <ItemsControl.ItemsPanel>
         <ItemsPanelTemplate>
-          <WrapPanel/>
+          <UniformGrid Columns="6" Rows="2"/>
         </ItemsPanelTemplate>
       </ItemsControl.ItemsPanel>
     </ItemsControl>

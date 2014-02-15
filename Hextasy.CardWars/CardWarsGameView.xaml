@@ -22,29 +22,32 @@
 
   <Grid>
     <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="Auto"/>
+      <ColumnDefinition Width="370"/>
       <ColumnDefinition Width="*"/>
     </Grid.ColumnDefinitions>
 
     <Grid>
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
         <RowDefinition Height="*"/>
         <RowDefinition Height="Auto"/>
       </Grid.RowDefinitions>
-      <cardWars:ResourceControl Width="360" Height="80" HorizontalAlignment="Center" VerticalAlignment="Center"
-        RemainingResources="{Binding CurrentPlayer.RemainingResources}"
-        MaximumResources="{Binding CurrentPlayer.MaximumResources}"/>
-      <ListBox Grid.Row="1"
+      <cardWars:PlayerControl Grid.Row="0" DataContext="{Binding CurrentPlayer}" Margin="10" HorizontalAlignment="Stretch"/>
+      <Border Grid.Row="1" BorderBrush="Black" BorderThickness="3" Background="Ivory" CornerRadius="10" Margin="10">
+        <cardWars:ResourceControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+          RemainingResources="{Binding CurrentPlayer.RemainingResources}"
+          MaximumResources="{Binding CurrentPlayer.MaximumResources}"/>
+      </Border>
+      <ListBox Grid.Row="2"
         ItemsSource="{Binding CurrentCards}" SelectedItem="{Binding SelectedCard}"
-               Width="370" HorizontalContentAlignment="Center" ItemContainerStyle="{StaticResource CardSelectionContainerStyle}">
+        HorizontalContentAlignment="Center" ItemContainerStyle="{StaticResource CardSelectionContainerStyle}">
         <ListBox.Resources>
           <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
           <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent" />
         </ListBox.Resources>
       </ListBox>
-      <Button Grid.Row="2" Content="End Turn" FontSize="20" Margin="10" 
-              cal:Message.Attach="[Event Click] = [Action EndTurn()]"/>
+      <Button Grid.Row="3" Content="End Turn" FontSize="20" Margin="10" cal:Message.Attach="[Event Click] = [Action EndTurn()]"/>
     </Grid>
 
     <Grid Grid.Column="1">
@@ -54,8 +57,9 @@
         <RowDefinition Height="Auto"/>
       </Grid.RowDefinitions>
       <cardWars:PlayerControl Grid.Row="0" DataContext="{Binding Player1}" Margin="10"
-                              Width="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Grid}, 
-                        Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.5}"/>
+        HorizontalAlignment="Left"
+        Width="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Grid}, 
+          Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.4}"/>
       <ItemsControl Grid.Row="1" ItemsSource="{Binding Tiles}" HorizontalAlignment="Center" VerticalAlignment="Center">
         <ItemsControl.ItemsPanel>
           <ItemsPanelTemplate>
@@ -64,8 +68,9 @@
         </ItemsControl.ItemsPanel>
       </ItemsControl>
       <cardWars:PlayerControl Grid.Row="2" DataContext="{Binding Player2}" Margin="10"
-                              Width="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Grid}, 
-                        Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.5}"/>
+        HorizontalAlignment="Right"
+        Width="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Grid}, 
+          Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.4}"/>
     </Grid>
 
   </Grid>

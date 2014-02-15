@@ -8,7 +8,7 @@ namespace Hextasy.CardWars
     /// <summary>
     /// Interaction logic for ResourceControl.xaml
     /// </summary>
-    public partial class ResourceControl : UserControl
+    public partial class ResourceControl
     {
         public ResourceControl()
         {
@@ -29,14 +29,14 @@ namespace Hextasy.CardWars
 
         public static readonly DependencyProperty MaximumResourcesProperty = DependencyProperty.RegisterAttached(
             "MaximumResources",
-            typeof (int),
-            typeof (ResourceControl),
+            typeof(int),
+            typeof(ResourceControl),
             new FrameworkPropertyMetadata(0, OnMaximumResourcesChanged));
 
         public static readonly DependencyProperty RemainingResourcesProperty = DependencyProperty.RegisterAttached(
             "RemainingResources",
-            typeof (int),
-            typeof (ResourceControl),
+            typeof(int),
+            typeof(ResourceControl),
             new FrameworkPropertyMetadata(0, OnRemainingResourcesChanged));
 
         private static void OnRemainingResourcesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -59,7 +59,7 @@ namespace Hextasy.CardWars
                 control.ResouceList.Items.Add(CreateFullResourceImage());
             }
 
-            for (int i = 0; i < control.MaximumResources-control.RemainingResources; i++)
+            for (int i = 0; i < control.MaximumResources - control.RemainingResources; i++)
             {
                 control.ResouceList.Items.Add(CreateEmptyResourceImage());
             }
@@ -80,8 +80,6 @@ namespace Hextasy.CardWars
         private static Image CreateImage(string source)
         {
             var finalImage = new Image();
-            finalImage.Width = 60;
-            finalImage.Height = 38;
             var logo = new BitmapImage();
             logo.BeginInit();
             logo.UriSource = new Uri(source);

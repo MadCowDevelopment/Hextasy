@@ -1,4 +1,4 @@
-namespace Hextasy.CardWars.Cards.Spells
+namespace Hextasy.CardWars.Cards
 {
     public abstract class Trait
     {

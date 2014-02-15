@@ -69,6 +69,7 @@
     <Compile Include="CardControl.xaml.cs">
       <DependentUpon>CardControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Cards\CardType.cs" />
     <Compile Include="Cards\Monsters\FireAntCard.cs" />
     <Compile Include="Cards\Monsters\BarbarianPriestCard.cs" />
     <Compile Include="Cards\Monsters\BarbarianWarlordCard.cs" />
@@ -125,6 +126,9 @@
     <Compile Include="ResourceControl.xaml.cs">
       <DependentUpon>ResourceControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SpellControl.xaml.cs">
+      <DependentUpon>SpellControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TileControl.xaml.cs">
       <DependentUpon>TileControl.xaml</DependentUpon>
     </Compile>
@@ -172,6 +176,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ResourceControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SpellControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -47,5 +47,10 @@
         {
             get { return @"Images\Cards\Monsters\"; }
         }
+
+        public override CardType Type
+        {
+            get { return CardType.Monster; }
+        }
     }
 }

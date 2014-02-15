@@ -42,11 +42,6 @@
           <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
           <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent" />
         </ListBox.Resources>
-        <ListBox.ItemTemplate>
-          <DataTemplate>
-            <cardWars:CardControl/>
-          </DataTemplate>
-        </ListBox.ItemTemplate>
       </ListBox>
       <Button Grid.Row="2" Content="End Turn" FontSize="20" Margin="10" 
               cal:Message.Attach="[Event Click] = [Action EndTurn()]"/>

@@ -105,6 +105,12 @@
               <Setter Property="IsEnabled" Value="False"/>
               <Setter TargetName="DisabledOverlay" Property="Opacity" Value="0.75"/>
             </DataTrigger>
+            <DataTrigger Binding="{Binding Type}" Value="Monster">
+              <Setter TargetName="SelectionBorder" Property="Background" Value="BurlyWood"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Type}" Value="Spell">
+              <Setter TargetName="SelectionBorder" Property="Background" Value="SkyBlue"/>
+            </DataTrigger>
             <Trigger Property="IsMouseOver" Value="True">
               <Setter Property="RenderTransform">
                 <Setter.Value>

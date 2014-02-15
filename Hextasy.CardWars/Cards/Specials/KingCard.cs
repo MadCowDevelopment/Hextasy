@@ -32,5 +32,10 @@ namespace Hextasy.CardWars.Cards.Specials
         {
             get { return 0; }
         }
+
+        public override CardType Type
+        {
+            get { return CardType.Special; }
+        }
     }
 }

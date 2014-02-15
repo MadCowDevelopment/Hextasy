@@ -6,5 +6,10 @@
         {
             get { return @"Images\Cards\Spells\"; }
         }
+
+        public override CardType Type
+        {
+            get { return CardType.Spell; }
+        }
     }
 }

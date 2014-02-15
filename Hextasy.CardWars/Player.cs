@@ -27,8 +27,8 @@ namespace Hextasy.CardWars
             Owner = owner;
             KingCard = kingCard;
             Deck = deck;
-            MaximumResources = 5;
-            RemainingResources = 5;
+            MaximumResources = 0;
+            RemainingResources = 1;
             KingCard.Player = this;
             KingCard.PropertyChanged += KingCardPropertyChanged;
             deck.Cards.Apply(p => p.Player = this);

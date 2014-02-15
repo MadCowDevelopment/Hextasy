@@ -41,7 +41,7 @@ namespace Hextasy.CardWars
 
         public bool IsInCardPlacementMode
         {
-            get { return SelectedCard != null; }
+            get { return SelectedCard is MonsterCard; }
         }
 
         public bool IsInTargetMode

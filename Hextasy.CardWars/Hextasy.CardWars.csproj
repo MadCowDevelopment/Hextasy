@@ -244,7 +244,9 @@
   <ItemGroup>
     <Resource Include="Images\Cards\Monsters\AntRed2.PNG" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\crosshair.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Cards\Spells\enchant-blue-3.png" />
     <Resource Include="Images\Cards\Spells\fireball-red-3.png" />

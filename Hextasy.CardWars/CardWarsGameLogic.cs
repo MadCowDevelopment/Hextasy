@@ -29,7 +29,7 @@ namespace Hextasy.CardWars
             CurrentPlayer = Player1;
             CurrentPlayer.PrepareTurn();
         }
-
+        
         public ObservableCollection<Card> CurrentCards
         {
             get

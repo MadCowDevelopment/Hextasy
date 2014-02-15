@@ -1,5 +1,6 @@
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Caliburn.Micro;
 using Hextasy.CardWars.Cards;
 using Hextasy.CardWars.Cards.Specials;
@@ -9,7 +10,8 @@ namespace Hextasy.CardWars
 {
     public class Player : PropertyChangedBase
     {
-        private const int MaxCardsPerHand = 5;
+        private const int NumberCardsInHandWhenStarting = 4;
+        private const int MaximumNumberOfCardsInHand = 10;
         private KingCard KingCard { get; set; }
 
         public string Name { get; private set; }
@@ -33,6 +35,7 @@ namespace Hextasy.CardWars
             KingCard.PropertyChanged += KingCardPropertyChanged;
             deck.Cards.Apply(p => p.Player = this);
             Hand = new ObservableCollection<Card>();
+            Enumerable.Repeat(1, NumberCardsInHandWhenStarting).Apply(p => DrawCard());
         }
 
         private void KingCardPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -52,13 +55,11 @@ namespace Hextasy.CardWars
         public void PrepareTurn()
         {
             RefreshResources();
-            DrawHand();
+            DrawCard();
         }
 
         public void EndTurn()
         {
-            Deck.DiscardCards(Hand);
-            Hand.Clear();
         }
 
         private void RaiseDied()
@@ -73,12 +74,9 @@ namespace Hextasy.CardWars
             RemainingResources = MaximumResources;
         }
 
-        private void DrawHand()
+        private void DrawCard()
         {
-            for (int i = 0; i < MaxCardsPerHand; i++)
-            {
-                Hand.AddNotNull(Deck.TakeCard());
-            }
+            if (Hand.Count < MaximumNumberOfCardsInHand) Hand.AddNotNull(Deck.TakeCard());
         }
     }
 }

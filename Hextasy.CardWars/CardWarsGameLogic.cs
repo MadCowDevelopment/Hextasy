@@ -3,7 +3,6 @@ using System.ComponentModel.Composition;
 using System.Linq;
 using Caliburn.Micro;
 using Hextasy.CardWars.Cards;
-using Hextasy.CardWars.Cards.Monsters;
 using Hextasy.CardWars.Cards.Specials;
 using Hextasy.Framework;
 
@@ -14,28 +13,30 @@ namespace Hextasy.CardWars
     {
         private Player _currentPlayer;
 
-        public CardWarsGameLogic()
-        {
-            CurrentCards = new ObservableCollection<Card>();
-        }
-
         protected override void OnSettingsInitialized()
         {
             base.OnSettingsInitialized();
             Player1 = new Player(Settings.Player1, Owner.Player1,
-                Tiles.Select(p => p.Card).OfType<RedKingCard>().Single());
+                Tiles.Select(p => p.Card).OfType<RedKingCard>().Single(),
+                Settings.Player1Deck);
             Player2 = new Player(Settings.Player2, Owner.Player2,
-                Tiles.Select(p => p.Card).OfType<BlueKingCard>().Single());
+                Tiles.Select(p => p.Card).OfType<BlueKingCard>().Single(),
+                Settings.Player2Deck);
 
             Player1.Died += (sender, args) => RaiseFinished(new GameFinishedEventArgs());
             Player2.Died += (sender, args) => RaiseFinished(new GameFinishedEventArgs());
 
             CurrentPlayer = Player1;
-
-            RefreshHand();
+            CurrentPlayer.PrepareTurn();
         }
 
-        public ObservableCollection<Card> CurrentCards { get; private set; }
+        public ObservableCollection<Card> CurrentCards
+        {
+            get
+            {
+                return CurrentPlayer != null ? CurrentPlayer.Hand : null;
+            }
+        }
 
         protected override CardWarsTile CreateTile(int column, int row)
         {
@@ -129,19 +130,9 @@ namespace Hextasy.CardWars
             ExhaustCards();
             SwitchCurrentPlayer();
             ResolveStartTurnEffects();
-            RefreshCards();
-            RefreshHand();
-        }
+            ReadyCards();
 
-        private void RefreshHand()
-        {
-            CurrentCards.Clear();
-            // TODO: Get the real cards from the player's deck.
-            CurrentCards.Add(new BarbarianPriestCard { Player = CurrentPlayer });
-            CurrentCards.Add(new BarbarianWarlordCard { Player = CurrentPlayer });
-            CurrentCards.Add(new BasiliskCard { Player = CurrentPlayer });
-            CurrentCards.Add(new BatCard { Player = CurrentPlayer });
-            CurrentCards.Add(new FallenAngelCard { Player = CurrentPlayer });
+            NotifyOfPropertyChange(() => CurrentCards);
         }
 
         private void ResolveStartTurnEffects()
@@ -159,13 +150,14 @@ namespace Hextasy.CardWars
             Tiles.Where(p => p.Owner == CurrentPlayer.Owner).Apply(p => p.Card.IsExhausted = true);
         }
 
-        private void RefreshCards()
+        private void ReadyCards()
         {
             Tiles.Where(p => p.Owner == CurrentPlayer.Owner).Apply(p => p.Card.IsExhausted = false);
         }
 
         private void SwitchCurrentPlayer()
         {
+            CurrentPlayer.EndTurn();
             CurrentPlayer = CurrentPlayer == Player1 ? Player2 : Player1;
             CurrentPlayer.PrepareTurn();
         }

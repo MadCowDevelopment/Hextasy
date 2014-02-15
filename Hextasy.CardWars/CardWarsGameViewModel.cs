@@ -102,6 +102,7 @@ namespace Hextasy.CardWars
         {
             Game.EndTurn();
             NotifyOfPropertyChange(() => CurrentPlayer);
+            NotifyOfPropertyChange(() => CurrentCards);
         }
 
         public void PreviewKeyUp(KeyEventArgs e)

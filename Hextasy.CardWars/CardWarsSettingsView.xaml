@@ -11,6 +11,8 @@
       <RowDefinition Height="Auto"/>
       <RowDefinition Height="Auto"/>
       <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
     </Grid.RowDefinitions>
 
     <Grid.ColumnDefinitions>
@@ -22,12 +24,18 @@
     <TextBlock Grid.Row="0" Grid.Column="0" Text="Number of rows: "/>
     <TextBlock Grid.Row="1" Grid.Column="0"  Text="Number of columns: "/>
     <TextBlock Grid.Row="2" Grid.Column="0"  Text="Player 1 name: "/>
-    <TextBlock Grid.Row="3" Grid.Column="0"  Text="Player 2 name: "/>
-
+    <TextBlock Grid.Row="3" Grid.Column="0"  Text="Player 1 deck: "/>
+    <TextBlock Grid.Row="4" Grid.Column="0"  Text="Player 2 name: "/>
+    <TextBlock Grid.Row="5" Grid.Column="0"  Text="Player 2 deck: "/>
+    
     <Slider Grid.Row="0" Grid.Column="1" Minimum="4" Maximum="12" Value="{Binding Rows}"/>
     <Slider Grid.Row="1" Grid.Column="1" Minimum="4" Maximum="15" Value="{Binding Columns}"/>
     <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Player1}"/>
-    <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Player2}"/>
+    <ComboBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"  DisplayMemberPath="Name"
+              ItemsSource="{Binding Decks}" SelectedItem="{Binding Player1Deck}"/>
+    <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Player2}"/>
+    <ComboBox Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" DisplayMemberPath="Name"
+              ItemsSource="{Binding Decks}" SelectedItem="{Binding Player2Deck}"/>
 
     <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding Rows}"/>
     <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding Columns}"/>

@@ -69,6 +69,7 @@
     <Compile Include="CardControl.xaml.cs">
       <DependentUpon>CardControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Cards\FireAntCard.cs" />
     <Compile Include="Cards\BarbarianPriestCard.cs" />
     <Compile Include="Cards\BarbarianWarlordCard.cs" />
     <Compile Include="Cards\BasiliskCard.cs" />
@@ -78,6 +79,10 @@
     <Compile Include="Cards\FallenAngelCard.cs" />
     <Compile Include="Cards\KingCard.cs" />
     <Compile Include="Cards\RedKingCard.cs" />
+    <Compile Include="Cards\TurtleCard.cs" />
+    <Compile Include="Cards\WarElephantCard.cs" />
+    <Compile Include="Cards\WolfCard.cs" />
+    <Compile Include="Cards\WormCard.cs" />
     <Compile Include="CardWarsGame.cs" />
     <Compile Include="CardWarsGameLogic.cs" />
     <Compile Include="CardWarsGameView.xaml.cs">
@@ -207,6 +212,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\attack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\TurtleBrown.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Wolf.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\WarElephantGrey.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\WormGreen.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\AntRed2.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

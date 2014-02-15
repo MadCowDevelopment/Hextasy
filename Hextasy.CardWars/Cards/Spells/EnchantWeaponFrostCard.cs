@@ -22,7 +22,7 @@ namespace Hextasy.CardWars.Cards.Spells
 
         protected override string ImageFilename
         {
-            get { return "enchangt-blue-3.png"; }
+            get { return "enchant-blue-3.png"; }
         }
     }
 }

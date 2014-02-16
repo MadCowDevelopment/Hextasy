@@ -13,7 +13,7 @@ namespace Hextasy.CardWars.Cards.Spells
 
         public override string Description
         {
-            get { return "Enchants a weapon to freeze attackers for 1 turn."; }
+            get { return "Enchants a weapon to freeze defenders for 1 turn."; }
         }
 
         public override int Cost

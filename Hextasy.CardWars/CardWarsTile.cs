@@ -1,5 +1,8 @@
 using System.ComponentModel;
+using System.Linq;
+using Caliburn.Micro;
 using Hextasy.CardWars.Cards;
+using Hextasy.CardWars.Cards.Debuffs;
 using Hextasy.Framework;
 
 namespace Hextasy.CardWars
@@ -26,7 +29,7 @@ namespace Hextasy.CardWars
             if (card == null) return;
             if (e.PropertyName == card.GetPropertyName(p => p.Health))
             {
-                if (card.Health < 0) Die();
+                if (card.Health <= 0) Die();
             }
         }
 
@@ -46,13 +49,15 @@ namespace Hextasy.CardWars
             IsValidTarget = false;
         }
 
-        public void Attack(CardWarsTile target)
+        public void Attack(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
             var attacker = Card;
-            var defender = target.Card;
+            var defender = targetTile.Card;
 
             defender.TakeDamage(attacker.Attack);
             attacker.TakeDamage(defender.Attack);
+
+            attacker.Traits.OfType<IActivateOnAttack>().Apply(p => p.Activate(cardWarsGameLogic, targetTile));
 
             attacker.IsExhausted = true;
         }

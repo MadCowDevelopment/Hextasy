@@ -1,6 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using Hextasy.CardWars.Cards.Spells;
+﻿using Caliburn.Micro;
+using Hextasy.CardWars.Cards.Debuffs;
+using System;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace Hextasy.CardWars.Cards
 {
@@ -8,7 +10,8 @@ namespace Hextasy.CardWars.Cards
     {
         public MonsterCard()
         {
-            Traits = new List<Trait>();
+            Traits = new ObservableCollection<ITrait>();
+            Debuffs = new ObservableCollection<IDebuff>();
             IsExhausted = true;
         }
 
@@ -59,16 +62,29 @@ namespace Hextasy.CardWars.Cards
             get { return CardType.Monster; }
         }
 
-        public void AddTrait(Trait trait)
+        public ObservableCollection<ITrait> Traits { get; private set; }
+
+        public ObservableCollection<IDebuff> Debuffs { get; private set; }
+
+        public void AddTrait(ITrait trait)
         {
             Traits.Add(trait);
         }
 
-        private List<Trait> Traits { get; set; }
+        public void AddDebuff(IDebuff debuff)
+        {
+            Debuffs.Add(debuff);
+        }
 
         public void Heal(int amount)
         {
             DamageTaken = Math.Max(0, DamageTaken -= amount);
+        }
+
+        public void CleanupDebuffs()
+        {
+            var expiredDebuffs = Debuffs.Where(debuff => debuff.IsExpired).ToList();
+            expiredDebuffs.Apply(expiredDebuff => Debuffs.Remove(expiredDebuff));
         }
     }
 }

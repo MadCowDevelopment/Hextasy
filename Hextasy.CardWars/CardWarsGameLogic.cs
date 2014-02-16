@@ -3,6 +3,7 @@ using System.ComponentModel.Composition;
 using System.Linq;
 using Caliburn.Micro;
 using Hextasy.CardWars.Cards;
+using Hextasy.CardWars.Cards.Debuffs;
 using Hextasy.CardWars.Cards.Specials;
 using Hextasy.Framework;
 
@@ -108,7 +109,7 @@ namespace Hextasy.CardWars
                 return;
             }
 
-            SelectedTile.Attack(tile);
+            SelectedTile.Attack(this, tile);
             UnselectTile();
         }
 
@@ -136,16 +137,29 @@ namespace Hextasy.CardWars
         {
             ResolveEndTurnEffects();
             ExhaustCards();
+            CleanupDebuffs();
             SwitchCurrentPlayer();
-            ResolveStartTurnEffects();
             ReadyCards();
+            ResolveStartTurnEffects();
 
             NotifyOfPropertyChange(() => CurrentCards);
         }
 
+        private void CleanupDebuffs()
+        {
+            Tiles.Where(p => p.Owner == CurrentPlayer.Owner).Apply(p => p.Card.CleanupDebuffs());
+        }
+
         private void ResolveStartTurnEffects()
         {
-            // TODO
+            ActivateDebuff<IActivateDebuffOnStartTurn>();
+        }
+
+        private void ActivateDebuff<T>() where T : IDebuff
+        {
+            Tiles.Where(p => p.Owner == CurrentPlayer.Owner).Where(
+                p => p.Card.Debuffs.OfType<T>().Any()).Select(p => p.Card).Apply(
+                    card => card.Debuffs.OfType<T>().Apply(debuff => debuff.Activate(card)));
         }
 
         private void ResolveEndTurnEffects()

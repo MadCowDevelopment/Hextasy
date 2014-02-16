@@ -58,7 +58,7 @@
       </Image.Style>
     </Image>
 
-    <Viewbox Grid.Row="1" Grid.Column="1" StretchDirection="Both" Stretch="Uniform">
+    <Viewbox x:Name="AttackValue" Grid.Row="1" Grid.Column="1" StretchDirection="Both" Stretch="Uniform">
       <TextBlock Text="{Binding Card.Attack}" FontWeight="Bold"
                            HorizontalAlignment="Center" VerticalAlignment="Center">
         <TextBlock.Style>
@@ -76,7 +76,7 @@
       </TextBlock>
     </Viewbox>
 
-    <Viewbox Grid.Row="1" Grid.Column="3" StretchDirection="Both" Stretch="Uniform">
+    <Viewbox x:Name="HealthValue" Grid.Row="1" Grid.Column="3" StretchDirection="Both" Stretch="Uniform">
       <TextBlock Text="{Binding Card.Health}" FontWeight="Bold"
                            HorizontalAlignment="Center" VerticalAlignment="Center">
         <TextBlock.Style>
@@ -94,5 +94,45 @@
       </TextBlock>
     </Viewbox>
 
+    <ItemsControl Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3"
+                  ItemsSource="{Binding Card.Traits}"
+             Margin="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=UserControl}, 
+                        Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.1}">
+      <ItemsControl.ItemsPanel>
+        <ItemsPanelTemplate>
+          <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </ItemsPanelTemplate>
+      </ItemsControl.ItemsPanel>
+      <ItemsControl.ItemTemplate>
+        <DataTemplate>
+          <Grid>
+            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="50" Margin="1" Background="Black">
+              <Image Source="{Binding ImageFilename}" Stretch="Fill"/>
+            </Border>
+          </Grid>
+        </DataTemplate>
+      </ItemsControl.ItemTemplate>
+    </ItemsControl>
+
+    <ItemsControl Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3"
+                  ItemsSource="{Binding Card.Debuffs}"
+             Margin="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=UserControl}, 
+                        Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.1}">
+      <ItemsControl.ItemsPanel>
+        <ItemsPanelTemplate>
+          <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </ItemsPanelTemplate>
+      </ItemsControl.ItemsPanel>
+      <ItemsControl.ItemTemplate>
+        <DataTemplate>
+          <Grid>
+            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="50" Margin="1" Background="Black">
+              <Image Source="{Binding ImageFilename}" Stretch="Fill"/>
+            </Border>
+          </Grid>
+        </DataTemplate>
+      </ItemsControl.ItemTemplate>
+    </ItemsControl>
+    
   </Grid>
 </UserControl>

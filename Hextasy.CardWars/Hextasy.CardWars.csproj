@@ -70,6 +70,7 @@
       <DependentUpon>CardControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Cards\CardType.cs" />
+    <Compile Include="Cards\Debuffs\FrozenDebuff.cs" />
     <Compile Include="Cards\Monsters\FireAntCard.cs" />
     <Compile Include="Cards\Monsters\BarbarianPriestCard.cs" />
     <Compile Include="Cards\Monsters\BarbarianWarlordCard.cs" />
@@ -255,6 +256,9 @@
     <Resource Include="Images\Cards\Spells\heal-jade-1.png" />
     <Resource Include="Images\Cards\Spells\heal-jade-2.png" />
     <Resource Include="Images\Cards\Spells\heal-jade-3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Debuffs\fog-blue-3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

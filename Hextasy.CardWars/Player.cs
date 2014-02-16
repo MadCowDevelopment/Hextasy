@@ -70,7 +70,7 @@ namespace Hextasy.CardWars
 
         private void RefreshResources()
         {
-            if (MaximumResources < 12) MaximumResources++;
+            if (MaximumResources < 10) MaximumResources++;
             RemainingResources = MaximumResources;
         }
 

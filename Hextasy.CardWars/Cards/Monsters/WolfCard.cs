@@ -1,10 +1,16 @@
 ﻿using System.ComponentModel.Composition;
+using Hextasy.CardWars.Cards.Traits;
 
 namespace Hextasy.CardWars.Cards.Monsters
 {
     [Export(typeof(Card))]
     public class WolfCard : MonsterCard
     {
+        public WolfCard()
+        {
+            Traits.Add(new HasteTrait());
+        }
+
         public override string Name
         {
             get { return "Wolf"; }

@@ -110,12 +110,24 @@ namespace Hextasy.CardWars
             get { return Tiles.SingleOrDefault(p => p.IsSelected); }
         }
 
+        public IEnumerable<MonsterCard> AllCards
+        {
+            get { return Tiles.Where(p => p.Card != null).Select(p=>p.Card); }
+        }
+
+        public IEnumerable<MonsterCard> AllCardsExceptKing
+        {
+            get { return AllCards.Where(p => !(p is KingCard)); }
+        }
+
         public void PlayMonsterCard(CardWarsTile tile, MonsterCard selectedCard)
         {
             if (tile.IsFixed) return;
             tile.AssignCard(selectedCard);
             CurrentPlayer.RemainingResources -= selectedCard.Cost;
             CurrentCards.Remove(selectedCard);
+            if(selectedCard.HasTrait<IActivateTraitOnPlay>())
+                selectedCard.Traits.OfType<IActivateTraitOnPlay>().Apply(trait => trait.Activate(this, tile));
         }
 
         public void PlaySpellCard(CardWarsTile tile, SpellCard selectedCard)

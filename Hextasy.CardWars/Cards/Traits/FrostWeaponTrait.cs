@@ -16,7 +16,7 @@ namespace Hextasy.CardWars.Cards.Traits
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
-            targetTile.Card.AddDebuff(new FrozenDebuff());
+            targetTile.AddDebuff(new FrozenDebuff());
         }
     }
 }

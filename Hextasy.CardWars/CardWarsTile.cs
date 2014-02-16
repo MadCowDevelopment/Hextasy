@@ -69,5 +69,10 @@ namespace Hextasy.CardWars
             Card = card;
             IsFixed = true;
         }
+
+        public void AddDebuff(Debuff debuff)
+        {
+            if(Card != null) Card.AddDebuff(debuff);
+        }
     }
 }

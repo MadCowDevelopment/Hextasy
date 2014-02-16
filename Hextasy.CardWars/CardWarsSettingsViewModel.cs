@@ -78,7 +78,9 @@ namespace Hextasy.CardWars
                     new TurtleCard(),
                     new WarElephantCard(),
                     new WolfCard(),
-                    new WormCard()
+                    new WormCard(),
+                    new EndOfDaysCard(),
+                    new EndOfDaysCard()
                 });
         }
     }

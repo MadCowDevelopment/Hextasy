@@ -90,5 +90,10 @@ namespace Hextasy.CardWars.Cards
         {
             return Traits.OfType<T>().Any();
         }
+
+        public void Kill()
+        {
+            DamageTaken += Health;
+        }
     }
 }

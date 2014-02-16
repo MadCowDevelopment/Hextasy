@@ -44,7 +44,7 @@ namespace Hextasy.CardWars
             if (e.PropertyName == card.GetPropertyName(p => p.Health))
             {
                 NotifyOfPropertyChange(() => RemainingLife);
-                if (RemainingLife < 0) RaiseDied();
+                if (RemainingLife <= 0) RaiseDied();
             }
         }
 

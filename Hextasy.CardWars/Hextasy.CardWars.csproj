@@ -78,6 +78,7 @@
     <Compile Include="Cards\Monsters\BarbarianWarlordCard.cs" />
     <Compile Include="Cards\Monsters\BasiliskCard.cs" />
     <Compile Include="Cards\Monsters\BatCard.cs" />
+    <Compile Include="Cards\Traits\HealRandomFriendlyMonsterTrait.cs" />
     <Compile Include="Cards\Specials\BlueKingCard.cs" />
     <Compile Include="Cards\Card.cs" />
     <Compile Include="Cards\Monsters\FallenAngelCard.cs" />
@@ -272,6 +273,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Cards\Traits\protect-royal-2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Traits\heal-royal-3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

@@ -13,7 +13,6 @@ namespace Hextasy.CardWars.Cards
         void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile);
     }
 
-    public interface IActivateTraitOnAttack : ITrait
-    {
-    }
+    public interface IActivateTraitOnAttack : ITrait {}
+    public interface IActivateTraitOnStartTurn : ITrait {}
 }

@@ -7,7 +7,7 @@ namespace Hextasy.CardWars.Cards
 {
     public abstract class MonsterCard : Card
     {
-        public MonsterCard()
+        protected MonsterCard()
         {
             Traits = new ObservableCollection<ITrait>();
             Debuffs = new ObservableCollection<IDebuff>();
@@ -17,11 +17,11 @@ namespace Hextasy.CardWars.Cards
         public abstract int BaseAttack { get; }
         public abstract int BaseHealth { get; }
         public int Attack { get { return BaseAttack + AttackBonus; } }
-        public int AttackBonus { get; set; }
+        private int AttackBonus { get; set; }
 
         public int Health { get { return BaseHealth + HealthBonus - DamageTaken; } }
-        public int DamageTaken { get; set; }
-        public int HealthBonus { get; set; }
+        private int DamageTaken { get; set; }
+        private int HealthBonus { get; set; }
 
         public bool IsKilled { get; set; }
         public bool IsExhausted { get; protected internal set; }

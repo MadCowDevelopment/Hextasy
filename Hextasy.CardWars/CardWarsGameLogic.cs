@@ -72,10 +72,7 @@ namespace Hextasy.CardWars
 
         private IEnumerable<CardWarsTile> CurrentPlayerTiles
         {
-            get
-            {
-                return Tiles.Where(p => p.Owner == CurrentPlayer.Owner);
-            }
+            get { return Tiles.Where(p => p.Owner == CurrentPlayer.Owner); }
         }
 
         private IEnumerable<CardWarsTile> OpponentTiles
@@ -85,6 +82,16 @@ namespace Hextasy.CardWars
                 var owner = CurrentPlayer.Owner == Owner.Player1 ? Owner.Player2 : Owner.Player1;
                 return Tiles.Where(p => p.Owner == owner);
             }
+        }
+
+        internal IEnumerable<MonsterCard> CurrentPlayerCards
+        {
+            get { return CurrentPlayerTiles.Where(p => p.Card != null).Select(p => p.Card); }
+        }
+
+        internal IEnumerable<MonsterCard> OpponentCards
+        {
+            get { return OpponentTiles.Where(p => p.Card != null).Select(p => p.Card); }
         }
 
         public Player CurrentPlayer
@@ -171,10 +178,18 @@ namespace Hextasy.CardWars
 
         private void ResolveStartTurnEffects()
         {
-            ActivateDebuff<IActivateDebuffOnStartTurn>();
+            ActivateTraits<IActivateTraitOnStartTurn>();
+            ActivateDebuffs<IActivateDebuffOnStartTurn>();
         }
 
-        private void ActivateDebuff<T>() where T : IDebuff
+        private void ActivateTraits<T>() where T : ITrait
+        {
+            CurrentPlayerTiles.Where(
+                p => p.Card.Traits.OfType<T>().Any()).Apply(
+                    tile => tile.Card.Traits.OfType<T>().Apply(trait => trait.Activate(this, tile)));
+        }
+
+        private void ActivateDebuffs<T>() where T : IDebuff
         {
             CurrentPlayerTiles.Where(
                 p => p.Card.Debuffs.OfType<T>().Any()).Select(p => p.Card).Apply(

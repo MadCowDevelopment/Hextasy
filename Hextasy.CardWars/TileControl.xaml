@@ -106,7 +106,7 @@
       <ItemsControl.ItemTemplate>
         <DataTemplate>
           <Grid>
-            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="50" Margin="1" Background="Black">
+            <Border BorderBrush="Black" BorderThickness="1" Margin="1" Background="Black">
               <Image Source="{Binding ImageFilename}" Stretch="Fill"/>
             </Border>
           </Grid>
@@ -126,7 +126,7 @@
       <ItemsControl.ItemTemplate>
         <DataTemplate>
           <Grid>
-            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="50" Margin="1" Background="Black">
+            <Border BorderBrush="Black" BorderThickness="1" Margin="1" Background="Black">
               <Image Source="{Binding ImageFilename}" Stretch="Fill"/>
             </Border>
           </Grid>

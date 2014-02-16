@@ -141,11 +141,14 @@ namespace Hextasy.CardWars
         public void AttackCard(CardWarsTile tile)
         {
             if (tile.Card == null || SelectedTile == null || SelectedTile.Card == null) return;
+
             if (tile == SelectedTile)
             {
                 UnselectTile();
                 return;
             }
+
+            if (!tile.IsValidTarget) return;
 
             SelectedTile.Attack(this, tile);
             UnselectTile();

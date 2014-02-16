@@ -78,6 +78,7 @@
     <Compile Include="Cards\Monsters\BarbarianWarlordCard.cs" />
     <Compile Include="Cards\Monsters\BasiliskCard.cs" />
     <Compile Include="Cards\Monsters\BatCard.cs" />
+    <Compile Include="Cards\Spells\EnchantWeaponPoisonCard.cs" />
     <Compile Include="Cards\Spells\EndOfDaysCard.cs" />
     <Compile Include="Cards\Traits\HasteTrait.cs" />
     <Compile Include="Cards\Traits\HealRandomFriendlyMonsterTrait.cs" />

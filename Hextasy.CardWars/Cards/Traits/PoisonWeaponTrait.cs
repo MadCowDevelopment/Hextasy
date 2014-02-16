@@ -4,6 +4,15 @@ namespace Hextasy.CardWars.Cards.Traits
 {
     public class PoisonWeaponTrait : Trait, IActivateTraitOnAttack
     {
+        private int Amount { get; set; }
+        private int Duration { get; set; }
+
+        public PoisonWeaponTrait(int amount, int duration)
+        {
+            Amount = amount;
+            Duration = duration;
+        }
+
         public override string Name
         {
             get { return "Poison Weapon"; }
@@ -16,7 +25,7 @@ namespace Hextasy.CardWars.Cards.Traits
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
-            targetTile.Card.AddDebuff(new PoisonDebuff());
+            targetTile.Card.AddDebuff(new PoisonDebuff(Amount, Duration));
         }
     }
 }

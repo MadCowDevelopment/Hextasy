@@ -11,6 +11,7 @@ namespace Hextasy.CardWars
     public class CardWarsGameViewModel : GameViewModel<CardWarsGameLogic, CardWarsSettings, CardWarsTile>
     {
         private Card _selectedCard;
+        private CardWarsTile _mouseOverTile;
 
         [ImportingConstructor]
         public CardWarsGameViewModel(CardWarsGameLogic game, IEventAggregator eventAggregator)
@@ -92,6 +93,7 @@ namespace Hextasy.CardWars
 
         public void OnTileEnter(CardWarsTile tile)
         {
+            _mouseOverTile = tile;
             if (SelectedCard is MonsterCard)
             {
                 Game.PreviewAssignCard(tile, SelectedCard as MonsterCard);
@@ -100,6 +102,7 @@ namespace Hextasy.CardWars
 
         public void OnTileLeave(CardWarsTile tile)
         {
+            _mouseOverTile = null;
             if (SelectedCard is MonsterCard)
             {
                 Game.PreviewRemoveCard(tile, SelectedCard as MonsterCard);
@@ -118,7 +121,11 @@ namespace Hextasy.CardWars
             switch (e.Key)
             {
                 case Key.Escape:
-                    if (SelectedCard != null) SelectedCard = null;
+                    if (SelectedCard != null)
+                    {
+                        OnTileLeave(_mouseOverTile);
+                        SelectedCard = null;
+                    }
                     else Game.UnselectTile();
                     break;
                 case Key.Enter:

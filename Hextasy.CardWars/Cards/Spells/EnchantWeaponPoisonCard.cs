@@ -1,19 +1,17 @@
-using System.ComponentModel.Composition;
-using Hextasy.CardWars.Cards.Traits;
+﻿using Hextasy.CardWars.Cards.Traits;
 
 namespace Hextasy.CardWars.Cards.Spells
 {
-    [Export(typeof(Card))]
-    public class EnchantWeaponFrostCard : SpellCard
+    public class EnchantWeaponPoisonCard : SpellCard
     {
         public override string Name
         {
-            get { return "Enchant Weapon: Frost"; }
+            get { return "Enchant Weapon: Poison"; }
         }
 
         public override string Description
         {
-            get { return "Enchants a weapon to freeze attackers for 1 turn."; }
+            get { return "Enchants a weapon to poison attackers for 1 damage for 3 turns."; }
         }
 
         public override int Cost
@@ -23,12 +21,12 @@ namespace Hextasy.CardWars.Cards.Spells
 
         protected override string ImageFilename
         {
-            get { return "enchant-blue-3.png"; }
+            get { return "enchant-acid-3.png"; }
         }
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
-            targetTile.Card.AddTrait(new FrostWeaponTrait());
+            targetTile.Card.AddTrait(new PoisonWeaponTrait(1, 3));
         }
     }
 }

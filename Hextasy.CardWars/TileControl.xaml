@@ -56,45 +56,97 @@
           </Style.Triggers>
         </Style>
       </Image.Style>
-    </Image>
-
+    </Image>  
+    
     <Viewbox x:Name="AttackValue" Grid.Row="1" Grid.Column="1" StretchDirection="Both" Stretch="Uniform">
-      <TextBlock Text="{Binding Card.Attack}" FontWeight="Bold"
+      <Grid Grid.Column="3">
+        <Image Margin="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Button}, 
+                        Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.05}"
+                    Source="Images\attack.png"/>
+        <Border CornerRadius="50" Background="White" 
+                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+          <Border.OpacityMask>
+            <RadialGradientBrush Center="0.5,0.5">
+              <GradientStop Color="#00000000" Offset="1" />
+              <GradientStop Color="#20000000" Offset="0.9" />
+              <GradientStop Color="#EE000000" Offset="0.4" />
+              <GradientStop Color="#FF000000" Offset="0" />
+            </RadialGradientBrush>
+          </Border.OpacityMask>
+        </Border>
+        <Viewbox StretchDirection="Both" Stretch="Uniform">
+          <TextBlock Text="{Binding Card.Attack}" FontWeight="Bold"
                            HorizontalAlignment="Center" VerticalAlignment="Center">
-        <TextBlock.Style>
-          <Style>
+            <TextBlock.Style>
+              <Style>
+                <Style.Triggers>
+                  <DataTrigger Binding="{Binding Card.HasIncreasedAttack}" Value="True">
+                    <Setter  Property="TextBlock.Foreground" Value="LimeGreen"></Setter>
+                  </DataTrigger>
+                  <DataTrigger Binding="{Binding Card.HasDecreasedAttack}" Value="True">
+                    <Setter  Property="TextBlock.Foreground" Value="Red"></Setter>
+                  </DataTrigger>
+                </Style.Triggers>
+              </Style>
+            </TextBlock.Style>
+          </TextBlock>
+        </Viewbox>
+        <Grid.Style>
+          <Style TargetType="{x:Type Grid}">
             <Style.Triggers>
-              <DataTrigger Binding="{Binding Card.HasIncreasedAttack}" Value="True">
-                <Setter  Property="TextBlock.Foreground" Value="LimeGreen"></Setter>
-              </DataTrigger>
-              <DataTrigger Binding="{Binding Card.HasDecreasedAttack}" Value="True">
-                <Setter  Property="TextBlock.Foreground" Value="Red"></Setter>
+              <DataTrigger Binding="{Binding Card}" Value="{x:Null}">
+                <Setter Property="Opacity" Value="0"/>
               </DataTrigger>
             </Style.Triggers>
           </Style>
-        </TextBlock.Style>
-      </TextBlock>
+        </Grid.Style>
+      </Grid>
     </Viewbox>
 
     <Viewbox x:Name="HealthValue" Grid.Row="1" Grid.Column="3" StretchDirection="Both" Stretch="Uniform">
-      <TextBlock Text="{Binding Card.Health}" FontWeight="Bold"
+      <Grid Grid.Column="3">
+        <Image Source="Images\blooddrop.png"/>
+        <Border CornerRadius="50" Background="White" 
+                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+          <Border.OpacityMask>
+            <RadialGradientBrush Center="0.5,0.5">
+              <GradientStop Color="#00000000" Offset="1" />
+              <GradientStop Color="#20000000" Offset="0.9" />
+              <GradientStop Color="#EE000000" Offset="0.4" />
+              <GradientStop Color="#FF000000" Offset="0" />
+            </RadialGradientBrush>
+          </Border.OpacityMask>
+        </Border>
+        <Viewbox StretchDirection="Both" Stretch="Uniform">
+          <TextBlock Text="{Binding Card.Health}" FontWeight="Bold"
                            HorizontalAlignment="Center" VerticalAlignment="Center">
-        <TextBlock.Style>
-          <Style>
+            <TextBlock.Style>
+              <Style>
+                <Style.Triggers>
+                  <DataTrigger Binding="{Binding Card.HasIncreasedHealth}" Value="True">
+                    <Setter  Property="TextBlock.Foreground" Value="LimeGreen"></Setter>
+                  </DataTrigger>
+                  <DataTrigger Binding="{Binding Card.HasDecreasedHealth}" Value="True">
+                    <Setter  Property="TextBlock.Foreground" Value="Red"></Setter>
+                  </DataTrigger>
+                </Style.Triggers>
+              </Style>
+            </TextBlock.Style>
+          </TextBlock>
+        </Viewbox>
+        <Grid.Style>
+          <Style TargetType="{x:Type Grid}">
             <Style.Triggers>
-              <DataTrigger Binding="{Binding Card.HasIncreasedHealth}" Value="True">
-                <Setter  Property="TextBlock.Foreground" Value="LimeGreen"></Setter>
-              </DataTrigger>
-              <DataTrigger Binding="{Binding Card.HasDecreasedHealth}" Value="True">
-                <Setter  Property="TextBlock.Foreground" Value="Red"></Setter>
+              <DataTrigger Binding="{Binding Card}" Value="{x:Null}">
+                <Setter Property="Opacity" Value="0"/>
               </DataTrigger>
             </Style.Triggers>
           </Style>
-        </TextBlock.Style>
-      </TextBlock>
+        </Grid.Style>
+      </Grid>
     </Viewbox>
 
-    <ItemsControl Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3"
+    <ItemsControl x:Name="Traits" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3"
                   ItemsSource="{Binding Card.Traits}"
              Margin="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=UserControl}, 
                         Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.1}">
@@ -114,7 +166,7 @@
       </ItemsControl.ItemTemplate>
     </ItemsControl>
 
-    <ItemsControl Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3"
+    <ItemsControl x:Name="Debuffs" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3"
                   ItemsSource="{Binding Card.Debuffs}"
              Margin="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=UserControl}, 
                         Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.1}">

@@ -57,7 +57,7 @@ namespace Hextasy.CardWars
             defender.TakeDamage(attacker.Attack);
             attacker.TakeDamage(defender.Attack);
 
-            attacker.Traits.OfType<IActivateOnAttack>().Apply(p => p.Activate(cardWarsGameLogic, targetTile));
+            attacker.Traits.OfType<IActivateTraitOnAttack>().Apply(p => p.Activate(cardWarsGameLogic, targetTile));
 
             attacker.IsExhausted = true;
         }

@@ -2,7 +2,7 @@ using Hextasy.CardWars.Cards.Debuffs;
 
 namespace Hextasy.CardWars.Cards.Traits
 {
-    public class FrostWeaponTrait : Trait, IActivateOnAttack
+    public class FrostWeaponTrait : Trait, IActivateTraitOnAttack
     {
         public override string ImageFilename
         {

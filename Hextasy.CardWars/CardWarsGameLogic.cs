@@ -1,9 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Linq;
 using Caliburn.Micro;
 using Hextasy.CardWars.Cards;
-using Hextasy.CardWars.Cards.Debuffs;
 using Hextasy.CardWars.Cards.Specials;
 using Hextasy.Framework;
 
@@ -60,13 +60,32 @@ namespace Hextasy.CardWars
         {
             if (tile.Card == null || tile.Card.IsExhausted) return;
             tile.IsSelected = true;
-            Tiles.Where(p => p.Card != null).Apply(p => p.IsValidTarget = true);
+            Tiles.Apply(p => p.IsValidTarget = false);
+            if (OpponentTiles.Any(p => p.IsDefender)) Tiles.Where(p => p.IsDefender).Apply(p => p.IsValidTarget = true);
+            else Tiles.Where(p => p.Card != null).Apply(p => p.IsValidTarget = true);
             tile.IsValidTarget = false;
         }
 
         public Player Player1 { get; private set; }
 
         public Player Player2 { get; private set; }
+
+        private IEnumerable<CardWarsTile> CurrentPlayerTiles
+        {
+            get
+            {
+                return Tiles.Where(p => p.Owner == CurrentPlayer.Owner);
+            }
+        }
+
+        private IEnumerable<CardWarsTile> OpponentTiles
+        {
+            get
+            {
+                var owner = CurrentPlayer.Owner == Owner.Player1 ? Owner.Player2 : Owner.Player1;
+                return Tiles.Where(p => p.Owner == owner);
+            }
+        }
 
         public Player CurrentPlayer
         {
@@ -147,7 +166,7 @@ namespace Hextasy.CardWars
 
         private void CleanupDebuffs()
         {
-            Tiles.Where(p => p.Owner == CurrentPlayer.Owner).Apply(p => p.Card.CleanupDebuffs());
+            CurrentPlayerTiles.Apply(p => p.Card.CleanupDebuffs());
         }
 
         private void ResolveStartTurnEffects()
@@ -157,7 +176,7 @@ namespace Hextasy.CardWars
 
         private void ActivateDebuff<T>() where T : IDebuff
         {
-            Tiles.Where(p => p.Owner == CurrentPlayer.Owner).Where(
+            CurrentPlayerTiles.Where(
                 p => p.Card.Debuffs.OfType<T>().Any()).Select(p => p.Card).Apply(
                     card => card.Debuffs.OfType<T>().Apply(debuff => debuff.Activate(card)));
         }
@@ -169,12 +188,12 @@ namespace Hextasy.CardWars
 
         private void ExhaustCards()
         {
-            Tiles.Where(p => p.Owner == CurrentPlayer.Owner).Apply(p => p.Card.IsExhausted = true);
+            CurrentPlayerTiles.Apply(p => p.Card.IsExhausted = true);
         }
 
         private void ReadyCards()
         {
-            Tiles.Where(p => p.Owner == CurrentPlayer.Owner).Apply(p => p.Card.IsExhausted = false);
+            CurrentPlayerTiles.Apply(p => p.Card.IsExhausted = false);
         }
 
         private void SwitchCurrentPlayer()

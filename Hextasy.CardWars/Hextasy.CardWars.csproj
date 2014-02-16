@@ -91,6 +91,7 @@
     <Compile Include="Cards\Spells\EnchantWeaponFrostCard.cs" />
     <Compile Include="Cards\Spells\FireballCard.cs" />
     <Compile Include="Cards\SpellCard.cs" />
+    <Compile Include="Cards\Traits\DefenderTrait.cs" />
     <Compile Include="Cards\Traits\FrostWeaponTrait.cs" />
     <Compile Include="Cards\Spells\GreaterHealCard.cs" />
     <Compile Include="Cards\Spells\HealCard.cs" />
@@ -268,6 +269,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Cards\Debuffs\fog-acid-3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Traits\protect-royal-2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

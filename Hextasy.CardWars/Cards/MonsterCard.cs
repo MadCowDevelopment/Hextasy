@@ -1,5 +1,4 @@
 ﻿using Caliburn.Micro;
-using Hextasy.CardWars.Cards.Debuffs;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -85,6 +84,11 @@ namespace Hextasy.CardWars.Cards
         {
             var expiredDebuffs = Debuffs.Where(debuff => debuff.IsExpired).ToList();
             expiredDebuffs.Apply(expiredDebuff => Debuffs.Remove(expiredDebuff));
+        }
+
+        public bool HasTrait<T>() where T : ITrait
+        {
+            return Traits.OfType<T>().Any();
         }
     }
 }

@@ -2,6 +2,7 @@ namespace Hextasy.CardWars.Cards
 {
     public abstract class Trait : ITrait
     {
+        public abstract string Name { get; }
         public abstract string ImageFilename { get; }
         public abstract void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile);
     }

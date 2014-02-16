@@ -2,7 +2,7 @@ using System.ComponentModel;
 using System.Linq;
 using Caliburn.Micro;
 using Hextasy.CardWars.Cards;
-using Hextasy.CardWars.Cards.Debuffs;
+using Hextasy.CardWars.Cards.Traits;
 using Hextasy.Framework;
 
 namespace Hextasy.CardWars
@@ -40,6 +40,8 @@ namespace Hextasy.CardWars
         public bool IsValidTarget { get; set; }
 
         public bool IsValidSpellTarget { get { return Card != null; } }
+
+        public bool IsDefender { get { return Card != null && Card.HasTrait<DefenderTrait>(); } }
 
         private void Die()
         {

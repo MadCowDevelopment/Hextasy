@@ -1,10 +1,16 @@
 ﻿using System.ComponentModel.Composition;
+using Hextasy.CardWars.Cards.Traits;
 
 namespace Hextasy.CardWars.Cards.Monsters
 {
     [Export(typeof(Card))]
     public class TurtleCard : MonsterCard
     {
+        public TurtleCard()
+        {
+            Traits.Add(new DefenderTrait());
+        }
+
         public override string Name
         {
             get { return "Turtle"; }
@@ -27,7 +33,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override int Cost
         {
-            get { return 3; }
+            get { return 4; }
         }
 
         protected override string ImageFilename

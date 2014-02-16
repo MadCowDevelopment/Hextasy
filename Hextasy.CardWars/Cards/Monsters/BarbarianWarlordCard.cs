@@ -1,10 +1,16 @@
 ﻿using System.ComponentModel.Composition;
+using Hextasy.CardWars.Cards.Traits;
 
 namespace Hextasy.CardWars.Cards.Monsters
 {
     [Export(typeof(Card))]
     public class BarbarianWarlordCard : MonsterCard
     {
+        public BarbarianWarlordCard()
+        {
+            Traits.Add(new DefenderTrait());
+        }
+
         public override string Name
         {
             get { return "Barbarian Warlord"; }
@@ -22,7 +28,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override int BaseAttack
         {
-            get { return 4; }
+            get { return 2; }
         }
 
         public override int BaseHealth

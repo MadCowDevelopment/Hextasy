@@ -17,6 +17,16 @@ namespace Hextasy.CardWars
         public CardWarsGameViewModel(CardWarsGameLogic game, IEventAggregator eventAggregator)
             : base(game, eventAggregator)
         {
+            Game.PropertyChanged += GamePropertyChanged;
+        }
+
+        private void GamePropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == Game.GetPropertyName(p => p.SelectedTile))
+            {
+                NotifyOfPropertyChange(() => SelectedCard);
+                NotifyOfPropertyChange(() => IsInTargetMode);
+            }
         }
 
         public ObservableCollection<Card> CurrentCards

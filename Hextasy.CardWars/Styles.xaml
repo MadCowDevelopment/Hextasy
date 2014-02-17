@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary 
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:cards="clr-namespace:Hextasy.CardWars.Cards">
 
   <ResourceDictionary.MergedDictionaries>
     <ResourceDictionary Source="Storyboards.xaml"/>
@@ -198,14 +199,19 @@
                     RenderTransformOrigin="0.5, 0.5"
                     Data="M 250,0 L 750,0 L 1000,433 L 750,866 L 250,866 L 0,433 Z">
             </Path>
-            <Path Margin="1" 
-                    Fill="WhiteSmoke" 
+            <Path x:Name="Overlay"  Margin="1" Fill="WhiteSmoke" 
                     HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" 
-                    Height="Auto" x:Name="Overlay" Stretch="Fill" Opacity="0"
+                    Height="Auto" Stretch="Fill" Opacity="0"
                     RenderTransformOrigin="0.5, 0.5"
                     Data="M 250,0 L 750,0 L 1000,433 L 750,866 L 250,866 L 0,433 Z">
             </Path>
             <ContentPresenter />
+            <Path x:Name="InvalidTargetOverlay"  Margin="1" Fill="WhiteSmoke" 
+                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" 
+                    Height="Auto" Stretch="Fill" Opacity="0"
+                    RenderTransformOrigin="0.5, 0.5"
+                    Data="M 250,0 L 750,0 L 1000,433 L 750,866 L 250,866 L 0,433 Z">
+            </Path>
             <Image x:Name="Attack" Stretch="Uniform" 
                      Margin="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Button}, 
                         Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.30}"
@@ -255,6 +261,16 @@
                 <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True"/>
               </MultiDataTrigger.Conditions>
               <Setter TargetName="Attack" Property="Opacity" Value="1"/>
+            </MultiDataTrigger>
+            <MultiDataTrigger x:Name="InvalidTargetOverlayVisibilityTrigger">
+              <MultiDataTrigger.Conditions>
+                <Condition Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=DataContext.IsInTargetMode}"
+                             Value="True"/>
+                <Condition Binding="{Binding IsValidTarget}" Value="False"/>
+                <Condition Binding="{Binding Card, Converter={StaticResource IsNullConverter}}" Value="False"/>
+                <Condition Binding="{Binding IsSelected}" Value="False"/>
+              </MultiDataTrigger.Conditions>
+              <Setter TargetName="InvalidTargetOverlay" Property="Opacity" Value="0.75"/>
               <MultiDataTrigger.EnterActions>
                 <BeginStoryboard Storyboard="{StaticResource AttackStoryboard}"/>
               </MultiDataTrigger.EnterActions>

@@ -4,5 +4,6 @@
                     xmlns:cardWars="clr-namespace:Hextasy.CardWars">
 
   <framework:DoubleMultiplierConverter x:Key="DoubleMultiplierConverter" />
+  <framework:IsNullConverter x:Key="IsNullConverter"/>
   <cardWars:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
 </ResourceDictionary>

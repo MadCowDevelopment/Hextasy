@@ -1,7 +1,7 @@
-﻿using Caliburn.Micro;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Caliburn.Micro;
 
 namespace Hextasy.CardWars.Cards
 {
@@ -17,11 +17,11 @@ namespace Hextasy.CardWars.Cards
         public abstract int BaseAttack { get; }
         public abstract int BaseHealth { get; }
         public int Attack { get { return BaseAttack + AttackBonus; } }
-        private int AttackBonus { get; set; }
+        public int AttackBonus { get; set; }
 
         public int Health { get { return BaseHealth + HealthBonus - DamageTaken; } }
         private int DamageTaken { get; set; }
-        private int HealthBonus { get; set; }
+        public int HealthBonus { get; set; }
 
         public bool IsKilled { get; set; }
         public bool IsExhausted { get; protected internal set; }
@@ -64,6 +64,7 @@ namespace Hextasy.CardWars.Cards
         public ObservableCollection<ITrait> Traits { get; private set; }
 
         public ObservableCollection<IDebuff> Debuffs { get; private set; }
+        public abstract Race Race { get; }
 
         public void AddTrait(ITrait trait)
         {

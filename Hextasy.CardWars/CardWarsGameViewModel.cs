@@ -130,6 +130,7 @@ namespace Hextasy.CardWars
                     break;
                 case Key.Enter:
                     EndTurn();
+                    e.Handled = true;
                     break;
             }
         }

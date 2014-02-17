@@ -43,17 +43,19 @@ namespace Hextasy.CardWars
         {
             if (column == 0 && row == 0)
             {
-                var tile = new CardWarsTile();
+                var tile = new CardWarsTile(this);
                 tile.AssignCard(new RedKingCard());
                 return tile;
             }
+
             if (column == Settings.Columns - 1 && row == Settings.Rows - 1)
             {
-                var tile = new CardWarsTile();
+                var tile = new CardWarsTile(this);
                 tile.AssignCard(new BlueKingCard());
                 return tile;
             }
-            return new CardWarsTile();
+
+            return new CardWarsTile(this);
         }
 
         public void SelectTile(CardWarsTile tile)

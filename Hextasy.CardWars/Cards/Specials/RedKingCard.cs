@@ -6,5 +6,10 @@
         {
             get { return @"crown-red.png"; }
         }
+
+        public override Race Race
+        {
+            get { return Race.Special; }
+        }
     }
 }

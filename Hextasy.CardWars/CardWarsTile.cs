@@ -9,7 +9,14 @@ namespace Hextasy.CardWars
 {
     public class CardWarsTile : HexagonTile
     {
+        private readonly CardWarsGameLogic _gameLogic;
         private MonsterCard _card;
+
+        public CardWarsTile(CardWarsGameLogic gameLogic)
+        {
+            _gameLogic = gameLogic;
+        }
+
         public Owner Owner { get { return Card != null ? Card.Owner : Owner.None; } }
 
         public MonsterCard Card
@@ -46,9 +53,11 @@ namespace Hextasy.CardWars
         private void Die()
         {
             Card.IsKilled = true;
+            var killedCard = Card;
             Card = null;
             IsFixed = false;
             IsValidTarget = false;
+            killedCard.Traits.OfType<IActivateTraitOnDeath>().Apply(p => p.Activate(_gameLogic, this));
         }
 
         public void Attack(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
@@ -73,7 +82,7 @@ namespace Hextasy.CardWars
 
         public void AddDebuff(Debuff debuff)
         {
-            if(Card != null) Card.AddDebuff(debuff);
+            if (Card != null) Card.AddDebuff(debuff);
         }
     }
 }

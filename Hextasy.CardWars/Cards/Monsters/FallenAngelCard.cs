@@ -30,6 +30,11 @@ namespace Hextasy.CardWars.Cards.Monsters
             get { return 6; }
         }
 
+        public override Race Race
+        {
+            get { return Race.Angel; }
+        }
+
         public override int Cost
         {
             get { return 5; }

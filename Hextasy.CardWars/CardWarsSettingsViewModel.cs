@@ -65,6 +65,7 @@ namespace Hextasy.CardWars
                     new WarElephantCard(),
                     new WolfCard(),
                     new WormCard(),
+                    new HumanDruidCard(),
                     new EndOfDaysCard(),
                     new BarbarianPriestCard(),
                     new BarbarianWarlordCard(),
@@ -81,7 +82,8 @@ namespace Hextasy.CardWars
                     new TurtleCard(),
                     new WarElephantCard(),
                     new WolfCard(),
-                    new WormCard()
+                    new WormCard(),
+                    new HumanDruidCard()
                 });
         }
     }

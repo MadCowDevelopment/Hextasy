@@ -1,29 +1,32 @@
-﻿using System.ComponentModel.Composition;
-using Hextasy.CardWars.Cards.Traits;
+﻿using Hextasy.CardWars.Cards.Traits;
 
 namespace Hextasy.CardWars.Cards.Monsters
 {
-    [Export(typeof(Card))]
-    public class BarbarianPriestCard : MonsterCard
+    public class HumanDruidCard : MonsterCard
     {
-        public BarbarianPriestCard()
+        public HumanDruidCard()
         {
-            Traits.Add(new HealRandomFriendlyMonsterTrait());
+            Traits.Add(new IncreaseBeastAttackTrait(1));
+            Traits.Add(new DecreaseBeastAttackTrait(1));
         }
-
         public override string Name
         {
-            get { return "Barbarian Priest"; }
+            get { return "Human Druid"; }
         }
 
         public override string Description
         {
-            get { return "Heals 2 damage of a friendly monster at the start of your turn."; }
+            get { return "Give all friendly beasts +1 attack."; }
+        }
+
+        public override int Cost
+        {
+            get { return 5; }
         }
 
         protected override string ImageFilename
         {
-            get { return @"BarbarianPriest.png"; }
+            get { return "HumanDruid04.png"; }
         }
 
         public override int BaseAttack
@@ -39,11 +42,6 @@ namespace Hextasy.CardWars.Cards.Monsters
         public override Race Race
         {
             get { return Race.Human; }
-        }
-
-        public override int Cost
-        {
-            get { return 3; }
         }
     }
 }

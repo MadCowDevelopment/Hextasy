@@ -79,55 +79,55 @@
 
   <Storyboard x:Key="CardInjuredStoryboard">
     <DoubleAnimation Storyboard.TargetName="PowYellow" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
-                       From="0" To="1" Duration="0:0:0.2">
+                       From="0" To="0.8" Duration="0:0:0.2">
     </DoubleAnimation>
     <DoubleAnimation Storyboard.TargetName="PowYellow" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
-                       From="0" To="1" Duration="0:0:0.2">
+                       From="0" To="0.8" Duration="0:0:0.2">
     </DoubleAnimation>
     <DoubleAnimation Storyboard.TargetName="PowYellow" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
-                       From="1" To="1.2" BeginTime="0:0:0.2" Duration="0:0:1">
+                       From="0.8" To="0.9" BeginTime="0:0:0.2" Duration="0:0:1">
       <DoubleAnimation.EasingFunction>
         <ElasticEase Oscillations="3" EasingMode="EaseInOut"/>
       </DoubleAnimation.EasingFunction>
     </DoubleAnimation>
     <DoubleAnimation Storyboard.TargetName="PowYellow" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
-                       From="1" To="1.1" BeginTime="0:0:0.2" Duration="0:0:1" >
+                       From="0.8" To="0.9" BeginTime="0:0:0.2" Duration="0:0:1" >
       <DoubleAnimation.EasingFunction>
         <ElasticEase Oscillations="3" EasingMode="EaseInOut"/>
       </DoubleAnimation.EasingFunction>
     </DoubleAnimation>
     <DoubleAnimation Storyboard.TargetName="PowYellow" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
-                       From="1.1" To="0" BeginTime="0:0:1.5" Duration="0:0:0.5">
+                       From="0.9" To="0" BeginTime="0:0:1.5" Duration="0:0:0.5">
     </DoubleAnimation>
     <DoubleAnimation Storyboard.TargetName="PowYellow" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
-                       From="1.1" To="0" BeginTime="0:0:1.5" Duration="0:0:0.5">
+                       From="0.9" To="0" BeginTime="0:0:1.5" Duration="0:0:0.5">
     </DoubleAnimation>
   </Storyboard>
 
   <Storyboard x:Key="CardHealedStoryboard">
     <DoubleAnimation Storyboard.TargetName="PowGreen" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
-                       From="0" To="1" Duration="0:0:0.2">
+                       From="0" To="0.8" Duration="0:0:0.2">
     </DoubleAnimation>
     <DoubleAnimation Storyboard.TargetName="PowGreen" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
-                       From="0" To="1" Duration="0:0:0.2">
+                       From="0" To="0.8" Duration="0:0:0.2">
     </DoubleAnimation>
     <DoubleAnimation Storyboard.TargetName="PowGreen" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
-                       From="1" To="1.2" BeginTime="0:0:0.2" Duration="0:0:1">
+                       From="0.8" To="0.9" BeginTime="0:0:0.2" Duration="0:0:1">
       <DoubleAnimation.EasingFunction>
         <ElasticEase Oscillations="3" EasingMode="EaseInOut"/>
       </DoubleAnimation.EasingFunction>
     </DoubleAnimation>
     <DoubleAnimation Storyboard.TargetName="PowGreen" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
-                       From="1" To="1.1" BeginTime="0:0:0.2" Duration="0:0:1" >
+                       From="0.8" To="0.9" BeginTime="0:0:0.2" Duration="0:0:1" >
       <DoubleAnimation.EasingFunction>
         <ElasticEase Oscillations="3" EasingMode="EaseInOut"/>
       </DoubleAnimation.EasingFunction>
     </DoubleAnimation>
     <DoubleAnimation Storyboard.TargetName="PowGreen" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
-                       From="1.1" To="0" BeginTime="0:0:1.5" Duration="0:0:0.5">
+                       From="0.9" To="0" BeginTime="0:0:1.5" Duration="0:0:0.5">
     </DoubleAnimation>
     <DoubleAnimation Storyboard.TargetName="PowGreen" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
-                       From="1.1" To="0" BeginTime="0:0:1.5" Duration="0:0:0.5">
+                       From="0.9" To="0" BeginTime="0:0:1.5" Duration="0:0:0.5">
     </DoubleAnimation>
   </Storyboard>
 

@@ -18,4 +18,5 @@ namespace Hextasy.CardWars.Cards
     public interface IActivateTraitOnStartTurn : ITrait { }
     public interface IActivateTraitOnPlay : ITrait { }
     public interface IActivateTraitOnDeath : ITrait { }
+    public interface IActivateTraitOnAnyCardPlayed : ITrait { }
 }

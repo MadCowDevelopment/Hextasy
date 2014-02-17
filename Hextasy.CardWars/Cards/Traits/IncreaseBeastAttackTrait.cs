@@ -1,11 +1,14 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Caliburn.Micro;
 
 namespace Hextasy.CardWars.Cards.Traits
 {
-    public class IncreaseBeastAttackTrait : Trait, IActivateTraitOnPlay
+    public class IncreaseBeastAttackTrait : Trait, IActivateTraitOnAnyCardPlayed
     {
         private int Amount { get; set; }
+
+        private List<MonsterCard> _buffedCards;
 
         public IncreaseBeastAttackTrait(int amount)
         {
@@ -24,7 +27,12 @@ namespace Hextasy.CardWars.Cards.Traits
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
-            cardWarsGameLogic.CurrentPlayerCards.Where(p => p.Race == Race.Beast).Apply(p => p.AttackBonus += Amount);
+            var allBeastCardsOfCurrentPlayer =
+                cardWarsGameLogic.AllCards.Where(p => p.Player.Owner == targetTile.Owner && p.Race == Race.Beast);
+            if (_buffedCards == null) _buffedCards = new List<MonsterCard>();
+            var beastsToBuff = allBeastCardsOfCurrentPlayer.Except(_buffedCards).ToList();
+            beastsToBuff.Apply(p => p.AttackBonus += Amount);
+            _buffedCards.AddRange(beastsToBuff);
         }
     }
 }

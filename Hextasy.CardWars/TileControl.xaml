@@ -147,6 +147,7 @@
     </Viewbox>
 
     <ItemsControl x:Name="Traits" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3"
+                  FocusVisualStyle="{x:Null}"
                   ItemsSource="{Binding Card.Traits}"
              Margin="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=UserControl}, 
                         Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.1}">
@@ -158,7 +159,7 @@
       <ItemsControl.ItemTemplate>
         <DataTemplate>
           <Grid>
-            <Border BorderBrush="Black" BorderThickness="1" Margin="1" Background="Black">
+            <Border Margin="1" Background="Black">
               <Image Source="{Binding ImageFilename}" Stretch="Fill"/>
             </Border>
           </Grid>
@@ -167,6 +168,7 @@
     </ItemsControl>
 
     <ItemsControl x:Name="Debuffs" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3"
+                  FocusVisualStyle="{x:Null}"
                   ItemsSource="{Binding Card.Debuffs}"
              Margin="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=UserControl}, 
                         Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.1}">
@@ -178,7 +180,7 @@
       <ItemsControl.ItemTemplate>
         <DataTemplate>
           <Grid>
-            <Border BorderBrush="Black" BorderThickness="1" Margin="1" Background="Black">
+            <Border Margin="1" Background="Black">
               <Image Source="{Binding ImageFilename}" Stretch="Fill"/>
             </Border>
           </Grid>

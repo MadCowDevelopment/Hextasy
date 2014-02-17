@@ -107,7 +107,8 @@ namespace Hextasy.CardWars.Cards
 
         public void Heal(int amount)
         {
-            DamageTaken = Math.Max(0, DamageTaken -= amount);
+            var remainingTakenDamage = DamageTaken - amount;
+            DamageTaken = Math.Max(0, remainingTakenDamage);
         }
 
         public void CleanupDebuffs()

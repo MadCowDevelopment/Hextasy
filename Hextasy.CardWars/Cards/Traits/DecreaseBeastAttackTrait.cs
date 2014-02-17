@@ -14,7 +14,7 @@ namespace Hextasy.CardWars.Cards.Traits
 
         public override string Name
         {
-            get { return "Remove Beast attack"; }
+            get { return string.Empty; }
         }
 
         public override string ImageFilename
@@ -24,7 +24,9 @@ namespace Hextasy.CardWars.Cards.Traits
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
-            cardWarsGameLogic.CurrentPlayerCards.Where(p => p.Race == Race.Beast).Apply(p => p.AttackBonus -= Amount);
+            var beastCardsToDebuff = 
+            cardWarsGameLogic.AllCards.Where(p => p.Player.Owner == targetTile.Owner && p.Race == Race.Beast);
+            beastCardsToDebuff.Apply(p => p.AttackBonus -= Amount);
         }
     }
 }

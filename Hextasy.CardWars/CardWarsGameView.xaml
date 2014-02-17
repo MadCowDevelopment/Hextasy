@@ -47,7 +47,9 @@
           <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent" />
         </ListBox.Resources>
       </ListBox>
-      <Button Grid.Row="3" Content="End Turn" FontSize="20" Margin="10" cal:Message.Attach="[Event Click] = [Action EndTurn()]"/>
+      <Button Grid.Row="3" Content="End Turn" FontSize="20" Margin="10" 
+              Focusable="False"
+              cal:Message.Attach="[Event Click] = [Action EndTurn()]"/>
     </Grid>
 
     <ItemsControl Grid.Column="1" ItemsSource="{Binding Tiles}" HorizontalAlignment="Center" VerticalAlignment="Center">

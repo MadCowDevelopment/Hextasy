@@ -130,6 +130,8 @@ namespace Hextasy.CardWars
             CurrentCards.Remove(selectedCard);
             if(selectedCard.HasTrait<IActivateTraitOnPlay>())
                 selectedCard.Traits.OfType<IActivateTraitOnPlay>().Apply(trait => trait.Activate(this, tile));
+
+            ActivateTraits<IActivateTraitOnAnyCardPlayed>(Tiles);
         }
 
         public void PlaySpellCard(CardWarsTile tile, SpellCard selectedCard)
@@ -179,6 +181,7 @@ namespace Hextasy.CardWars
 
         public void EndTurn()
         {
+            UnselectTile();
             ResolveEndTurnEffects();
             ExhaustCards();
             CleanupDebuffs();
@@ -196,22 +199,20 @@ namespace Hextasy.CardWars
 
         private void ResolveStartTurnEffects()
         {
-            ActivateTraits<IActivateTraitOnStartTurn>();
-            ActivateDebuffs<IActivateDebuffOnStartTurn>();
+            ActivateTraits<IActivateTraitOnStartTurn>(CurrentPlayerTiles);
+            ActivateDebuffs<IActivateDebuffOnStartTurn>(CurrentPlayerTiles);
         }
 
-        private void ActivateTraits<T>() where T : ITrait
+        private void ActivateTraits<T>(IEnumerable<CardWarsTile> tiles) where T : ITrait
         {
-            CurrentPlayerTiles.Where(
-                p => p.Card.Traits.OfType<T>().Any()).Apply(
-                    tile => tile.Card.Traits.OfType<T>().Apply(trait => trait.Activate(this, tile)));
+            tiles.Where(p => p.Card != null && p.Card.Traits.OfType<T>().Any()).Apply(
+                tile => tile.Card.Traits.OfType<T>().Apply(trait => trait.Activate(this, tile)));
         }
 
-        private void ActivateDebuffs<T>() where T : IDebuff
+        private void ActivateDebuffs<T>(IEnumerable<CardWarsTile> tiles) where T : IDebuff
         {
-            CurrentPlayerTiles.Where(
-                p => p.Card.Debuffs.OfType<T>().Any()).Select(p => p.Card).Apply(
-                    card => card.Debuffs.OfType<T>().Apply(debuff => debuff.Activate(card)));
+            tiles.Where(p => p.Card != null && p.Card.Debuffs.OfType<T>().Any()).Select(p => p.Card).Apply(
+                card => card.Debuffs.OfType<T>().Apply(debuff => debuff.Activate(card)));
         }
 
         private void ResolveEndTurnEffects()

@@ -11,6 +11,7 @@
 
   <DataTemplate DataType="{x:Type cardWars:CardWarsTile}">
     <Button x:Name="B1" Style="{StaticResource HexagonButtonStyle}" Background="LightGray"
+            FocusVisualStyle="{x:Null}" Focusable="False"
                     cal:Message.Attach="[Event Click] = [Action OnTileClick($dataContext)];[Event MouseEnter] = [Action OnTileEnter($dataContext)];[Event MouseLeave] = [Action OnTileLeave($dataContext)]">
       <Button.Content>
         <cardWars:TileControl/>

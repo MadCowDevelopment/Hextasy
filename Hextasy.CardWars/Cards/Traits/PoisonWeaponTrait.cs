@@ -25,7 +25,7 @@ namespace Hextasy.CardWars.Cards.Traits
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
-            targetTile.Card.AddDebuff(new PoisonDebuff(Amount, Duration));
+            targetTile.AddDebuff(new PoisonDebuff(Amount, Duration));
         }
     }
 }

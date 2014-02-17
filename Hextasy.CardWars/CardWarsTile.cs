@@ -52,13 +52,12 @@ namespace Hextasy.CardWars
 
         private void Die()
         {
+            Card.Traits.OfType<IActivateTraitOnDeath>().Apply(p => p.Activate(_gameLogic, this));
             Card.IsKilled = true;
             Card.IsKilled = false;
-            var killedCard = Card;
             Card = null;
             IsFixed = false;
             IsValidTarget = false;
-            killedCard.Traits.OfType<IActivateTraitOnDeath>().Apply(p => p.Activate(_gameLogic, this));
         }
 
         public void Attack(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)

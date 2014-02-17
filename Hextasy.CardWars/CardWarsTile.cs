@@ -53,6 +53,7 @@ namespace Hextasy.CardWars
         private void Die()
         {
             Card.IsKilled = true;
+            Card.IsKilled = false;
             var killedCard = Card;
             Card = null;
             IsFixed = false;

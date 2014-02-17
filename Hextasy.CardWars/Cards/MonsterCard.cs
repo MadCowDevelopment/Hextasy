@@ -7,6 +7,8 @@ namespace Hextasy.CardWars.Cards
 {
     public abstract class MonsterCard : Card
     {
+        private int _damageTaken;
+
         protected MonsterCard()
         {
             Traits = new ObservableCollection<ITrait>();
@@ -20,7 +22,34 @@ namespace Hextasy.CardWars.Cards
         public int AttackBonus { get; set; }
 
         public int Health { get { return BaseHealth + HealthBonus - DamageTaken; } }
-        private int DamageTaken { get; set; }
+
+        private int DamageTaken
+        {
+            get { return _damageTaken; }
+            set
+            {
+                var currentTakenDamage = _damageTaken;
+                _damageTaken = value;
+                DamageDelta = currentTakenDamage - _damageTaken;
+                if (Health <= 0) return;
+
+                if (DamageDelta < 0)
+                {
+                    WasInjured = true;
+                    WasInjured = false;
+                }
+                else if (DamageDelta > 0)
+                {
+                    WasHealed = true;
+                    WasHealed = false;
+                }
+            }
+        }
+
+        public int DamageDelta { get; set; }
+        public bool WasHealed { get; set; }
+        public bool WasInjured { get; set; }
+
         public int HealthBonus { get; set; }
 
         public bool IsKilled { get; set; }

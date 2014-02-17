@@ -236,6 +236,39 @@
                 <ScaleTransform ScaleX="0" ScaleY="0"/>
               </Image.RenderTransform>
             </Image>
+            <Grid x:Name="PowGreen" RenderTransformOrigin="0.5, 0.5">
+              <Image Stretch="Uniform" Source="Images\pow-green.png">
+              </Image>
+              <Viewbox StretchDirection="Both" Stretch="Uniform">
+                <StackPanel Orientation="Horizontal" 
+                            Margin="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Button}, 
+                        Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.13}">
+                  <TextBlock Text="+"/>
+                  <TextBlock Text="{Binding Card.DamageDelta}" FontWeight="Bold"
+                           HorizontalAlignment="Center" VerticalAlignment="Center">
+                  </TextBlock>
+                </StackPanel>
+              </Viewbox>
+              <Grid.RenderTransform>
+                <ScaleTransform ScaleX="0" ScaleY="0"/>
+              </Grid.RenderTransform>
+            </Grid>
+            <Grid x:Name="PowYellow" RenderTransformOrigin="0.5, 0.5">
+              <Image Stretch="Uniform" Source="Images\pow-yellow.png">
+              </Image>
+              <Viewbox StretchDirection="Both" Stretch="Uniform">
+                <StackPanel Orientation="Horizontal" 
+                            Margin="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Button}, 
+                        Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.13}">
+                  <TextBlock Text="{Binding Card.DamageDelta}" FontWeight="Bold"
+                           HorizontalAlignment="Center" VerticalAlignment="Center">
+                  </TextBlock>
+                </StackPanel>
+              </Viewbox>
+              <Grid.RenderTransform>
+                <ScaleTransform ScaleX="0" ScaleY="0"/>
+              </Grid.RenderTransform>
+            </Grid>
           </Grid>
           <ControlTemplate.Triggers>
             <DataTrigger Binding="{Binding Owner}" Value="Player1">
@@ -290,6 +323,16 @@
             <DataTrigger Binding="{Binding Card.IsKilled}" Value="True">
               <DataTrigger.EnterActions>
                 <BeginStoryboard Storyboard="{StaticResource CardKilledStoryboard}"/>
+              </DataTrigger.EnterActions>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Card.WasInjured}" Value="True">
+              <DataTrigger.EnterActions>
+                <BeginStoryboard Storyboard="{StaticResource CardInjuredStoryboard}"/>
+              </DataTrigger.EnterActions>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Card.WasHealed}" Value="True">
+              <DataTrigger.EnterActions>
+                <BeginStoryboard Storyboard="{StaticResource CardHealedStoryboard}"/>
               </DataTrigger.EnterActions>
             </DataTrigger>
             <Trigger Property="IsPressed" Value="True">

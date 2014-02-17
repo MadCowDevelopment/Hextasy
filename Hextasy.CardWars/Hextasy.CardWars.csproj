@@ -296,6 +296,10 @@
   <ItemGroup>
     <Resource Include="Images\Cards\Traits\enchant-magenta-3.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\pow-green.png" />
+    <Resource Include="Images\pow-yellow.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Import Project="Fody.targets" />

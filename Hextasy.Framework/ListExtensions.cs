@@ -31,6 +31,13 @@ namespace Hextasy.Framework
             return result;
         }
 
+        public static T RandomOrDefault<T>(this IEnumerable<T> enumerable)
+        {
+            var temp = enumerable.ToList();
+            if (temp.Count == 0) return default(T);
+            return temp[RNG.Next(0, temp.Count - 1)];
+        }
+
         public static IEnumerable<O> TakeAndRemove<T, O>(this IList<T> list, int amount) where O : T
         {
             var takenCards = list.OfType<O>().Take(amount).ToList();

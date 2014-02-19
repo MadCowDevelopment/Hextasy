@@ -197,6 +197,11 @@ namespace Hextasy.CardWars
             return HexMap.GetNeighbours(tile).Where(p => p.Card != null);
         }
 
+        public IEnumerable<CardWarsTile> GetAdjacentFreeTiles(CardWarsTile tile)
+        {
+            return HexMap.GetNeighbours(tile).Where(p => p.Card == null);
+        }
+
         private void CleanupDebuffs()
         {
             CurrentPlayerTiles.Apply(p => p.Card.CleanupDebuffs());

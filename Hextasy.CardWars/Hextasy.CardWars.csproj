@@ -73,16 +73,24 @@
     <Compile Include="Cards\Debuff.cs" />
     <Compile Include="Cards\Debuffs\FrozenDebuff.cs" />
     <Compile Include="Cards\Debuffs\PoisonDebuff.cs" />
+    <Compile Include="Cards\DragonCard.cs" />
+    <Compile Include="Cards\DragonFlight.cs" />
+    <Compile Include="Cards\Gender.cs" />
+    <Compile Include="Cards\Monsters\DragonRedMaleCard.cs" />
     <Compile Include="Cards\Monsters\FireAntCard.cs" />
     <Compile Include="Cards\Monsters\BarbarianPriestCard.cs" />
     <Compile Include="Cards\Monsters\BarbarianWarlordCard.cs" />
     <Compile Include="Cards\Monsters\BasiliskCard.cs" />
     <Compile Include="Cards\Monsters\BatCard.cs" />
     <Compile Include="Cards\Monsters\DiviciacusCard.cs" />
+    <Compile Include="Cards\Monsters\DragonRedFemaleCard.cs" />
     <Compile Include="Cards\Monsters\SkeletonKingCard.cs" />
     <Compile Include="Cards\Race.cs" />
     <Compile Include="Cards\Spells\EnchantWeaponPoisonCard.cs" />
     <Compile Include="Cards\Spells\ArmageddonCard.cs" />
+    <Compile Include="Cards\Summoned\BabyDragon.cs" />
+    <Compile Include="Cards\Traits\DragonBabyTrait.cs" />
+    <Compile Include="Cards\Traits\DragonGrowthTrait.cs" />
     <Compile Include="Cards\Traits\HasteTrait.cs" />
     <Compile Include="Cards\Traits\HealRandomFriendlyMonsterTrait.cs" />
     <Compile Include="Cards\Specials\BlueKingCard.cs" />
@@ -304,6 +312,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Cards\Monsters\WraithKing.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Monsters\DragonAdultRed.PNG" />
+    <Resource Include="Images\Cards\Monsters\DragonAncientRed.PNG" />
+    <Resource Include="Images\Cards\Monsters\DragonBabyRed.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

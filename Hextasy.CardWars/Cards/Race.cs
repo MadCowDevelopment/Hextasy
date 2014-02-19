@@ -6,6 +6,7 @@
         Human,
         Angel,
         Undead,
+        Dragon,
         Special
     }
 }

@@ -57,15 +57,10 @@ namespace Hextasy.CardWars
             return new Deck("Test",
                 new List<Card>
                 {
-                    new SkeletonKingCard(),
-                    new BarbarianPriestCard(),
-                    new BarbarianWarlordCard(),
-                    new SkeletonKingCard(),
-                    new BarbarianPriestCard(),
-                    new BarbarianWarlordCard(),
-                    new SkeletonKingCard(),
-                    new BarbarianPriestCard(),
-                    new BarbarianWarlordCard()
+                    new DragonRedFemaleCard(),
+                    new DragonRedMaleCard(),
+                    new DragonRedFemaleCard(),
+                    new DragonRedMaleCard()
                 });
         }
 

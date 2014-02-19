@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Linq;
 using Hextasy.CardWars.Cards;
 using Hextasy.CardWars.Cards.Monsters;
-using Hextasy.CardWars.Cards.Spells;
 using Hextasy.Framework;
 
 namespace Hextasy.CardWars
@@ -10,18 +11,25 @@ namespace Hextasy.CardWars
     [Export(typeof(CardWarsSettingsViewModel))]
     public class CardWarsSettingsViewModel : SettingsViewModel<CardWarsSettings>
     {
-        public CardWarsSettingsViewModel()
+        private IEnumerable<Card> Cards { get; set; }
+
+        [ImportingConstructor]
+        public CardWarsSettingsViewModel([ImportMany]IEnumerable<Card> cards)
         {
+            Cards = cards;
+
             Player1 = "Player1";
             Player2 = "Player2";
             Columns = 7;
             Rows = 6;
 
             Player1Decks = new List<Deck>();
-            Player1Decks.Add(CreateDefaultDeck());
+            Player1Decks.Add(CreateTestDeck());
+            Player1Decks.Add(CreateAllCardsDeck());
 
             Player2Decks = new List<Deck>();
-            Player2Decks.Add(CreateDefaultDeck());
+            Player2Decks.Add(CreateTestDeck());
+            Player2Decks.Add(CreateAllCardsDeck());
 
             Player1Deck = Player1Decks[0];
             Player2Deck = Player2Decks[0];
@@ -44,47 +52,27 @@ namespace Hextasy.CardWars
             get { return new CardWarsSettings(Rows, Columns, Player1, Player2, Player1Deck, Player2Deck); }
         }
 
-        private static Deck CreateDefaultDeck()
+        private static Deck CreateTestDeck()
         {
-            return new Deck("Default",
+            return new Deck("Test",
                 new List<Card>
                 {
+                    new SkeletonKingCard(),
                     new BarbarianPriestCard(),
                     new BarbarianWarlordCard(),
-                    new BasiliskCard(),
-                    new BatCard(),
-                    new EnchantWeaponFrostCard(),
-                    new EnchantWeaponPoisonCard(),
-                    new FallenAngelCard(),
-                    new FireAntCard(),
-                    new MeteorCard(),
-                    new GreaterHealCard(),
-                    new HealCard(),
-                    new LesserHealCard(),
-                    new TurtleCard(),
-                    new WarElephantCard(),
-                    new WolfCard(),
-                    new WormCard(),
-                    new DiviciacusCard(),
-                    new ArmageddonCard(),
+                    new SkeletonKingCard(),
                     new BarbarianPriestCard(),
                     new BarbarianWarlordCard(),
-                    new BasiliskCard(),
-                    new BatCard(),
-                    new EnchantWeaponFrostCard(),
-                    new EnchantWeaponPoisonCard(),
-                    new FallenAngelCard(),
-                    new FireAntCard(),
-                    new MeteorCard(),
-                    new GreaterHealCard(),
-                    new HealCard(),
-                    new LesserHealCard(),
-                    new TurtleCard(),
-                    new WarElephantCard(),
-                    new WolfCard(),
-                    new WormCard(),
-                    new DiviciacusCard()
+                    new SkeletonKingCard(),
+                    new BarbarianPriestCard(),
+                    new BarbarianWarlordCard()
                 });
+        }
+
+        private Deck CreateAllCardsDeck()
+        {
+            var types = Cards.Select(p => p.GetType());
+            return new Deck("All", new List<Card>(types.Select(p => Activator.CreateInstance(p) as Card)));
         }
     }
 }

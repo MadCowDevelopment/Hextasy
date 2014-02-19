@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Windows.Data;
 using Caliburn.Micro;
 
 namespace Hextasy.CardWars.Cards
@@ -9,20 +10,41 @@ namespace Hextasy.CardWars.Cards
     public abstract class MonsterCard : Card
     {
         private int _damageTaken;
+        private int _attackBonus;
 
         protected MonsterCard()
         {
             Traits = new ObservableCollection<ITrait>();
+
+            TraitsWithIcons = new ListCollectionView(Traits);
+            TraitsWithIcons.Filter = o => !string.IsNullOrWhiteSpace((o as Trait).ImageFilename);
+
             Debuffs = new ObservableCollection<IDebuff>();
             IsExhausted = true;
         }
 
         public abstract int BaseAttack { get; }
-        public abstract int BaseHealth { get; }
         public int Attack { get { return BaseAttack + AttackBonus; } }
-        public int AttackBonus { get; set; }
 
+        public int AttackBonus
+        {
+            get { return _attackBonus; }
+            set
+            {
+                if (value + BaseAttack < 0)
+                {
+                    _attackBonus = 0 - BaseAttack;
+                }
+                else
+                {
+                    _attackBonus = value;
+                }
+            }
+        }
+
+        public abstract int BaseHealth { get; }
         public int Health { get { return BaseHealth + HealthBonus - DamageTaken; } }
+        public int HealthBonus { get; set; }
 
         private int DamageTaken
         {
@@ -51,9 +73,8 @@ namespace Hextasy.CardWars.Cards
         public bool WasHealed { get; set; }
         public bool WasInjured { get; set; }
 
-        public int HealthBonus { get; set; }
-
         public bool IsKilled { get; set; }
+
         public bool IsExhausted { get; protected internal set; }
 
         public bool HasIncreasedAttack
@@ -92,6 +113,8 @@ namespace Hextasy.CardWars.Cards
         }
 
         public ObservableCollection<ITrait> Traits { get; private set; }
+
+        public ListCollectionView TraitsWithIcons { get; private set; }
 
         public string TraitsDescription
         {

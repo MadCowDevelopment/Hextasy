@@ -5,6 +5,7 @@
         Beast,
         Human,
         Angel,
+        Undead,
         Special
     }
 }

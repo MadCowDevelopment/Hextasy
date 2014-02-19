@@ -79,6 +79,7 @@
     <Compile Include="Cards\Monsters\BasiliskCard.cs" />
     <Compile Include="Cards\Monsters\BatCard.cs" />
     <Compile Include="Cards\Monsters\DiviciacusCard.cs" />
+    <Compile Include="Cards\Monsters\SkeletonKingCard.cs" />
     <Compile Include="Cards\Race.cs" />
     <Compile Include="Cards\Spells\EnchantWeaponPoisonCard.cs" />
     <Compile Include="Cards\Spells\ArmageddonCard.cs" />
@@ -106,6 +107,7 @@
     <Compile Include="Cards\Traits\IncreaseBeastAttackTrait.cs" />
     <Compile Include="Cards\Traits\PoisonWeaponTrait.cs" />
     <Compile Include="Cards\Traits\DecreaseBeastAttackTrait.cs" />
+    <Compile Include="Cards\Traits\SkeletonKingInitiativeTrait.cs" />
     <Compile Include="CardWarsGame.cs" />
     <Compile Include="CardWarsGameLogic.cs" />
     <Compile Include="CardWarsGameView.xaml.cs">
@@ -299,6 +301,9 @@
   <ItemGroup>
     <Resource Include="Images\pow-green.png" />
     <Resource Include="Images\pow-yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Monsters\WraithKing.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

@@ -30,9 +30,7 @@ namespace Hextasy.CardWars.Cards.Spells
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
             targetTile.Card.TakeDamage(4);
-            cardWarsGameLogic.HexMap.GetNeighbours(targetTile)
-                .Where(p => p.Card != null)
-                .Apply(p => p.Card.TakeDamage(2));
+            cardWarsGameLogic.GetAdjacentMonsterTiles(targetTile).Apply(p => p.Card.TakeDamage(2));
         }
     }
 }

@@ -128,8 +128,8 @@ namespace Hextasy.CardWars
             tile.AssignCard(selectedCard);
             CurrentPlayer.RemainingResources -= selectedCard.Cost;
             CurrentCards.Remove(selectedCard);
-            if(selectedCard.HasTrait<IActivateTraitOnPlay>())
-                selectedCard.Traits.OfType<IActivateTraitOnPlay>().Apply(trait => trait.Activate(this, tile));
+            if(selectedCard.HasTrait<IActivateTraitOnCardPlayed>())
+                selectedCard.Traits.OfType<IActivateTraitOnCardPlayed>().Apply(trait => trait.Activate(this, tile));
 
             ActivateTraits<IActivateTraitOnAnyCardPlayed>(Tiles);
         }
@@ -190,6 +190,11 @@ namespace Hextasy.CardWars
             ResolveStartTurnEffects();
 
             NotifyOfPropertyChange(() => CurrentCards);
+        }
+
+        public IEnumerable<CardWarsTile> GetAdjacentMonsterTiles(CardWarsTile tile)
+        {
+            return HexMap.GetNeighbours(tile).Where(p => p.Card != null);
         }
 
         private void CleanupDebuffs()

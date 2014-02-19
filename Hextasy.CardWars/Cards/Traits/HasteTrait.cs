@@ -1,6 +1,6 @@
 ﻿namespace Hextasy.CardWars.Cards.Traits
 {
-    public class HasteTrait : Trait, IActivateTraitOnPlay
+    public class HasteTrait : Trait, IActivateTraitOnCardPlayed
     {
         public override string Name
         {

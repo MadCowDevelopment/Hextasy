@@ -215,14 +215,14 @@ namespace Hextasy.CardWars
 
         private void ActivateTraits<T>(IEnumerable<CardWarsTile> tiles) where T : ITrait
         {
-            tiles.Where(p => p.Card != null && p.Card.Traits.OfType<T>().Any()).Apply(
-                tile => tile.Card.Traits.OfType<T>().Apply(trait => trait.Activate(this, tile)));
+            tiles.Where(p => p.Card != null && p.Card.Traits.OfType<T>().Any()).ToList().Apply(
+                tile => tile.Card.Traits.OfType<T>().ToList().Apply(trait => trait.Activate(this, tile)));
         }
 
         private void ActivateDebuffs<T>(IEnumerable<CardWarsTile> tiles) where T : IDebuff
         {
-            tiles.Where(p => p.Card != null && p.Card.Debuffs.OfType<T>().Any()).Select(p => p.Card).Apply(
-                card => card.Debuffs.OfType<T>().Apply(debuff => debuff.Activate(card)));
+            tiles.Where(p => p.Card != null && p.Card.Debuffs.OfType<T>().Any()).ToList().Select(p => p.Card).Apply(
+                card => card.Debuffs.OfType<T>().ToList().Apply(debuff => debuff.Activate(card)));
         }
 
         private void ResolveEndTurnEffects()

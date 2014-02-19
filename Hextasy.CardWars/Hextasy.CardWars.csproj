@@ -78,10 +78,10 @@
     <Compile Include="Cards\Monsters\BarbarianWarlordCard.cs" />
     <Compile Include="Cards\Monsters\BasiliskCard.cs" />
     <Compile Include="Cards\Monsters\BatCard.cs" />
-    <Compile Include="Cards\Monsters\HumanDruidCard.cs" />
+    <Compile Include="Cards\Monsters\DiviciacusCard.cs" />
     <Compile Include="Cards\Race.cs" />
     <Compile Include="Cards\Spells\EnchantWeaponPoisonCard.cs" />
-    <Compile Include="Cards\Spells\EndOfDaysCard.cs" />
+    <Compile Include="Cards\Spells\ArmageddonCard.cs" />
     <Compile Include="Cards\Traits\HasteTrait.cs" />
     <Compile Include="Cards\Traits\HealRandomFriendlyMonsterTrait.cs" />
     <Compile Include="Cards\Specials\BlueKingCard.cs" />
@@ -95,7 +95,7 @@
     <Compile Include="Cards\Monsters\WolfCard.cs" />
     <Compile Include="Cards\Monsters\WormCard.cs" />
     <Compile Include="Cards\Spells\EnchantWeaponFrostCard.cs" />
-    <Compile Include="Cards\Spells\FireballCard.cs" />
+    <Compile Include="Cards\Spells\MeteorCard.cs" />
     <Compile Include="Cards\SpellCard.cs" />
     <Compile Include="Cards\Traits\DefenderTrait.cs" />
     <Compile Include="Cards\Traits\FrostWeaponTrait.cs" />

@@ -5,11 +5,11 @@ using Caliburn.Micro;
 namespace Hextasy.CardWars.Cards.Spells
 {
     [Export(typeof(Card))]
-    public class FireballCard : SpellCard
+    public class MeteorCard : SpellCard
     {
         public override string Name
         {
-            get { return "Fireball"; }
+            get { return "Meteor"; }
         }
 
         public override string Description

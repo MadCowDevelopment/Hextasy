@@ -1,23 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Caliburn.Micro;
-using Hextasy.CardWars.Cards.Specials;
+﻿using Caliburn.Micro;
 
 namespace Hextasy.CardWars.Cards.Spells
 {
-    public class EndOfDaysCard : SpellCard
+    public class ArmageddonCard : SpellCard
     {
         public override string Name
         {
-            get { return "End of Days"; }
+            get { return "Armageddon"; }
         }
 
         public override string Description
         {
-            get { return "Destroys all monsters."; }
+            get { return "Destroy all monsters."; }
         }
 
         public override int Cost

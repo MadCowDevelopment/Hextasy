@@ -4,16 +4,16 @@ using Hextasy.CardWars.Cards.Traits;
 namespace Hextasy.CardWars.Cards.Monsters
 {
     [Export(typeof(Card))]
-    public class HumanDruidCard : MonsterCard
+    public class DiviciacusCard : MonsterCard
     {
-        public HumanDruidCard()
+        public DiviciacusCard()
         {
             Traits.Add(new IncreaseBeastAttackTrait(1));
             Traits.Add(new DecreaseBeastAttackTrait(1));
         }
         public override string Name
         {
-            get { return "Human Druid"; }
+            get { return "Diviciacus"; }
         }
 
         public override string Description

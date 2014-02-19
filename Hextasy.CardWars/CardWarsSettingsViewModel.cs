@@ -57,7 +57,7 @@ namespace Hextasy.CardWars
                     new EnchantWeaponPoisonCard(),
                     new FallenAngelCard(),
                     new FireAntCard(),
-                    new FireballCard(),
+                    new MeteorCard(),
                     new GreaterHealCard(),
                     new HealCard(),
                     new LesserHealCard(),
@@ -65,8 +65,8 @@ namespace Hextasy.CardWars
                     new WarElephantCard(),
                     new WolfCard(),
                     new WormCard(),
-                    new HumanDruidCard(),
-                    new EndOfDaysCard(),
+                    new DiviciacusCard(),
+                    new ArmageddonCard(),
                     new BarbarianPriestCard(),
                     new BarbarianWarlordCard(),
                     new BasiliskCard(),
@@ -75,7 +75,7 @@ namespace Hextasy.CardWars
                     new EnchantWeaponPoisonCard(),
                     new FallenAngelCard(),
                     new FireAntCard(),
-                    new FireballCard(),
+                    new MeteorCard(),
                     new GreaterHealCard(),
                     new HealCard(),
                     new LesserHealCard(),
@@ -83,7 +83,7 @@ namespace Hextasy.CardWars
                     new WarElephantCard(),
                     new WolfCard(),
                     new WormCard(),
-                    new HumanDruidCard()
+                    new DiviciacusCard()
                 });
         }
     }

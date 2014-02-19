@@ -114,7 +114,7 @@ namespace Hextasy.CardWars
 
         public IEnumerable<MonsterCard> AllCards
         {
-            get { return Tiles.Where(p => p.Card != null).Select(p=>p.Card); }
+            get { return Tiles.Where(p => p.Card != null).Select(p => p.Card); }
         }
 
         public IEnumerable<MonsterCard> AllCardsExceptKing
@@ -128,9 +128,7 @@ namespace Hextasy.CardWars
             tile.AssignCard(selectedCard);
             CurrentPlayer.RemainingResources -= selectedCard.Cost;
             CurrentCards.Remove(selectedCard);
-            if(selectedCard.HasTrait<IActivateTraitOnCardPlayed>())
-                selectedCard.Traits.OfType<IActivateTraitOnCardPlayed>().Apply(trait => trait.Activate(this, tile));
-
+            selectedCard.Traits.OfType<IActivateTraitOnCardPlayed>().Apply(trait => trait.Activate(this, tile));
             ActivateTraits<IActivateTraitOnAnyCardPlayed>(Tiles);
         }
 

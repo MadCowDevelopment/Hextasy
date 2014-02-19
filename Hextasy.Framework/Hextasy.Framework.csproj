@@ -63,6 +63,7 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="BoolToVisibilityConverter.cs" />
     <Compile Include="Coordinate.cs" />
     <Compile Include="DoubleMultiplierConverter.cs" />
     <Compile Include="Game.cs" />

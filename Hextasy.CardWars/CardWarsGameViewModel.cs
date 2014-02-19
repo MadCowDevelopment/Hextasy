@@ -64,6 +64,11 @@ namespace Hextasy.CardWars
             get { return SelectedCard is SpellCard; }
         }
 
+        public bool CanMulligan
+        {
+            get { return Game.CanMulligan && !CurrentPlayer.DidMulligan; }
+        }
+
         public Player CurrentPlayer
         {
             get { return Game.CurrentPlayer; }
@@ -123,6 +128,14 @@ namespace Hextasy.CardWars
         {
             Game.EndTurn();
             NotifyOfPropertyChange(() => CurrentPlayer);
+            NotifyOfPropertyChange(() => CurrentCards);
+            NotifyOfPropertyChange(() => CanMulligan);
+        }
+
+        public void Mulligan()
+        {
+            Game.Mulligan();
+            NotifyOfPropertyChange(() => CanMulligan);
             NotifyOfPropertyChange(() => CurrentCards);
         }
 

@@ -14,6 +14,7 @@
   <UserControl.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Converters.xaml"/>
         <ResourceDictionary Source="Styles.xaml"/>
         <ResourceDictionary Source="DataTemplates.xaml"/>
       </ResourceDictionary.MergedDictionaries>
@@ -32,6 +33,7 @@
         <RowDefinition Height="Auto"/>
         <RowDefinition Height="*"/>
         <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
       </Grid.RowDefinitions>
       <cardWars:PlayerControl Grid.Row="0" DataContext="{Binding CurrentPlayer}" Margin="10" HorizontalAlignment="Stretch"/>
       <Border Grid.Row="1" BorderBrush="Black" BorderThickness="3" Background="Ivory" CornerRadius="10" Margin="10">
@@ -40,6 +42,7 @@
           MaximumResources="{Binding CurrentPlayer.MaximumResources}"/>
       </Border>
       <ListBox Grid.Row="2"
+        FocusVisualStyle="{x:Null}"
         ItemsSource="{Binding CurrentCards}" SelectedItem="{Binding SelectedCard}"
         HorizontalContentAlignment="Center" ItemContainerStyle="{StaticResource CardSelectionContainerStyle}">
         <ListBox.Resources>
@@ -47,7 +50,10 @@
           <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent" />
         </ListBox.Resources>
       </ListBox>
-      <Button Grid.Row="3" Content="End Turn" FontSize="20" Margin="10" 
+      <Button Grid.Row="3" Content="Mulligan" FontSize="20" Margin="10,10,10,0" 
+              Focusable="False" Visibility="{Binding CanMulligan, Converter={StaticResource BoolToVisibilityConverter}}"
+              cal:Message.Attach="[Event Click] = [Action Mulligan()]"/>
+      <Button Grid.Row="4" Content="End Turn" FontSize="20" Margin="10" 
               Focusable="False"
               cal:Message.Attach="[Event Click] = [Action EndTurn()]"/>
     </Grid>

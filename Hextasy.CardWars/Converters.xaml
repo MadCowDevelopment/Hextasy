@@ -5,5 +5,6 @@
 
   <framework:DoubleMultiplierConverter x:Key="DoubleMultiplierConverter" />
   <framework:IsNullConverter x:Key="IsNullConverter"/>
+  <framework:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
   <cardWars:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
 </ResourceDictionary>

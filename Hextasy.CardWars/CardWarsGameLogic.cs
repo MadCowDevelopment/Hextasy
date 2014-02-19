@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace Hextasy.CardWars
     public class CardWarsGameLogic : GameLogic<CardWarsSettings, CardWarsTile>
     {
         private Player _currentPlayer;
+        private int _turns = 1;
 
         protected override void OnSettingsInitialized()
         {
@@ -38,6 +40,13 @@ namespace Hextasy.CardWars
                 return CurrentPlayer != null ? CurrentPlayer.Hand : null;
             }
         }
+
+        public void Mulligan()
+        {
+            if(CanMulligan) CurrentPlayer.Mulligan();
+        }
+
+        private int Turn { get { return (int)Math.Ceiling(_turns/2.0); } }
 
         protected override CardWarsTile CreateTile(int column, int row)
         {
@@ -122,6 +131,8 @@ namespace Hextasy.CardWars
             get { return AllCards.Where(p => !(p is KingCard)); }
         }
 
+        public bool CanMulligan { get { return Turn == 1; } }
+
         public void PlayMonsterCard(CardWarsTile tile, MonsterCard selectedCard)
         {
             if (tile.IsFixed) return;
@@ -183,11 +194,10 @@ namespace Hextasy.CardWars
             ResolveEndTurnEffects();
             ExhaustCards();
             CleanupDebuffs();
+            _turns++;
             SwitchCurrentPlayer();
             ReadyCards();
             ResolveStartTurnEffects();
-
-            NotifyOfPropertyChange(() => CurrentCards);
         }
 
         public IEnumerable<CardWarsTile> GetAdjacentMonsterTiles(CardWarsTile tile)

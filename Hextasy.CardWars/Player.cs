@@ -10,7 +10,6 @@ namespace Hextasy.CardWars
 {
     public class Player : PropertyChangedBase
     {
-        private const int NumberCardsInHandWhenStarting = 4;
         private const int MaximumNumberOfCardsInHand = 10;
         private KingCard KingCard { get; set; }
 
@@ -34,8 +33,7 @@ namespace Hextasy.CardWars
             KingCard.Player = this;
             KingCard.PropertyChanged += KingCardPropertyChanged;
             deck.Cards.Apply(p => p.Player = this);
-            Hand = new ObservableCollection<Card>();
-            Enumerable.Repeat(1, NumberCardsInHandWhenStarting).Apply(p => DrawCard());
+            Hand = new ObservableCollection<Card>(Deck.TakeHand());
         }
 
         private void KingCardPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -50,12 +48,20 @@ namespace Hextasy.CardWars
 
         public ObservableCollection<Card> Hand { get; private set; }
 
+        public bool DidMulligan { get; private set; }
+
         public event EventHandler<EventArgs> Died;
 
         public void PrepareTurn()
         {
             RefreshResources();
             DrawCard();
+        }
+
+        public void Mulligan()
+        {
+            DidMulligan = true;
+            Hand = new ObservableCollection<Card>(Deck.Mulligan());
         }
 
         public void EndTurn()

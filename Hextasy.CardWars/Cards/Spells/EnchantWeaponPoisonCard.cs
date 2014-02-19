@@ -1,7 +1,9 @@
-﻿using Hextasy.CardWars.Cards.Traits;
+﻿using System.ComponentModel.Composition;
+using Hextasy.CardWars.Cards.Traits;
 
 namespace Hextasy.CardWars.Cards.Spells
 {
+    [Export(typeof(Card))]
     public class EnchantWeaponPoisonCard : SpellCard
     {
         public override string Name

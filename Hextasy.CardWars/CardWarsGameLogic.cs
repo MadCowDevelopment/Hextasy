@@ -225,7 +225,8 @@ namespace Hextasy.CardWars
 
         private void ResolveEndTurnEffects()
         {
-            // TODO
+            ActivateTraits<IActivateTraitOnEndTurn>(CurrentPlayerTiles);
+            ActivateDebuffs<IActivateDebuffOnEndTurn>(CurrentPlayerTiles);
         }
 
         private void ExhaustCards()

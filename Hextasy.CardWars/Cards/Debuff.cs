@@ -14,7 +14,6 @@ namespace Hextasy.CardWars.Cards
         void Activate(MonsterCard affectedCard);
     }
 
-    public interface IActivateDebuffOnStartTurn : IDebuff
-    {
-    }
+    public interface IActivateDebuffOnStartTurn : IDebuff {}
+    public interface IActivateDebuffOnEndTurn : IDebuff {}
 }

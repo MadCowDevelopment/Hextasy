@@ -1,0 +1,14 @@
+﻿<Application x:Class="Hextasy.CardWarsViewer.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:cardWarsViewer="clr-namespace:Hextasy.CardWarsViewer">
+  <Application.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary>
+          <cardWarsViewer:MefBootstrapper x:Key="bootstrapper" />
+        </ResourceDictionary>
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </Application.Resources>
+</Application>

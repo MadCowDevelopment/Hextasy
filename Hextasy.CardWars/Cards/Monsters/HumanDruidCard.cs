@@ -1,7 +1,9 @@
-﻿using Hextasy.CardWars.Cards.Traits;
+﻿using System.ComponentModel.Composition;
+using Hextasy.CardWars.Cards.Traits;
 
 namespace Hextasy.CardWars.Cards.Monsters
 {
+    [Export(typeof(Card))]
     public class HumanDruidCard : MonsterCard
     {
         public HumanDruidCard()

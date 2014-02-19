@@ -17,7 +17,7 @@ namespace Hextasy.CardWars.Cards
 
         public bool CanBePlayed { get { return Player.RemainingResources >= Cost; } }
 
-        public Owner Owner { get { return Player.Owner; } }
+        public Owner Owner { get { return Player != null ? Player.Owner : Owner.None; } }
 
         public abstract CardType Type { get; }
 

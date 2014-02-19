@@ -9,6 +9,7 @@ namespace Hextasy.CardWars.Cards
 
     public interface ITrait
     {
+        string Name { get; }
         string ImageFilename { get; }
         void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile);
     }

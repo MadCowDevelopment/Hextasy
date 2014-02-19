@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text;
 using Caliburn.Micro;
 
 namespace Hextasy.CardWars.Cards
@@ -91,6 +92,21 @@ namespace Hextasy.CardWars.Cards
         }
 
         public ObservableCollection<ITrait> Traits { get; private set; }
+
+        public string TraitsDescription
+        {
+            get
+            {
+                var builder = new StringBuilder();
+                foreach (var trait in Traits)
+                {
+                    builder.Append(trait.Name);
+                    if (trait != Traits.Last()) builder.Append("; ");
+                }
+
+                return builder.ToString();
+            }
+        }
 
         public ObservableCollection<IDebuff> Debuffs { get; private set; }
         public abstract Race Race { get; }

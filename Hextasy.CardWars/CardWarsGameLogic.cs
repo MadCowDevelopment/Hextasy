@@ -131,11 +131,13 @@ namespace Hextasy.CardWars
             get { return AllCards.Where(p => !(p is KingCard)); }
         }
 
-        public bool CanMulligan { get { return Turn == 1; } }
+        public bool CanMulligan { get { return Turn == 1 && !CardPlayedThisTurn; } }
+        private bool CardPlayedThisTurn { get; set; }
 
         public void PlayMonsterCard(CardWarsTile tile, MonsterCard selectedCard)
         {
             if (tile.IsFixed) return;
+            CardPlayedThisTurn = true;
             tile.AssignCard(selectedCard);
             CurrentPlayer.RemainingResources -= selectedCard.Cost;
             CurrentCards.Remove(selectedCard);
@@ -146,6 +148,7 @@ namespace Hextasy.CardWars
         public void PlaySpellCard(CardWarsTile tile, SpellCard selectedCard)
         {
             if (!tile.IsValidSpellTarget) return;
+            CardPlayedThisTurn = true;
             CurrentPlayer.RemainingResources -= selectedCard.Cost;
             CurrentCards.Remove(selectedCard);
             selectedCard.Activate(this, tile);
@@ -195,6 +198,7 @@ namespace Hextasy.CardWars
             ExhaustCards();
             CleanupDebuffs();
             _turns++;
+            CardPlayedThisTurn = false;
             SwitchCurrentPlayer();
             ReadyCards();
             ResolveStartTurnEffects();

@@ -103,6 +103,7 @@ namespace Hextasy.CardWars
                 Game.SelectTile(tile);
             }
 
+            NotifyOfPropertyChange(() => CanMulligan);
             NotifyOfPropertyChange(() => IsInTargetMode);
         }
 

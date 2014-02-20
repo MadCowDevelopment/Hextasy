@@ -2,7 +2,7 @@
 
 namespace Hextasy.CardWars.Cards.Traits
 {
-    public class IncreaseMonsterAttackTrait : Trait
+    public class IncreaseMonsterAttackTrait : Trait, IActivateTraitOnEndTurn
     {
         private int Amount { get; set; }
 

@@ -18,7 +18,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override string Description
         {
-            get { return "Starving: Deals 2 damage to all enemies."; }
+            get { return "Starving: Kills 2 random enemies with 3 or less attack."; }
         }
 
         public override int Cost

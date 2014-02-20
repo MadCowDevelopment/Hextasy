@@ -41,9 +41,10 @@ namespace Hextasy.Framework
         public static void RemoveMany<T>(this IList<T> list, IEnumerable<T> itemsToRemove)
         {
             var itemsToRemoveTemp = itemsToRemove.ToList();
+            var listCopy = list.ToList();
             for (int i = list.Count - 1; i >= 0; i++)
             {
-                if (itemsToRemoveTemp.Any(p => p.Equals(list[i]))) list.Remove(list[i]);
+                if (itemsToRemoveTemp.Any(p => p.Equals(listCopy[i]))) list.Remove(listCopy[i]);
             }
         }
 

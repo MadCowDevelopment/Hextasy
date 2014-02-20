@@ -27,10 +27,12 @@ namespace Hextasy.CardWars
             Player1Decks = new List<Deck>();
             Player1Decks.Add(CreateTestDeck());
             Player1Decks.Add(CreateAllCardsDeck());
+            Player1Decks.Add(CreateAllCardsExceptDragonsDeck());
 
             Player2Decks = new List<Deck>();
             Player2Decks.Add(CreateTestDeck());
             Player2Decks.Add(CreateAllCardsDeck());
+            Player2Decks.Add(CreateAllCardsExceptDragonsDeck());
 
             Player1Deck = Player1Decks[0];
             Player2Deck = Player2Decks[0];
@@ -55,26 +57,33 @@ namespace Hextasy.CardWars
 
         private static Deck CreateTestDeck()
         {
-            return new Deck("Test",
-                new List<Card>
-                {
-                    new DragonBlackMaleCard(),
-                    new DragonBlueMaleCard(),
-                    new DragonGoldMaleCard(),
-                    new DragonGreenMaleCard(),
-                    new DragonRedMaleCard(),
-                    new BarbarianWarlordCard(),
-                    new BarbarianWarlordCard(),
-                    new BarbarianWarlordCard(),
-                    new BarbarianWarlordCard(),
-                    new BarbarianWarlordCard()
-                });
+            var cards = new List<Card>
+                            {
+                                new DragonBlackMaleCard(),
+                                new DragonBlueMaleCard(),
+                                new DragonGoldMaleCard(),
+                                new DragonGreenMaleCard(),
+                                new DragonRedMaleCard(),
+                                new BarbarianWarlordCard(),
+                                new BarbarianWarlordCard(),
+                                new BarbarianWarlordCard(),
+                                new BarbarianWarlordCard(),
+                                new BarbarianWarlordCard()
+                            };
+            return new Deck(string.Format("Test ({0} cards)", cards.Count), cards);
+        }
+
+        private Deck CreateAllCardsExceptDragonsDeck()
+        {
+            var cards = new List<Card>(CreateAllCardsDeck().Cards.Where(p => !(p is DragonCard)));
+            return new Deck(string.Format("All except dragons ({0} cards)", cards.Count), cards);
         }
 
         private Deck CreateAllCardsDeck()
         {
             var types = Cards.Select(p => p.GetType());
-            return new Deck("All", new List<Card>(types.Select(p => Activator.CreateInstance(p) as Card)));
+            var cards = new List<Card>(types.Select(p => Activator.CreateInstance(p) as Card));
+            return new Deck(string.Format("All ({0} cards)", cards.Count), cards);
         }
     }
 }

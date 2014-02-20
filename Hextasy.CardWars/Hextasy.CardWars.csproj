@@ -123,6 +123,11 @@
     <Compile Include="Cards\Spells\HealCard.cs" />
     <Compile Include="Cards\Spells\LesserHealCard.cs" />
     <Compile Include="Cards\Trait.cs" />
+    <Compile Include="Cards\Traits\HungryDragonBlackTrait.cs" />
+    <Compile Include="Cards\Traits\HungryDragonBlueTrait.cs" />
+    <Compile Include="Cards\Traits\HungryDragonGoldTrait.cs" />
+    <Compile Include="Cards\Traits\HungryDragonGreenTrait.cs" />
+    <Compile Include="Cards\Traits\HungryDragonRedTrait.cs" />
     <Compile Include="Cards\Traits\HungryDragonTrait.cs" />
     <Compile Include="Cards\Traits\IncreaseBeastAttackTrait.cs" />
     <Compile Include="Cards\Traits\PoisonWeaponTrait.cs" />

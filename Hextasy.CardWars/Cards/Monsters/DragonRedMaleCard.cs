@@ -1,10 +1,16 @@
 ﻿using System.ComponentModel.Composition;
+using Hextasy.CardWars.Cards.Traits;
 
 namespace Hextasy.CardWars.Cards.Monsters
 {
     [Export(typeof(Card))]
     public class DragonRedMaleCard : DragonMaleCard
     {
+        public DragonRedMaleCard()
+        {
+            Traits.Add(new HungryDragonRedTrait());
+        }
+
         public override string Name
         {
             get { return "Thichom"; }
@@ -12,7 +18,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override string Description
         {
-            get { return ""; }
+            get { return "Starving: Deals 2 fire damage to all enemies."; }
         }
 
         public override int Cost
@@ -27,7 +33,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override int BaseAttack
         {
-            get { return 7; }
+            get { return 3; }
         }
 
         public override int BaseHealth

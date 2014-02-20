@@ -26,7 +26,7 @@ namespace Hextasy.CardWars.Cards.Traits
 
             if (_turnsGrown < 2)
             {
-                babyDragon.AttackBonus += babyDragon.Gender == Gender.Male ? 2 : 1;
+                babyDragon.AttackBonus += 1;
                 babyDragon.HealthBonus += 2;
                 _turnsGrown++;
             }

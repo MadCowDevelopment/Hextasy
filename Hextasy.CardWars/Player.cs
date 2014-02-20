@@ -1,6 +1,5 @@
 using System;
 using System.Collections.ObjectModel;
-using System.Linq;
 using Caliburn.Micro;
 using Hextasy.CardWars.Cards;
 using Hextasy.CardWars.Cards.Specials;
@@ -80,7 +79,7 @@ namespace Hextasy.CardWars
             RemainingResources = MaximumResources;
         }
 
-        private void DrawCard()
+        public void DrawCard()
         {
             if (Hand.Count < MaximumNumberOfCardsInHand) Hand.AddNotNull(Deck.TakeCard());
         }

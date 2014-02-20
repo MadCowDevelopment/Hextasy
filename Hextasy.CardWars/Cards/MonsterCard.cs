@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Data;
 using Caliburn.Micro;
+using Hextasy.CardWars.Cards.Debuffs;
+using Hextasy.Framework;
 
 namespace Hextasy.CardWars.Cards
 {
@@ -102,6 +104,12 @@ namespace Hextasy.CardWars.Cards
             DamageTaken += attackValue;
         }
 
+        public void TakeFireDamage(int amount)
+        {
+            TakeDamage(amount);
+            Debuffs.RemoveMany(Debuffs.OfType<FrozenDebuff>());
+        }
+
         protected override string ImageFolder
         {
             get { return @"pack://application:,,,/Hextasy.CardWars;component/Images/Cards/Monsters/"; }
@@ -148,6 +156,7 @@ namespace Hextasy.CardWars.Cards
         {
             var remainingTakenDamage = DamageTaken - amount;
             DamageTaken = Math.Max(0, remainingTakenDamage);
+            Debuffs.RemoveMany(Debuffs.OfType<PoisonDebuff>());
         }
 
         public void CleanupDebuffs()

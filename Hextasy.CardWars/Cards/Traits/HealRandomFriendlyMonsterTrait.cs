@@ -10,9 +10,9 @@ namespace Hextasy.CardWars.Cards.Traits
             get { return "Heal friendly monster"; }
         }
 
-        public override string ImageFilename
+        protected override string ImageFilename
         {
-            get { return @"Images\Cards\Traits\heal-royal-3.png"; }
+            get { return @"Cards/Traits/heal-royal-3.png"; }
         }
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)

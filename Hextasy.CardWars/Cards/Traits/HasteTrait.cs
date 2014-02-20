@@ -7,9 +7,9 @@
             get { return "Haste"; }
         }
 
-        public override string ImageFilename
+        protected override string ImageFilename
         {
-            get { return @"Images\Cards\Traits\haste.png"; }
+            get { return @"Cards/Traits/haste.png"; }
         }
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)

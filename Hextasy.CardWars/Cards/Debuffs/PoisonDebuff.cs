@@ -11,9 +11,14 @@
             Duration = duration;
         }
 
-        public override string ImageFilename
+        public override string Name
         {
-            get { return @"Images\Cards\Debuffs\fog-acid-3.png"; }
+            get { return "Poisoned"; }
+        }
+
+        protected override string ImageFilename
+        {
+            get { return @"Cards/Debuffs/fog-acid-3.png"; }
         }
 
         public override void Activate(MonsterCard affectedCard)

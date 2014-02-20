@@ -1,16 +1,13 @@
+
 namespace Hextasy.CardWars.Cards
 {
-    public abstract class Trait : ITrait
+    public abstract class Trait : Effect, ITrait
     {
-        public abstract string Name { get; }
-        public abstract string ImageFilename { get; }
         public abstract void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile);
     }
 
-    public interface ITrait
+    public interface ITrait : IEffect
     {
-        string Name { get; }
-        string ImageFilename { get; }
         void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile);
     }
 

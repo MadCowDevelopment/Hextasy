@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-  
+
   <UserControl.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
@@ -56,8 +56,8 @@
           </Style.Triggers>
         </Style>
       </Image.Style>
-    </Image>  
-    
+    </Image>
+
     <Viewbox x:Name="AttackValue" Grid.Row="1" Grid.Column="1" StretchDirection="Both" Stretch="Uniform">
       <Grid Grid.Column="3">
         <Image Margin="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Button}, 
@@ -159,8 +159,17 @@
       <ItemsControl.ItemTemplate>
         <DataTemplate>
           <Grid>
-            <Border Margin="1" Background="Black">
-              <Image Source="{Binding ImageFilename}" Stretch="Fill"/>
+            <Border Margin="1" BorderBrush="Black" BorderThickness="1"
+                    CornerRadius="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Grid}, 
+                        Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.1}"
+                    Width="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Grid}, 
+                        Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.9}"
+                    Height="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Grid}, 
+                        Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.9}">
+              <Border.Background>
+                <ImageBrush  ImageSource="{Binding ImageSource}" Stretch="Fill"/>
+              </Border.Background>
+              <Image/>
             </Border>
           </Grid>
         </DataTemplate>
@@ -180,13 +189,22 @@
       <ItemsControl.ItemTemplate>
         <DataTemplate>
           <Grid>
-            <Border Margin="1" Background="Black">
-              <Image Source="{Binding ImageFilename}" Stretch="Fill"/>
+            <Border Margin="1" BorderBrush="Black" BorderThickness="1" 
+                    CornerRadius="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Grid}, 
+                        Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.1}"
+                    Width="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Grid}, 
+                        Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.9}"
+                    Height="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Grid}, 
+                        Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.9}">
+              <Border.Background>
+                <ImageBrush  ImageSource="{Binding ImageSource}" Stretch="Fill"/>
+              </Border.Background>
+              <Image/>
             </Border>
           </Grid>
         </DataTemplate>
       </ItemsControl.ItemTemplate>
     </ItemsControl>
-    
+
   </Grid>
 </UserControl>

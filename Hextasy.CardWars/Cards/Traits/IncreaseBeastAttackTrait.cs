@@ -20,9 +20,9 @@ namespace Hextasy.CardWars.Cards.Traits
             get { return "Increase Beast attack"; }
         }
 
-        public override string ImageFilename
+        protected override string ImageFilename
         {
-            get { return @"Images\Cards\Traits\enchant-magenta-3.png"; }
+            get { return @"Cards/Traits/enchant-magenta-3.png"; }
         }
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)

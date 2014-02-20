@@ -4,7 +4,7 @@
     {
         protected override string ImageFolder
         {
-            get { return @"Images\Cards\Spells\"; }
+            get { return @"pack://application:,,,/Hextasy.CardWars;component/Images/Cards/Spells/"; }
         }
 
         public override CardType Type

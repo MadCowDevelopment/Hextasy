@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Hextasy.CardWars.Cards.Summoned;
 using Hextasy.Framework;
 
@@ -15,9 +11,9 @@ namespace Hextasy.CardWars.Cards.Traits
             get { return "Fertility"; }
         }
 
-        public override string ImageFilename
+        protected override string ImageFilename
         {
-            get { return @"Images\Cards\Monsters\DragonAncientRainbow.png"; }
+            get { return @"Cards/Monsters/DragonAncientRainbow.PNG"; }
         }
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)

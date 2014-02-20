@@ -4,6 +4,7 @@ using System.ComponentModel.Composition;
 using System.Linq;
 using Hextasy.CardWars.Cards;
 using Hextasy.CardWars.Cards.Monsters;
+using Hextasy.CardWars.Cards.Spells;
 using Hextasy.Framework;
 
 namespace Hextasy.CardWars
@@ -62,11 +63,12 @@ namespace Hextasy.CardWars
                     new DragonBlackFemaleCard(),
                     new DragonBlackMaleCard(),
                     new DragonBlueFemaleCard(),
-                    new DragonBlueMaleCard(),
-                    new DragonGoldFemaleCard(),
-                    new DragonGoldMaleCard(),
-                    new DragonGreenFemaleCard(),
-                    new DragonGreenMaleCard()
+                    new EnchantWeaponFrostCard(),
+                    new EnchantWeaponPoisonCard(),
+                    new EnchantWeaponFrostCard(),
+                    new EnchantWeaponPoisonCard(),
+                    new EnchantWeaponFrostCard(),
+                    new EnchantWeaponPoisonCard()
                 });
         }
 

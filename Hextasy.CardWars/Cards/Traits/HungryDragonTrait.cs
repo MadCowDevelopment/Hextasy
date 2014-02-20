@@ -1,22 +1,22 @@
-using Hextasy.CardWars.Cards.Debuffs;
+﻿using System;
 
 namespace Hextasy.CardWars.Cards.Traits
 {
-    public class FrostWeaponTrait : Trait, IActivateTraitOnAttack
+    public class HungryDragonTrait : Trait, IActivateTraitOnStartTurn
     {
         public override string Name
         {
-            get { return "Frozen Weapon"; }
+            get { return "Hungry Dragon"; }
         }
 
         protected override string ImageFilename
         {
-            get { return @"Cards/Spells/enchant-blue-3.png"; }
+            get { return @"Cards/Traits/FoodShang.png"; }
         }
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
-            targetTile.AddDebuff(new FrozenDebuff());
+            throw new NotImplementedException();
         }
     }
 }

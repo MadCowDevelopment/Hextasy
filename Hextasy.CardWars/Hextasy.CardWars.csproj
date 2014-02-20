@@ -77,6 +77,7 @@
     <Compile Include="Cards\DragonFemaleCard.cs" />
     <Compile Include="Cards\DragonFlight.cs" />
     <Compile Include="Cards\DragonMaleCard.cs" />
+    <Compile Include="Cards\Effect.cs" />
     <Compile Include="Cards\Gender.cs" />
     <Compile Include="Cards\Monsters\DragonBlackFemaleCard.cs" />
     <Compile Include="Cards\Monsters\DragonBlackMaleCard.cs" />
@@ -122,6 +123,7 @@
     <Compile Include="Cards\Spells\HealCard.cs" />
     <Compile Include="Cards\Spells\LesserHealCard.cs" />
     <Compile Include="Cards\Trait.cs" />
+    <Compile Include="Cards\Traits\HungryDragonTrait.cs" />
     <Compile Include="Cards\Traits\IncreaseBeastAttackTrait.cs" />
     <Compile Include="Cards\Traits\PoisonWeaponTrait.cs" />
     <Compile Include="Cards\Traits\DecreaseBeastAttackTrait.cs" />
@@ -344,6 +346,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Cards\Monsters\DragonAncientRainbow.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Traits\FoodShank.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

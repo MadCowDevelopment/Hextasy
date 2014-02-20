@@ -17,7 +17,7 @@ namespace Hextasy.CardWars.Cards
             Traits = new ObservableCollection<ITrait>();
 
             TraitsWithIcons = new ListCollectionView(Traits);
-            TraitsWithIcons.Filter = o => !string.IsNullOrWhiteSpace((o as Trait).ImageFilename);
+            TraitsWithIcons.Filter = o => (o as IEffect).HasIcon;
 
             Debuffs = new ObservableCollection<IDebuff>();
             IsExhausted = true;
@@ -104,7 +104,7 @@ namespace Hextasy.CardWars.Cards
 
         protected override string ImageFolder
         {
-            get { return @"Images\Cards\Monsters\"; }
+            get { return @"pack://application:,,,/Hextasy.CardWars;component/Images/Cards/Monsters/"; }
         }
 
         public override CardType Type

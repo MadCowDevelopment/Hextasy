@@ -13,7 +13,7 @@ namespace Hextasy.CardWars.Cards.Traits
             get { return "Growth"; }
         }
 
-        public override string ImageFilename
+        protected override string ImageFilename
         {
             get { return string.Empty; }
         }
@@ -43,7 +43,7 @@ namespace Hextasy.CardWars.Cards.Traits
                 }
                 else if (babyDragon.Gender == Gender.Male)
                 {
-                    if(babyDragon.DragonFlight == DragonFlight.Red) grownUpDragon = new DragonRedMaleCard();
+                    if (babyDragon.DragonFlight == DragonFlight.Red) grownUpDragon = new DragonRedMaleCard();
                     else if (babyDragon.DragonFlight == DragonFlight.Black) grownUpDragon = new DragonBlackMaleCard();
                     else if (babyDragon.DragonFlight == DragonFlight.Blue) grownUpDragon = new DragonBlueMaleCard();
                     else if (babyDragon.DragonFlight == DragonFlight.Gold) grownUpDragon = new DragonGoldMaleCard();

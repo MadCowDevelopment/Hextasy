@@ -10,7 +10,7 @@ namespace Hextasy.CardWars.Cards.Traits
             get { return string.Empty; }
         }
 
-        public override string ImageFilename
+        protected override string ImageFilename
         {
             get { return string.Empty; }
         }

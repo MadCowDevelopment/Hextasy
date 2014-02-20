@@ -18,9 +18,9 @@ namespace Hextasy.CardWars.Cards.Traits
             get { return "Poison Weapon"; }
         }
 
-        public override string ImageFilename
+        protected override string ImageFilename
         {
-            get { return @"Images\Cards\Spells\enchant-acid-3.png"; }
+            get { return @"Cards/Spells/enchant-acid-3.png"; }
         }
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)

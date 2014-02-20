@@ -58,17 +58,16 @@ namespace Hextasy.CardWars
             return new Deck("Test",
                 new List<Card>
                 {
-                    new DragonRedFemaleCard(),
-                    new DragonRedMaleCard(),
-                    new DragonBlackFemaleCard(),
                     new DragonBlackMaleCard(),
-                    new DragonBlueFemaleCard(),
-                    new EnchantWeaponFrostCard(),
-                    new EnchantWeaponPoisonCard(),
-                    new EnchantWeaponFrostCard(),
-                    new EnchantWeaponPoisonCard(),
-                    new EnchantWeaponFrostCard(),
-                    new EnchantWeaponPoisonCard()
+                    new DragonBlueMaleCard(),
+                    new DragonGoldMaleCard(),
+                    new DragonGreenMaleCard(),
+                    new DragonRedMaleCard(),
+                    new BarbarianWarlordCard(),
+                    new BarbarianWarlordCard(),
+                    new BarbarianWarlordCard(),
+                    new BarbarianWarlordCard(),
+                    new BarbarianWarlordCard()
                 });
         }
 

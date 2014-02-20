@@ -96,6 +96,7 @@
     <Compile Include="Cards\Monsters\DiviciacusCard.cs" />
     <Compile Include="Cards\Monsters\DragonRedFemaleCard.cs" />
     <Compile Include="Cards\Monsters\SkeletonKingCard.cs" />
+    <Compile Include="Cards\Monsters\SmithCard.cs" />
     <Compile Include="Cards\Race.cs" />
     <Compile Include="Cards\Spells\EnchantWeaponPoisonCard.cs" />
     <Compile Include="Cards\Spells\ArmageddonCard.cs" />
@@ -130,6 +131,7 @@
     <Compile Include="Cards\Traits\HungryDragonRedTrait.cs" />
     <Compile Include="Cards\Traits\HungryDragonTrait.cs" />
     <Compile Include="Cards\Traits\IncreaseBeastAttackTrait.cs" />
+    <Compile Include="Cards\Traits\IncreaseMonsterAttackTrait.cs" />
     <Compile Include="Cards\Traits\PoisonWeaponTrait.cs" />
     <Compile Include="Cards\Traits\DecreaseBeastAttackTrait.cs" />
     <Compile Include="Cards\Traits\SkeletonKingInitiativeTrait.cs" />
@@ -354,6 +356,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Cards\Traits\FoodShank.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Monsters\Smithy01.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Traits\Sword20.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

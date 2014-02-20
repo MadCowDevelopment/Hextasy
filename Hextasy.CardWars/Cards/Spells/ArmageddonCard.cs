@@ -1,7 +1,9 @@
-﻿using Caliburn.Micro;
+﻿using System.ComponentModel.Composition;
+using Caliburn.Micro;
 
 namespace Hextasy.CardWars.Cards.Spells
 {
+    [Export(typeof(Card))]
     public class ArmageddonCard : SpellCard
     {
         public override string Name

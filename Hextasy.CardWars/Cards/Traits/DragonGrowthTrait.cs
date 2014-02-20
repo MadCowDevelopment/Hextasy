@@ -20,7 +20,7 @@ namespace Hextasy.CardWars.Cards.Traits
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
-            var babyDragon = targetTile.Card as BabyDragon;
+            var babyDragon = targetTile.Card as BabyDragonCard;
             if (babyDragon == null)
                 throw new InvalidOperationException("Only baby dragons can be the target of this trait.");
 

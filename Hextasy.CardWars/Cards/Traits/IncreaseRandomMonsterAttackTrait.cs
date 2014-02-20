@@ -2,11 +2,11 @@
 
 namespace Hextasy.CardWars.Cards.Traits
 {
-    public class IncreaseMonsterAttackTrait : Trait, IActivateTraitOnEndTurn
+    public class IncreaseRandomMonsterAttackTrait : Trait, IActivateTraitOnEndTurn
     {
         private int Amount { get; set; }
 
-        public IncreaseMonsterAttackTrait(int amount)
+        public IncreaseRandomMonsterAttackTrait(int amount)
         {
             Amount = amount;
         }

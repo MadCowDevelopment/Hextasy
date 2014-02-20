@@ -105,6 +105,11 @@ namespace Hextasy.CardWars
             get { return OpponentTiles.Where(p => p.Card != null).Select(p => p.Card); }
         }
 
+        internal  IEnumerable<MonsterCard> OpponentCardsExceptKing
+        {
+            get { return OpponentCards.Where(p => !(p is KingCard)); }
+        }
+
         public Player CurrentPlayer
         {
             get { return _currentPlayer; }

@@ -31,7 +31,7 @@ namespace Hextasy.CardWars.Cards.Traits
             var babyDragonflight = RNG.Next(0, 1) == 0 ? father.DragonFlight : mother.DragonFlight;
             var babyGender = RNG.Next(0, 1) == 0 ? Gender.Male : Gender.Female;
 
-            var baby = new BabyDragon(babyDragonflight, babyGender);
+            var baby = new BabyDragonCard(babyDragonflight, babyGender);
             baby.Player = targetTile.Card.Player;
             cardWarsGameLogic.PlayMonsterCard(placeOfBirth, baby);
         }

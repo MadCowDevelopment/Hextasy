@@ -1,24 +1,18 @@
-﻿using System.ComponentModel.Composition;
-using Hextasy.CardWars.Cards.Traits;
+using System.ComponentModel.Composition;
 
 namespace Hextasy.CardWars.Cards.Monsters
 {
     [Export(typeof(Card))]
-    public class DiviciacusCard : MonsterCard
+    public class SkeletonBlademaster : MonsterCard
     {
-        public DiviciacusCard()
-        {
-            Traits.Add(new IncreaseRaceAttackTrait(2, Race.Beast));
-            Traits.Add(new DecreaseRaceAttackTrait(2, Race.Beast));
-        }
         public override string Name
         {
-            get { return "Diviciacus"; }
+            get { return "Skeleton Blademaster"; }
         }
 
         public override string Description
         {
-            get { return "Give all friendly beasts +2 attack."; }
+            get { return string.Empty; }
         }
 
         public override int Cost
@@ -28,12 +22,12 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         protected override string ImageFilename
         {
-            get { return "HumanDruid04.png"; }
+            get { return "SkeletonFighter6.png"; }
         }
 
         public override int BaseAttack
         {
-            get { return 1; }
+            get { return 6; }
         }
 
         public override int BaseHealth
@@ -43,7 +37,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override Race Race
         {
-            get { return Race.Human; }
+            get { return Race.Undead; }
         }
     }
 }

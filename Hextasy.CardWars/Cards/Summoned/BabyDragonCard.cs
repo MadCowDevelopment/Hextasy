@@ -3,12 +3,12 @@ using Hextasy.CardWars.Cards.Traits;
 
 namespace Hextasy.CardWars.Cards.Summoned
 {
-    public class BabyDragon : DragonCard
+    public class BabyDragonCard : DragonCard
     {
         private readonly DragonFlight _dragonFlight;
         private readonly Gender _gender;
 
-        public BabyDragon(DragonFlight dragonFlight, Gender gender)
+        public BabyDragonCard(DragonFlight dragonFlight, Gender gender)
         {
             _dragonFlight = dragonFlight;
             _gender = gender;

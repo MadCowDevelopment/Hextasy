@@ -8,7 +8,7 @@ namespace Hextasy.CardWars.Cards.Traits
     {
         protected override void ActivateStarvingEffect(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
-            var enemyMonsters = cardWarsGameLogic.OpponentCards.ToList();
+            var enemyMonsters = cardWarsGameLogic.OpponentCardsExceptKing.ToList();
             KillEnemyMonster(enemyMonsters);
             KillEnemyMonster(enemyMonsters);
         }

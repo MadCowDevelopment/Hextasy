@@ -19,7 +19,7 @@ namespace Hextasy.CardWars.Cards.Traits
         {
             var neighbours = cardWarsGameLogic.GetAdjacentMonsterTiles(targetTile).ToList();
             neighbours.Where(p => p.Card.Race == Race.Human).Apply(p => p.Card.AttackBonus -= 2);
-            neighbours.Where(p => p.Card.Race == Race.Undead).Apply(p => p.Card.AttackBonus += 2);
+            neighbours.Where(p => p.Card.Race == Race.Undead).Apply(p => p.Card.AttackBonus += 3);
         }
     }
 }

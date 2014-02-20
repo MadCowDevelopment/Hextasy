@@ -13,6 +13,7 @@ namespace Hextasy.CardWars.Cards
     {
         private int _damageTaken;
         private int _attackBonus;
+        private bool _dodgeNextDamage;
 
         protected MonsterCard()
         {
@@ -101,6 +102,11 @@ namespace Hextasy.CardWars.Cards
 
         public void TakeDamage(int attackValue)
         {
+            if (_dodgeNextDamage)
+            {
+                _dodgeNextDamage = false;
+            }
+
             DamageTaken += attackValue;
         }
 
@@ -173,6 +179,11 @@ namespace Hextasy.CardWars.Cards
         public void Kill()
         {
             DamageTaken += Health;
+        }
+
+        public void Dodge()
+        {
+            _dodgeNextDamage = true;
         }
     }
 }

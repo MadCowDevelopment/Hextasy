@@ -95,14 +95,28 @@
     <Compile Include="Cards\Monsters\BatCard.cs" />
     <Compile Include="Cards\Monsters\DiviciacusCard.cs" />
     <Compile Include="Cards\Monsters\DragonRedFemaleCard.cs" />
+    <Compile Include="Cards\Monsters\SkeletonAssassin.cs" />
+    <Compile Include="Cards\Monsters\SkeletonAxeWarrior.cs" />
+    <Compile Include="Cards\Monsters\SkeletonBlademaster.cs" />
+    <Compile Include="Cards\Monsters\SkeletonCommander.cs" />
+    <Compile Include="Cards\Monsters\SkeletonFlailswinger.cs" />
     <Compile Include="Cards\Monsters\SkeletonKingCard.cs" />
+    <Compile Include="Cards\Monsters\SkeletonMage.cs" />
+    <Compile Include="Cards\Monsters\SkeletonMageApprentice.cs" />
+    <Compile Include="Cards\Monsters\SkeletonNecromancer.cs" />
+    <Compile Include="Cards\Monsters\SkeletonProtector.cs" />
+    <Compile Include="Cards\Monsters\SkeletonThief.cs" />
     <Compile Include="Cards\Monsters\SmithCard.cs" />
     <Compile Include="Cards\Race.cs" />
     <Compile Include="Cards\Spells\EnchantWeaponPoisonCard.cs" />
     <Compile Include="Cards\Spells\ArmageddonCard.cs" />
-    <Compile Include="Cards\Summoned\BabyDragon.cs" />
+    <Compile Include="Cards\Summoned\BabyDragonCard.cs" />
+    <Compile Include="Cards\Summoned\SkeletonCard.cs" />
+    <Compile Include="Cards\Traits\BurnEnemyMonstersTrait.cs" />
+    <Compile Include="Cards\Traits\DodgeTrait.cs" />
     <Compile Include="Cards\Traits\DragonBabyTrait.cs" />
     <Compile Include="Cards\Traits\DragonGrowthTrait.cs" />
+    <Compile Include="Cards\Traits\DrawCardOnDodgeTrait.cs" />
     <Compile Include="Cards\Traits\HasteTrait.cs" />
     <Compile Include="Cards\Traits\HealRandomFriendlyMonsterTrait.cs" />
     <Compile Include="Cards\Specials\BlueKingCard.cs" />
@@ -130,11 +144,14 @@
     <Compile Include="Cards\Traits\HungryDragonGreenTrait.cs" />
     <Compile Include="Cards\Traits\HungryDragonRedTrait.cs" />
     <Compile Include="Cards\Traits\HungryDragonTrait.cs" />
-    <Compile Include="Cards\Traits\IncreaseBeastAttackTrait.cs" />
-    <Compile Include="Cards\Traits\IncreaseMonsterAttackTrait.cs" />
+    <Compile Include="Cards\Traits\IncreaseRaceAttackTrait.cs" />
+    <Compile Include="Cards\Traits\IncreaseRaceHealthTrait.cs" />
+    <Compile Include="Cards\Traits\IncreaseRandomMonsterAttackTrait.cs" />
     <Compile Include="Cards\Traits\PoisonWeaponTrait.cs" />
-    <Compile Include="Cards\Traits\DecreaseBeastAttackTrait.cs" />
+    <Compile Include="Cards\Traits\DecreaseRaceAttackTrait.cs" />
     <Compile Include="Cards\Traits\SkeletonKingInitiativeTrait.cs" />
+    <Compile Include="Cards\Traits\SuicideBomberTrait.cs" />
+    <Compile Include="Cards\Traits\SummonUndeadTrait.cs" />
     <Compile Include="CardWarsGame.cs" />
     <Compile Include="CardWarsGameLogic.cs" />
     <Compile Include="CardWarsGameView.xaml.cs">
@@ -362,6 +379,33 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Cards\Traits\Sword20.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Monsters\Skeleton.PNG" />
+    <Resource Include="Images\Cards\Monsters\SkeletonFighter11.PNG" />
+    <Resource Include="Images\Cards\Monsters\SkeletonFighter13.PNG" />
+    <Resource Include="Images\Cards\Monsters\SkeletonFighter5.PNG" />
+    <Resource Include="Images\Cards\Monsters\SkeletonFighter6.PNG" />
+    <Resource Include="Images\Cards\Monsters\SkeletonFighter7.PNG" />
+    <Resource Include="Images\Cards\Monsters\SkeletonFighterLord3.PNG" />
+    <Resource Include="Images\Cards\Monsters\SkeletonFighterLord4.PNG" />
+    <Resource Include="Images\Cards\Monsters\SkeletonMage3.PNG" />
+    <Resource Include="Images\Cards\Monsters\SkeletonMageLord1.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Monsters\SkeletonMage2.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Traits\heal-sky-3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Traits\wind-grasp-sky-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Traits\fire-arrows-3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Traits\link-royal-3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

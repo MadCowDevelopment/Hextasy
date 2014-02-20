@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Linq;
 using Caliburn.Micro;
+using Hextasy.CardWars;
 using Hextasy.CardWars.Cards;
 
 namespace Hextasy.CardWarsViewer

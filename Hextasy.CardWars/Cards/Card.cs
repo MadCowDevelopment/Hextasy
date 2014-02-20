@@ -15,7 +15,7 @@ namespace Hextasy.CardWars.Cards
 
         public string ImageSource { get { return ImageFolder + ImageFilename; } }
 
-        public bool CanBePlayed { get { return Player.RemainingResources >= Cost; } }
+        public bool CanBePlayed { get { return Player != null && Player.RemainingResources >= Cost; } }
 
         public Owner Owner { get { return Player != null ? Player.Owner : Owner.None; } }
 

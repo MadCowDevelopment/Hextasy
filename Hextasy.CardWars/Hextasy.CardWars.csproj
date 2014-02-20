@@ -342,6 +342,9 @@
     <Resource Include="Images\Cards\Monsters\DragonBabyGold.PNG" />
     <Resource Include="Images\Cards\Monsters\DragonBabyGreen.PNG" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Monsters\DragonAncientRainbow.PNG" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Import Project="Fody.targets" />

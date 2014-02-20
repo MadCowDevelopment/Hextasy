@@ -17,7 +17,7 @@ namespace Hextasy.CardWars.Cards.Traits
 
         public override string ImageFilename
         {
-            get { return @"Images\Cards\Monsters\DragonBabyRed.png"; }
+            get { return @"Images\Cards\Monsters\DragonAncientRainbow.png"; }
         }
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)

@@ -3,7 +3,7 @@ using System.ComponentModel.Composition;
 namespace Hextasy.CardWars.Cards.Monsters
 {
     [Export(typeof(Card))]
-    public class DragonGoldFemaleCard : DragonCard
+    public class DragonGoldFemaleCard : DragonFemaleCard
     {
         public override string Name
         {
@@ -38,11 +38,6 @@ namespace Hextasy.CardWars.Cards.Monsters
         public override DragonFlight DragonFlight
         {
             get { return DragonFlight.Gold; }
-        }
-
-        public override Gender Gender
-        {
-            get { return Gender.Female; }
         }
     }
 }

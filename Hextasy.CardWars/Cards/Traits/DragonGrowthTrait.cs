@@ -36,10 +36,18 @@ namespace Hextasy.CardWars.Cards.Traits
                 if (babyDragon.Gender == Gender.Female)
                 {
                     if (babyDragon.DragonFlight == DragonFlight.Red) grownUpDragon = new DragonRedFemaleCard();
+                    else if (babyDragon.DragonFlight == DragonFlight.Black) grownUpDragon = new DragonBlackFemaleCard();
+                    else if (babyDragon.DragonFlight == DragonFlight.Blue) grownUpDragon = new DragonBlueFemaleCard();
+                    else if (babyDragon.DragonFlight == DragonFlight.Gold) grownUpDragon = new DragonGoldFemaleCard();
+                    else if (babyDragon.DragonFlight == DragonFlight.Green) grownUpDragon = new DragonGreenFemaleCard();
                 }
                 else if (babyDragon.Gender == Gender.Male)
                 {
                     if(babyDragon.DragonFlight == DragonFlight.Red) grownUpDragon = new DragonRedMaleCard();
+                    else if (babyDragon.DragonFlight == DragonFlight.Black) grownUpDragon = new DragonBlackMaleCard();
+                    else if (babyDragon.DragonFlight == DragonFlight.Blue) grownUpDragon = new DragonBlueMaleCard();
+                    else if (babyDragon.DragonFlight == DragonFlight.Gold) grownUpDragon = new DragonGoldMaleCard();
+                    else if (babyDragon.DragonFlight == DragonFlight.Green) grownUpDragon = new DragonGreenMaleCard();
                 }
 
                 if (grownUpDragon == null)

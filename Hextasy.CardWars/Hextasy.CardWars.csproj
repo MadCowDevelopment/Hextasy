@@ -74,8 +74,18 @@
     <Compile Include="Cards\Debuffs\FrozenDebuff.cs" />
     <Compile Include="Cards\Debuffs\PoisonDebuff.cs" />
     <Compile Include="Cards\DragonCard.cs" />
+    <Compile Include="Cards\DragonFemaleCard.cs" />
     <Compile Include="Cards\DragonFlight.cs" />
+    <Compile Include="Cards\DragonMaleCard.cs" />
     <Compile Include="Cards\Gender.cs" />
+    <Compile Include="Cards\Monsters\DragonBlackFemaleCard.cs" />
+    <Compile Include="Cards\Monsters\DragonBlackMaleCard.cs" />
+    <Compile Include="Cards\Monsters\DragonBlueFemaleCard.cs" />
+    <Compile Include="Cards\Monsters\DragonBlueMaleCard.cs" />
+    <Compile Include="Cards\Monsters\DragonGoldFemaleCard.cs" />
+    <Compile Include="Cards\Monsters\DragonGoldMaleCard.cs" />
+    <Compile Include="Cards\Monsters\DragonGreenFemaleCard.cs" />
+    <Compile Include="Cards\Monsters\DragonGreenMaleCard.cs" />
     <Compile Include="Cards\Monsters\DragonRedMaleCard.cs" />
     <Compile Include="Cards\Monsters\FireAntCard.cs" />
     <Compile Include="Cards\Monsters\BarbarianPriestCard.cs" />
@@ -317,6 +327,20 @@
     <Resource Include="Images\Cards\Monsters\DragonAdultRed.PNG" />
     <Resource Include="Images\Cards\Monsters\DragonAncientRed.PNG" />
     <Resource Include="Images\Cards\Monsters\DragonBabyRed.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Monsters\DragonAdultBlack.PNG" />
+    <Resource Include="Images\Cards\Monsters\DragonAdultBlue.PNG" />
+    <Resource Include="Images\Cards\Monsters\DragonAdultGold.PNG" />
+    <Resource Include="Images\Cards\Monsters\DragonAdultGreen.PNG" />
+    <Resource Include="Images\Cards\Monsters\DragonAncientBlack.PNG" />
+    <Resource Include="Images\Cards\Monsters\DragonAncientBlue.PNG" />
+    <Resource Include="Images\Cards\Monsters\DragonAncientGold.PNG" />
+    <Resource Include="Images\Cards\Monsters\DragonAncientGreen.PNG" />
+    <Resource Include="Images\Cards\Monsters\DragonBabyBlack.PNG" />
+    <Resource Include="Images\Cards\Monsters\DragonBabyBlue.PNG" />
+    <Resource Include="Images\Cards\Monsters\DragonBabyGold.PNG" />
+    <Resource Include="Images\Cards\Monsters\DragonBabyGreen.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

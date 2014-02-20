@@ -59,8 +59,14 @@ namespace Hextasy.CardWars
                 {
                     new DragonRedFemaleCard(),
                     new DragonRedMaleCard(),
-                    new DragonRedFemaleCard(),
-                    new DragonRedMaleCard()
+                    new DragonBlackFemaleCard(),
+                    new DragonBlackMaleCard(),
+                    new DragonBlueFemaleCard(),
+                    new DragonBlueMaleCard(),
+                    new DragonGoldFemaleCard(),
+                    new DragonGoldMaleCard(),
+                    new DragonGreenFemaleCard(),
+                    new DragonGreenMaleCard()
                 });
         }
 

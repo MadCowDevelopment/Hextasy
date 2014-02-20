@@ -3,11 +3,11 @@
 namespace Hextasy.CardWars.Cards.Monsters
 {
     [Export(typeof(Card))]
-    public class DragonRedFemaleCard : DragonFemaleCard
+    public class DragonGreenFemaleCard : DragonCard
     {
         public override string Name
         {
-            get { return "Zhixia"; }
+            get { return "Zoxska"; }
         }
 
         public override string Description
@@ -22,7 +22,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         protected override string ImageFilename
         {
-            get { return "DragonAdultRed.PNG"; }
+            get { return "DragonAdultGreen.png"; }
         }
 
         public override int BaseAttack
@@ -37,7 +37,12 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override DragonFlight DragonFlight
         {
-            get { return DragonFlight.Red; }
+            get { return DragonFlight.Green; }
+        }
+
+        public override Gender Gender
+        {
+            get { return Gender.Female; }
         }
     }
 }

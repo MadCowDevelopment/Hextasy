@@ -1,4 +1,5 @@
-﻿using Hextasy.CardWars.Cards.Traits;
+﻿using System;
+using Hextasy.CardWars.Cards.Traits;
 
 namespace Hextasy.CardWars.Cards.Summoned
 {
@@ -38,8 +39,16 @@ namespace Hextasy.CardWars.Cards.Summoned
                 {
                     case DragonFlight.Red:
                         return "DragonBabyRed.png";
+                    case DragonFlight.Black:
+                        return "DragonBabyBlack.png";
+                    case DragonFlight.Blue:
+                        return "DragonBabyBlue.png";
+                    case DragonFlight.Gold:
+                        return "DragonBabyGold.png";
+                    case DragonFlight.Green:
+                        return "DragonBabyGreen.png";
                     default:
-                        return "DragonBabyRed.png";
+                        throw new InvalidOperationException("This dragonflight does not have a image resource.");
                 }
             }
         }

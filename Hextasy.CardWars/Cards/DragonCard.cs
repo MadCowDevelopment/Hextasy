@@ -7,7 +7,7 @@ namespace Hextasy.CardWars.Cards
 
         public abstract Gender Gender { get; }
 
-        public override Race Race
+        public override sealed Race Race
         {
             get { return Race.Dragon; }
         }

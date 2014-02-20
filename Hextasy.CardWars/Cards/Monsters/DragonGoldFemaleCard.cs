@@ -1,13 +1,13 @@
-﻿using System.ComponentModel.Composition;
+using System.ComponentModel.Composition;
 
 namespace Hextasy.CardWars.Cards.Monsters
 {
     [Export(typeof(Card))]
-    public class DragonRedFemaleCard : DragonFemaleCard
+    public class DragonGoldFemaleCard : DragonCard
     {
         public override string Name
         {
-            get { return "Zhixia"; }
+            get { return "Xirsa"; }
         }
 
         public override string Description
@@ -22,7 +22,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         protected override string ImageFilename
         {
-            get { return "DragonAdultRed.PNG"; }
+            get { return "DragonAdultGold.png"; }
         }
 
         public override int BaseAttack
@@ -37,7 +37,12 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override DragonFlight DragonFlight
         {
-            get { return DragonFlight.Red; }
+            get { return DragonFlight.Gold; }
+        }
+
+        public override Gender Gender
+        {
+            get { return Gender.Female; }
         }
     }
 }

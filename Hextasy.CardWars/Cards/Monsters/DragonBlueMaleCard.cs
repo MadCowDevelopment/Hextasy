@@ -3,16 +3,16 @@
 namespace Hextasy.CardWars.Cards.Monsters
 {
     [Export(typeof(Card))]
-    public class DragonRedFemaleCard : DragonFemaleCard
+    public class DragonBlueMaleCard : DragonMaleCard
     {
         public override string Name
         {
-            get { return "Zhixia"; }
+            get { return "Squlor"; }
         }
 
         public override string Description
         {
-            get { return "Gives birth to a baby dragon at the start of your turn if there is a male dragon present."; }
+            get { return ""; }
         }
 
         public override int Cost
@@ -22,12 +22,12 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         protected override string ImageFilename
         {
-            get { return "DragonAdultRed.PNG"; }
+            get { return "DragonAncientBlue.png"; }
         }
 
         public override int BaseAttack
         {
-            get { return 3; }
+            get { return 7; }
         }
 
         public override int BaseHealth
@@ -37,7 +37,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override DragonFlight DragonFlight
         {
-            get { return DragonFlight.Red; }
+            get { return DragonFlight.Blue; }
         }
     }
 }

@@ -3,7 +3,7 @@
 namespace Hextasy.CardWars.Cards.Monsters
 {
     [Export(typeof(Card))]
-    public class DragonRedMaleCard : DragonCard
+    public class DragonRedMaleCard : DragonMaleCard
     {
         public override string Name
         {
@@ -38,11 +38,6 @@ namespace Hextasy.CardWars.Cards.Monsters
         public override DragonFlight DragonFlight
         {
             get { return DragonFlight.Red; }
-        }
-
-        public override Gender Gender
-        {
-            get { return Gender.Male; }
         }
     }
 }

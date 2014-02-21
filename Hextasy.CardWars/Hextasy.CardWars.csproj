@@ -166,6 +166,10 @@
     <Compile Include="CardWarsTile.cs" />
     <Compile Include="CurrentPlayerChangedEventArgs.cs" />
     <Compile Include="Deck.cs" />
+    <Compile Include="DeckBuilders\AllDeckFactory.cs" />
+    <Compile Include="DeckBuilders\DeckFactory.cs" />
+    <Compile Include="DeckBuilders\TestDeckFactory.cs" />
+    <Compile Include="DeckBuilders\UndeadDeckFactory.cs" />
     <Compile Include="NullToVisibilityConverter.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PlayerControl.xaml.cs">

@@ -18,7 +18,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override string Description
         {
-            get { return "Initiative: Gives -2 attack to all adjacent humans and +3 attack to all adjacent undead."; }
+            get { return "Initiative: Gives -2 attack to all adjacent enemies and +3 attack to all adjacent undead."; }
         }
 
         public override int Cost

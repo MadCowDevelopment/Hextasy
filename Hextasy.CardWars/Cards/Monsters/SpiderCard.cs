@@ -1,49 +1,49 @@
-using System.ComponentModel.Composition;
+﻿using System.ComponentModel.Composition;
 using Hextasy.CardWars.Cards.Traits;
 
 namespace Hextasy.CardWars.Cards.Monsters
 {
     [Export(typeof(Card))]
-    public class SkeletonAxeWarrior : MonsterCard
+    public class SpiderCard : MonsterCard
     {
-        public SkeletonAxeWarrior()
+        public SpiderCard()
         {
-            Traits.Add(new DefenderTrait());
+            Traits.Add(new PoisonWeaponTrait(2, 3));
         }
 
         public override string Name
         {
-            get { return "Skeleton Axe Warrior"; }
+            get { return "Black Widow"; }
         }
 
         public override string Description
         {
-            get { return string.Empty; }
+            get { return "Poisons defenders for 2 damage for 3 turns."; }
         }
 
         public override int Cost
         {
-            get { return 4; }
+            get { return 3; }
         }
 
         protected override string ImageFilename
         {
-            get { return "SkeletonFighter13.png"; }
+            get { return "SpiderBlack.PNG"; }
         }
 
         public override int BaseAttack
         {
-            get { return 2; }
+            get { return 0; }
         }
 
         public override int BaseHealth
         {
-            get { return 5; }
+            get { return 3; }
         }
 
         public override Race Race
         {
-            get { return Race.Undead; }
+            get { return Race.Beast; }
         }
     }
 }

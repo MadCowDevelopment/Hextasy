@@ -4,31 +4,31 @@ using Hextasy.CardWars.Cards.Traits;
 namespace Hextasy.CardWars.Cards.Monsters
 {
     [Export(typeof(Card))]
-    public class SkeletonMage : MonsterCard
+    public class SkeletonProtectorCard : MonsterCard
     {
-        public SkeletonMage()
+        public SkeletonProtectorCard()
         {
-            Traits.Add(new BurnEnemyMonstersTrait(2));
+            Traits.Add(new DefenderTrait());
         }
 
         public override string Name
         {
-            get { return "Skeleton Mage"; }
+            get { return "Skeleton Protector"; }
         }
 
         public override string Description
         {
-            get { return "Burns all enemy monsters for 2 fire damage at the start of your turn"; }
+            get { return string.Empty; }
         }
 
         public override int Cost
         {
-            get { return 7; }
+            get { return 2; }
         }
 
         protected override string ImageFilename
         {
-            get { return "SkeletonMageLord1.png"; }
+            get { return "SkeletonFighter7.png"; }
         }
 
         public override int BaseAttack
@@ -38,7 +38,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override int BaseHealth
         {
-            get { return 5; }
+            get { return 2; }
         }
 
         public override Race Race

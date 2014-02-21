@@ -1,10 +1,17 @@
 ﻿using System.ComponentModel.Composition;
+using Hextasy.CardWars.Cards.Traits;
 
 namespace Hextasy.CardWars.Cards.Monsters
 {
     [Export(typeof(Card))]
     public class WarElephantCard : MonsterCard
     {
+        public WarElephantCard()
+        {
+            Traits.Add(new IncreaseRaceAttackTrait(2, Race.Beast));
+            Traits.Add(new DecreaseRaceAttackTrait(2, Race.Beast));
+        }
+
         public override string Name
         {
             get { return "War Elephant"; }
@@ -12,7 +19,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override string Description
         {
-            get { return string.Empty; }
+            get { return "Gives all friendly beasts +2 attack."; }
         }
 
         public override int BaseAttack
@@ -32,7 +39,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override int Cost
         {
-            get { return 7; }
+            get { return 9; }
         }
 
         protected override string ImageFilename

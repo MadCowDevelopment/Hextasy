@@ -4,19 +4,16 @@ using Hextasy.CardWars.Cards.Traits;
 namespace Hextasy.CardWars.Cards.Monsters
 {
     [Export(typeof(Card))]
-    public class SkeletonCommander : MonsterCard
+    public class BrownBearCard : MonsterCard
     {
-        public SkeletonCommander()
+        public BrownBearCard()
         {
-            Traits.Add(new IncreaseRaceAttackTrait(2, Race.Undead));
-            Traits.Add(new IncreaseRaceHealthTrait(2, Race.Undead));
-            Traits.Add(new DecreaseRaceAttackTrait(2, Race.Undead));
-            Traits.Add(new DecreaseRaceHealthTrait(2, Race.Undead));
+            Traits.Add(new DefenderTrait());
         }
 
         public override string Name
         {
-            get { return "Skeleton Commander"; }
+            get { return "Brown Bear"; }
         }
 
         public override string Description
@@ -26,27 +23,27 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override int Cost
         {
-            get { return 8; }
+            get { return 7; }
         }
 
         protected override string ImageFilename
         {
-            get { return "SkeletonFighterLord3.png"; }
+            get { return "BrownBear.PNG"; }
         }
 
         public override int BaseAttack
         {
-            get { return 4; }
+            get { return 6; }
         }
 
         public override int BaseHealth
         {
-            get { return 4; }
+            get { return 6; }
         }
 
         public override Race Race
         {
-            get { return Race.Undead; }
+            get { return Race.Beast; }
         }
     }
 }

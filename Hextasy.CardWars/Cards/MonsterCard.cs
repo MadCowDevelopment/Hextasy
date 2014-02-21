@@ -150,6 +150,7 @@ namespace Hextasy.CardWars.Cards
 
         public void AddTrait(ITrait trait)
         {
+            if (trait.IsUnique && Traits.Any(p => p.GetType() == trait.GetType())) return;
             Traits.Add(trait);
         }
 
@@ -184,6 +185,11 @@ namespace Hextasy.CardWars.Cards
         public void Dodge()
         {
             _dodgeNextDamage = true;
+        }
+
+        public void RemoveTrait<T>() where T : Trait
+        {
+            Traits.RemoveMany(Traits.OfType<T>());
         }
     }
 }

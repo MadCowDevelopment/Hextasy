@@ -29,10 +29,10 @@ namespace Hextasy.CardWars.Cards.Traits
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
-            var allBeastCardsOfCurrentPlayer =
+            var allCardsOfCurrentPlayerWithRace =
                 cardWarsGameLogic.AllCards.Where(p => p.Player.Owner == targetTile.Owner && p.Race == Race);
             if (_buffedCards == null) _buffedCards = new List<MonsterCard>();
-            var beastsToBuff = allBeastCardsOfCurrentPlayer.Except(_buffedCards).ToList();
+            var beastsToBuff = allCardsOfCurrentPlayerWithRace.Except(_buffedCards).ToList();
             beastsToBuff.Apply(p => p.AttackBonus += Amount);
             _buffedCards.AddRange(beastsToBuff);
         }

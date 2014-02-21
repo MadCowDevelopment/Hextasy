@@ -79,6 +79,7 @@
     <Compile Include="Cards\DragonMaleCard.cs" />
     <Compile Include="Cards\Effect.cs" />
     <Compile Include="Cards\Gender.cs" />
+    <Compile Include="Cards\Monsters\BrownBearCard.cs" />
     <Compile Include="Cards\Monsters\DragonBlackFemaleCard.cs" />
     <Compile Include="Cards\Monsters\DragonBlackMaleCard.cs" />
     <Compile Include="Cards\Monsters\DragonBlueFemaleCard.cs" />
@@ -95,28 +96,34 @@
     <Compile Include="Cards\Monsters\BatCard.cs" />
     <Compile Include="Cards\Monsters\DiviciacusCard.cs" />
     <Compile Include="Cards\Monsters\DragonRedFemaleCard.cs" />
-    <Compile Include="Cards\Monsters\SkeletonAssassin.cs" />
-    <Compile Include="Cards\Monsters\SkeletonAxeWarrior.cs" />
-    <Compile Include="Cards\Monsters\SkeletonBlademaster.cs" />
-    <Compile Include="Cards\Monsters\SkeletonCommander.cs" />
-    <Compile Include="Cards\Monsters\SkeletonFlailswinger.cs" />
+    <Compile Include="Cards\Monsters\HorseCard.cs" />
+    <Compile Include="Cards\Monsters\SkeletonAssassinCard.cs" />
+    <Compile Include="Cards\Monsters\SkeletonAxeWarriorCard.cs" />
+    <Compile Include="Cards\Monsters\SkeletonBlademasterCard.cs" />
+    <Compile Include="Cards\Monsters\SkeletonCommanderCard.cs" />
+    <Compile Include="Cards\Monsters\SkeletonFlailswingerCard.cs" />
     <Compile Include="Cards\Monsters\SkeletonKingCard.cs" />
-    <Compile Include="Cards\Monsters\SkeletonMage.cs" />
-    <Compile Include="Cards\Monsters\SkeletonMageApprentice.cs" />
-    <Compile Include="Cards\Monsters\SkeletonNecromancer.cs" />
-    <Compile Include="Cards\Monsters\SkeletonProtector.cs" />
-    <Compile Include="Cards\Monsters\SkeletonThief.cs" />
+    <Compile Include="Cards\Monsters\SkeletonMageCard.cs" />
+    <Compile Include="Cards\Monsters\SkeletonMageApprenticeCard.cs" />
+    <Compile Include="Cards\Monsters\SkeletonNecromancerCard.cs" />
+    <Compile Include="Cards\Monsters\SkeletonProtectorCard.cs" />
+    <Compile Include="Cards\Monsters\SkeletonThiefCard.cs" />
     <Compile Include="Cards\Monsters\SmithCard.cs" />
+    <Compile Include="Cards\Monsters\SpiderCard.cs" />
     <Compile Include="Cards\Race.cs" />
     <Compile Include="Cards\Spells\EnchantWeaponPoisonCard.cs" />
     <Compile Include="Cards\Spells\ArmageddonCard.cs" />
     <Compile Include="Cards\Summoned\BabyDragonCard.cs" />
     <Compile Include="Cards\Summoned\SkeletonCard.cs" />
+    <Compile Include="Cards\Traits\AdjacentMonsterHaveHasteTrait.cs" />
+    <Compile Include="Cards\Traits\AdjacentMonsterLoseHasteTrait.cs" />
     <Compile Include="Cards\Traits\BurnEnemyMonstersTrait.cs" />
+    <Compile Include="Cards\Traits\CounterAttackOnDodgeTrait.cs" />
     <Compile Include="Cards\Traits\DodgeTrait.cs" />
     <Compile Include="Cards\Traits\DragonBabyTrait.cs" />
     <Compile Include="Cards\Traits\DragonGrowthTrait.cs" />
     <Compile Include="Cards\Traits\DrawCardOnDodgeTrait.cs" />
+    <Compile Include="Cards\Traits\DrawCardTrait.cs" />
     <Compile Include="Cards\Traits\HasteTrait.cs" />
     <Compile Include="Cards\Traits\HealRandomFriendlyMonsterTrait.cs" />
     <Compile Include="Cards\Specials\BlueKingCard.cs" />
@@ -410,6 +417,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Cards\Traits\link-royal-3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Monsters\BrownBear.PNG" />
+    <Resource Include="Images\Cards\Monsters\Horse01.PNG" />
+    <Resource Include="Images\Cards\Monsters\SpiderBlack.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

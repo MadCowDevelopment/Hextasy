@@ -19,7 +19,7 @@
               <extendedColumn:ExtendedDataGridTextColumn Header="Health" AllowAutoFilter="True" Binding="{Binding Health}" />
               <extendedColumn:ExtendedDataGridTextColumn Header="Race" AllowAutoFilter="True" Binding="{Binding Race}" />
               <extendedColumn:ExtendedDataGridTextColumn Header="Description" AllowAutoFilter="True" Binding="{Binding Description}" />
-              <extendedColumn:ExtendedDataGridTextColumn Header="Traits" AllowAutoFilter="True" Width="*" Binding="{Binding TraitsDescription}" />
+              <extendedColumn:ExtendedDataGridTextColumn Header="Traits" AllowAutoFilter="True" Width="*" Binding="{Binding Traits}" />
             </extendedGridControl:ExtendedDataGrid.Columns>
           </extendedGridControl:ExtendedDataGrid>
         </ScrollViewer>

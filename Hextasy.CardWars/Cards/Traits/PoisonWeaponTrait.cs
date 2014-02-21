@@ -2,7 +2,7 @@
 
 namespace Hextasy.CardWars.Cards.Traits
 {
-    public class PoisonWeaponTrait : Trait, IActivateTraitOnAttack
+    public class PoisonWeaponTrait : Trait, IActivateTraitOnAttack, IActivateTraitOnDefense
     {
         private int Amount { get; set; }
         private int Duration { get; set; }

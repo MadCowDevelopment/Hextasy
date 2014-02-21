@@ -14,12 +14,48 @@ namespace Hextasy.CardWarsViewer
         [ImportingConstructor]
         public MainWindowViewModel([ImportMany]IEnumerable<Card> cards)
         {
-            MonsterCards = new ObservableCollection<MonsterCard>(cards.OfType<MonsterCard>().OrderBy(p=>p.Cost));
-            SpellCards = new ObservableCollection<SpellCard>(cards.OfType<SpellCard>().OrderBy(p=>p.Cost));
+            MonsterCards =
+                new ObservableCollection<Monster>(
+                    cards.OfType<MonsterCard>().OrderBy(p => p.Cost).Select(p => new Monster
+                    {
+                        Cost = p.Cost,
+                        Name = p.Name,
+                        Attack = p.Attack,
+                        Health = p.Health,
+                        Race = p.Race,
+                        Description = p.Description,
+                        Traits = p.TraitsDescription
+                    }));
+
+            SpellCards =
+                new ObservableCollection<Spell>(cards.OfType<SpellCard>().OrderBy(p => p.Cost).Select(p => new Spell
+                {
+                    Cost = p.Cost,
+                    Name = p.Name,
+                    Description = p.Description
+                }));
         }
 
-        public ObservableCollection<MonsterCard> MonsterCards {get; set; }
+        public ObservableCollection<Monster> MonsterCards {get; set; }
 
-        public ObservableCollection<SpellCard> SpellCards { get; set; }
+        public ObservableCollection<Spell> SpellCards { get; set; }
+    }
+
+    public class Monster
+    {
+        public int Cost { get; set; }
+        public string Name { get; set; }
+        public int Attack { get; set; }
+        public int Health { get; set; }
+        public Race Race { get; set; }
+        public string Description { get; set; }
+        public string Traits { get; set; }
+    }
+
+    public class Spell
+    {
+        public int Cost { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
     }
 }

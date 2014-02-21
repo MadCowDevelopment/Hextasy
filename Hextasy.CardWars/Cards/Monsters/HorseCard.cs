@@ -1,34 +1,35 @@
-using System.ComponentModel.Composition;
+﻿using System.ComponentModel.Composition;
 using Hextasy.CardWars.Cards.Traits;
 
 namespace Hextasy.CardWars.Cards.Monsters
 {
     [Export(typeof(Card))]
-    public class SkeletonNecromancer : MonsterCard
+    public class HorseCard : MonsterCard
     {
-        public SkeletonNecromancer()
+        public HorseCard()
         {
-            Traits.Add(new SummonUndeadTrait());
+            Traits.Add(new AdjacentMonsterHaveHasteTrait());
+            Traits.Add(new AdjacentMonsterLoseHasteTrait());
         }
 
         public override string Name
         {
-            get { return "Skeleton Necromancer"; }
+            get { return "Horse"; }
         }
 
         public override string Description
         {
-            get { return string.Empty; }
+            get { return "Gives all adjacent friendly monsters 'Haste'."; }
         }
 
         public override int Cost
         {
-            get { return 4; }
+            get { return 3; }
         }
 
         protected override string ImageFilename
         {
-            get { return "SkeletonMage3.png"; }
+            get { return "Horse01.PNG"; }
         }
 
         public override int BaseAttack
@@ -38,12 +39,12 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override int BaseHealth
         {
-            get { return 5; }
+            get { return 3; }
         }
 
         public override Race Race
         {
-            get { return Race.Undead; }
+            get { return Race.Beast; }
         }
     }
 }

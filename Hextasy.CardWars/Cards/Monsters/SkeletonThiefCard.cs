@@ -4,16 +4,16 @@ using Hextasy.CardWars.Cards.Traits;
 namespace Hextasy.CardWars.Cards.Monsters
 {
     [Export(typeof(Card))]
-    public class SkeletonProtector : MonsterCard
+    public class SkeletonThiefCard : MonsterCard
     {
-        public SkeletonProtector()
+        public SkeletonThiefCard()
         {
-            Traits.Add(new DefenderTrait());
+            Traits.Add(new HasteTrait());
         }
 
         public override string Name
         {
-            get { return "Skeleton Protector"; }
+            get { return "Skeleton Thief"; }
         }
 
         public override string Description
@@ -23,17 +23,17 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override int Cost
         {
-            get { return 2; }
+            get { return 4; }
         }
 
         protected override string ImageFilename
         {
-            get { return "SkeletonFighter7.png"; }
+            get { return "SkeletonFighter5.png"; }
         }
 
         public override int BaseAttack
         {
-            get { return 1; }
+            get { return 5; }
         }
 
         public override int BaseHealth

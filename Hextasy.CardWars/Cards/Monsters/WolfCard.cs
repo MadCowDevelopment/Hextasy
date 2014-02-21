@@ -8,7 +8,8 @@ namespace Hextasy.CardWars.Cards.Monsters
     {
         public WolfCard()
         {
-            Traits.Add(new HasteTrait());
+            Traits.Add(new DodgeTrait());
+            Traits.Add(new CounterAttackOnDodgeTrait());
         }
 
         public override string Name
@@ -18,7 +19,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override string Description
         {
-            get { return string.Empty; }
+            get { return "Attacks a random enemy monster when dodging."; }
         }
 
         public override int BaseAttack
@@ -38,7 +39,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override int Cost
         {
-            get { return 2; }
+            get { return 5; }
         }
 
         protected override string ImageFilename

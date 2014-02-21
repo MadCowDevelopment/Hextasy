@@ -1,44 +1,44 @@
-﻿using System.ComponentModel.Composition;
+using System.ComponentModel.Composition;
 using Hextasy.CardWars.Cards.Traits;
 
 namespace Hextasy.CardWars.Cards.Monsters
 {
     [Export(typeof(Card))]
-    public class SkeletonKingCard : MonsterCard
+    public class SkeletonAxeWarriorCard : MonsterCard
     {
-        public SkeletonKingCard()
+        public SkeletonAxeWarriorCard()
         {
-            Traits.Add(new SkeletonKingInitiativeTrait());
+            Traits.Add(new DefenderTrait());
         }
 
         public override string Name
         {
-            get { return "Skeleton King"; }
+            get { return "Skeleton Axe Warrior"; }
         }
 
         public override string Description
         {
-            get { return "Initiative: Gives -2 attack to all adjacent humans and +3 attack to all adjacent undead."; }
+            get { return string.Empty; }
         }
 
         public override int Cost
         {
-            get { return 9; }
+            get { return 4; }
         }
 
         protected override string ImageFilename
         {
-            get { return "WraithKing.png"; }
+            get { return "SkeletonFighter13.png"; }
         }
 
         public override int BaseAttack
         {
-            get { return 4; }
+            get { return 2; }
         }
 
         public override int BaseHealth
         {
-            get { return 6; }
+            get { return 5; }
         }
 
         public override Race Race

@@ -1,6 +1,6 @@
 ﻿namespace Hextasy.CardWars.Cards.Debuffs
 {
-    public class PoisonDebuff : Debuff, IActivateDebuffOnStartTurn
+    public class PoisonDebuff : Debuff, IActivateDebuffOnEndTurn
     {
         private int Amount { get; set; }
         private int Duration { get; set; }

@@ -17,28 +17,28 @@ namespace Hextasy.CardWars.DeckBuilders
             {
                 return new List<Card>
                 {
-                    new SkeletonAssassin(),
-                    new SkeletonAxeWarrior(),
-                    new SkeletonBlademaster(),
-                    new SkeletonCommander(),
-                    new SkeletonFlailswinger(),
+                    new SkeletonAssassinCard(),
+                    new SkeletonAxeWarriorCard(),
+                    new SkeletonBlademasterCard(),
+                    new SkeletonCommanderCard(),
+                    new SkeletonFlailswingerCard(),
                     new SkeletonKingCard(),
-                    new SkeletonMage(),
-                    new SkeletonMageApprentice(),
-                    new SkeletonNecromancer(),
-                    new SkeletonProtector(),
-                    new SkeletonThief(),
-                    new SkeletonAssassin(),
-                    new SkeletonAxeWarrior(),
-                    new SkeletonBlademaster(),
-                    new SkeletonCommander(),
-                    new SkeletonFlailswinger(),
+                    new SkeletonMageCard(),
+                    new SkeletonMageApprenticeCard(),
+                    new SkeletonNecromancerCard(),
+                    new SkeletonProtectorCard(),
+                    new SkeletonThiefCard(),
+                    new SkeletonAssassinCard(),
+                    new SkeletonAxeWarriorCard(),
+                    new SkeletonBlademasterCard(),
+                    new SkeletonCommanderCard(),
+                    new SkeletonFlailswingerCard(),
                     new SkeletonKingCard(),
-                    new SkeletonMage(),
-                    new SkeletonMageApprentice(),
-                    new SkeletonNecromancer(),
-                    new SkeletonProtector(),
-                    new SkeletonThief()
+                    new SkeletonMageCard(),
+                    new SkeletonMageApprenticeCard(),
+                    new SkeletonNecromancerCard(),
+                    new SkeletonProtectorCard(),
+                    new SkeletonThiefCard()
                 };
             }
         }

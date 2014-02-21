@@ -13,12 +13,12 @@ namespace Hextasy.CardWars.Cards.Spells
 
         public override string Description
         {
-            get { return "Enchants a weapon to poison defenders for 1 damage for 3 turns."; }
+            get { return "Enchants a weapon to poison opponents for 1 damage for 3 turns."; }
         }
 
         public override int Cost
         {
-            get { return 3; }
+            get { return 2; }
         }
 
         protected override string ImageFilename

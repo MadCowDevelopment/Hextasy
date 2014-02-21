@@ -18,7 +18,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override string Description
         {
-            get { return "Poisons defenders for 2 damage for 3 turns."; }
+            get { return "Poisons opponents for 2 damage for 3 turns."; }
         }
 
         public override int Cost

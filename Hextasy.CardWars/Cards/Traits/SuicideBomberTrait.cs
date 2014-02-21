@@ -2,7 +2,7 @@
 
 namespace Hextasy.CardWars.Cards.Traits
 {
-    public class SuicideBomberTrait : Trait
+    public class SuicideBomberTrait : Trait, IActivateTraitOnStartTurn
     {
         private int Amount { get; set; }
 

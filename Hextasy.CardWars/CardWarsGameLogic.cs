@@ -53,10 +53,10 @@ namespace Hextasy.CardWars
 
         public void Mulligan()
         {
-            if(CanMulligan) CurrentPlayer.Mulligan();
+            if (CanMulligan) CurrentPlayer.Mulligan();
         }
 
-        private int Turn { get { return (int)Math.Ceiling(_turns/2.0); } }
+        private int Turn { get { return (int)Math.Ceiling(_turns / 2.0); } }
 
         protected override CardWarsTile CreateTile(int column, int row)
         {
@@ -115,7 +115,7 @@ namespace Hextasy.CardWars
             get { return OpponentTiles.Where(p => p.Card != null).Select(p => p.Card); }
         }
 
-        internal  IEnumerable<MonsterCard> OpponentCardsExceptKing
+        internal IEnumerable<MonsterCard> OpponentCardsExceptKing
         {
             get { return OpponentCards.Where(p => !(p is KingCard)); }
         }
@@ -157,7 +157,7 @@ namespace Hextasy.CardWars
             CurrentPlayer.RemainingResources -= selectedCard.Cost;
             CurrentCards.Remove(selectedCard);
             selectedCard.Traits.OfType<IActivateTraitOnCardPlayed>().Apply(trait => trait.Activate(this, tile));
-            ActivateTraits<IActivateTraitOnAnyCardPlayed>(Tiles);
+            ActivateTraits<IActivateTraitOnAnyCardPlayed>(Tiles, tile);
         }
 
         public void PlaySpellCard(CardWarsTile tile, SpellCard selectedCard)
@@ -202,7 +202,7 @@ namespace Hextasy.CardWars
         public void PreviewRemoveCard(CardWarsTile tile, MonsterCard selectedCard)
         {
             if (selectedCard == null) return;
-            if (tile.Card != selectedCard) return;
+            if (tile.Card == null || tile.Card != selectedCard) return;
             tile.Card = null;
         }
 
@@ -238,6 +238,12 @@ namespace Hextasy.CardWars
         {
             ActivateTraits<IActivateTraitOnStartTurn>(CurrentPlayerTiles);
             ActivateDebuffs<IActivateDebuffOnStartTurn>(CurrentPlayerTiles);
+        }
+
+        private void ActivateTraits<T>(IEnumerable<CardWarsTile> tiles, CardWarsTile targetTile) where T : ITrait
+        {
+            tiles.Where(p => p.Card != null && p.Card.Traits.OfType<T>().Any()).ToList().Apply(
+                tile => tile.Card.Traits.OfType<T>().ToList().Apply(trait => trait.Activate(this, targetTile)));
         }
 
         private void ActivateTraits<T>(IEnumerable<CardWarsTile> tiles) where T : ITrait

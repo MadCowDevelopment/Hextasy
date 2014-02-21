@@ -4,11 +4,11 @@ namespace Hextasy.CardWars.Cards.Traits
 {
     public class TurnDeadTrait : Trait, IActivateTraitOnAnyCardDied
     {
-        private Player Player { get; set; }
+        private Card Card { get; set; }
 
-        public TurnDeadTrait(Player player)
+        public TurnDeadTrait(Card card)
         {
-            Player = player;
+            Card = card;
         }
 
         public override string Name
@@ -24,7 +24,7 @@ namespace Hextasy.CardWars.Cards.Traits
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
             var skeleton = new SkeletonCard();
-            skeleton.Player = Player;
+            skeleton.Player = Card.Player;
             targetTile.AssignCard(skeleton);
         }
     }

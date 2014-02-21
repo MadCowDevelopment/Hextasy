@@ -8,7 +8,7 @@ namespace Hextasy.CardWars.Cards.Monsters
     {
         public SkeletonDragonCard()
         {
-            Traits.Add(new TurnDeadTrait(Player));
+            Traits.Add(new TurnDeadTrait(this));
         }
 
         public override string Name

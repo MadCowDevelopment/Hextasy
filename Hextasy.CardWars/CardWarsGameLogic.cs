@@ -29,8 +29,18 @@ namespace Hextasy.CardWars
             Player1.Died += (sender, args) => RaiseFinished(new GameFinishedEventArgs());
             Player2.Died += (sender, args) => RaiseFinished(new GameFinishedEventArgs());
 
+            Tiles.Apply(p => p.CardDied += OnCardDied);
+
             CurrentPlayer = Player1;
             CurrentPlayer.PrepareTurn();
+        }
+
+        private void OnCardDied(object sender, CardDiedEventArgs e)
+        {
+            AllCards.SelectMany(p => p.Traits)
+                .OfType<IActivateTraitOnAnyCardDied>()
+                .ToList()
+                .Apply(p => p.Activate(this, e.TileOnWhichTheCardDied));
         }
 
         public ObservableCollection<Card> CurrentCards

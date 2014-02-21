@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel;
 using System.Linq;
 using Caliburn.Micro;
@@ -30,6 +31,14 @@ namespace Hextasy.CardWars
             }
         }
 
+        public event EventHandler<CardDiedEventArgs> CardDied;
+
+        private void RaiseCardDied()
+        {
+            var handler = CardDied;
+            if (handler != null) handler(this, new CardDiedEventArgs(this));
+        }
+
         private void CardPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             var card = sender as MonsterCard;
@@ -58,6 +67,7 @@ namespace Hextasy.CardWars
             Card = null;
             IsFixed = false;
             IsValidTarget = false;
+            RaiseCardDied();
         }
 
         public void Attack(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)

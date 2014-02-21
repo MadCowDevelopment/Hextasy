@@ -69,6 +69,7 @@
     <Compile Include="CardControl.xaml.cs">
       <DependentUpon>CardControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CardDiedEventArgs.cs" />
     <Compile Include="Cards\CardType.cs" />
     <Compile Include="Cards\Debuff.cs" />
     <Compile Include="Cards\Debuffs\FrozenDebuff.cs" />
@@ -115,6 +116,7 @@
     <Compile Include="Cards\Spells\ArmageddonCard.cs" />
     <Compile Include="Cards\Summoned\BabyDragonCard.cs" />
     <Compile Include="Cards\Summoned\SkeletonCard.cs" />
+    <Compile Include="Cards\Monsters\SkeletonDragonCard.cs" />
     <Compile Include="Cards\Traits\AdjacentMonsterHaveHasteTrait.cs" />
     <Compile Include="Cards\Traits\AdjacentMonsterLoseHasteTrait.cs" />
     <Compile Include="Cards\Traits\BurnEnemyMonstersTrait.cs" />
@@ -159,6 +161,7 @@
     <Compile Include="Cards\Traits\SkeletonKingInitiativeTrait.cs" />
     <Compile Include="Cards\Traits\SuicideBomberTrait.cs" />
     <Compile Include="Cards\Traits\SummonUndeadTrait.cs" />
+    <Compile Include="Cards\Traits\TurnDeadTrait.cs" />
     <Compile Include="CardWarsGame.cs" />
     <Compile Include="CardWarsGameLogic.cs" />
     <Compile Include="CardWarsGameView.xaml.cs">
@@ -423,6 +426,9 @@
     <Resource Include="Images\Cards\Monsters\BrownBear.PNG" />
     <Resource Include="Images\Cards\Monsters\Horse01.PNG" />
     <Resource Include="Images\Cards\Monsters\SpiderBlack.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Monsters\DragonGiantBone.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

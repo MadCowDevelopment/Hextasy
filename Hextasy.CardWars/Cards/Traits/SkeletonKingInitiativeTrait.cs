@@ -5,6 +5,10 @@ namespace Hextasy.CardWars.Cards.Traits
 {
     public class SkeletonKingInitiativeTrait : Trait, IActivateTraitOnCardPlayed
     {
+        public SkeletonKingInitiativeTrait(MonsterCard cardThatHasTrait) : base(cardThatHasTrait)
+        {
+        }
+
         public override string Name
         {
             get { return string.Empty; }

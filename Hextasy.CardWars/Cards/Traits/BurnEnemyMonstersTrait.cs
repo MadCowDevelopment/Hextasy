@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Caliburn.Micro;
+﻿using Caliburn.Micro;
 
 namespace Hextasy.CardWars.Cards.Traits
 {
@@ -11,7 +6,8 @@ namespace Hextasy.CardWars.Cards.Traits
     {
         private int Amount { get; set; }
 
-        public BurnEnemyMonstersTrait(int amount)
+        public BurnEnemyMonstersTrait(MonsterCard cardThatHasTrait, int amount)
+            : base(cardThatHasTrait)
         {
             Amount = amount;
         }

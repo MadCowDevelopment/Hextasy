@@ -4,6 +4,10 @@ namespace Hextasy.CardWars.Cards.Traits
 {
     public class FrostWeaponTrait : Trait, IActivateTraitOnAttack
     {
+        public FrostWeaponTrait(MonsterCard cardThatHasTrait) : base(cardThatHasTrait)
+        {
+        }
+
         public override string Name
         {
             get { return "Frozen Weapon"; }

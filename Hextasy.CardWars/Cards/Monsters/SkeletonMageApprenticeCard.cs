@@ -8,7 +8,7 @@ namespace Hextasy.CardWars.Cards.Monsters
     {
         public SkeletonMageApprenticeCard()
         {
-            Traits.Add(new SuicideBomberTrait(2));
+            Traits.Add(new SuicideBomberTrait(this, 2));
         }
 
         public override string Name

@@ -125,11 +125,19 @@ namespace Hextasy.CardWars
             get { return _currentPlayer; }
             private set
             {
-                if (_currentPlayer != null) _currentPlayer.IsActive = false;
+                if (_currentPlayer == value) return;
+                if (_currentPlayer != null)
+                {
+                    _currentPlayer.IsActive = false;
+                    OpponentPlayer = _currentPlayer;
+                }
+
                 _currentPlayer = value;
                 _currentPlayer.IsActive = true;
             }
         }
+
+        public Player OpponentPlayer { get; set; }
 
         public CardWarsTile SelectedTile
         {

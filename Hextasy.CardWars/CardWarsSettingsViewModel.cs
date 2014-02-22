@@ -25,8 +25,8 @@ namespace Hextasy.CardWars
                 Player2Decks.Add(deckBuilder.Create());
             }
 
-            Player1Deck = Player1Decks[0];
-            Player2Deck = Player2Decks[0];
+            Player1Deck = Player1Decks[1];
+            Player2Deck = Player2Decks[3];
         }
 
         public string Player1 { get; set; }

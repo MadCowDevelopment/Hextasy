@@ -5,6 +5,11 @@ namespace Hextasy.CardWars.Cards.Traits
 {
     public abstract class HungryDragonTrait : Trait, IActivateTraitOnStartTurn
     {
+        protected HungryDragonTrait(MonsterCard cardThatHasTrait)
+            : base(cardThatHasTrait)
+        {
+        }
+
         public override string Name
         {
             get { return "Hungry Dragon"; }

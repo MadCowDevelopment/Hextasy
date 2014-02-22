@@ -42,7 +42,7 @@ namespace Hextasy.Framework
         {
             var itemsToRemoveTemp = itemsToRemove.ToList();
             var listCopy = list.ToList();
-            for (int i = list.Count - 1; i >= 0; i++)
+            for (int i = list.Count - 1; i >= 0; i--)
             {
                 if (itemsToRemoveTemp.Any(p => p.Equals(listCopy[i]))) list.Remove(listCopy[i]);
             }

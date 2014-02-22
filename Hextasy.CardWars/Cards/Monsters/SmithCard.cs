@@ -8,7 +8,7 @@ namespace Hextasy.CardWars.Cards.Monsters
     {
         public SmithCard()
         {
-            Traits.Add(new IncreaseRandomMonsterAttackTrait(2));
+            Traits.Add(new IncreaseRandomMonsterAttackTrait(this, 2));
         }
 
         public override string Name

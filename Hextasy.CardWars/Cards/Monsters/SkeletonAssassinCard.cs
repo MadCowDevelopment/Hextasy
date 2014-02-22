@@ -8,9 +8,9 @@ namespace Hextasy.CardWars.Cards.Monsters
     {
         public SkeletonAssassinCard()
         {
-            Traits.Add(new HasteTrait());
-            Traits.Add(new DodgeTrait());
-            Traits.Add(new DrawCardOnDodgeTrait());
+            Traits.Add(new HasteTrait(this));
+            Traits.Add(new DodgeTrait(this));
+            Traits.Add(new DrawCardOnDodgeTrait(this));
         }
 
         public override string Name
@@ -20,7 +20,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override string Description
         {
-            get { return "50% chance to dodge any attack. Draw card on dodge."; }
+            get { return "66% chance to dodge. Draw card on dodge."; }
         }
 
         public override int Cost

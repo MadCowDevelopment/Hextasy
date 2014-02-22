@@ -8,7 +8,7 @@ namespace Hextasy.CardWars.Cards.Monsters
     {
         public BarbarianPriestCard()
         {
-            Traits.Add(new HealRandomFriendlyMonsterTrait());
+            Traits.Add(new HealRandomFriendlyMonsterTrait(this));
         }
 
         public override string Name

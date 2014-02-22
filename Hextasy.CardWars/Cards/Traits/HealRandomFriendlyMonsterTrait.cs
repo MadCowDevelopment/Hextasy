@@ -5,6 +5,10 @@ namespace Hextasy.CardWars.Cards.Traits
 {
     public class HealRandomFriendlyMonsterTrait : Trait, IActivateTraitOnStartTurn
     {
+        public HealRandomFriendlyMonsterTrait(MonsterCard cardThatHasTrait) : base(cardThatHasTrait)
+        {
+        }
+
         public override string Name
         {
             get { return "Heal friendly monster"; }

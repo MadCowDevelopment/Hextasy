@@ -7,7 +7,8 @@ namespace Hextasy.CardWars.Cards.Traits
         private int Amount { get; set; }
         private int Duration { get; set; }
 
-        public PoisonWeaponTrait(int amount, int duration)
+        public PoisonWeaponTrait(MonsterCard cardThatHasTrait, int amount, int duration)
+            : base(cardThatHasTrait)
         {
             Amount = amount;
             Duration = duration;

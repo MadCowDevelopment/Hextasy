@@ -8,7 +8,7 @@ namespace Hextasy.CardWars.Cards.Monsters
     {
         public SkeletonMageCard()
         {
-            Traits.Add(new BurnEnemyMonstersTrait(2));
+            Traits.Add(new BurnEnemyMonstersTrait(this, 2));
         }
 
         public override string Name
@@ -18,7 +18,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override string Description
         {
-            get { return "Burns all enemy monsters for 2 fire damage at the start of your turn"; }
+            get { return "Burns all enemy monsters for 2 fire damage at the start of your turn."; }
         }
 
         public override int Cost

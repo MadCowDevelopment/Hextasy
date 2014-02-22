@@ -6,7 +6,7 @@ namespace Hextasy.CardWars.Cards
     {
         protected DragonFemaleCard()
         {
-            Traits.Add(new DragonBabyTrait());
+            Traits.Add(new DragonBabyTrait(this));
         }
 
         public override sealed Gender Gender

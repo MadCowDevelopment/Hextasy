@@ -8,7 +8,7 @@ namespace Hextasy.CardWars.Cards.Monsters
     {
         public SpiderCard()
         {
-            Traits.Add(new PoisonWeaponTrait(2, 3));
+            Traits.Add(new PoisonWeaponTrait(this, 2, 3));
         }
 
         public override string Name
@@ -23,7 +23,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override int Cost
         {
-            get { return 3; }
+            get { return 4; }
         }
 
         protected override string ImageFilename

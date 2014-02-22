@@ -8,7 +8,7 @@ namespace Hextasy.CardWars.Cards.Monsters
     {
         public SkeletonKingCard()
         {
-            Traits.Add(new SkeletonKingInitiativeTrait());
+            Traits.Add(new SkeletonKingInitiativeTrait(this));
         }
 
         public override string Name

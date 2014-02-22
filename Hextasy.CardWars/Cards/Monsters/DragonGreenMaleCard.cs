@@ -8,7 +8,7 @@ namespace Hextasy.CardWars.Cards.Monsters
     {
         public DragonGreenMaleCard()
         {
-            Traits.Add(new HungryDragonGreenTrait());
+            Traits.Add(new HungryDragonGreenTrait(this));
         }
 
         public override string Name

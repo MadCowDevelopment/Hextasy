@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Hextasy.CardWars.Cards.Summoned;
+﻿using Hextasy.CardWars.Cards.Summoned;
 using Hextasy.Framework;
 
 namespace Hextasy.CardWars.Cards.Traits
 {
     public class SummonUndeadTrait : Trait, IActivateTraitOnStartTurn
     {
+        public SummonUndeadTrait(MonsterCard cardThatHasTrait)
+            : base(cardThatHasTrait)
+        {
+        }
+
         public override string Name
         {
             get { return "Summon Undead"; }
@@ -25,7 +25,7 @@ namespace Hextasy.CardWars.Cards.Traits
             var randomTile = cardWarsGameLogic.GetAdjacentFreeTiles(targetTile).RandomOrDefault();
             if (randomTile == null) return;
             var skeleton = new SkeletonCard();
-            skeleton.Player = targetTile.Card.Player;
+            skeleton.Player = CardThatHasTrait.Player;
             randomTile.AssignCard(skeleton);
         }
     }

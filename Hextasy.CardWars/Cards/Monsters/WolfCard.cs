@@ -8,8 +8,9 @@ namespace Hextasy.CardWars.Cards.Monsters
     {
         public WolfCard()
         {
-            Traits.Add(new DodgeTrait());
-            Traits.Add(new CounterAttackOnDodgeTrait());
+            Traits.Add(new DodgeTrait(this));
+            Traits.Add(new HasteTrait(this));
+            Traits.Add(new CounterAttackOnDodgeTrait(this));
         }
 
         public override string Name
@@ -19,17 +20,17 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override string Description
         {
-            get { return "Attacks a random enemy monster when dodging."; }
+            get { return "66% chance to dodge. Attacks a random enemy monster when dodging."; }
         }
 
         public override int BaseAttack
         {
-            get { return 3; }
+            get { return 4; }
         }
 
         public override int BaseHealth
         {
-            get { return 1; }
+            get { return 2; }
         }
 
         public override Race Race

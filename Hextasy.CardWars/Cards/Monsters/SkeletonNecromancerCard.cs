@@ -8,7 +8,7 @@ namespace Hextasy.CardWars.Cards.Monsters
     {
         public SkeletonNecromancerCard()
         {
-            Traits.Add(new SummonUndeadTrait());
+            Traits.Add(new SummonUndeadTrait(this));
         }
 
         public override string Name
@@ -38,7 +38,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override int BaseHealth
         {
-            get { return 5; }
+            get { return 4; }
         }
 
         public override Race Race

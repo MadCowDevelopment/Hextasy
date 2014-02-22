@@ -2,6 +2,10 @@
 {
     public class HasteTrait : Trait, IActivateTraitOnCardPlayed
     {
+        public HasteTrait(MonsterCard cardThatHasTrait) : base(cardThatHasTrait)
+        {
+        }
+
         public override string Name
         {
             get { return "Haste"; }
@@ -14,7 +18,7 @@
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
-            targetTile.Card.IsExhausted = false;
+            CardThatHasTrait.IsExhausted = false;
         }
     }
 }

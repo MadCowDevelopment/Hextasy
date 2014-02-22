@@ -8,7 +8,7 @@ namespace Hextasy.CardWars.Cards.Monsters
     {
         public SkeletonThiefCard()
         {
-            Traits.Add(new HasteTrait());
+            Traits.Add(new StealCardTrait(this));
         }
 
         public override string Name
@@ -18,12 +18,12 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override string Description
         {
-            get { return string.Empty; }
+            get { return "Steals a random card from your opponent's hand at the start of your turn."; }
         }
 
         public override int Cost
         {
-            get { return 4; }
+            get { return 2; }
         }
 
         protected override string ImageFilename
@@ -33,12 +33,12 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override int BaseAttack
         {
-            get { return 5; }
+            get { return 2; }
         }
 
         public override int BaseHealth
         {
-            get { return 2; }
+            get { return 1; }
         }
 
         public override Race Race

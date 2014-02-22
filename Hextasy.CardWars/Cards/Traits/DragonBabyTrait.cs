@@ -6,6 +6,11 @@ namespace Hextasy.CardWars.Cards.Traits
 {
     public class DragonBabyTrait : Trait, IActivateTraitOnStartTurn
     {
+        public DragonBabyTrait(MonsterCard cardThatHasTrait)
+            : base(cardThatHasTrait)
+        {
+        }
+
         public override string Name
         {
             get { return "Fertility"; }
@@ -27,12 +32,12 @@ namespace Hextasy.CardWars.Cards.Traits
             var placeOfBirth = freeTilesAroundMother.RandomOrDefault();
             if (placeOfBirth == null) return;
 
-            var mother = targetTile.Card as DragonCard;
+            var mother = CardThatHasTrait as DragonCard;
             var babyDragonflight = RNG.Next(0, 1) == 0 ? father.DragonFlight : mother.DragonFlight;
             var babyGender = RNG.Next(0, 1) == 0 ? Gender.Male : Gender.Female;
 
             var baby = new BabyDragonCard(babyDragonflight, babyGender);
-            baby.Player = targetTile.Card.Player;
+            baby.Player = CardThatHasTrait.Player;
             cardWarsGameLogic.PlayMonsterCard(placeOfBirth, baby);
         }
     }

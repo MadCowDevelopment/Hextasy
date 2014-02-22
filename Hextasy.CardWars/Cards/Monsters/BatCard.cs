@@ -8,7 +8,7 @@ namespace Hextasy.CardWars.Cards.Monsters
     {
         public BatCard()
         {
-            Traits.Add(new HasteTrait());
+            Traits.Add(new HasteTrait(this));
         }
 
         public override string Name

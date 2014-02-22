@@ -11,7 +11,8 @@ namespace Hextasy.CardWars.Cards.Traits
 
         private List<MonsterCard> _buffedCards;
 
-        public IncreaseRaceHealthTrait(int amount, Race race)
+        public IncreaseRaceHealthTrait(MonsterCard cardThatHasTrait, int amount, Race race)
+            : base(cardThatHasTrait)
         {
             Amount = amount;
             Race = race;
@@ -30,7 +31,8 @@ namespace Hextasy.CardWars.Cards.Traits
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
             var allBeastCardsOfCurrentPlayer =
-                cardWarsGameLogic.AllCards.Where(p => p.Player.Owner == targetTile.Owner && p.Race == Race);
+                cardWarsGameLogic.AllCards.Where(
+                    p => p.Player.Owner == targetTile.Owner && p != CardThatHasTrait && p.Race == Race);
             if (_buffedCards == null) _buffedCards = new List<MonsterCard>();
             var beastsToBuff = allBeastCardsOfCurrentPlayer.Except(_buffedCards).ToList();
             beastsToBuff.Apply(p => p.HealthBonus += Amount);

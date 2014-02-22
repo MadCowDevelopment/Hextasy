@@ -28,7 +28,7 @@ namespace Hextasy.CardWars.Cards.Spells
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
-            targetTile.Card.AddTrait(new FrostWeaponTrait());
+            targetTile.Card.AddTrait(new FrostWeaponTrait(targetTile.Card));
         }
     }
 }

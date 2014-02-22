@@ -5,6 +5,11 @@ namespace Hextasy.CardWars.Cards.Traits
 {
     public class HungryDragonGoldTrait : HungryDragonTrait
     {
+        public HungryDragonGoldTrait(MonsterCard cardThatHasTrait)
+            : base(cardThatHasTrait)
+        {
+        }
+
         protected override void ActivateStarvingEffect(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
         }

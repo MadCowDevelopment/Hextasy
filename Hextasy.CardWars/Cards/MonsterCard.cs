@@ -191,5 +191,10 @@ namespace Hextasy.CardWars.Cards
         {
             Traits.RemoveMany(Traits.OfType<T>());
         }
+
+        public void ClearTraits()
+        {
+            Traits.Clear();
+        }
     }
 }

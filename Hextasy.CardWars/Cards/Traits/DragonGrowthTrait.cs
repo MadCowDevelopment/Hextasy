@@ -8,6 +8,11 @@ namespace Hextasy.CardWars.Cards.Traits
     {
         private int _turnsGrown;
 
+        public DragonGrowthTrait(MonsterCard cardThatHasTrait)
+            : base(cardThatHasTrait)
+        {
+        }
+
         public override string Name
         {
             get { return "Growth"; }
@@ -20,7 +25,7 @@ namespace Hextasy.CardWars.Cards.Traits
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
-            var babyDragon = targetTile.Card as BabyDragonCard;
+            var babyDragon = CardThatHasTrait as BabyDragonCard;
             if (babyDragon == null)
                 throw new InvalidOperationException("Only baby dragons can be the target of this trait.");
 

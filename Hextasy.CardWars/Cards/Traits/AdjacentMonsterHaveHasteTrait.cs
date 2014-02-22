@@ -4,11 +4,9 @@ namespace Hextasy.CardWars.Cards.Traits
 {
     public class AdjacentMonsterHaveHasteTrait : Trait, IActivateTraitOnAnyCardPlayed
     {
-        private MonsterCard CardWithTrait { get; set; }
-
-        public AdjacentMonsterHaveHasteTrait(MonsterCard cardWithTrait)
+        public AdjacentMonsterHaveHasteTrait(MonsterCard cardThatHasTrait)
+            : base(cardThatHasTrait)
         {
-            CardWithTrait = cardWithTrait;
         }
 
         public override string Name
@@ -25,14 +23,14 @@ namespace Hextasy.CardWars.Cards.Traits
         {
             if (targetTile.Card == null) return;
 
-            var tileWithTrait = cardWarsGameLogic.Tiles.SingleOrDefault(p => p.Card == CardWithTrait);
+            var tileWithTrait = cardWarsGameLogic.Tiles.SingleOrDefault(p => p.Card == CardThatHasTrait);
             var allAdjacentTilesWithoutHaste =
                 cardWarsGameLogic.GetAdjacentMonsterTiles(tileWithTrait)
-                    .Where(p => p.Card.Player == CardWithTrait.Player && !p.Card.Traits.OfType<HasteTrait>().Any());
+                    .Where(p => p.Card.Player == CardThatHasTrait.Player && !p.Card.Traits.OfType<HasteTrait>().Any());
 
             if (allAdjacentTilesWithoutHaste.Contains(targetTile))
             {
-                targetTile.Card.AddTrait(new HasteTrait());
+                targetTile.Card.AddTrait(new HasteTrait(targetTile.Card));
                 targetTile.Card.IsExhausted = false;
             }
         }

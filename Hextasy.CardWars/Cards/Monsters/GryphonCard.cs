@@ -1,49 +1,49 @@
-using System.ComponentModel.Composition;
+﻿using System.ComponentModel.Composition;
 using Hextasy.CardWars.Cards.Traits;
 
 namespace Hextasy.CardWars.Cards.Monsters
 {
     [Export(typeof(Card))]
-    public class SkeletonProtectorCard : MonsterCard
+    public class GryphonCard : MonsterCard
     {
-        public SkeletonProtectorCard()
+        public GryphonCard()
         {
-            Traits.Add(new DefenderTrait(this));
+            Traits.Add(new RemoveTraitsFromRandomEnemyTrait(this));
         }
 
         public override string Name
         {
-            get { return "Skeleton Protector"; }
+            get { return "Gryphon"; }
         }
 
         public override string Description
         {
-            get { return string.Empty; }
+            get { return "Removes all traits from a random enemy at the end of your turn."; }
         }
 
         public override int Cost
         {
-            get { return 2; }
+            get { return 8; }
         }
 
         protected override string ImageFilename
         {
-            get { return "SkeletonFighter7.png"; }
+            get { return "Gryphon.png"; }
         }
 
         public override int BaseAttack
         {
-            get { return 1; }
+            get { return 5; }
         }
 
         public override int BaseHealth
         {
-            get { return 2; }
+            get { return 8; }
         }
 
         public override Race Race
         {
-            get { return Race.Undead; }
+            get { return Race.Beast; }
         }
     }
 }

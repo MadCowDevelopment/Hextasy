@@ -97,7 +97,9 @@
     <Compile Include="Cards\Monsters\BatCard.cs" />
     <Compile Include="Cards\Monsters\DiviciacusCard.cs" />
     <Compile Include="Cards\Monsters\DragonRedFemaleCard.cs" />
+    <Compile Include="Cards\Monsters\GryphonCard.cs" />
     <Compile Include="Cards\Monsters\HorseCard.cs" />
+    <Compile Include="Cards\Monsters\MuleCard.cs" />
     <Compile Include="Cards\Monsters\SkeletonAssassinCard.cs" />
     <Compile Include="Cards\Monsters\SkeletonAxeWarriorCard.cs" />
     <Compile Include="Cards\Monsters\SkeletonBlademasterCard.cs" />
@@ -121,10 +123,12 @@
     <Compile Include="Cards\Traits\AdjacentMonsterLoseHasteTrait.cs" />
     <Compile Include="Cards\Traits\BurnEnemyMonstersTrait.cs" />
     <Compile Include="Cards\Traits\CounterAttackOnDodgeTrait.cs" />
+    <Compile Include="Cards\Traits\DecreaseRaceHealthTrait.cs" />
     <Compile Include="Cards\Traits\DodgeTrait.cs" />
     <Compile Include="Cards\Traits\DragonBabyTrait.cs" />
     <Compile Include="Cards\Traits\DragonGrowthTrait.cs" />
     <Compile Include="Cards\Traits\DrawCardOnDodgeTrait.cs" />
+    <Compile Include="Cards\Traits\DrawCardOnEndTurnTrait.cs" />
     <Compile Include="Cards\Traits\DrawCardTrait.cs" />
     <Compile Include="Cards\Traits\HasteTrait.cs" />
     <Compile Include="Cards\Traits\HealRandomFriendlyMonsterTrait.cs" />
@@ -158,7 +162,9 @@
     <Compile Include="Cards\Traits\IncreaseRandomMonsterAttackTrait.cs" />
     <Compile Include="Cards\Traits\PoisonWeaponTrait.cs" />
     <Compile Include="Cards\Traits\DecreaseRaceAttackTrait.cs" />
+    <Compile Include="Cards\Traits\RemoveTraitsFromRandomEnemyTrait.cs" />
     <Compile Include="Cards\Traits\SkeletonKingInitiativeTrait.cs" />
+    <Compile Include="Cards\Traits\StealCardTrait.cs" />
     <Compile Include="Cards\Traits\SuicideBomberTrait.cs" />
     <Compile Include="Cards\Traits\SummonUndeadTrait.cs" />
     <Compile Include="Cards\Traits\TurnDeadTrait.cs" />
@@ -429,6 +435,13 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Cards\Monsters\DragonGiantBone.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Monsters\Gryphon.PNG" />
+    <Resource Include="Images\Cards\Monsters\Mule.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Traits\CoinsGoldSmall.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

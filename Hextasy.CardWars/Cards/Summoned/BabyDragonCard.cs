@@ -13,7 +13,7 @@ namespace Hextasy.CardWars.Cards.Summoned
             _dragonFlight = dragonFlight;
             _gender = gender;
 
-            Traits.Add(new DragonGrowthTrait());
+            Traits.Add(new DragonGrowthTrait(this));
         }
 
         public override string Name

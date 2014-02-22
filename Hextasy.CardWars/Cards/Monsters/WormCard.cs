@@ -1,10 +1,16 @@
 ﻿using System.ComponentModel.Composition;
+using Hextasy.CardWars.Cards.Traits;
 
 namespace Hextasy.CardWars.Cards.Monsters
 {
     [Export(typeof(Card))]
     public class WormCard : MonsterCard
     {
+        public WormCard()
+        {
+            Traits.Add(new PoisonWeaponTrait(this, 1, 2));
+        }
+
         public override string Name
         {
             get { return "Worm"; }
@@ -12,7 +18,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override string Description
         {
-            get { return string.Empty; }
+            get { return "Poisons opponents for 1 damage for 2 turns."; }
         }
 
         public override int BaseAttack
@@ -32,7 +38,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override int Cost
         {
-            get { return 1; }
+            get { return 2; }
         }
 
         protected override string ImageFilename

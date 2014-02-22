@@ -8,7 +8,7 @@ namespace Hextasy.CardWars.Cards.Monsters
     {
         public BrownBearCard()
         {
-            Traits.Add(new DefenderTrait());
+            Traits.Add(new DefenderTrait(this));
         }
 
         public override string Name

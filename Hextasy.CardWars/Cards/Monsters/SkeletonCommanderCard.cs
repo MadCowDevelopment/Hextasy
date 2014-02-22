@@ -8,10 +8,10 @@ namespace Hextasy.CardWars.Cards.Monsters
     {
         public SkeletonCommanderCard()
         {
-            Traits.Add(new IncreaseRaceAttackTrait(2, Race.Undead));
-            Traits.Add(new IncreaseRaceHealthTrait(2, Race.Undead));
-            Traits.Add(new DecreaseRaceAttackTrait(2, Race.Undead));
-            Traits.Add(new DecreaseRaceHealthTrait(2, Race.Undead));
+            Traits.Add(new IncreaseRaceAttackTrait(this, 2, Race.Undead));
+            Traits.Add(new IncreaseRaceHealthTrait(this, 2, Race.Undead));
+            Traits.Add(new DecreaseRaceAttackTrait(this, 2, Race.Undead));
+            Traits.Add(new DecreaseRaceHealthTrait(this, 2, Race.Undead));
         }
 
         public override string Name

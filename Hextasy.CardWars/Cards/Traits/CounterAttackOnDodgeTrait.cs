@@ -5,6 +5,10 @@ namespace Hextasy.CardWars.Cards.Traits
 {
     public class CounterAttackOnDodgeTrait : Trait
     {
+        public CounterAttackOnDodgeTrait(MonsterCard cardThatHasTrait) : base(cardThatHasTrait)
+        {
+        }
+
         public override string Name
         {
             get { return "Counterattack"; }
@@ -18,8 +22,9 @@ namespace Hextasy.CardWars.Cards.Traits
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
             var randomOpponent =
-                cardWarsGameLogic.AllCards.Where(p => p.Player != targetTile.Card.Player).RandomOrDefault();
-            randomOpponent.TakeDamage(targetTile.Card.Attack);
+                cardWarsGameLogic.AllCards.Where(p => p.Player != CardThatHasTrait.Player).RandomOrDefault();
+            if (randomOpponent == null) return;
+            randomOpponent.TakeDamage(CardThatHasTrait.Attack);
         }
     }
 }

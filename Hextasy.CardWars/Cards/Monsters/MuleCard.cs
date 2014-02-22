@@ -1,34 +1,34 @@
-using System.ComponentModel.Composition;
+﻿using System.ComponentModel.Composition;
 using Hextasy.CardWars.Cards.Traits;
 
 namespace Hextasy.CardWars.Cards.Monsters
 {
     [Export(typeof(Card))]
-    public class SkeletonProtectorCard : MonsterCard
+    public class MuleCard : MonsterCard
     {
-        public SkeletonProtectorCard()
+        public MuleCard()
         {
-            Traits.Add(new DefenderTrait(this));
+            Traits.Add(new DrawCardOnEndTurnTrait(this));
         }
 
         public override string Name
         {
-            get { return "Skeleton Protector"; }
+            get { return "Packmule"; }
         }
 
         public override string Description
         {
-            get { return string.Empty; }
+            get { return "Draw 1 card at the end of your turn."; }
         }
 
         public override int Cost
         {
-            get { return 2; }
+            get { return 3; }
         }
 
         protected override string ImageFilename
         {
-            get { return "SkeletonFighter7.png"; }
+            get { return "Mule.png"; }
         }
 
         public override int BaseAttack
@@ -38,12 +38,12 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override int BaseHealth
         {
-            get { return 2; }
+            get { return 3; }
         }
 
         public override Race Race
         {
-            get { return Race.Undead; }
+            get { return Race.Beast; }
         }
     }
 }

@@ -6,7 +6,8 @@ namespace Hextasy.CardWars.Cards.Traits
     {
         private int Amount { get; set; }
 
-        public IncreaseRandomMonsterAttackTrait(int amount)
+        public IncreaseRandomMonsterAttackTrait(MonsterCard cardThatHasTrait, int amount)
+            : base(cardThatHasTrait)
         {
             Amount = amount;
         }

@@ -8,7 +8,7 @@ namespace Hextasy.CardWars.Cards.Monsters
     {
         public FireAntCard()
         {
-            Traits.Add(new DrawCardTrait(1));
+            Traits.Add(new DrawCardTrait(this, 1));
         }
 
         public override string Name

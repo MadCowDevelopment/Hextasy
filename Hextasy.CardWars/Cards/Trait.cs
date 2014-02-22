@@ -3,10 +3,17 @@ namespace Hextasy.CardWars.Cards
 {
     public abstract class Trait : Effect, ITrait
     {
+        protected Trait(MonsterCard cardThatHasTrait)
+        {
+            CardThatHasTrait = cardThatHasTrait;
+        }
+
         public virtual bool IsUnique
         {
             get { return true; }
         }
+
+        protected MonsterCard CardThatHasTrait { get; private set; }
 
         public abstract void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile);
     }

@@ -6,7 +6,8 @@ namespace Hextasy.CardWars.Cards.Traits
     {
         private int Amount { get; set; }
 
-        public SuicideBomberTrait(int amount)
+        public SuicideBomberTrait(MonsterCard cardThatHasTrait, int amount)
+            : base(cardThatHasTrait)
         {
             Amount = amount;
         }
@@ -18,13 +19,13 @@ namespace Hextasy.CardWars.Cards.Traits
 
         protected override string ImageFilename
         {
-            get { return "link-royal-3.png"; }
+            get { return "Cards/Traits/link-royal-3.png"; }
         }
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
             cardWarsGameLogic.GetAdjacentMonsterTiles(targetTile).Apply(p => p.Card.TakeFireDamage(Amount));
-            targetTile.Card.Kill();
+            CardThatHasTrait.Kill();
         }
     }
 }

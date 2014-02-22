@@ -8,8 +8,8 @@ namespace Hextasy.CardWars.Cards.Monsters
     {
         public DiviciacusCard()
         {
-            Traits.Add(new IncreaseRaceAttackTrait(2, Race.Beast));
-            Traits.Add(new DecreaseRaceAttackTrait(2, Race.Beast));
+            Traits.Add(new IncreaseRaceAttackTrait(this, 2, Race.Beast));
+            Traits.Add(new DecreaseRaceAttackTrait(this, 2, Race.Beast));
         }
         public override string Name
         {

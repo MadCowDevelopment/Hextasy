@@ -28,7 +28,7 @@ namespace Hextasy.CardWars.Cards.Spells
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
-            targetTile.Card.AddTrait(new PoisonWeaponTrait(1, 3));
+            targetTile.Card.AddTrait(new PoisonWeaponTrait(targetTile.Card, 1, 3));
         }
     }
 }

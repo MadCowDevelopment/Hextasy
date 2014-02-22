@@ -2,6 +2,10 @@
 {
     public class DefenderTrait : Trait
     {
+        public DefenderTrait(MonsterCard cardThatHasTrait) : base(cardThatHasTrait)
+        {
+        }
+
         public override string Name
         {
             get { return "Defender"; }

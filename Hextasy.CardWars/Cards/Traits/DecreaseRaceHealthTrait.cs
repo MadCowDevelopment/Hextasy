@@ -3,12 +3,12 @@ using Caliburn.Micro;
 
 namespace Hextasy.CardWars.Cards.Traits
 {
-    public class DecreaseRaceAttackTrait : Trait, IActivateTraitOnDeath
+    public class DecreaseRaceHealthTrait : Trait, IActivateTraitOnDeath
     {
         private int Amount { get; set; }
         private Race Race { get; set; }
 
-        public DecreaseRaceAttackTrait(MonsterCard cardThatHasTrait, int amount, Race race)
+        public DecreaseRaceHealthTrait(MonsterCard cardThatHasTrait, int amount, Race race)
             : base(cardThatHasTrait)
         {
             Amount = amount;
@@ -30,7 +30,7 @@ namespace Hextasy.CardWars.Cards.Traits
             var beastCardsToDebuff =
                 cardWarsGameLogic.AllCards.Where(
                     p => p.Player.Owner == targetTile.Owner && p != targetTile.Card && p.Race == Race);
-            beastCardsToDebuff.Apply(p => p.AttackBonus -= Amount);
+            beastCardsToDebuff.Apply(p => p.HealthBonus -= Amount);
         }
     }
 }

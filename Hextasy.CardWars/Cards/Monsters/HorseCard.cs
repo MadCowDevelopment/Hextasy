@@ -9,7 +9,7 @@ namespace Hextasy.CardWars.Cards.Monsters
         public HorseCard()
         {
             Traits.Add(new AdjacentMonsterHaveHasteTrait(this));
-            Traits.Add(new AdjacentMonsterLoseHasteTrait());
+            Traits.Add(new AdjacentMonsterLoseHasteTrait(this));
         }
 
         public override string Name

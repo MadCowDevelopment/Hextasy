@@ -8,7 +8,7 @@ namespace Hextasy.CardWars.Cards.Monsters
     {
         public BasiliskCard()
         {
-            Traits.Add(new DefenderTrait());
+            Traits.Add(new DefenderTrait(this));
         }
 
         public override string Name

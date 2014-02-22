@@ -1,16 +1,15 @@
 ﻿
 namespace Hextasy.CardWars.Cards.Traits
 {
-    public class DrawCardOnDodgeTrait : Trait, IActivateTraitOnDodge
+    public class DrawCardOnEndTurnTrait : Trait, IActivateTraitOnStartTurn
     {
-        public DrawCardOnDodgeTrait(MonsterCard cardThatHasTrait)
-            : base(cardThatHasTrait)
+        public DrawCardOnEndTurnTrait(MonsterCard cardThatHasTrait) : base(cardThatHasTrait)
         {
         }
 
         public override string Name
         {
-            get { return "Draw card on dodge"; }
+            get { return "Draw card at the end of your turn."; }
         }
 
         protected override string ImageFilename

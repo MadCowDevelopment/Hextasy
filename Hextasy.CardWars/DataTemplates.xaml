@@ -19,7 +19,7 @@
       <Button.ToolTip>
         <ToolTip Visibility="{Binding Card, Converter={StaticResource NullToVisibilityConverter}}" 
                  BorderThickness="0" Background="Transparent">
-          <Border Width="350" Height="54" Background="BurlyWood" 
+          <Border Width="420" Height="54" Background="BurlyWood" 
                   CornerRadius="10" BorderBrush="Black" BorderThickness="2">
             <cardWars:CardControl DataContext="{Binding Card}"/>
           </Border>

@@ -169,7 +169,6 @@
               <Border.Background>
                 <ImageBrush  ImageSource="{Binding ImageSource}" Stretch="Fill"/>
               </Border.Background>
-              <Image/>
             </Border>
           </Grid>
         </DataTemplate>

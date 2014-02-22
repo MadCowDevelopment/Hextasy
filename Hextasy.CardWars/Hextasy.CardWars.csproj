@@ -443,6 +443,15 @@
   <ItemGroup>
     <Resource Include="Images\Cards\Traits\CoinsGoldSmall.PNG" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Traits\haste_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Traits\Axe09.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Traits\drawcard.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Import Project="Fody.targets" />

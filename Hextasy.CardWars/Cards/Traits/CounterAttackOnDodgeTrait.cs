@@ -5,7 +5,8 @@ namespace Hextasy.CardWars.Cards.Traits
 {
     public class CounterAttackOnDodgeTrait : Trait
     {
-        public CounterAttackOnDodgeTrait(MonsterCard cardThatHasTrait) : base(cardThatHasTrait)
+        public CounterAttackOnDodgeTrait(MonsterCard cardThatHasTrait)
+            : base(cardThatHasTrait)
         {
         }
 
@@ -16,7 +17,7 @@ namespace Hextasy.CardWars.Cards.Traits
 
         protected override string ImageFilename
         {
-            get { return string.Empty; }
+            get { return "Axe09.png"; }
         }
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)

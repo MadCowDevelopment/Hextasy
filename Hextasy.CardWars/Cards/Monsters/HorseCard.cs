@@ -19,7 +19,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override string Description
         {
-            get { return "Gives all adjacent friendly monsters 'Haste'."; }
+            get { return "Friendly monsters played adjacent to this get 'Haste'."; }
         }
 
         public override int Cost

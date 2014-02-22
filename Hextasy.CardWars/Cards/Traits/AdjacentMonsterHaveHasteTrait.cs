@@ -11,12 +11,12 @@ namespace Hextasy.CardWars.Cards.Traits
 
         public override string Name
         {
-            get { return "Adjacent monsters have 'Haste'."; }
+            get { return "Friendly monsters played adjacent to this get 'Haste'."; }
         }
 
         protected override string ImageFilename
         {
-            get { return string.Empty; }
+            get { return "Cards/Traits/haste_add.png"; }
         }
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)

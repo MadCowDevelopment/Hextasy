@@ -220,22 +220,6 @@
                 <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1" ScaleY="1"/>
               </Image.RenderTransform>
             </Image>
-            <Image x:Name="Crosshair" Stretch="Uniform" 
-                     Margin="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Button}, 
-                        Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.30}"
-                     Source="Images\crosshair.png" Opacity="0" RenderTransformOrigin="0.5, 0.5">
-              <Image.RenderTransform>
-                <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1" ScaleY="1"/>
-              </Image.RenderTransform>
-            </Image>
-            <Image x:Name="Skull" Stretch="Uniform"
-                   Margin="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Button}, 
-                        Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.20}"
-                     Source="Images\skull.png" RenderTransformOrigin="0.5, 0.5">
-              <Image.RenderTransform>
-                <ScaleTransform ScaleX="0" ScaleY="0"/>
-              </Image.RenderTransform>
-            </Image>
             <Grid x:Name="PowGreen" RenderTransformOrigin="0.5, 0.5">
               <Image Stretch="Uniform" Source="Images\pow-green.png">
               </Image>
@@ -269,6 +253,22 @@
                 <ScaleTransform ScaleX="0" ScaleY="0"/>
               </Grid.RenderTransform>
             </Grid>
+            <Image x:Name="Crosshair" Stretch="Uniform" 
+                     Margin="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Button}, 
+                        Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.30}"
+                     Source="Images\crosshair.png" Opacity="0" RenderTransformOrigin="0.5, 0.5">
+              <Image.RenderTransform>
+                <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1" ScaleY="1"/>
+              </Image.RenderTransform>
+            </Image>
+            <Image x:Name="Skull" Stretch="Uniform"
+                   Margin="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Button}, 
+                        Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.20}"
+                     Source="Images\skull.png" RenderTransformOrigin="0.5, 0.5">
+              <Image.RenderTransform>
+                <ScaleTransform ScaleX="0" ScaleY="0"/>
+              </Image.RenderTransform>
+            </Image>
           </Grid>
           <ControlTemplate.Triggers>
             <DataTrigger Binding="{Binding Owner}" Value="Player1">

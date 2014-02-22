@@ -44,7 +44,9 @@
       </Grid>
     </Grid>
     <Border Grid.Column="1" Grid.Row="0" Margin="7" BorderBrush="Black" BorderThickness="2" CornerRadius="8">
-      <Image Source="{Binding ImageSource}" Stretch="Fill"/>
+      <Border.Background>
+        <ImageBrush ImageSource="{Binding ImageSource}" Stretch="Fill"/>
+      </Border.Background>
     </Border>
     <Grid Grid.Column="2">
       <Grid.RowDefinitions>

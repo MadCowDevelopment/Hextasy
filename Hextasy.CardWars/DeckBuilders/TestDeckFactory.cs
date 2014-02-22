@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Hextasy.CardWars.Cards;
 using Hextasy.CardWars.Cards.Monsters;
+using Hextasy.CardWars.Cards.Spells;
 
 namespace Hextasy.CardWars.DeckBuilders
 {
@@ -19,11 +20,9 @@ namespace Hextasy.CardWars.DeckBuilders
             {
                 return _cards ?? (_cards = new List<Card>
                 {
-                    new DragonBlackMaleCard(),
-                    new DragonBlueMaleCard(),
-                    new DragonGoldMaleCard(),
-                    new DragonGreenMaleCard(),
-                    new DragonRedMaleCard(),
+                    new HealCard(),
+                    new LesserHealCard(),
+                    new GreaterHealCard(),
                     new BarbarianWarlordCard(),
                     new BarbarianWarlordCard(),
                     new BarbarianWarlordCard(),

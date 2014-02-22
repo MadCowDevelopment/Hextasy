@@ -1,11 +1,9 @@
-﻿using System.ComponentModel.Composition;
-using System.Linq;
-using Caliburn.Micro;
+using System.ComponentModel.Composition;
 
 namespace Hextasy.CardWars.Cards.Spells
 {
     [Export(typeof(Card))]
-    public class MeteorCard : SpellCard
+    public class FireballCard : SpellCard
     {
         public override string Name
         {
@@ -14,23 +12,22 @@ namespace Hextasy.CardWars.Cards.Spells
 
         public override string Description
         {
-            get { return "Scorges the target monster for 4 damage and all adjacent monsters for 2 damage."; }
+            get { return "Scorges the target monster for 5 damage."; }
         }
 
         public override int Cost
         {
-            get { return 7; }
+            get { return 3; }
         }
 
         protected override string ImageFilename
         {
-            get { return "fireball-red-3.png"; }
+            get { return "fireball-red-2.png"; }
         }
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
-            targetTile.Card.TakeDamage(4);
-            cardWarsGameLogic.GetAdjacentMonsterTiles(targetTile).Apply(p => p.Card.TakeDamage(2));
+            targetTile.Card.TakeFireDamage(5);
         }
     }
 }

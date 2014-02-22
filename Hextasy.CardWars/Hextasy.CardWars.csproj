@@ -114,8 +114,16 @@
     <Compile Include="Cards\Monsters\SmithCard.cs" />
     <Compile Include="Cards\Monsters\SpiderCard.cs" />
     <Compile Include="Cards\Race.cs" />
+    <Compile Include="Cards\Spells\AcidballCard.cs" />
     <Compile Include="Cards\Spells\EnchantWeaponPoisonCard.cs" />
     <Compile Include="Cards\Spells\ArmageddonCard.cs" />
+    <Compile Include="Cards\Spells\FireballCard.cs" />
+    <Compile Include="Cards\Spells\FrostboltCard.cs" />
+    <Compile Include="Cards\Spells\GreaterAcidballCard.cs" />
+    <Compile Include="Cards\Spells\GreaterFrostboltCard.cs" />
+    <Compile Include="Cards\Spells\LesserAcidballCard.cs" />
+    <Compile Include="Cards\Spells\LesserFireballCard.cs" />
+    <Compile Include="Cards\Spells\LesserFrostboltCard.cs" />
     <Compile Include="Cards\Summoned\BabyDragonCard.cs" />
     <Compile Include="Cards\Summoned\SkeletonCard.cs" />
     <Compile Include="Cards\Monsters\SkeletonDragonCard.cs" />
@@ -143,7 +151,7 @@
     <Compile Include="Cards\Monsters\WolfCard.cs" />
     <Compile Include="Cards\Monsters\WormCard.cs" />
     <Compile Include="Cards\Spells\EnchantWeaponFrostCard.cs" />
-    <Compile Include="Cards\Spells\MeteorCard.cs" />
+    <Compile Include="Cards\Spells\GreaterFireballCard.cs" />
     <Compile Include="Cards\SpellCard.cs" />
     <Compile Include="Cards\Traits\DefenderTrait.cs" />
     <Compile Include="Cards\Traits\FrostWeaponTrait.cs" />
@@ -170,6 +178,7 @@
     <Compile Include="Cards\Traits\TurnDeadTrait.cs" />
     <Compile Include="CardWarsGame.cs" />
     <Compile Include="CardWarsGameLogic.cs" />
+    <Compile Include="CardWarsGameLogicExtensions.cs" />
     <Compile Include="CardWarsGameView.xaml.cs">
       <DependentUpon>CardWarsGameView.xaml</DependentUpon>
     </Compile>
@@ -451,6 +460,16 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Cards\Traits\drawcard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Spells\fireball-acid-1.png" />
+    <Resource Include="Images\Cards\Spells\fireball-acid-2.png" />
+    <Resource Include="Images\Cards\Spells\fireball-acid-3.png" />
+    <Resource Include="Images\Cards\Spells\fireball-eerie-1.png" />
+    <Resource Include="Images\Cards\Spells\fireball-eerie-2.png" />
+    <Resource Include="Images\Cards\Spells\fireball-eerie-3.png" />
+    <Resource Include="Images\Cards\Spells\fireball-red-1.png" />
+    <Resource Include="Images\Cards\Spells\fireball-red-2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

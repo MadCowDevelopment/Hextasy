@@ -24,7 +24,7 @@ namespace Hextasy.CardWars.Cards.Traits
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
-            var friendlyMonster = cardWarsGameLogic.CurrentPlayerCards.RandomOrDefault();
+            var friendlyMonster = cardWarsGameLogic.CurrentPlayerCardsExceptKing.RandomOrDefault();
             if (friendlyMonster != null) friendlyMonster.AttackBonus += Amount;
         }
     }

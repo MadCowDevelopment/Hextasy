@@ -4,16 +4,16 @@ using Caliburn.Micro;
 namespace Hextasy.CardWars.Cards.Spells
 {
     [Export(typeof(Card))]
-    public class GreaterHealCard : SpellCard
+    public class GreaterFireballCard : SpellCard
     {
         public override string Name
         {
-            get { return "Greater Heal"; }
+            get { return "Greater Fireball"; }
         }
 
         public override string Description
         {
-            get { return "Restores 5 health to the target monster and 2 health to all adjacent monsters."; }
+            get { return "Scorges the target monster for 5 damage and all adjacent monsters for 2 damage."; }
         }
 
         public override int Cost
@@ -23,13 +23,13 @@ namespace Hextasy.CardWars.Cards.Spells
 
         protected override string ImageFilename
         {
-            get { return "heal-jade-3.png"; }
+            get { return "fireball-red-3.png"; }
         }
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
-            targetTile.Card.Heal(5);
-            cardWarsGameLogic.GetAdjacentMonsterTiles(targetTile).Apply(p => p.Card.Heal(2));
+            targetTile.Card.TakeFireDamage(5);
+            cardWarsGameLogic.GetAdjacentMonsterTiles(targetTile).Apply(p => p.Card.TakeFireDamage(2));
         }
     }
 }

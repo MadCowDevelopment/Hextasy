@@ -110,6 +110,11 @@ namespace Hextasy.CardWars
             get { return CurrentPlayerTiles.Where(p => p.Card != null).Select(p => p.Card); }
         }
 
+        internal IEnumerable<MonsterCard> CurrentPlayerCardsExceptKing
+        {
+            get { return CurrentPlayerCards.Where(p => !(p is KingCard)); }
+        }
+
         internal IEnumerable<MonsterCard> OpponentCards
         {
             get { return OpponentTiles.Where(p => p.Card != null).Select(p => p.Card); }
@@ -118,6 +123,16 @@ namespace Hextasy.CardWars
         internal IEnumerable<MonsterCard> OpponentCardsExceptKing
         {
             get { return OpponentCards.Where(p => !(p is KingCard)); }
+        }
+        
+        internal IEnumerable<MonsterCard> AllCards
+        {
+            get { return Tiles.Where(p => p.Card != null).Select(p => p.Card); }
+        }
+
+        internal IEnumerable<MonsterCard> AllCardsExceptKing
+        {
+            get { return AllCards.Where(p => !(p is KingCard)); }
         }
 
         public Player CurrentPlayer
@@ -137,21 +152,11 @@ namespace Hextasy.CardWars
             }
         }
 
-        public Player OpponentPlayer { get; set; }
+        public Player OpponentPlayer { get; private set; }
 
         public CardWarsTile SelectedTile
         {
             get { return Tiles.SingleOrDefault(p => p.IsSelected); }
-        }
-
-        public IEnumerable<MonsterCard> AllCards
-        {
-            get { return Tiles.Where(p => p.Card != null).Select(p => p.Card); }
-        }
-
-        public IEnumerable<MonsterCard> AllCardsExceptKing
-        {
-            get { return AllCards.Where(p => !(p is KingCard)); }
         }
 
         public bool CanMulligan { get { return Turn == 1 && !CardPlayedThisTurn; } }

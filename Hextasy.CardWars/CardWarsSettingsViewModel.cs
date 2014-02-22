@@ -13,7 +13,7 @@ namespace Hextasy.CardWars
         {
             Player1 = "Player1";
             Player2 = "Player2";
-            Columns = 7;
+            Columns = 6;
             Rows = 6;
 
             Player1Decks = new List<Deck>();

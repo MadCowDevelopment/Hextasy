@@ -37,13 +37,7 @@ namespace Hextasy.CardWars.Cards.Spells
 
         protected override void ApplyEffect(IEnumerable<CardWarsTile> randomLine)
         {
-            randomLine.Where(p => p.Card != null)
-                .Apply(
-                    p =>
-                        {
-                            p.AddDebuff(new FrozenDebuff());
-                            p.Card.TakePoisonDamage(1);
-                        });
+            randomLine.Where(p => p.Card != null).Apply(p => p.AddDebuff(new PoisonDebuff(2, 2)));
         }
     }
 }

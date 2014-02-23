@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Hextasy.CardWars.Cards;
 using Hextasy.CardWars.Cards.Monsters;
+using Hextasy.CardWars.Cards.Spells;
 
 namespace Hextasy.CardWars.DeckBuilders
 {
@@ -40,7 +41,13 @@ namespace Hextasy.CardWars.DeckBuilders
                     new TurtleCard(),
                     new WarElephantCard(),
                     new WolfCard(),
-                    new WormCard()
+                    new WormCard(),
+                    new ChainLightningPoisonSpell(),
+                    new LesserAcidballCard(),
+                    new AcidballCard(),
+                    new GreaterAcidballCard(),
+                    new HorrorPoisonCard(),
+                    new TwisterPoisonCard()
                 };
             }
         }

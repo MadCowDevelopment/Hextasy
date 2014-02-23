@@ -14,7 +14,7 @@ namespace Hextasy.CardWars.Cards.Spells
 
         public override string Description
         {
-            get { return "Poisons the target monster for 2 damage for 2 turns."; }
+            get { return "Poisons the target monster for 3 damage for 2 turns."; }
         }
 
         public override int Cost

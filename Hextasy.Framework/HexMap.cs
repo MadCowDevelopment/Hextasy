@@ -61,8 +61,13 @@ namespace Hextasy.Framework
 
         public IEnumerable<T> GetNeighbours(T item, int distance)
         {
+            if (distance < 0) return Enumerable.Empty<T>();
             var coordinate = GetCoordinateByItem(item);
-            return coordinate == null ? Enumerable.Empty<T>() : GetNeighbours(coordinate.X, coordinate.Y, distance);
+            var result = coordinate == null
+                             ? Enumerable.Empty<T>().ToList()
+                             : GetNeighbours(coordinate.X, coordinate.Y, distance).ToList();
+            result.Remove(item);
+            return result;
         }
 
         public IEnumerable<T> GetTilesBetween(T tile1, T tile2)

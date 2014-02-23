@@ -237,6 +237,16 @@ namespace Hextasy.CardWars
             return HexMap.GetNeighbours(tile).Where(p => p.Card != null);
         }
 
+        public IEnumerable<CardWarsTile> GetChainOfMonsterTiles(CardWarsTile tile, int distance)
+        {
+            var allNeighbours = HexMap.GetNeighbours(tile, distance).Where(p=>p.Card != null).ToList();
+            var innerNeighbours = HexMap.GetNeighbours(tile, distance - 1).Where(p => p.Card != null).ToList();
+            var result = allNeighbours.Except(innerNeighbours).ToList();
+            return
+                HexMap.GetNeighbours(tile, distance).Except(HexMap.GetNeighbours(tile, distance - 1)).Where(
+                    p => p.Card != null);
+        }
+
         public IEnumerable<CardWarsTile> GetAdjacentOpponentTiles(CardWarsTile tile)
         {
             return GetAdjacentMonsterTiles(tile).Where(p => p.Owner == OpponentPlayer.Owner);

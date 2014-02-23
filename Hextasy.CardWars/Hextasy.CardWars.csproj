@@ -71,6 +71,10 @@
     </Compile>
     <Compile Include="CardDiedEventArgs.cs" />
     <Compile Include="Cards\CardType.cs" />
+    <Compile Include="Cards\Spells\ChainLightningFireSpell.cs" />
+    <Compile Include="Cards\Spells\ChainLightningFrostSpell.cs" />
+    <Compile Include="Cards\Spells\ChainLightningPoisonSpell.cs" />
+    <Compile Include="Cards\ChainLightningSpell.cs" />
     <Compile Include="Cards\Debuff.cs" />
     <Compile Include="Cards\Debuffs\FrozenDebuff.cs" />
     <Compile Include="Cards\Debuffs\PoisonDebuff.cs" />
@@ -509,6 +513,11 @@
     <Resource Include="Images\Cards\Spells\protect-acid-3.png" />
     <Resource Include="Images\Cards\Spells\protect-blue-3.png" />
     <Resource Include="Images\Cards\Spells\protect-red-3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Spells\lightning-acid-3.png" />
+    <Resource Include="Images\Cards\Spells\lightning-fire-3.png" />
+    <Resource Include="Images\Cards\Spells\lightning-blue-3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

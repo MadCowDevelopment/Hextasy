@@ -1,5 +1,4 @@
 using System.ComponentModel.Composition;
-using Caliburn.Micro;
 using Hextasy.CardWars.Cards.Debuffs;
 
 namespace Hextasy.CardWars.Cards.Spells
@@ -14,12 +13,12 @@ namespace Hextasy.CardWars.Cards.Spells
 
         public override string Description
         {
-            get { return "Poisons the target monster and all adjacent monsters for 4 damage for 2 turns."; }
+            get { return "Poisons the target monster for 4 damage for 2 turns."; }
         }
 
         public override int Cost
         {
-            get { return 5; }
+            get { return 4; }
         }
 
         protected override string ImageFilename
@@ -29,8 +28,7 @@ namespace Hextasy.CardWars.Cards.Spells
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
-            targetTile.AddDebuff(new PoisonDebuff(2, 3));
-            cardWarsGameLogic.GetAdjacentMonsterTiles(targetTile).Apply(p => p.AddDebuff(new PoisonDebuff(4, 2)));
+            targetTile.AddDebuff(new PoisonDebuff(4, 2));
         }
     }
 }

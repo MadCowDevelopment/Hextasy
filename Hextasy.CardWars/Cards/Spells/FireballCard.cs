@@ -17,7 +17,7 @@ namespace Hextasy.CardWars.Cards.Spells
 
         public override int Cost
         {
-            get { return 3; }
+            get { return 4; }
         }
 
         protected override string ImageFilename

@@ -23,7 +23,7 @@
 
         public override void Activate(MonsterCard affectedCard)
         {
-            affectedCard.TakeDamage(Amount);
+            affectedCard.TakePoisonDamage(Amount);
             Duration--;
             if (Duration == 0) IsExpired = true;
         }

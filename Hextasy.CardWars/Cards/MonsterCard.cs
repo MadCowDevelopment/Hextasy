@@ -117,6 +117,11 @@ namespace Hextasy.CardWars.Cards
             Debuffs.RemoveMany(Debuffs.OfType<FrozenDebuff>());
         }
 
+        public void TakePoisonDamage(int amount)
+        {
+            TakeDamage(amount);
+        }
+
         protected override string ImageFolder
         {
             get { return @"pack://application:,,,/Hextasy.CardWars;component/Images/Cards/Monsters/"; }

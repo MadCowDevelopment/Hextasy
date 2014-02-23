@@ -199,6 +199,7 @@
     <Compile Include="CurrentPlayerChangedEventArgs.cs" />
     <Compile Include="Deck.cs" />
     <Compile Include="DeckBuilders\AllDeckFactory.cs" />
+    <Compile Include="DeckBuilders\AllExceptDragonsDeckFactory.cs" />
     <Compile Include="DeckBuilders\BeastDeckFactory.cs" />
     <Compile Include="DeckBuilders\DeckFactory.cs" />
     <Compile Include="DeckBuilders\TestDeckFactory.cs" />

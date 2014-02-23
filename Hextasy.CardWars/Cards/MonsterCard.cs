@@ -105,6 +105,7 @@ namespace Hextasy.CardWars.Cards
             if (_dodgeNextDamage)
             {
                 _dodgeNextDamage = false;
+                return;
             }
 
             DamageTaken += attackValue;

@@ -8,7 +8,7 @@ namespace Hextasy.CardWars.Cards.Monsters
     {
         public GryphonCard()
         {
-            Traits.Add(new RemoveTraitsFromRandomEnemyTrait(this));
+            Traits.Add(new RemoveDefenderTraitFromEnemiesTrait(this));
         }
 
         public override string Name
@@ -18,7 +18,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override string Description
         {
-            get { return "Removes all traits from a random enemy at the end of your turn."; }
+            get { return "Initiative: Removes defender trait from all enemies."; }
         }
 
         public override int Cost

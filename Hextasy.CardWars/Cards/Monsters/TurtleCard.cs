@@ -23,7 +23,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override int BaseAttack
         {
-            get { return 1; }
+            get { return 3; }
         }
 
         public override int BaseHealth
@@ -38,7 +38,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override int Cost
         {
-            get { return 4; }
+            get { return 5; }
         }
 
         protected override string ImageFilename

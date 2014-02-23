@@ -214,7 +214,7 @@ namespace Hextasy.CardWars
 
         public void PreviewRemoveCard(CardWarsTile tile, MonsterCard selectedCard)
         {
-            if (selectedCard == null) return;
+            if (tile == null || selectedCard == null) return;
             if (tile.Card == null || tile.Card != selectedCard) return;
             tile.Card = null;
         }

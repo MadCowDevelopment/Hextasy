@@ -3,7 +3,7 @@ using Hextasy.Framework;
 
 namespace Hextasy.CardWars.Cards.Traits
 {
-    public class CounterAttackOnDodgeTrait : Trait
+    public class CounterAttackOnDodgeTrait : Trait, IActivateTraitOnDodge
     {
         public CounterAttackOnDodgeTrait(MonsterCard cardThatHasTrait)
             : base(cardThatHasTrait)

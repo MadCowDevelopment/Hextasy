@@ -170,7 +170,7 @@
     <Compile Include="Cards\Traits\IncreaseRandomMonsterAttackTrait.cs" />
     <Compile Include="Cards\Traits\PoisonWeaponTrait.cs" />
     <Compile Include="Cards\Traits\DecreaseRaceAttackTrait.cs" />
-    <Compile Include="Cards\Traits\RemoveTraitsFromRandomEnemyTrait.cs" />
+    <Compile Include="Cards\Traits\RemoveDefenderTraitFromEnemiesTrait.cs" />
     <Compile Include="Cards\Traits\SkeletonKingInitiativeTrait.cs" />
     <Compile Include="Cards\Traits\StealCardTrait.cs" />
     <Compile Include="Cards\Traits\SuicideBomberTrait.cs" />
@@ -470,6 +470,9 @@
     <Resource Include="Images\Cards\Spells\fireball-eerie-3.png" />
     <Resource Include="Images\Cards\Spells\fireball-red-1.png" />
     <Resource Include="Images\Cards\Spells\fireball-red-2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Traits\ShieldCrestedCrownBroken.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

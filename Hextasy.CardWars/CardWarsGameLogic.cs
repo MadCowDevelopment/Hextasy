@@ -242,6 +242,11 @@ namespace Hextasy.CardWars
             return GetAdjacentMonsterTiles(tile).Where(p => p.Owner == OpponentPlayer.Owner);
         }
 
+        public IEnumerable<CardWarsTile> GetAdjacentFriendlyTiles(CardWarsTile tile)
+        {
+            return GetAdjacentMonsterTiles(tile).Where(p => p.Owner == CurrentPlayer.Owner);
+        }
+
         public IEnumerable<CardWarsTile> GetAdjacentFreeTiles(CardWarsTile tile)
         {
             return HexMap.GetNeighbours(tile).Where(p => p.Card == null);

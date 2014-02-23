@@ -115,6 +115,7 @@
     <Compile Include="Cards\Monsters\SpiderCard.cs" />
     <Compile Include="Cards\Race.cs" />
     <Compile Include="Cards\Spells\AcidballCard.cs" />
+    <Compile Include="Cards\Spells\EnchantWeaponDisarmCard.cs" />
     <Compile Include="Cards\Spells\EnchantWeaponPoisonCard.cs" />
     <Compile Include="Cards\Spells\ArmageddonCard.cs" />
     <Compile Include="Cards\Spells\FireballCard.cs" />
@@ -124,6 +125,9 @@
     <Compile Include="Cards\Spells\HorrorFireCard.cs" />
     <Compile Include="Cards\Spells\HorrorFrostCard.cs" />
     <Compile Include="Cards\Spells\HorrorPoisonCard.cs" />
+    <Compile Include="Cards\Spells\ImmunityFireCard.cs" />
+    <Compile Include="Cards\Spells\ImmunityFrostCard.cs" />
+    <Compile Include="Cards\Spells\ImmunityPoisonCard.cs" />
     <Compile Include="Cards\Spells\LesserAcidballCard.cs" />
     <Compile Include="Cards\Spells\LesserFireballCard.cs" />
     <Compile Include="Cards\Spells\LesserFrostboltCard.cs" />
@@ -139,6 +143,7 @@
     <Compile Include="Cards\Traits\BurnEnemyMonstersTrait.cs" />
     <Compile Include="Cards\Traits\CounterAttackOnDodgeTrait.cs" />
     <Compile Include="Cards\Traits\DecreaseRaceHealthTrait.cs" />
+    <Compile Include="Cards\Traits\DisarmWeaponTrait.cs" />
     <Compile Include="Cards\Traits\DodgeTrait.cs" />
     <Compile Include="Cards\Traits\DragonBabyTrait.cs" />
     <Compile Include="Cards\Traits\DragonGrowthTrait.cs" />
@@ -172,6 +177,9 @@
     <Compile Include="Cards\Traits\HungryDragonGreenTrait.cs" />
     <Compile Include="Cards\Traits\HungryDragonRedTrait.cs" />
     <Compile Include="Cards\Traits\HungryDragonTrait.cs" />
+    <Compile Include="Cards\Traits\ImmunityPoisonTrait.cs" />
+    <Compile Include="Cards\Traits\ImmunityFireTrait.cs" />
+    <Compile Include="Cards\Traits\ImmunityFrostTrait.cs" />
     <Compile Include="Cards\Traits\IncreaseRaceAttackTrait.cs" />
     <Compile Include="Cards\Traits\IncreaseRaceHealthTrait.cs" />
     <Compile Include="Cards\Traits\IncreaseRandomMonsterAttackTrait.cs" />
@@ -493,6 +501,14 @@
     <Resource Include="Images\Cards\Spells\horror-acid-3.png" />
     <Resource Include="Images\Cards\Spells\horror-eerie-3.png" />
     <Resource Include="Images\Cards\Spells\horror-red-3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Spells\enchant-orange-3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Spells\protect-acid-3.png" />
+    <Resource Include="Images\Cards\Spells\protect-blue-3.png" />
+    <Resource Include="Images\Cards\Spells\protect-red-3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

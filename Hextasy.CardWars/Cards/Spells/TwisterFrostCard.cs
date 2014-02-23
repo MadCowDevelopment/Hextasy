@@ -42,7 +42,7 @@ namespace Hextasy.CardWars.Cards.Spells
                     p =>
                         {
                             p.AddDebuff(new FrozenDebuff());
-                            p.Card.TakeDamage(1);
+                            p.Card.TakeFrostDamage(1);
                         });
         }
     }

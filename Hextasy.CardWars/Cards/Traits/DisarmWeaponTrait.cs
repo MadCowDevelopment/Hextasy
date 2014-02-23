@@ -1,10 +1,9 @@
-using Hextasy.CardWars.Cards.Debuffs;
-
 namespace Hextasy.CardWars.Cards.Traits
 {
-    public class FrostWeaponTrait : Trait, IActivateTraitOnAttack, IActivateTraitOnDefense
+    public class DisarmWeaponTrait : Trait, IActivateTraitOnAttack, IActivateTraitOnDefense
     {
-        public FrostWeaponTrait(MonsterCard cardThatHasTrait) : base(cardThatHasTrait)
+        public DisarmWeaponTrait(MonsterCard cardThatHasTrait)
+            : base(cardThatHasTrait)
         {
         }
 
@@ -15,12 +14,13 @@ namespace Hextasy.CardWars.Cards.Traits
 
         protected override string ImageFilename
         {
-            get { return @"Cards/Spells/enchant-blue-3.png"; }
+            get { return @"Cards/Spells/enchant-orange-3.png"; }
         }
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
-            targetTile.AddDebuff(new FrozenDebuff());
+            if(targetTile.Card == null) return;
+            targetTile.Card.AttackBonus -= 2;
         }
     }
 }

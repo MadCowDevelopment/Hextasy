@@ -30,11 +30,11 @@ namespace Hextasy.CardWars.Cards.Spells
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
             targetTile.AddDebuff(new FrozenDebuff());
-            targetTile.Card.TakeDamage(2);
+            targetTile.Card.TakeFrostDamage(2);
             cardWarsGameLogic.GetAdjacentMonsterTiles(targetTile).Apply(p =>
             {
                 p.AddDebuff(new FrozenDebuff());
-                p.Card.TakeDamage(2);
+                p.Card.TakeFrostDamage(2);
             });
         }
     }

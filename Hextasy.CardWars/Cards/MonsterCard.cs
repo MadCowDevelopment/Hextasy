@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Data;
 using Caliburn.Micro;
 using Hextasy.CardWars.Cards.Debuffs;
+using Hextasy.CardWars.Cards.Traits;
 using Hextasy.Framework;
 
 namespace Hextasy.CardWars.Cards
@@ -113,12 +114,20 @@ namespace Hextasy.CardWars.Cards
 
         public void TakeFireDamage(int amount)
         {
+            if (HasTrait<ImmunityFireTrait>()) return;
             TakeDamage(amount);
             Debuffs.RemoveMany(Debuffs.OfType<FrozenDebuff>());
         }
 
         public void TakePoisonDamage(int amount)
         {
+            if(HasTrait<ImmunityPoisonTrait>()) return;
+            TakeDamage(amount);
+        }
+
+        public void TakeFrostDamage(int amount)
+        {
+            if (HasTrait<ImmunityFrostTrait>()) return;
             TakeDamage(amount);
         }
 
@@ -162,6 +171,7 @@ namespace Hextasy.CardWars.Cards
 
         public void AddDebuff(IDebuff debuff)
         {
+            if (HasTrait<ImmunityFrostTrait>() && debuff is FrozenDebuff) return;
             Debuffs.Add(debuff);
         }
 

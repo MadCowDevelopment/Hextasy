@@ -35,12 +35,12 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override int BaseAttack
         {
-            get { return 6; }
+            get { return 5; }
         }
 
         public override int BaseHealth
         {
-            get { return 2; }
+            get { return 1; }
         }
 
         public override Race Race

@@ -9,7 +9,6 @@ namespace Hextasy.CardWars.Cards.Monsters
         public WolfCard()
         {
             Traits.Add(new DodgeTrait(this));
-            Traits.Add(new HasteTrait(this));
             Traits.Add(new CounterAttackOnDodgeTrait(this));
         }
 
@@ -25,12 +24,12 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override int BaseAttack
         {
-            get { return 4; }
+            get { return 3; }
         }
 
         public override int BaseHealth
         {
-            get { return 2; }
+            get { return 1; }
         }
 
         public override Race Race

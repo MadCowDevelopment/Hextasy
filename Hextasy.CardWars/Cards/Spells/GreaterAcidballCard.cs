@@ -14,7 +14,7 @@ namespace Hextasy.CardWars.Cards.Spells
 
         public override string Description
         {
-            get { return "Poisons the target monster and all adjacent monsters for 2 damage for 3 turns."; }
+            get { return "Poisons the target monster and all adjacent monsters for 3 damage for 2 turns."; }
         }
 
         public override int Cost
@@ -30,7 +30,7 @@ namespace Hextasy.CardWars.Cards.Spells
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
             targetTile.AddDebuff(new PoisonDebuff(2, 3));
-            cardWarsGameLogic.GetAdjacentMonsterTiles(targetTile).Apply(p => p.AddDebuff(new PoisonDebuff(2, 3)));
+            cardWarsGameLogic.GetAdjacentMonsterTiles(targetTile).Apply(p => p.AddDebuff(new PoisonDebuff(3, 2)));
         }
     }
 }

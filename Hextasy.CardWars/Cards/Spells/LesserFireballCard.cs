@@ -12,7 +12,7 @@ namespace Hextasy.CardWars.Cards.Spells
 
         public override string Description
         {
-            get { return "Scorges the target monster for 2 damage."; }
+            get { return "Burns the target monster for 2 damage."; }
         }
 
         public override int Cost

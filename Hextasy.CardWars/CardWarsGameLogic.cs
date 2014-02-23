@@ -293,5 +293,10 @@ namespace Hextasy.CardWars
             CurrentPlayer = CurrentPlayer == Player1 ? Player2 : Player1;
             CurrentPlayer.PrepareTurn();
         }
+
+        public IEnumerable<IEnumerable<CardWarsTile>> GetLinesOfTiles(CardWarsTile targetTile)
+        {
+            return HexMap.GetLines(targetTile);
+        }
     }
 }

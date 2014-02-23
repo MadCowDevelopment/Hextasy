@@ -7,8 +7,6 @@ namespace Hextasy.CardWars.DeckBuilders
 {
     public class TestDeckFactory : DeckFactory
     {
-        private List<Card> _cards;
-
         protected override string Name
         {
             get { return "Test"; }
@@ -18,17 +16,19 @@ namespace Hextasy.CardWars.DeckBuilders
         {
             get
             {
-                return _cards ?? (_cards = new List<Card>
-                {
-                    new HealCard(),
-                    new LesserHealCard(),
-                    new GreaterHealCard(),
-                    new BarbarianWarlordCard(),
-                    new BarbarianWarlordCard(),
-                    new BarbarianWarlordCard(),
-                    new BarbarianWarlordCard(),
-                    new BarbarianWarlordCard()
-                });
+                return new List<Card>
+                           {
+                               new FireAntCard(),
+                               new FireAntCard(),
+                               new FireAntCard(),
+                               new FireAntCard(),
+                               new FireAntCard(),
+                               new FireAntCard(),
+                               new TwisterFrostCard(),
+                               new TwisterFrostCard(),
+                               new TwisterFrostCard(),
+                               new TwisterFrostCard()
+                           };
             }
         }
     }

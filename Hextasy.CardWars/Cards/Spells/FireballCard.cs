@@ -7,12 +7,12 @@ namespace Hextasy.CardWars.Cards.Spells
     {
         public override string Name
         {
-            get { return "Meteor"; }
+            get { return "Fireball"; }
         }
 
         public override string Description
         {
-            get { return "Scorges the target monster for 5 damage."; }
+            get { return "Burns the target monster for 5 damage."; }
         }
 
         public override int Cost

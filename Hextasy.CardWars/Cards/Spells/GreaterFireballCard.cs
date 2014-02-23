@@ -13,7 +13,7 @@ namespace Hextasy.CardWars.Cards.Spells
 
         public override string Description
         {
-            get { return "Scorges the target monster for 5 damage and all adjacent monsters for 2 damage."; }
+            get { return "Burns the target monster for 5 damage and all adjacent monsters for 3 damage."; }
         }
 
         public override int Cost
@@ -29,7 +29,7 @@ namespace Hextasy.CardWars.Cards.Spells
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
             targetTile.Card.TakeFireDamage(5);
-            cardWarsGameLogic.GetAdjacentMonsterTiles(targetTile).Apply(p => p.Card.TakeFireDamage(2));
+            cardWarsGameLogic.GetAdjacentMonsterTiles(targetTile).Apply(p => p.Card.TakeFireDamage(3));
         }
     }
 }

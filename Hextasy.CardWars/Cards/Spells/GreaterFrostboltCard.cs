@@ -14,7 +14,7 @@ namespace Hextasy.CardWars.Cards.Spells
 
         public override string Description
         {
-            get { return "Freezes the target monster and all adjacent monsters and deals 1 damage to them."; }
+            get { return "Freezes the target monster and all adjacent monsters and deals 2 damage to them."; }
         }
 
         public override int Cost
@@ -30,11 +30,11 @@ namespace Hextasy.CardWars.Cards.Spells
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
             targetTile.AddDebuff(new FrozenDebuff());
-            targetTile.Card.TakeDamage(1);
+            targetTile.Card.TakeDamage(2);
             cardWarsGameLogic.GetAdjacentMonsterTiles(targetTile).Apply(p =>
             {
                 p.AddDebuff(new FrozenDebuff());
-                p.Card.TakeFireDamage(1);
+                p.Card.TakeDamage(2);
             });
         }
     }

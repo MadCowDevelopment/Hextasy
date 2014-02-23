@@ -8,7 +8,7 @@ namespace Hextasy.CardWars.Cards.Spells
     {
         public override string Name
         {
-            get { return "Greater Frostbolt"; }
+            get { return "Lesser Frostbolt"; }
         }
 
         public override string Description

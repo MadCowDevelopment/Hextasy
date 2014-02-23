@@ -13,7 +13,7 @@ namespace Hextasy.CardWars.Cards.Spells
 
         public override string Description
         {
-            get { return "Enchants a weapon to poison opponents for 1 damage for 3 turns."; }
+            get { return "Enchants a weapon to poison opponents for 2 damage for 2 turns."; }
         }
 
         public override int Cost
@@ -28,7 +28,7 @@ namespace Hextasy.CardWars.Cards.Spells
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
-            targetTile.Card.AddTrait(new PoisonWeaponTrait(targetTile.Card, 1, 3));
+            targetTile.Card.AddTrait(new PoisonWeaponTrait(targetTile.Card, 2, 2));
         }
     }
 }

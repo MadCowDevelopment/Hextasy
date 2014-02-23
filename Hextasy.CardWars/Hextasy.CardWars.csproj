@@ -73,6 +73,7 @@
     <Compile Include="Cards\CardType.cs" />
     <Compile Include="Cards\Spells\ChainLightningFireSpell.cs" />
     <Compile Include="Cards\Spells\ChainLightningFrostSpell.cs" />
+    <Compile Include="Cards\Spells\ChainLightningHealSpell.cs" />
     <Compile Include="Cards\Spells\ChainLightningPoisonSpell.cs" />
     <Compile Include="Cards\ChainLightningSpell.cs" />
     <Compile Include="Cards\Debuff.cs" />
@@ -518,6 +519,9 @@
     <Resource Include="Images\Cards\Spells\lightning-acid-3.png" />
     <Resource Include="Images\Cards\Spells\lightning-fire-3.png" />
     <Resource Include="Images\Cards\Spells\lightning-blue-3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Spells\lightning-yellow-3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

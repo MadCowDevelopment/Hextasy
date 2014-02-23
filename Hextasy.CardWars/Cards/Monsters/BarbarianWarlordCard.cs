@@ -18,7 +18,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override string Description
         {
-            get { return "SMASH!"; }
+            get { return string.Empty; }
         }
 
         protected override string ImageFilename

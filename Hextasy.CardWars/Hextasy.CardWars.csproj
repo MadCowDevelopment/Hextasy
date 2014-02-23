@@ -121,6 +121,9 @@
     <Compile Include="Cards\Spells\FrostboltCard.cs" />
     <Compile Include="Cards\Spells\GreaterAcidballCard.cs" />
     <Compile Include="Cards\Spells\GreaterFrostboltCard.cs" />
+    <Compile Include="Cards\Spells\HorrorFireCard.cs" />
+    <Compile Include="Cards\Spells\HorrorFrostCard.cs" />
+    <Compile Include="Cards\Spells\HorrorPoisonCard.cs" />
     <Compile Include="Cards\Spells\LesserAcidballCard.cs" />
     <Compile Include="Cards\Spells\LesserFireballCard.cs" />
     <Compile Include="Cards\Spells\LesserFrostboltCard.cs" />
@@ -484,6 +487,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Cards\Spells\wind-green-3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Spells\horror-acid-3.png" />
+    <Resource Include="Images\Cards\Spells\horror-eerie-3.png" />
+    <Resource Include="Images\Cards\Spells\horror-red-3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

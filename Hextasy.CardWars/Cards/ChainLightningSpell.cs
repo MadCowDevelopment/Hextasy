@@ -20,13 +20,13 @@ namespace Hextasy.CardWars.Cards
                     var neighbourHasAdjacentTile =
                         targets.Select(p => p.Item2).Any(
                             p => cardWarsGameLogic.GetAdjacentMonsterTiles(neighbour).Contains(p));
-                    if(neighbourHasAdjacentTile) targets.Add(new Tuple<int, CardWarsTile>(i, neighbour));
+                    if (neighbourHasAdjacentTile) targets.Add(new Tuple<int, CardWarsTile>(i, neighbour));
                 }
             }
 
-            ApplyDamage(targets);
+            ApplyDamage(cardWarsGameLogic, targets);
         }
 
-        protected abstract void ApplyDamage(List<Tuple<int, CardWarsTile>> targets);
+        protected abstract void ApplyDamage(CardWarsGameLogic cardWarsGameLogic, List<Tuple<int, CardWarsTile>> targets);
     }
 }

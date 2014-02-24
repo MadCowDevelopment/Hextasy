@@ -27,7 +27,7 @@ namespace Hextasy.CardWars.Cards.Spells
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
-            targetTile.Card.Heal(2);
+            cardWarsGameLogic.Heal(targetTile.Card, 2);
         }
     }
 }

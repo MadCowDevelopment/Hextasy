@@ -1,4 +1,5 @@
 using System.ComponentModel.Composition;
+using Hextasy.CardWars.Cards.Traits;
 
 namespace Hextasy.CardWars.Cards.Monsters
 {
@@ -7,6 +8,7 @@ namespace Hextasy.CardWars.Cards.Monsters
     {
         public HumanPriestFemaleCard()
         {
+            Traits.Add(new IncreaseRandomFriendlyMonsterAttackAndHealthTrait(this, 1, 1));
         }
 
         public override string Name
@@ -16,7 +18,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override string Description
         {
-            get { return string.Empty; }
+            get { return "Gives a random friendly monster +1/+1 at the start of your turn."; }
         }
 
         protected override string ImageFilename
@@ -26,7 +28,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override int BaseAttack
         {
-            get { return 2; }
+            get { return 1; }
         }
 
         public override int BaseHealth

@@ -1,4 +1,5 @@
 using System.ComponentModel.Composition;
+using Hextasy.CardWars.Cards.Traits;
 
 namespace Hextasy.CardWars.Cards.Monsters
 {
@@ -7,6 +8,7 @@ namespace Hextasy.CardWars.Cards.Monsters
     {
         public HumanPopeCard()
         {
+            Traits.Add(new PopeTrait(this));
         }
 
         public override string Name
@@ -16,7 +18,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override string Description
         {
-            get { return "Initiative: Gives all friendly monsters +1 attack and heals 2 damage."; }
+            get { return "Initiative: Gives all friendly humans +1 attack and heals 2 damage."; }
         }
 
         protected override string ImageFilename
@@ -41,7 +43,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override int Cost
         {
-            get { return 3; }
+            get { return 8; }
         }
     }
 }

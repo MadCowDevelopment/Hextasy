@@ -77,7 +77,7 @@
     <Compile Include="Cards\Monsters\HumanFrostmageCard.cs" />
     <Compile Include="Cards\Monsters\HumanInquisitorFemaleCard.cs" />
     <Compile Include="Cards\Monsters\HumanInquisitorMaleCard.cs" />
-    <Compile Include="Cards\Monsters\HumanMonkCard.cs" />
+    <Compile Include="Cards\Summoned\HumanMonkCard.cs" />
     <Compile Include="Cards\Monsters\HumanPaladinFemaleCard.cs" />
     <Compile Include="Cards\Monsters\HumanPaladinMaleCard.cs" />
     <Compile Include="Cards\Monsters\HumanPopeCard.cs" />
@@ -154,6 +154,10 @@
     <Compile Include="Cards\Summoned\BabyDragonCard.cs" />
     <Compile Include="Cards\Summoned\SkeletonCard.cs" />
     <Compile Include="Cards\Monsters\SkeletonDragonCard.cs" />
+    <Compile Include="Cards\Traits\DrawCardOnHealTrait.cs" />
+    <Compile Include="Cards\Traits\FreezeAdjacentEnemiesTrait.cs" />
+    <Compile Include="Cards\Traits\FreezeAllEnemiesAndDealDamageToAdjacentEnemiesTrait.cs" />
+    <Compile Include="Cards\Traits\InquisitorTrait.cs" />
     <Compile Include="Cards\Traits\AdjacentMonsterHaveHasteTrait.cs" />
     <Compile Include="Cards\Traits\AdjacentMonsterLoseHasteTrait.cs" />
     <Compile Include="Cards\Traits\BurnEnemyMonstersTrait.cs" />
@@ -198,10 +202,14 @@
     <Compile Include="Cards\Traits\ImmunityFrostTrait.cs" />
     <Compile Include="Cards\Traits\IncreaseRaceAttackTrait.cs" />
     <Compile Include="Cards\Traits\IncreaseRaceHealthTrait.cs" />
+    <Compile Include="Cards\Traits\IncreaseRandomFriendlyMonsterAttackAndHealthTrait.cs" />
     <Compile Include="Cards\Traits\IncreaseRandomMonsterAttackTrait.cs" />
     <Compile Include="Cards\Traits\PoisonWeaponTrait.cs" />
     <Compile Include="Cards\Traits\DecreaseRaceAttackTrait.cs" />
+    <Compile Include="Cards\Traits\PopeTrait.cs" />
+    <Compile Include="Cards\Traits\RecrutMonkTrait.cs" />
     <Compile Include="Cards\Traits\RemoveDefenderTraitFromEnemiesTrait.cs" />
+    <Compile Include="Cards\Traits\ShapeshifterTrait.cs" />
     <Compile Include="Cards\Traits\SkeletonKingInitiativeTrait.cs" />
     <Compile Include="Cards\Traits\StealCardTrait.cs" />
     <Compile Include="Cards\Traits\SuicideBomberTrait.cs" />

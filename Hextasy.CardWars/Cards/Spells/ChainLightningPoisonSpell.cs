@@ -34,7 +34,7 @@ namespace Hextasy.CardWars.Cards.Spells
             get { return 3; }
         }
 
-        protected override void ApplyDamage(List<Tuple<int, CardWarsTile>> targets)
+        protected override void ApplyDamage(CardWarsGameLogic cardWarsGameLogic, List<Tuple<int, CardWarsTile>> targets)
         {
             targets.Apply(
                 p => p.Item2.Card.AddDebuff(new PoisonDebuff(InitialDamage - p.Item1, InitialDamage - p.Item1)));

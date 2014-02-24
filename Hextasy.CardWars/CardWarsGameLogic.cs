@@ -124,7 +124,7 @@ namespace Hextasy.CardWars
         {
             get { return OpponentCards.Where(p => !(p is KingCard)); }
         }
-        
+
         internal IEnumerable<MonsterCard> AllCards
         {
             get { return Tiles.Where(p => p.Card != null).Select(p => p.Card); }
@@ -239,7 +239,7 @@ namespace Hextasy.CardWars
 
         public IEnumerable<CardWarsTile> GetChainOfMonsterTiles(CardWarsTile tile, int distance)
         {
-            var allNeighbours = HexMap.GetNeighbours(tile, distance).Where(p=>p.Card != null).ToList();
+            var allNeighbours = HexMap.GetNeighbours(tile, distance).Where(p => p.Card != null).ToList();
             var innerNeighbours = HexMap.GetNeighbours(tile, distance - 1).Where(p => p.Card != null).ToList();
             var result = allNeighbours.Except(innerNeighbours).ToList();
             return
@@ -260,6 +260,12 @@ namespace Hextasy.CardWars
         public IEnumerable<CardWarsTile> GetAdjacentFreeTiles(CardWarsTile tile)
         {
             return HexMap.GetNeighbours(tile).Where(p => p.Card == null);
+        }
+
+        internal void Heal(MonsterCard card, int amount)
+        {
+            card.Heal(amount);
+            ActivateTraits<IActivateTraitOnHeal>(Tiles);
         }
 
         private void CleanupDebuffs()

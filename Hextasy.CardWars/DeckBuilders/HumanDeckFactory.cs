@@ -22,7 +22,6 @@ namespace Hextasy.CardWars.DeckBuilders
                     new HumanFrostmageCard(),
                     new HumanInquisitorFemaleCard(),
                     new HumanInquisitorMaleCard(),
-                    new HumanMonkCard(),
                     new HumanPaladinFemaleCard(),
                     new HumanPaladinMaleCard(),
                     new HumanPopeCard(),
@@ -34,7 +33,6 @@ namespace Hextasy.CardWars.DeckBuilders
                     new HumanFrostmageCard(),
                     new HumanInquisitorFemaleCard(),
                     new HumanInquisitorMaleCard(),
-                    new HumanMonkCard(),
                     new HumanPaladinFemaleCard(),
                     new HumanPaladinMaleCard(),
                     new HumanPopeCard(),
@@ -48,7 +46,7 @@ namespace Hextasy.CardWars.DeckBuilders
                     new HealCard(),
                     new GreaterHealCard(),
                     new HorrorFrostCard(),
-                    new TwisterFrostCard()
+                    new TwisterFrostCard(),
                 };
             }
         }

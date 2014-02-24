@@ -5,7 +5,8 @@ namespace Hextasy.CardWars.Cards.Traits
 {
     public class HealRandomFriendlyMonsterTrait : Trait, IActivateTraitOnStartTurn
     {
-        public HealRandomFriendlyMonsterTrait(MonsterCard cardThatHasTrait) : base(cardThatHasTrait)
+        public HealRandomFriendlyMonsterTrait(MonsterCard cardThatHasTrait)
+            : base(cardThatHasTrait)
         {
         }
 
@@ -25,7 +26,7 @@ namespace Hextasy.CardWars.Cards.Traits
             if (damagedFriendlyMonsters.Count == 0) return;
             var randomIndex = RNG.Next(0, damagedFriendlyMonsters.Count - 1);
             var pickedMonster = damagedFriendlyMonsters[randomIndex];
-            pickedMonster.Heal(2);
+            cardWarsGameLogic.Heal(pickedMonster, 2);
         }
     }
 }

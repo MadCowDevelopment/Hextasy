@@ -1,12 +1,12 @@
-using System.ComponentModel.Composition;
+using Hextasy.CardWars.Cards.Traits;
 
-namespace Hextasy.CardWars.Cards.Monsters
+namespace Hextasy.CardWars.Cards.Summoned
 {
-    [Export(typeof(Card))]
     public class HumanMonkCard : MonsterCard
     {
         public HumanMonkCard()
         {
+            Traits.Add(new DefenderTrait(this));
         }
 
         public override string Name
@@ -26,12 +26,12 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override int BaseAttack
         {
-            get { return 2; }
+            get { return 0; }
         }
 
         public override int BaseHealth
         {
-            get { return 4; }
+            get { return 2; }
         }
 
         public override Race Race

@@ -33,9 +33,9 @@ namespace Hextasy.CardWars.Cards.Spells
             get { return 3; }
         }
 
-        protected override void ApplyDamage(List<Tuple<int, CardWarsTile>> targets)
+        protected override void ApplyDamage(CardWarsGameLogic cardWarsGameLogic, List<Tuple<int, CardWarsTile>> targets)
         {
-            targets.Apply(p => p.Item2.Card.Heal(InitialDamage - p.Item1));
+            targets.Apply(p => cardWarsGameLogic.Heal(p.Item2.Card, InitialDamage - p.Item1));
         }
     }
 }

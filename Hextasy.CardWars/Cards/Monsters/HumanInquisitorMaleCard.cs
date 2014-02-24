@@ -1,4 +1,5 @@
 using System.ComponentModel.Composition;
+using Hextasy.CardWars.Cards.Traits;
 
 namespace Hextasy.CardWars.Cards.Monsters
 {
@@ -7,6 +8,7 @@ namespace Hextasy.CardWars.Cards.Monsters
     {
         public HumanInquisitorMaleCard()
         {
+            Traits.Add(new FreezeAllEnemiesAndDealDamageToAdjacentEnemiesTrait(this));
         }
 
         public override string Name
@@ -41,7 +43,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override int Cost
         {
-            get { return 3; }
+            get { return 4; }
         }
     }
 }

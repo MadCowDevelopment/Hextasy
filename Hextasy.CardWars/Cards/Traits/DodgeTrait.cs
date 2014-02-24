@@ -23,7 +23,7 @@ namespace Hextasy.CardWars.Cards.Traits
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
-            if (RNG.Next(0, 99) < 33) return;
+            if (!RNG.Chance(66)) return;
 
             CardThatHasTrait.Dodge();
             CardThatHasTrait.Traits.OfType<IActivateTraitOnDodge>().Apply(

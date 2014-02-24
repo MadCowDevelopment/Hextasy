@@ -19,7 +19,7 @@ namespace Hextasy.CardWars.Cards.Traits
             MonsterCard eatenMonster)
         {
             var friendlyMonsters = cardWarsGameLogic.CurrentPlayerCards;
-            friendlyMonsters.Apply(p => p.Heal(2));
+            friendlyMonsters.Apply(p => cardWarsGameLogic.Heal(p, 2));
         }
     }
 }

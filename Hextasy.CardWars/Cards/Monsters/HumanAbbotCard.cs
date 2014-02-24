@@ -1,4 +1,5 @@
 using System.ComponentModel.Composition;
+using Hextasy.CardWars.Cards.Traits;
 
 namespace Hextasy.CardWars.Cards.Monsters
 {
@@ -7,6 +8,7 @@ namespace Hextasy.CardWars.Cards.Monsters
     {
         public HumanAbbotCard()
         {
+            Traits.Add(new RecrutMonkTrait(this));
         }
 
         public override string Name
@@ -16,7 +18,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override string Description
         {
-            get { return "50% chance to subdue a random enemy or kill an undead at the start of your turn."; }
+            get { return "Recruits a 0/2 monk at the end of your turn."; }
         }
 
         protected override string ImageFilename
@@ -26,7 +28,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override int BaseAttack
         {
-            get { return 2; }
+            get { return 4; }
         }
 
         public override int BaseHealth
@@ -41,7 +43,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override int Cost
         {
-            get { return 3; }
+            get { return 7; }
         }
     }
 }

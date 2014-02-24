@@ -1,4 +1,5 @@
 using System.ComponentModel.Composition;
+using Hextasy.CardWars.Cards.Traits;
 
 namespace Hextasy.CardWars.Cards.Monsters
 {
@@ -7,6 +8,7 @@ namespace Hextasy.CardWars.Cards.Monsters
     {
         public HumanBishopCard()
         {
+            Traits.Add(new DrawCardOnHealTrait(this));
         }
 
         public override string Name

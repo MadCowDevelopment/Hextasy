@@ -1,4 +1,5 @@
 using System.ComponentModel.Composition;
+using Hextasy.CardWars.Cards.Traits;
 
 namespace Hextasy.CardWars.Cards.Monsters
 {
@@ -7,16 +8,17 @@ namespace Hextasy.CardWars.Cards.Monsters
     {
         public HumanDruidFemaleCard()
         {
+            Traits.Add(new ShapeshifterTrait(this));
         }
 
         public override string Name
         {
-            get { return "Beastmistress"; }
+            get { return "Shapeshifter"; }
         }
 
         public override string Description
         {
-            get { return "50% chance to take control of a random enemy beast at the start of your turn."; }
+            get { return "Transform into a random beast at the start of your turn."; }
         }
 
         protected override string ImageFilename
@@ -26,7 +28,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override int BaseAttack
         {
-            get { return 1; }
+            get { return 0; }
         }
 
         public override int BaseHealth

@@ -8,8 +8,8 @@ namespace Hextasy.CardWars.Cards.Monsters
     {
         public WarElephantCard()
         {
-            Traits.Add(new IncreaseRaceAttackTrait(this, 2, Race.Beast));
-            Traits.Add(new DecreaseRaceAttackTrait(this, 2, Race.Beast));
+            Traits.Add(new IncreaseRaceAttackTrait(this, 1, Race.Beast));
+            Traits.Add(new DecreaseRaceAttackTrait(this, 1, Race.Beast));
         }
 
         public override string Name
@@ -19,7 +19,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override string Description
         {
-            get { return "Gives all friendly beasts +2 attack."; }
+            get { return "Gives all friendly beasts +1 attack."; }
         }
 
         public override int BaseAttack

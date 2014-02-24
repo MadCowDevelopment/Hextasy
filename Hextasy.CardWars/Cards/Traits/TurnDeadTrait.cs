@@ -21,6 +21,7 @@ namespace Hextasy.CardWars.Cards.Traits
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
+            if (targetTile.Card is SkeletonCard) return;
             var skeleton = new SkeletonCard();
             skeleton.Player = CardThatHasTrait.Player;
             targetTile.AssignCard(skeleton);

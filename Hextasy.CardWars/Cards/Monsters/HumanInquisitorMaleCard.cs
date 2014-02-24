@@ -18,7 +18,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override string Description
         {
-            get { return "Initiative: Freezes all enemy monsters and deals 2 damage to adjacent enemy monsters."; }
+            get { return "Initiative: Freezes all enemy monsters and deals 1 damage to adjacent enemy monsters."; }
         }
 
         protected override string ImageFilename

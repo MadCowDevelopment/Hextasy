@@ -23,7 +23,7 @@ namespace Hextasy.CardWars.Cards.Traits
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
             cardWarsGameLogic.OpponentCards.Apply(p => p.AddDebuff(new FrozenDebuff()));
-            cardWarsGameLogic.GetAdjacentOpponentTiles(targetTile).Apply(p => p.Card.TakeFrostDamage(2));
+            cardWarsGameLogic.GetAdjacentOpponentTiles(targetTile).Apply(p => p.Card.TakeFrostDamage(1));
         }
     }
 }

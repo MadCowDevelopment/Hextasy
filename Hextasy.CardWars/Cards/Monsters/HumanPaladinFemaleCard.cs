@@ -28,12 +28,12 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override int BaseAttack
         {
-            get { return 3; }
+            get { return 2; }
         }
 
         public override int BaseHealth
         {
-            get { return 4; }
+            get { return 2; }
         }
 
         public override Race Race
@@ -43,7 +43,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override int Cost
         {
-            get { return 4; }
+            get { return 3; }
         }
     }
 }

@@ -21,7 +21,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override string Description
         {
-            get { return "Gives all friendly undead +2 attack and +2 health."; }
+            get { return "Gives all friendly undead +1 attack and +1 health."; }
         }
 
         public override int Cost

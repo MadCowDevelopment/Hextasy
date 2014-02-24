@@ -40,7 +40,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override int BaseHealth
         {
-            get { return 1; }
+            get { return 2; }
         }
 
         public override Race Race

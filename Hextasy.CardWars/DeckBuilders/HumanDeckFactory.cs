@@ -20,6 +20,7 @@ namespace Hextasy.CardWars.DeckBuilders
                 {
                     new HumanAbbotCard(),
                     new HumanFrostmageCard(),
+                    new HumanDruidFemaleCard(),
                     new HumanInquisitorFemaleCard(),
                     new HumanInquisitorMaleCard(),
                     new HumanPaladinFemaleCard(),
@@ -31,6 +32,7 @@ namespace Hextasy.CardWars.DeckBuilders
                     new HumanBishopCard(),
                     new HumanAbbotCard(),
                     new HumanFrostmageCard(),
+                    new HumanDruidFemaleCard(),
                     new HumanInquisitorFemaleCard(),
                     new HumanInquisitorMaleCard(),
                     new HumanPaladinFemaleCard(),

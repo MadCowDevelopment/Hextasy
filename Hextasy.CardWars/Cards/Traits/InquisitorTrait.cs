@@ -23,7 +23,7 @@ namespace Hextasy.CardWars.Cards.Traits
         {
             var randomMonster = cardWarsGameLogic.OpponentCardsExceptKing.RandomOrDefault();
             if (randomMonster == null) return;
-            if (!RNG.Chance(50)) return;
+            if (!RNG.Chance(33)) return;
             if (randomMonster.Race == Race.Undead) randomMonster.Kill();
             else randomMonster.Player = CardThatHasTrait.Player;
         }

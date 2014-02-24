@@ -18,7 +18,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override string Description
         {
-            get { return "50% chance to subdue a random enemy or kill an undead at the start of your turn."; }
+            get { return "33% chance to subdue a random enemy or kill an undead at the start of your turn."; }
         }
 
         protected override string ImageFilename
@@ -33,7 +33,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override int BaseHealth
         {
-            get { return 3; }
+            get { return 2; }
         }
 
         public override Race Race

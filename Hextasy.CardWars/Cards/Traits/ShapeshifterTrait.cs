@@ -47,6 +47,8 @@ namespace Hextasy.CardWars.Cards.Traits
 
             randomMonster.Player = CardThatHasTrait.Player;
             randomMonster.AddTrait(new ShapeshifterTrait(randomMonster));
+            randomMonster.IsExhausted = false;
+            targetTile.AssignCard(randomMonster);
         }
     }
 }

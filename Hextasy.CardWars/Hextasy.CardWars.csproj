@@ -71,6 +71,17 @@
     </Compile>
     <Compile Include="CardDiedEventArgs.cs" />
     <Compile Include="Cards\CardType.cs" />
+    <Compile Include="Cards\Monsters\HumanAbbotCard.cs" />
+    <Compile Include="Cards\Monsters\HumanBishopCard.cs" />
+    <Compile Include="Cards\Monsters\HumanDruidFemaleCard.cs" />
+    <Compile Include="Cards\Monsters\HumanFrostmageCard.cs" />
+    <Compile Include="Cards\Monsters\HumanInquisitorFemaleCard.cs" />
+    <Compile Include="Cards\Monsters\HumanInquisitorMaleCard.cs" />
+    <Compile Include="Cards\Monsters\HumanMonkCard.cs" />
+    <Compile Include="Cards\Monsters\HumanPaladinFemaleCard.cs" />
+    <Compile Include="Cards\Monsters\HumanPaladinMaleCard.cs" />
+    <Compile Include="Cards\Monsters\HumanPopeCard.cs" />
+    <Compile Include="Cards\Monsters\HumanPriestFemaleCard.cs" />
     <Compile Include="Cards\Spells\ChainLightningFireSpell.cs" />
     <Compile Include="Cards\Spells\ChainLightningFrostSpell.cs" />
     <Compile Include="Cards\Spells\ChainLightningHealSpell.cs" />
@@ -96,8 +107,8 @@
     <Compile Include="Cards\Monsters\DragonGreenMaleCard.cs" />
     <Compile Include="Cards\Monsters\DragonRedMaleCard.cs" />
     <Compile Include="Cards\Monsters\FireAntCard.cs" />
-    <Compile Include="Cards\Monsters\BarbarianPriestCard.cs" />
-    <Compile Include="Cards\Monsters\BarbarianWarlordCard.cs" />
+    <Compile Include="Cards\Monsters\HumanPriestCard.cs" />
+    <Compile Include="Cards\Monsters\HumanWarriorCard.cs" />
     <Compile Include="Cards\Monsters\BasiliskCard.cs" />
     <Compile Include="Cards\Monsters\BatCard.cs" />
     <Compile Include="Cards\Monsters\DiviciacusCard.cs" />
@@ -215,6 +226,7 @@
     <Compile Include="DeckBuilders\AllExceptDragonsDeckFactory.cs" />
     <Compile Include="DeckBuilders\BeastDeckFactory.cs" />
     <Compile Include="DeckBuilders\DeckFactory.cs" />
+    <Compile Include="DeckBuilders\HumanDeckFactory.cs" />
     <Compile Include="DeckBuilders\TestDeckFactory.cs" />
     <Compile Include="DeckBuilders\UndeadDeckFactory.cs" />
     <Compile Include="NullToVisibilityConverter.cs" />
@@ -522,6 +534,25 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Cards\Spells\lightning-yellow-3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Monsters\FemaleDruid01.PNG" />
+    <Resource Include="Images\Cards\Monsters\FemalePaladin01.PNG" />
+    <Resource Include="Images\Cards\Monsters\FemalePriest01.PNG" />
+    <Resource Include="Images\Cards\Monsters\FemalePriest02.PNG" />
+    <Resource Include="Images\Cards\Monsters\HumanFighter8.PNG" />
+    <Resource Include="Images\Cards\Monsters\HumanMage15.PNG" />
+    <Resource Include="Images\Cards\Monsters\HumanPriest01.PNG" />
+    <Resource Include="Images\Cards\Monsters\HumanPriest35.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Monsters\HumanPriest31B.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Monsters\HumanPriest04.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Monsters\HumanPriest31.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

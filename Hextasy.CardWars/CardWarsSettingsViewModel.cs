@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Linq;
 using Hextasy.CardWars.DeckBuilders;
 using Hextasy.Framework;
 
@@ -25,8 +26,8 @@ namespace Hextasy.CardWars
                 Player2Decks.Add(deckBuilder.Create());
             }
 
-            Player1Deck = Player1Decks[2];
-            Player2Deck = Player2Decks[4];
+            Player1Deck = Player1Decks.Single(p => p.Name.Contains("Beast"));
+            Player2Deck = Player2Decks.Single(p => p.Name.Contains("Undead"));
         }
 
         public string Player1 { get; set; }

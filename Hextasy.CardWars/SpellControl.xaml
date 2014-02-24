@@ -54,7 +54,7 @@
         <RowDefinition Height="*"/>
       </Grid.RowDefinitions>
       <TextBlock Grid.Row="0" Text="{Binding Name}" FontWeight="Bold"/>
-      <TextBlock Grid.Row="1" Text="{Binding Description}" TextWrapping="Wrap" TextTrimming="CharacterEllipsis"/>
+      <TextBlock Grid.Row="1" Text="{Binding Description}" FontSize="10" TextWrapping="Wrap" TextTrimming="CharacterEllipsis"/>
     </Grid>
   </Grid>
   

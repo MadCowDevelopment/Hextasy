@@ -15,7 +15,7 @@ namespace Hextasy.CardWars.Cards.Spells
 
         public override string Description
         {
-            get { return "Heals 3 damage to target and decreasing damage to connected monsters."; }
+            get { return "Heals 3 damage on target and decreasing damage on connected monsters."; }
         }
 
         public override int Cost

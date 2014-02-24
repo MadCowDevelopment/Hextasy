@@ -1,29 +1,27 @@
-﻿using System.ComponentModel.Composition;
-using Hextasy.CardWars.Cards.Traits;
+using System.ComponentModel.Composition;
 
 namespace Hextasy.CardWars.Cards.Monsters
 {
     [Export(typeof(Card))]
-    public class BarbarianWarlordCard : MonsterCard
+    public class HumanFrostmageCard : MonsterCard
     {
-        public BarbarianWarlordCard()
+        public HumanFrostmageCard()
         {
-            Traits.Add(new DefenderTrait(this));
         }
 
         public override string Name
         {
-            get { return "Barbarian Warlord"; }
+            get { return "Frostmage"; }
         }
 
         public override string Description
         {
-            get { return string.Empty; }
+            get { return "Initiative: Freezes all adjacent enemy minions."; }
         }
 
         protected override string ImageFilename
         {
-            get { return @"BarbarianFighter2.png"; }
+            get { return @"HumanMage15.PNG"; }
         }
 
         public override int BaseAttack
@@ -33,7 +31,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override int BaseHealth
         {
-            get { return 7; }
+            get { return 4; }
         }
 
         public override Race Race
@@ -43,7 +41,7 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public override int Cost
         {
-            get { return 5; }
+            get { return 3; }
         }
     }
 }

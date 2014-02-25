@@ -14,6 +14,10 @@ namespace Hextasy.CardWars
         {
             Player1 = "Player1";
             Player2 = "Player2";
+
+            Player1Human = true;
+            Player2Cpu = true;
+
             Columns = 6;
             Rows = 6;
 
@@ -31,15 +35,18 @@ namespace Hextasy.CardWars
         }
 
         public string Player1 { get; set; }
-
         public string Player2 { get; set; }
 
-        public List<Deck> Player1Decks { get; private set; }
+        public bool Player1Human { get; set; }
+        public bool Player2Human { get; set; }
 
+        public bool Player1Cpu { get; set; }
+        public bool Player2Cpu { get; set; }
+
+        public List<Deck> Player1Decks { get; private set; }
         public List<Deck> Player2Decks { get; private set; }
 
         public Deck Player1Deck { get; set; }
-
         public Deck Player2Deck { get; set; }
 
         public override CardWarsSettings Settings

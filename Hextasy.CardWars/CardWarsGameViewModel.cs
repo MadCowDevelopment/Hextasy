@@ -1,9 +1,10 @@
-using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.Windows.Input;
 using Caliburn.Micro;
 using Hextasy.CardWars.Cards;
 using Hextasy.Framework;
+using Hextasy.Framework.Utils;
 
 namespace Hextasy.CardWars
 {
@@ -20,16 +21,20 @@ namespace Hextasy.CardWars
             Game.PropertyChanged += GamePropertyChanged;
         }
 
-        private void GamePropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void GamePropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == Game.GetPropertyName(p => p.SelectedTile))
             {
                 NotifyOfPropertyChange(() => SelectedCard);
                 NotifyOfPropertyChange(() => IsInTargetMode);
             }
+            else if (e.PropertyName == Game.GetPropertyName(p => p.CurrentPlayer))
+            {
+                OnPropertyChanged(new PropertyChangedEventArgs(string.Empty));
+            }
         }
 
-        public ObservableCollection<Card> CurrentCards
+        public DispatcherObservableCollection<Card> CurrentCards
         {
             get { return Game.CurrentCards; }
         }
@@ -82,6 +87,11 @@ namespace Hextasy.CardWars
         public Player Player2
         {
             get { return Game.Player2; }
+        }
+
+        public bool IsHumanTurn
+        {
+            get { return !(CurrentPlayer is CpuPlayer); }
         }
 
         public void OnTileClick(CardWarsTile tile)

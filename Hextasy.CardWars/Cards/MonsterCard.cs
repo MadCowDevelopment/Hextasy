@@ -7,6 +7,7 @@ using Caliburn.Micro;
 using Hextasy.CardWars.Cards.Debuffs;
 using Hextasy.CardWars.Cards.Traits;
 using Hextasy.Framework;
+using Hextasy.Framework.Utils;
 
 namespace Hextasy.CardWars.Cards
 {
@@ -18,12 +19,12 @@ namespace Hextasy.CardWars.Cards
 
         protected MonsterCard()
         {
-            Traits = new ObservableCollection<ITrait>();
+            Traits = new DispatcherObservableCollection<ITrait>();
 
             TraitsWithIcons = new ListCollectionView(Traits);
             TraitsWithIcons.Filter = o => (o as IEffect).HasIcon;
 
-            Debuffs = new ObservableCollection<IDebuff>();
+            Debuffs = new DispatcherObservableCollection<IDebuff>();
             IsExhausted = true;
         }
 
@@ -141,7 +142,7 @@ namespace Hextasy.CardWars.Cards
             get { return CardType.Monster; }
         }
 
-        public ObservableCollection<ITrait> Traits { get; private set; }
+        public DispatcherObservableCollection<ITrait> Traits { get; private set; }
 
         public ListCollectionView TraitsWithIcons { get; private set; }
 
@@ -160,7 +161,7 @@ namespace Hextasy.CardWars.Cards
             }
         }
 
-        public ObservableCollection<IDebuff> Debuffs { get; private set; }
+        public DispatcherObservableCollection<IDebuff> Debuffs { get; private set; }
         public abstract Race Race { get; }
 
         public void AddTrait(ITrait trait)

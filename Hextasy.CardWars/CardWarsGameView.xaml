@@ -9,6 +9,7 @@
   xmlns:cal="http://www.caliburnproject.org"
   mc:Ignorable="d" 
   d:DesignHeight="300" d:DesignWidth="300"
+  IsEnabled="{Binding IsHumanTurn}"
   cal:Message.Attach="[Event PreviewKeyUp] = [Action PreviewKeyUp($eventArgs)];">
 
   <UserControl.Resources>

@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Linq;
+using System.Threading.Tasks;
 using Caliburn.Micro;
 using Hextasy.CardWars.Cards;
 using Hextasy.CardWars.Cards.Specials;
 using Hextasy.Framework;
+using Hextasy.Framework.Utils;
 
 namespace Hextasy.CardWars
 {
@@ -16,7 +18,7 @@ namespace Hextasy.CardWars
         private Player _currentPlayer;
         private int _turns = 1;
 
-        public ObservableCollection<Card> CurrentCards
+        public DispatcherObservableCollection<Card> CurrentCards
         {
             get
             {
@@ -121,9 +123,9 @@ namespace Hextasy.CardWars
             }
             else
             {
-                Player2 = new CpuPlayer(Settings.Player2, Owner.Player2,
-                    Tiles.Select(p => p.Card).OfType<BlueKingCard>().Single(),
-                    Settings.Player2Deck);
+                Player1 = new CpuPlayer(Settings.Player1, Owner.Player1,
+                    Tiles.Select(p => p.Card).OfType<RedKingCard>().Single(),
+                    Settings.Player1Deck);
             }
 
             if (Settings.Player2Human)
@@ -253,6 +255,12 @@ namespace Hextasy.CardWars
             SwitchCurrentPlayer();
             ReadyCards();
             ResolveStartTurnEffects();
+
+            if (CurrentPlayer is CpuPlayer)
+            {
+                var task = new Task(() => (CurrentPlayer as CpuPlayer).TakeTurn(this));
+                task.Start();
+            }
         }
 
         public IEnumerable<CardWarsTile> GetAdjacentMonsterTiles(CardWarsTile tile)

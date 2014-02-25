@@ -4,6 +4,7 @@ using Caliburn.Micro;
 using Hextasy.CardWars.Cards;
 using Hextasy.CardWars.Cards.Specials;
 using Hextasy.Framework;
+using Hextasy.Framework.Utils;
 
 namespace Hextasy.CardWars
 {
@@ -32,7 +33,7 @@ namespace Hextasy.CardWars
             KingCard.Player = this;
             KingCard.PropertyChanged += KingCardPropertyChanged;
             deck.Cards.Apply(p => p.Player = this);
-            Hand = new ObservableCollection<Card>(Deck.TakeHand());
+            Hand = new DispatcherObservableCollection<Card>(Deck.TakeHand());
         }
 
         private void KingCardPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -45,7 +46,7 @@ namespace Hextasy.CardWars
             }
         }
 
-        public ObservableCollection<Card> Hand { get; private set; }
+        public DispatcherObservableCollection<Card> Hand { get; private set; }
 
         public bool DidMulligan { get; private set; }
 
@@ -60,7 +61,7 @@ namespace Hextasy.CardWars
         public void Mulligan()
         {
             DidMulligan = true;
-            Hand = new ObservableCollection<Card>(Deck.Mulligan());
+            Hand = new DispatcherObservableCollection<Card>(Deck.Mulligan());
         }
 
         public void EndTurn()

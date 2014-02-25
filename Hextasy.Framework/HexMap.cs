@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Hextasy.Framework.Utils;
 
 namespace Hextasy.Framework
 {
@@ -18,7 +19,7 @@ namespace Hextasy.Framework
 
         public HexMap(IEnumerable<T> tiles, int columns)
         {
-            Tiles = new ObservableCollection<T>(tiles);
+            Tiles = new DispatcherObservableCollection<T>(tiles);
             _columns = columns;
         }
 
@@ -26,7 +27,7 @@ namespace Hextasy.Framework
 
         #region Public Properties
 
-        public ObservableCollection<T> Tiles
+        public DispatcherObservableCollection<T> Tiles
         {
             get;
             private set;

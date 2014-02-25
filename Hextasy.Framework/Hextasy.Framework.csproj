@@ -95,6 +95,7 @@
     <Compile Include="Settings.cs" />
     <Compile Include="SettingsViewModel.cs" />
     <Compile Include="ShowGameSelectionRequest.cs" />
+    <Compile Include="Utils\DispatcherObservableCollection.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

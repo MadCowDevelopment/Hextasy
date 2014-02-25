@@ -22,18 +22,22 @@ namespace Hextasy.CardWars
         public bool IsActive { get; set; }
         public Deck Deck { get; private set; }
 
-        public Player(string name, Owner owner, KingCard kingCard, Deck deck)
+        public void Initialize(string name, Owner owner, Deck deck)
         {
             Name = name;
             Owner = owner;
-            KingCard = kingCard;
             Deck = deck;
             MaximumResources = 0;
             RemainingResources = 1;
-            KingCard.Player = this;
-            KingCard.PropertyChanged += KingCardPropertyChanged;
             deck.Cards.Apply(p => p.Player = this);
             Hand = new DispatcherObservableCollection<Card>(Deck.TakeHand());
+        }
+
+        public void Initialize(KingCard kingCard)
+        {
+            KingCard = kingCard;
+            KingCard.Player = this;
+            KingCard.PropertyChanged += KingCardPropertyChanged;
         }
 
         private void KingCardPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

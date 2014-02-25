@@ -5,6 +5,7 @@ using System.ComponentModel.Composition;
 using System.Linq;
 using System.Threading.Tasks;
 using Caliburn.Micro;
+using Hextasy.CardWars.AI;
 using Hextasy.CardWars.Cards;
 using Hextasy.CardWars.Cards.Specials;
 using Hextasy.Framework;
@@ -115,31 +116,11 @@ namespace Hextasy.CardWars
 
         private void InitializePlayers()
         {
-            if (Settings.Player1Human)
-            {
-                Player1 = new Player(Settings.Player1, Owner.Player1,
-                    Tiles.Select(p => p.Card).OfType<RedKingCard>().Single(),
-                    Settings.Player1Deck);
-            }
-            else
-            {
-                Player1 = new CpuPlayer(Settings.Player1, Owner.Player1,
-                    Tiles.Select(p => p.Card).OfType<RedKingCard>().Single(),
-                    Settings.Player1Deck);
-            }
+            Player1 = Settings.Player1;
+            Player2 = Settings.Player2;
 
-            if (Settings.Player2Human)
-            {
-                Player2 = new Player(Settings.Player2, Owner.Player2,
-                    Tiles.Select(p => p.Card).OfType<BlueKingCard>().Single(),
-                    Settings.Player2Deck);
-            }
-            else
-            {
-                Player2 = new CpuPlayer(Settings.Player2, Owner.Player2,
-                    Tiles.Select(p => p.Card).OfType<BlueKingCard>().Single(),
-                    Settings.Player2Deck);
-            }
+            Player1.Initialize(Tiles.Select(p => p.Card).OfType<RedKingCard>().Single());
+            Player2.Initialize(Tiles.Select(p => p.Card).OfType<RedKingCard>().Single());
 
             Player1.Died += (sender, args) => RaiseFinished(new GameFinishedEventArgs());
             Player2.Died += (sender, args) => RaiseFinished(new GameFinishedEventArgs());

@@ -2,9 +2,12 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:Framework="clr-namespace:Hextasy.Framework;assembly=Hextasy.Framework" mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+  <UserControl.Resources>
+    <Framework:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+  </UserControl.Resources>
   <Grid Margin="5">
     <Grid.RowDefinitions>
       <RowDefinition Height="Auto"/>
@@ -38,14 +41,22 @@
       <RadioButton GroupName="Player1" IsChecked="{Binding Player1Human}">Human</RadioButton>
       <RadioButton GroupName="Player1" IsChecked="{Binding Player1Cpu}">CPU</RadioButton>
     </StackPanel>
-    <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Player1}" IsEnabled="{Binding Player1Human}"/>
+    <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Player1}" 
+             Visibility="{Binding Player1Human, Converter={StaticResource BoolToVisibilityConverter}}"/>
+    <ComboBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" DisplayMemberPath="CpuName"
+              ItemsSource="{Binding Player1CpuPlayers}" SelectedItem="{Binding SelectedCpuPlayer1}"
+             Visibility="{Binding Player1Cpu, Converter={StaticResource BoolToVisibilityConverter}}"/>
     <ComboBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"  DisplayMemberPath="Name"
               ItemsSource="{Binding Player1Decks}" SelectedItem="{Binding Player1Deck}"/>
     <StackPanel Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal">
       <RadioButton GroupName="Player2" IsChecked="{Binding Player2Human}">Human</RadioButton>
       <RadioButton GroupName="Player2" IsChecked="{Binding Player2Cpu}">CPU</RadioButton>
     </StackPanel>
-    <TextBox Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Player2}" IsEnabled="{Binding Player2Human}"/>
+    <TextBox Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Player2}"  
+             Visibility="{Binding Player2Human, Converter={StaticResource BoolToVisibilityConverter}}"/>
+    <ComboBox Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" DisplayMemberPath="CpuName"
+              ItemsSource="{Binding Player2CpuPlayers}" SelectedItem="{Binding SelectedCpuPlayer2}"
+             Visibility="{Binding Player2Cpu, Converter={StaticResource BoolToVisibilityConverter}}"/>
     <ComboBox Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" DisplayMemberPath="Name"
               ItemsSource="{Binding Player2Decks}" SelectedItem="{Binding Player2Deck}"/>
 

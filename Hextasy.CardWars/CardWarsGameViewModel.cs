@@ -2,6 +2,7 @@ using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.Windows.Input;
 using Caliburn.Micro;
+using Hextasy.CardWars.AI;
 using Hextasy.CardWars.Cards;
 using Hextasy.Framework;
 using Hextasy.Framework.Utils;

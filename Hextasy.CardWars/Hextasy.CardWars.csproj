@@ -66,6 +66,7 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="AI\DeepBlueCpuPlayer.cs" />
     <Compile Include="CardControl.xaml.cs">
       <DependentUpon>CardControl.xaml</DependentUpon>
     </Compile>
@@ -228,7 +229,7 @@
     </Compile>
     <Compile Include="CardWarsSettingsViewModel.cs" />
     <Compile Include="CardWarsTile.cs" />
-    <Compile Include="CpuPlayer.cs" />
+    <Compile Include="AI\CpuPlayer.cs" />
     <Compile Include="CurrentPlayerChangedEventArgs.cs" />
     <Compile Include="Deck.cs" />
     <Compile Include="DeckBuilders\AllDeckFactory.cs" />
@@ -563,9 +564,7 @@
   <ItemGroup>
     <Resource Include="Images\Cards\Monsters\HumanPriest31.PNG" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="AI\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Import Project="Fody.targets" />

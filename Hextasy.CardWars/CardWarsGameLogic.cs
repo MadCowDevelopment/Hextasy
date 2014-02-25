@@ -19,7 +19,7 @@ namespace Hextasy.CardWars
         private Player _currentPlayer;
         private int _turns = 1;
 
-        public DispatcherObservableCollection<Card> CurrentCards
+        public DispatcherObservableCollection<Card> CurrentPlayerHand
         {
             get
             {
@@ -104,6 +104,11 @@ namespace Hextasy.CardWars
         public bool CanMulligan { get { return Turn == 1 && !CardPlayedThisTurn; } }
         private bool CardPlayedThisTurn { get; set; }
 
+        public IEnumerable<CardWarsTile> AllFreeTiles
+        {
+            get { return Tiles.Where(p => p.Card == null); }
+        }
+
         protected override void OnSettingsInitialized()
         {
             base.OnSettingsInitialized();
@@ -174,7 +179,7 @@ namespace Hextasy.CardWars
             CardPlayedThisTurn = true;
             tile.AssignCard(selectedCard);
             CurrentPlayer.RemainingResources -= selectedCard.Cost;
-            CurrentCards.Remove(selectedCard);
+            CurrentPlayerHand.Remove(selectedCard);
             selectedCard.Traits.OfType<IActivateTraitOnCardPlayed>().Apply(trait => trait.Activate(this, tile));
             ActivateTraits<IActivateTraitOnAnyCardPlayed>(Tiles, tile);
         }
@@ -184,7 +189,7 @@ namespace Hextasy.CardWars
             if (!tile.IsValidSpellTarget) return;
             CardPlayedThisTurn = true;
             CurrentPlayer.RemainingResources -= selectedCard.Cost;
-            CurrentCards.Remove(selectedCard);
+            CurrentPlayerHand.Remove(selectedCard);
             selectedCard.Activate(this, tile);
         }
 

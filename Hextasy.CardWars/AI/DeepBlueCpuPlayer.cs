@@ -1,3 +1,7 @@
+using System.Linq;
+using Hextasy.CardWars.Cards;
+using Hextasy.Framework;
+
 namespace Hextasy.CardWars.AI
 {
     public class DeepBlueCpuPlayer : CpuPlayer
@@ -11,6 +15,18 @@ namespace Hextasy.CardWars.AI
         {
             Wait();
 
+            var cardsThatCanBePlayed = cardWarsGameLogic.CurrentPlayerHand.OfType<MonsterCard>().Where(p => p.CanBePlayed);
+            var randomCardToPlay = cardsThatCanBePlayed.RandomOrDefault();
+            if (randomCardToPlay != null)
+            {
+                var randomTileToPlayItOn = cardWarsGameLogic.AllFreeTiles.RandomOrDefault();
+                if (randomTileToPlayItOn != null)
+                {
+                    cardWarsGameLogic.PlayMonsterCard(randomTileToPlayItOn, randomCardToPlay);
+                }
+            }
+
+            Wait();
             cardWarsGameLogic.EndTurn();
         }
     }

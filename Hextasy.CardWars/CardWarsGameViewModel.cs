@@ -37,7 +37,7 @@ namespace Hextasy.CardWars
 
         public DispatcherObservableCollection<Card> CurrentCards
         {
-            get { return Game.CurrentCards; }
+            get { return Game.CurrentPlayerHand; }
         }
 
         public Card SelectedCard

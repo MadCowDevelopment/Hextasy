@@ -8,7 +8,6 @@ namespace Hextasy.Framework.Utils
 {
     public class DispatcherObservableCollection<T> : ObservableCollection<T>
     {
-        
         /// <summary>
         /// Initializes a new instance of the <see cref="DispatcherObservableCollection{T}"/> class.
         /// </summary>

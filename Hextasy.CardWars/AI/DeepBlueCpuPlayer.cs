@@ -1,5 +1,6 @@
 using System.Linq;
 using Hextasy.CardWars.Cards;
+using Hextasy.CardWars.Cards.Specials;
 using Hextasy.Framework;
 
 namespace Hextasy.CardWars.AI
@@ -13,8 +14,6 @@ namespace Hextasy.CardWars.AI
 
         protected override void OnTakeTurn(CardWarsGameLogic cardWarsGameLogic)
         {
-            Wait();
-
             var cardsThatCanBePlayed = cardWarsGameLogic.CurrentPlayerHand.OfType<MonsterCard>().Where(p => p.CanBePlayed);
             var randomCardToPlay = cardsThatCanBePlayed.RandomOrDefault();
             if (randomCardToPlay != null)
@@ -22,8 +21,21 @@ namespace Hextasy.CardWars.AI
                 var randomTileToPlayItOn = cardWarsGameLogic.AllFreeTiles.RandomOrDefault();
                 if (randomTileToPlayItOn != null)
                 {
+                    Wait();
                     cardWarsGameLogic.PlayMonsterCard(randomTileToPlayItOn, randomCardToPlay);
                 }
+            }
+
+            var cardsThatCanAttack =
+                cardWarsGameLogic.CurrentPlayerTiles.Where(p => !(p.Card is KingCard) && p.Card.IsExhausted == false);
+            foreach (var monsterCard in cardsThatCanAttack)
+            {
+                Wait();
+                cardWarsGameLogic.SelectTile(monsterCard);
+                var randomTarget = cardWarsGameLogic.OpponentTiles.Where(p => p.IsValidTarget).RandomOrDefault();
+                if(randomTarget == null) continue;
+                Wait();
+                cardWarsGameLogic.AttackCard(randomTarget);
             }
 
             Wait();

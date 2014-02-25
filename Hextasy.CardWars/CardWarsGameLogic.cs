@@ -33,12 +33,12 @@ namespace Hextasy.CardWars
 
         public Player Player2 { get; private set; }
 
-        private IEnumerable<CardWarsTile> CurrentPlayerTiles
+        public IEnumerable<CardWarsTile> CurrentPlayerTiles
         {
             get { return Tiles.Where(p => p.Owner == CurrentPlayer.Owner); }
         }
 
-        private IEnumerable<CardWarsTile> OpponentTiles
+        public IEnumerable<CardWarsTile> OpponentTiles
         {
             get
             {
@@ -125,7 +125,7 @@ namespace Hextasy.CardWars
             Player2 = Settings.Player2;
 
             Player1.Initialize(Tiles.Select(p => p.Card).OfType<RedKingCard>().Single());
-            Player2.Initialize(Tiles.Select(p => p.Card).OfType<RedKingCard>().Single());
+            Player2.Initialize(Tiles.Select(p => p.Card).OfType<BlueKingCard>().Single());
 
             Player1.Died += (sender, args) => RaiseFinished(new GameFinishedEventArgs());
             Player2.Died += (sender, args) => RaiseFinished(new GameFinishedEventArgs());

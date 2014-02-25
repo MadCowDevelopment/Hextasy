@@ -16,33 +16,6 @@ namespace Hextasy.CardWars
         private Player _currentPlayer;
         private int _turns = 1;
 
-        protected override void OnSettingsInitialized()
-        {
-            base.OnSettingsInitialized();
-            Player1 = new Player(Settings.Player1, Owner.Player1,
-                Tiles.Select(p => p.Card).OfType<RedKingCard>().Single(),
-                Settings.Player1Deck);
-            Player2 = new Player(Settings.Player2, Owner.Player2,
-                Tiles.Select(p => p.Card).OfType<BlueKingCard>().Single(),
-                Settings.Player2Deck);
-
-            Player1.Died += (sender, args) => RaiseFinished(new GameFinishedEventArgs());
-            Player2.Died += (sender, args) => RaiseFinished(new GameFinishedEventArgs());
-
-            Tiles.Apply(p => p.CardDied += OnCardDied);
-
-            CurrentPlayer = Player1;
-            CurrentPlayer.PrepareTurn();
-        }
-
-        private void OnCardDied(object sender, CardDiedEventArgs e)
-        {
-            AllCards.SelectMany(p => p.Traits)
-                .OfType<IActivateTraitOnAnyCardDied>()
-                .ToList()
-                .Apply(p => p.Activate(this, e.TileOnWhichTheCardDied));
-        }
-
         public ObservableCollection<Card> CurrentCards
         {
             get
@@ -51,41 +24,7 @@ namespace Hextasy.CardWars
             }
         }
 
-        public void Mulligan()
-        {
-            if (CanMulligan) CurrentPlayer.Mulligan();
-        }
-
         private int Turn { get { return (int)Math.Ceiling(_turns / 2.0); } }
-
-        protected override CardWarsTile CreateTile(int column, int row)
-        {
-            if (column == 0 && row == 0)
-            {
-                var tile = new CardWarsTile(this);
-                tile.AssignCard(new RedKingCard());
-                return tile;
-            }
-
-            if (column == Settings.Columns - 1 && row == Settings.Rows - 1)
-            {
-                var tile = new CardWarsTile(this);
-                tile.AssignCard(new BlueKingCard());
-                return tile;
-            }
-
-            return new CardWarsTile(this);
-        }
-
-        public void SelectTile(CardWarsTile tile)
-        {
-            if (tile.Card == null || tile.Card.IsExhausted) return;
-            tile.IsSelected = true;
-            Tiles.Apply(p => p.IsValidTarget = false);
-            if (OpponentTiles.Any(p => p.IsDefender)) Tiles.Where(p => p.IsDefender).Apply(p => p.IsValidTarget = true);
-            else Tiles.Where(p => p.Card != null).Apply(p => p.IsValidTarget = true);
-            tile.IsValidTarget = false;
-        }
 
         public Player Player1 { get; private set; }
 
@@ -161,6 +100,90 @@ namespace Hextasy.CardWars
 
         public bool CanMulligan { get { return Turn == 1 && !CardPlayedThisTurn; } }
         private bool CardPlayedThisTurn { get; set; }
+
+        protected override void OnSettingsInitialized()
+        {
+            base.OnSettingsInitialized();
+
+            InitializePlayers();
+            Tiles.Apply(p => p.CardDied += OnCardDied);
+            CurrentPlayer = Player1;
+            CurrentPlayer.PrepareTurn();
+        }
+
+        private void InitializePlayers()
+        {
+            if (Settings.Player1Human)
+            {
+                Player1 = new Player(Settings.Player1, Owner.Player1,
+                    Tiles.Select(p => p.Card).OfType<RedKingCard>().Single(),
+                    Settings.Player1Deck);
+            }
+            else
+            {
+                Player2 = new CpuPlayer(Settings.Player2, Owner.Player2,
+                    Tiles.Select(p => p.Card).OfType<BlueKingCard>().Single(),
+                    Settings.Player2Deck);
+            }
+
+            if (Settings.Player2Human)
+            {
+                Player2 = new Player(Settings.Player2, Owner.Player2,
+                    Tiles.Select(p => p.Card).OfType<BlueKingCard>().Single(),
+                    Settings.Player2Deck);
+            }
+            else
+            {
+                Player2 = new CpuPlayer(Settings.Player2, Owner.Player2,
+                    Tiles.Select(p => p.Card).OfType<BlueKingCard>().Single(),
+                    Settings.Player2Deck);
+            }
+
+            Player1.Died += (sender, args) => RaiseFinished(new GameFinishedEventArgs());
+            Player2.Died += (sender, args) => RaiseFinished(new GameFinishedEventArgs());
+        }
+
+        private void OnCardDied(object sender, CardDiedEventArgs e)
+        {
+            AllCards.SelectMany(p => p.Traits)
+                .OfType<IActivateTraitOnAnyCardDied>()
+                .ToList()
+                .Apply(p => p.Activate(this, e.TileOnWhichTheCardDied));
+        }
+
+        public void Mulligan()
+        {
+            if (CanMulligan) CurrentPlayer.Mulligan();
+        }
+
+        protected override CardWarsTile CreateTile(int column, int row)
+        {
+            if (column == 0 && row == 0)
+            {
+                var tile = new CardWarsTile(this);
+                tile.AssignCard(new RedKingCard());
+                return tile;
+            }
+
+            if (column == Settings.Columns - 1 && row == Settings.Rows - 1)
+            {
+                var tile = new CardWarsTile(this);
+                tile.AssignCard(new BlueKingCard());
+                return tile;
+            }
+
+            return new CardWarsTile(this);
+        }
+
+        public void SelectTile(CardWarsTile tile)
+        {
+            if (tile.Card == null || tile.Card.IsExhausted) return;
+            tile.IsSelected = true;
+            Tiles.Apply(p => p.IsValidTarget = false);
+            if (OpponentTiles.Any(p => p.IsDefender)) Tiles.Where(p => p.IsDefender).Apply(p => p.IsValidTarget = true);
+            else Tiles.Where(p => p.Card != null).Apply(p => p.IsValidTarget = true);
+            tile.IsValidTarget = false;
+        }
 
         public void PlayMonsterCard(CardWarsTile tile, MonsterCard selectedCard)
         {

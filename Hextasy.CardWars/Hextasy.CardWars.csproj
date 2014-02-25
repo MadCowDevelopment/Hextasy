@@ -228,6 +228,7 @@
     </Compile>
     <Compile Include="CardWarsSettingsViewModel.cs" />
     <Compile Include="CardWarsTile.cs" />
+    <Compile Include="CpuPlayer.cs" />
     <Compile Include="CurrentPlayerChangedEventArgs.cs" />
     <Compile Include="Deck.cs" />
     <Compile Include="DeckBuilders\AllDeckFactory.cs" />

@@ -51,7 +51,11 @@ namespace Hextasy.CardWars
 
         public override CardWarsSettings Settings
         {
-            get { return new CardWarsSettings(Rows, Columns, Player1, Player2, Player1Deck, Player2Deck); }
+            get
+            {
+                return new CardWarsSettings(
+                    Rows, Columns, Player1, Player2, Player1Deck, Player2Deck, Player1Human, Player2Human);
+            }
         }
     }
 }

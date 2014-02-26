@@ -6,6 +6,7 @@ using Hextasy.Framework;
 namespace Hextasy.Halma
 {
     [Export(typeof(HalmaGameViewModel))]
+    [PartCreationPolicy(CreationPolicy.NonShared)]
     public class HalmaGameViewModel : GameViewModel<HalmaGameLogic, HalmaSettings, HalmaTile>
     {
         [ImportingConstructor]

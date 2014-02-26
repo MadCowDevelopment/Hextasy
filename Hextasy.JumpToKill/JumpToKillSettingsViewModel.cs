@@ -4,6 +4,7 @@ using Hextasy.Framework;
 namespace Hextasy.JumpToKill
 {
     [Export(typeof(JumpToKillSettingsViewModel))]
+    [PartCreationPolicy(CreationPolicy.NonShared)]
     public class JumpToKillSettingsViewModel : SettingsViewModel<JumpToKillSettings>
     {
         public JumpToKillSettingsViewModel()

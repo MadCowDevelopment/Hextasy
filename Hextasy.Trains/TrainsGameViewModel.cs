@@ -5,6 +5,7 @@ using Hextasy.Framework;
 namespace Hextasy.Trains
 {
     [Export(typeof(TrainsGameViewModel))]
+    [PartCreationPolicy(CreationPolicy.NonShared)]
     public class TrainsGameViewModel : GameViewModel<TrainsGameLogic, TrainsSettings, TrainsTile>
     {
         [ImportingConstructor]

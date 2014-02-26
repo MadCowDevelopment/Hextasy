@@ -12,8 +12,8 @@ namespace Hextasy.LightsOff
 
         [ImportingConstructor]
         public LightsOffGame(
-            Lazy<LightsOffSettingsViewModel> lightsOffSettingsViewModel,
-            Lazy<LightsOffGameViewModel> lightsOffGameViewModel)
+            ExportFactory<LightsOffSettingsViewModel> lightsOffSettingsViewModel,
+            ExportFactory<LightsOffGameViewModel> lightsOffGameViewModel)
             : base(lightsOffSettingsViewModel, lightsOffGameViewModel)
         {
         }

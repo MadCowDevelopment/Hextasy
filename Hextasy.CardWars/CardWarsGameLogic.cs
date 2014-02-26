@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,10 +13,12 @@ using Hextasy.Framework.Utils;
 namespace Hextasy.CardWars
 {
     [Export(typeof(CardWarsGameLogic))]
+    [PartCreationPolicy(CreationPolicy.NonShared)]
     public class CardWarsGameLogic : GameLogic<CardWarsSettings, CardWarsTile>
     {
         private Player _currentPlayer;
         private int _turns = 0;
+        private bool _gameOver;
 
         public DispatcherObservableCollection<Card> CurrentPlayerHand
         {
@@ -127,8 +128,17 @@ namespace Hextasy.CardWars
             Player1.Initialize(Tiles.Select(p => p.Card).OfType<RedKingCard>().Single());
             Player2.Initialize(Tiles.Select(p => p.Card).OfType<BlueKingCard>().Single());
 
-            Player1.Died += (sender, args) => RaiseFinished(new GameFinishedEventArgs());
-            Player2.Died += (sender, args) => RaiseFinished(new GameFinishedEventArgs());
+            Player1.Died += (sender, args) =>
+            {
+                _gameOver = true;
+                RaiseFinished(new GameFinishedEventArgs());
+            };
+
+            Player2.Died += (sender, args) =>
+            {
+                _gameOver = true;
+                RaiseFinished(new GameFinishedEventArgs());
+            };
         }
 
         private void OnCardDied(object sender, CardDiedEventArgs e)
@@ -235,6 +245,7 @@ namespace Hextasy.CardWars
 
         public void EndTurn()
         {
+            if (_gameOver) return;
             UnselectTile();
             ResolveEndTurnEffects();
             ExhaustCards();

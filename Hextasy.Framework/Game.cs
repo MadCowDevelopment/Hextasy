@@ -1,5 +1,6 @@
 ﻿using System;
-
+using System.ComponentModel.Composition;
+using System.Runtime.InteropServices;
 using Caliburn.Micro;
 
 namespace Hextasy.Framework
@@ -13,14 +14,14 @@ namespace Hextasy.Framework
     {
         #region Fields
 
-        private readonly Lazy<TGameViewModel> _gameViewModel;
-        private readonly Lazy<TSettingsViewModel> _settingsViewModel;
+        private readonly ExportFactory<TGameViewModel> _gameViewModel;
+        private readonly ExportFactory<TSettingsViewModel> _settingsViewModel;
 
         #endregion Fields
 
         #region Constructors
 
-        protected Game(Lazy<TSettingsViewModel> settingsViewModel, Lazy<TGameViewModel> gameViewModel)
+        protected Game(ExportFactory<TSettingsViewModel> settingsViewModel, ExportFactory<TGameViewModel> gameViewModel)
         {
             _settingsViewModel = settingsViewModel;
             _gameViewModel = gameViewModel;
@@ -30,14 +31,14 @@ namespace Hextasy.Framework
 
         #region Public Properties
 
-        public IScreen GameScreen
-        {
-            get { return GameViewModel; }
-        }
-
         public abstract string Name
         {
             get;
+        }
+
+        public IScreen GameScreen
+        {
+            get { return GameViewModel; }
         }
 
         public IScreen SettingsScreen
@@ -49,19 +50,22 @@ namespace Hextasy.Framework
 
         #region Private Properties
 
-        private GameViewModel<TGameLogic, TSettings, TTile> GameViewModel
-        {
-            get { return _gameViewModel.Value; }
-        }
+        private GameViewModel<TGameLogic, TSettings, TTile> GameViewModel { get; set; }
 
-        private SettingsViewModel<TSettings> SettingsViewModel
-        {
-            get { return _settingsViewModel.Value; }
-        }
+        private SettingsViewModel<TSettings> SettingsViewModel { get; set; }
 
         #endregion Private Properties
 
         #region Public Methods
+
+        public void Initialize()
+        {
+            using (var export = _gameViewModel.CreateExport())
+                GameViewModel = export.Value;
+
+            using (var export = _settingsViewModel.CreateExport())
+                SettingsViewModel = export.Value;
+        }
 
         public void Start()
         {

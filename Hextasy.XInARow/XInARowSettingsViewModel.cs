@@ -5,6 +5,7 @@ using Hextasy.Framework;
 namespace Hextasy.XInARow
 {
     [Export(typeof(XInARowSettingsViewModel))]
+    [PartCreationPolicy(CreationPolicy.NonShared)]
     public class XInARowSettingsViewModel : SettingsViewModel<XInARowSettings>
     {
         #region Constructors

@@ -9,6 +9,7 @@ using Hextasy.Framework;
 namespace Hextasy.CardWars
 {
     [Export(typeof(CardWarsSettingsViewModel))]
+    [PartCreationPolicy(CreationPolicy.NonShared)]
     public class CardWarsSettingsViewModel : SettingsViewModel<CardWarsSettings>
     {
         [ImportingConstructor]

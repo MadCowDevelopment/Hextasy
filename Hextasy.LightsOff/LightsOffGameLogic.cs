@@ -7,6 +7,7 @@ using Hextasy.Framework;
 namespace Hextasy.LightsOff
 {
     [Export(typeof(LightsOffGameLogic))]
+    [PartCreationPolicy(CreationPolicy.NonShared)]
     public class LightsOffGameLogic : GameLogic<LightsOffSettings, LightsOffTile>
     {
         #region Fields

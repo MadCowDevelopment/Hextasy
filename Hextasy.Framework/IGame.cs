@@ -27,6 +27,8 @@ namespace Hextasy.Framework
 
         void Start();
 
+        void Initialize();
+
         #endregion Methods
     }
 }

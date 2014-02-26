@@ -12,8 +12,8 @@ namespace Hextasy.XInARow
 
         [ImportingConstructor]
         public XInARowGame(
-            Lazy<XInARowSettingsViewModel> xInARowSettingsViewModel,
-            Lazy<XInARowGameViewModel> xInARowGameViewModel)
+            ExportFactory<XInARowSettingsViewModel> xInARowSettingsViewModel,
+            ExportFactory<XInARowGameViewModel> xInARowGameViewModel)
             : base(xInARowSettingsViewModel, xInARowGameViewModel)
         {
         }

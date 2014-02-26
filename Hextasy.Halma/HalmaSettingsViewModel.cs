@@ -4,6 +4,7 @@ using Hextasy.Framework;
 namespace Hextasy.Halma
 {
     [Export(typeof(HalmaSettingsViewModel))]
+    [PartCreationPolicy(CreationPolicy.NonShared)]
     public class HalmaSettingsViewModel : SettingsViewModel<HalmaSettings>
     {
         public HalmaSettingsViewModel()

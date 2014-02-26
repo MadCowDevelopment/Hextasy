@@ -6,6 +6,7 @@ using Hextasy.Framework;
 namespace Hextasy.Trains
 {
     [Export(typeof(TrainsSettingsViewModel))]
+    [PartCreationPolicy(CreationPolicy.NonShared)]
     public class TrainsSettingsViewModel : SettingsViewModel<TrainsSettings>
     {
         [ImportingConstructor]

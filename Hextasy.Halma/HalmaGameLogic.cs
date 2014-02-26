@@ -10,6 +10,7 @@ using Hextasy.Framework;
 namespace Hextasy.Halma
 {
     [Export(typeof(HalmaGameLogic))]
+    [PartCreationPolicy(CreationPolicy.NonShared)]
     public class HalmaGameLogic : GameLogic<HalmaSettings, HalmaTile>
     {
         #region Fields

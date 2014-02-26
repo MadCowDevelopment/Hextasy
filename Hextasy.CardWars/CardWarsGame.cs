@@ -8,7 +8,7 @@ namespace Hextasy.CardWars
     public class CardWarsGame : Game<CardWarsSettingsViewModel, CardWarsGameViewModel, CardWarsGameLogic, CardWarsSettings, CardWarsTile>
     {
         [ImportingConstructor]
-        public CardWarsGame(Lazy<CardWarsSettingsViewModel> settingsViewModel, Lazy<CardWarsGameViewModel> gameViewModel)
+        public CardWarsGame(ExportFactory<CardWarsSettingsViewModel> settingsViewModel, ExportFactory<CardWarsGameViewModel> gameViewModel)
             : base(settingsViewModel, gameViewModel)
         {
         }

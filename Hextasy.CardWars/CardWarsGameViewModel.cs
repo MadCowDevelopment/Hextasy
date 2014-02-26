@@ -10,6 +10,7 @@ using Hextasy.Framework.Utils;
 namespace Hextasy.CardWars
 {
     [Export(typeof(CardWarsGameViewModel))]
+    [PartCreationPolicy(CreationPolicy.NonShared)]
     public class CardWarsGameViewModel : GameViewModel<CardWarsGameLogic, CardWarsSettings, CardWarsTile>
     {
         private Card _selectedCard;

@@ -9,6 +9,7 @@ using Hextasy.Framework;
 namespace Hextasy.JumpToKill
 {
     [Export(typeof(JumpToKillGameLogic))]
+    [PartCreationPolicy(CreationPolicy.NonShared)]
     public class JumpToKillGameLogic : GameLogic<JumpToKillSettings, JumpToKillTile>
     {
         #region Fields

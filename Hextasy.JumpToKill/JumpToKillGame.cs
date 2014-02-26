@@ -9,7 +9,7 @@ namespace Hextasy.JumpToKill
         : Game<JumpToKillSettingsViewModel, JumpToKillGameViewModel, JumpToKillGameLogic, JumpToKillSettings, JumpToKillTile>
     {
         [ImportingConstructor]
-        public JumpToKillGame(Lazy<JumpToKillSettingsViewModel> settingsViewModel, Lazy<JumpToKillGameViewModel> gameViewModel)
+        public JumpToKillGame(ExportFactory<JumpToKillSettingsViewModel> settingsViewModel, ExportFactory<JumpToKillGameViewModel> gameViewModel)
             : base(settingsViewModel, gameViewModel)
         {
         }

@@ -7,6 +7,7 @@ using Hextasy.Framework;
 namespace Hextasy.XInARow
 {
     [Export(typeof(XInARowGameViewModel))]
+    [PartCreationPolicy(CreationPolicy.NonShared)]
     public class XInARowGameViewModel : GameViewModel<XInARowGameLogic, XInARowSettings, XInARowTile>
     {
         #region Constructors

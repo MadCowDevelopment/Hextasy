@@ -6,6 +6,7 @@ using Hextasy.Framework;
 namespace Hextasy.JumpToKill
 {
     [Export(typeof(JumpToKillGameViewModel))]
+    [PartCreationPolicy(CreationPolicy.NonShared)]
     public class JumpToKillGameViewModel : GameViewModel<JumpToKillGameLogic, JumpToKillSettings, JumpToKillTile>
     {
         [ImportingConstructor]

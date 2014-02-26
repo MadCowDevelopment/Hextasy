@@ -49,6 +49,8 @@ namespace Hextasy
         public void Handle(GameSelected message)
         {
             Game = message.Game;
+            Game.Initialize();
+            NotifyOfPropertyChange(() => Settings);
         }
 
         public void StartGame()

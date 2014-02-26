@@ -5,6 +5,7 @@ using Hextasy.Framework;
 namespace Hextasy.LightsOff
 {
     [Export(typeof(LightsOffSettingsViewModel))]
+    [PartCreationPolicy(CreationPolicy.NonShared)]
     public class LightsOffSettingsViewModel : SettingsViewModel<LightsOffSettings>
     {
         #region Constructors

@@ -7,6 +7,7 @@ using Hextasy.Framework;
 namespace Hextasy.XInARow
 {
     [Export(typeof(XInARowGameLogic))]
+    [PartCreationPolicy(CreationPolicy.NonShared)]
     public class XInARowGameLogic : GameLogic<XInARowSettings, XInARowTile>
     {
         public XInARowGameLogic()

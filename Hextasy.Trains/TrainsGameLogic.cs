@@ -7,6 +7,7 @@ using Hextasy.Framework;
 namespace Hextasy.Trains
 {
     [Export(typeof(TrainsGameLogic))]
+    [PartCreationPolicy(CreationPolicy.NonShared)]
     public class TrainsGameLogic : GameLogic<TrainsSettings, TrainsTile>
     {
         private readonly Random _random = new Random((int)DateTime.Now.Ticks);

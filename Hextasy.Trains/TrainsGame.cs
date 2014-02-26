@@ -8,7 +8,7 @@ namespace Hextasy.Trains
     public class TrainsGame : Game<TrainsSettingsViewModel, TrainsGameViewModel, TrainsGameLogic, TrainsSettings, TrainsTile>
     {
         [ImportingConstructor]
-        public TrainsGame(Lazy<TrainsSettingsViewModel> settingsViewModel, Lazy<TrainsGameViewModel> gameViewModel) 
+        public TrainsGame(ExportFactory<TrainsSettingsViewModel> settingsViewModel, ExportFactory<TrainsGameViewModel> gameViewModel) 
             : base(settingsViewModel, gameViewModel)
         {
         }

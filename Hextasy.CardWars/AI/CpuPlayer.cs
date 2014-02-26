@@ -19,6 +19,7 @@ namespace Hextasy.CardWars.AI
         public void TakeTurn(CardWarsGameLogic cardWarsGameLogic)
         {
             OnTakeTurn(cardWarsGameLogic);
+            Wait();
         }
 
         protected abstract void OnTakeTurn(CardWarsGameLogic cardWarsGameLogic);

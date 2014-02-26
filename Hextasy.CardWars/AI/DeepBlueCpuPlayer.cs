@@ -48,9 +48,6 @@ namespace Hextasy.CardWars.AI
                 Wait();
                 cardWarsGameLogic.AttackCard(randomTarget);
             }
-
-            Wait();
-            cardWarsGameLogic.EndTurn();
         }
     }
 }

@@ -86,6 +86,7 @@
   <Style x:Key="CardSelectionContainerStyle" TargetType="{x:Type ListBoxItem}">
     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
     <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+    <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type ListBoxItem}">

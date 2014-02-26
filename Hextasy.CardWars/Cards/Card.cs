@@ -19,6 +19,8 @@ namespace Hextasy.CardWars.Cards
 
         public Owner Owner { get { return Player != null ? Player.Owner : Owner.None; } }
 
+        public bool IsSelected { get; set; }
+
         public abstract CardType Type { get; }
 
         public Player Player

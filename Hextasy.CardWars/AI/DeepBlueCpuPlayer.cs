@@ -14,17 +14,28 @@ namespace Hextasy.CardWars.AI
 
         protected override void OnTakeTurn(CardWarsGameLogic cardWarsGameLogic)
         {
-            var cardsThatCanBePlayed = cardWarsGameLogic.CurrentPlayerHand.OfType<MonsterCard>().Where(p => p.CanBePlayed);
-            var randomCardToPlay = cardsThatCanBePlayed.RandomOrDefault();
-            if (randomCardToPlay != null)
+            do
             {
-                var randomTileToPlayItOn = cardWarsGameLogic.AllFreeTiles.RandomOrDefault();
-                if (randomTileToPlayItOn != null)
+                var cardsThatCanBePlayed = cardWarsGameLogic.CurrentPlayerHand.OfType<MonsterCard>().Where(p => p.CanBePlayed);
+                var randomCardToPlay = cardsThatCanBePlayed.RandomOrDefault();
+                if (randomCardToPlay != null)
                 {
-                    Wait();
-                    cardWarsGameLogic.PlayMonsterCard(randomTileToPlayItOn, randomCardToPlay);
+                    var randomTileToPlayItOn = cardWarsGameLogic.AllFreeTiles.RandomOrDefault();
+                    if (randomTileToPlayItOn != null)
+                    {
+                        Wait();
+                        randomCardToPlay.IsSelected = true;
+
+                        Wait();
+                        cardWarsGameLogic.PlayMonsterCard(randomTileToPlayItOn, randomCardToPlay);
+                    }
                 }
-            }
+                else
+                {
+                    break;
+                }
+            } while (true);
+            
 
             var cardsThatCanAttack =
                 cardWarsGameLogic.CurrentPlayerTiles.Where(p => !(p.Card is KingCard) && p.Card.IsExhausted == false);

@@ -17,7 +17,7 @@ namespace Hextasy.CardWars
     public class CardWarsGameLogic : GameLogic<CardWarsSettings, CardWarsTile>
     {
         private Player _currentPlayer;
-        private int _turns = 1;
+        private int _turns = 0;
 
         public DispatcherObservableCollection<Card> CurrentPlayerHand
         {
@@ -115,8 +115,8 @@ namespace Hextasy.CardWars
 
             InitializePlayers();
             Tiles.Apply(p => p.CardDied += OnCardDied);
-            CurrentPlayer = Player1;
-            CurrentPlayer.PrepareTurn();
+            CurrentPlayer = RNG.Chance(50) ? Player1 : Player2;
+            StartTurn();
         }
 
         private void InitializePlayers()
@@ -166,9 +166,12 @@ namespace Hextasy.CardWars
         public void SelectTile(CardWarsTile tile)
         {
             if (tile.Card == null || tile.Card.IsExhausted) return;
+            Tiles.Apply(p => p.IsSelected = false);
             tile.IsSelected = true;
             Tiles.Apply(p => p.IsValidTarget = false);
-            if (OpponentTiles.Any(p => p.IsDefender)) Tiles.Where(p => p.IsDefender).Apply(p => p.IsValidTarget = true);
+            if (OpponentTiles.Any(p => p.IsDefender))
+                Tiles.Where(p => p.Owner == CurrentPlayer.Owner || (p.Owner == OpponentPlayer.Owner && p.IsDefender))
+                    .Apply(p => p.IsValidTarget = true);
             else Tiles.Where(p => p.Card != null).Apply(p => p.IsValidTarget = true);
             tile.IsValidTarget = false;
         }
@@ -236,6 +239,12 @@ namespace Hextasy.CardWars
             ResolveEndTurnEffects();
             ExhaustCards();
             CleanupDebuffs();
+            StartTurn();
+        }
+
+        private void StartTurn()
+        {
+            CurrentPlayer.PrepareTurn();
             _turns++;
             CardPlayedThisTurn = false;
             SwitchCurrentPlayer();
@@ -334,7 +343,6 @@ namespace Hextasy.CardWars
         {
             CurrentPlayer.EndTurn();
             CurrentPlayer = CurrentPlayer == Player1 ? Player2 : Player1;
-            CurrentPlayer.PrepareTurn();
         }
 
         public IEnumerable<IEnumerable<CardWarsTile>> GetLinesOfTiles(CardWarsTile targetTile)

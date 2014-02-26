@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using Hextasy.CardWars.AI;
@@ -13,8 +14,8 @@ namespace Hextasy.CardWars
         [ImportingConstructor]
         public CardWarsSettingsViewModel(
             [ImportMany]IEnumerable<DeckFactory> deckFactories,
-            [ImportMany]IEnumerable<CpuPlayer> cpuPlayers1,
-            [ImportMany]IEnumerable<CpuPlayer> cpuPlayers2)
+            [ImportMany(RequiredCreationPolicy = CreationPolicy.NonShared)]IEnumerable<CpuPlayer> cpuPlayers1,
+            [ImportMany(RequiredCreationPolicy = CreationPolicy.NonShared)]IEnumerable<CpuPlayer> cpuPlayers2)
         {
             Player1 = "Player1";
             Player2 = "Player2";

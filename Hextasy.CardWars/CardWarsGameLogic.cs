@@ -268,9 +268,8 @@ namespace Hextasy.CardWars
             var cpuPlayer = CurrentPlayer as CpuPlayer;
             if (cpuPlayer != null)
             {
-                var scheduler = TaskScheduler.FromCurrentSynchronizationContext();
                 var task = new Task(() => cpuPlayer.TakeTurn(this));
-                task.ContinueWith(p => EndTurn(), scheduler);
+                task.ContinueWith(p => EndTurn());
                 task.Start();
             }
         }

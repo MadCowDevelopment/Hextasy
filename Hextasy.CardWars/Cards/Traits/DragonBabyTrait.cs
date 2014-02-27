@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Windows;
 using Hextasy.CardWars.Cards.Summoned;
 using Hextasy.Framework;
 
@@ -36,9 +38,11 @@ namespace Hextasy.CardWars.Cards.Traits
             var babyDragonflight = RNG.Next(0, 1) == 0 ? father.DragonFlight : mother.DragonFlight;
             var babyGender = RNG.Next(0, 1) == 0 ? Gender.Male : Gender.Female;
 
-            var baby = new BabyDragonCard(babyDragonflight, babyGender);
-            baby.Player = CardThatHasTrait.Player;
-            cardWarsGameLogic.PlayMonsterCard(placeOfBirth, baby);
+            BabyDragonCard babyDragon = null;
+            Application.Current.Dispatcher.Invoke(
+                new Action(() => babyDragon = new BabyDragonCard(babyDragonflight, babyGender)));
+            babyDragon.Player = CardThatHasTrait.Player;
+            cardWarsGameLogic.PlayMonsterCard(placeOfBirth, babyDragon);
         }
     }
 }

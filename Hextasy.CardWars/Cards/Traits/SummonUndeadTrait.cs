@@ -1,4 +1,7 @@
-﻿using Hextasy.CardWars.Cards.Summoned;
+﻿using System;
+using System.Net.Mime;
+using System.Windows;
+using Hextasy.CardWars.Cards.Summoned;
 using Hextasy.Framework;
 
 namespace Hextasy.CardWars.Cards.Traits
@@ -24,7 +27,8 @@ namespace Hextasy.CardWars.Cards.Traits
         {
             var randomTile = cardWarsGameLogic.GetAdjacentFreeTiles(targetTile).RandomOrDefault();
             if (randomTile == null) return;
-            var skeleton = new SkeletonCard();
+            SkeletonCard skeleton = null;
+            Application.Current.Dispatcher.Invoke(new Action(() => skeleton = new SkeletonCard()));
             skeleton.Player = CardThatHasTrait.Player;
             randomTile.AssignCard(skeleton);
         }

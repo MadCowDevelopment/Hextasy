@@ -1,4 +1,6 @@
-﻿using Hextasy.CardWars.Cards.Summoned;
+﻿using System;
+using System.Windows;
+using Hextasy.CardWars.Cards.Summoned;
 
 namespace Hextasy.CardWars.Cards.Traits
 {
@@ -22,9 +24,10 @@ namespace Hextasy.CardWars.Cards.Traits
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
             if (targetTile.Card is SkeletonCard) return;
-            var skeleton = new SkeletonCard();
-            skeleton.Player = CardThatHasTrait.Player;
-            targetTile.AssignCard(skeleton);
+            SkeletonCard skeletonCard = null;
+            Application.Current.Dispatcher.Invoke(new Action(() => skeletonCard = new SkeletonCard()));
+            skeletonCard.Player = CardThatHasTrait.Player;
+            targetTile.AssignCard(skeletonCard);
         }
     }
 }

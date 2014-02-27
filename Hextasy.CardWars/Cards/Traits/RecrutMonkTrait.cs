@@ -1,4 +1,6 @@
-﻿using Hextasy.CardWars.Cards.Summoned;
+﻿using System;
+using System.Windows;
+using Hextasy.CardWars.Cards.Summoned;
 using Hextasy.Framework;
 
 namespace Hextasy.CardWars.Cards.Traits
@@ -24,7 +26,10 @@ namespace Hextasy.CardWars.Cards.Traits
         {
             var adjacentTile = cardWarsGameLogic.GetAdjacentFreeTiles(targetTile).RandomOrDefault();
             if (adjacentTile == null) return;
-            adjacentTile.AssignCard(new HumanMonkCard { Player = CardThatHasTrait.Player });
+            HumanMonkCard monk = null;
+            Application.Current.Dispatcher.Invoke(new Action(() => monk = new HumanMonkCard()));
+            monk.Player = CardThatHasTrait.Player;
+            adjacentTile.AssignCard(monk);
         }
     }
 }

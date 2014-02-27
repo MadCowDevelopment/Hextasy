@@ -2,17 +2,21 @@
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Windows.Data;
 using System.Windows.Threading;
 
 namespace Hextasy.Framework.Utils
 {
     public class DispatcherObservableCollection<T> : ObservableCollection<T>
     {
+        private static object _syncLock = new object();
+
         /// <summary>
         /// Initializes a new instance of the <see cref="DispatcherObservableCollection{T}"/> class.
         /// </summary>
         public DispatcherObservableCollection()
         {
+            BindingOperations.EnableCollectionSynchronization(this, _syncLock);
         }
 
         /// <summary>
@@ -22,6 +26,7 @@ namespace Hextasy.Framework.Utils
         /// <param name="collection">The collection from which the elements are copied.</param>
         public DispatcherObservableCollection(IEnumerable<T> collection) : base(collection)
         {
+            BindingOperations.EnableCollectionSynchronization(this, _syncLock);
         }
 
         /// <summary>

@@ -1,5 +1,4 @@
 using System;
-using System.Collections.ObjectModel;
 using Caliburn.Micro;
 using Hextasy.CardWars.Cards;
 using Hextasy.CardWars.Cards.Specials;

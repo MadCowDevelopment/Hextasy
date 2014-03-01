@@ -15,20 +15,20 @@ namespace Hextasy.CardWarsSimulator
             _settingsViewModel = settingsViewModel;
             _simulationViewModel = simulationViewModel;
 
-            Content = _settingsViewModel;
+            Screen = _settingsViewModel;
         }
 
-        public Screen Content { get; set; }
+        public Screen Screen { get; set; }
 
         public void Start()
         {
-            Content = _simulationViewModel;
+            Screen = _simulationViewModel;
             _simulationViewModel.Start(_settingsViewModel);
         }
 
         public void Back()
         {
-            Content = _settingsViewModel;
+            Screen = _settingsViewModel;
         }
     }
 }

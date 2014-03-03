@@ -5,7 +5,32 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-          <ItemsControl ItemsSource="{Binding FinishedGames}"/>  
-    </Grid>
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+    <StackPanel Grid.Row="0" Orientation="Horizontal">
+      <TextBlock Text="Player1 wins: "/>
+      <TextBlock Text="{Binding Player1Wins}"/>
+    </StackPanel>
+    <StackPanel Grid.Row="1" Orientation="Horizontal">
+      <TextBlock Text="Player2 wins: "/>
+      <TextBlock Text="{Binding Player2Wins}"/>
+    </StackPanel>
+    <StackPanel Grid.Row="2" Orientation="Horizontal">
+      <TextBlock Text="Player1 average life: "/>
+      <TextBlock Text="{Binding AverageRemainingLife1}"/>
+    </StackPanel>
+    <StackPanel Grid.Row="3" Orientation="Horizontal">
+      <TextBlock Text="Player2 average life: "/>
+      <TextBlock Text="{Binding AverageRemainingLife2}"/>
+    </StackPanel>
+    <ScrollViewer Grid.Row="4">
+      <ItemsControl ItemsSource="{Binding FinishedGames}"/>
+    </ScrollViewer>
+  </Grid>
 </UserControl>

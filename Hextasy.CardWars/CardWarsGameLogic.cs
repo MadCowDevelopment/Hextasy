@@ -131,13 +131,17 @@ namespace Hextasy.CardWars
             Player1.Died += (sender, args) =>
             {
                 _gameOver = true;
-                RaiseFinished(new GameFinishedEventArgs<CardWarsStatistics>(new CardWarsStatistics()));
+                RaiseFinished(
+                    new GameFinishedEventArgs<CardWarsStatistics>(
+                    new CardWarsStatistics(Owner.Player2, Player1.RemainingLife, Player2.RemainingLife)));
             };
 
             Player2.Died += (sender, args) =>
             {
                 _gameOver = true;
-                RaiseFinished(new GameFinishedEventArgs<CardWarsStatistics>(new CardWarsStatistics()));
+                RaiseFinished(
+                    new GameFinishedEventArgs<CardWarsStatistics>(new CardWarsStatistics(Owner.Player1,
+                        Player1.RemainingLife, Player2.RemainingLife)));
             };
         }
 
@@ -321,13 +325,13 @@ namespace Hextasy.CardWars
         private void ActivateTraits<T>(IEnumerable<CardWarsTile> tiles, CardWarsTile targetTile) where T : ITrait
         {
             tiles.Where(p => p.Card != null && p.Card.Traits.OfType<T>().Any()).ToList().Apply(
-                tile => tile.Card.Traits.OfType<T>().ToList().Apply(trait => trait.Activate(this, targetTile)));
+                tile => tile.Traits.OfType<T>().ToList().Apply(trait => trait.Activate(this, targetTile)));
         }
 
         private void ActivateTraits<T>(IEnumerable<CardWarsTile> tiles) where T : ITrait
         {
             tiles.Where(p => p.Card != null && p.Card.Traits.OfType<T>().Any()).ToList().Apply(
-                tile => tile.Card.Traits.OfType<T>().ToList().Apply(trait => trait.Activate(this, tile)));
+                tile => tile.Traits.OfType<T>().ToList().Apply(trait => trait.Activate(this, tile)));
         }
 
         private void ActivateDebuffs<T>(IEnumerable<CardWarsTile> tiles) where T : IDebuff

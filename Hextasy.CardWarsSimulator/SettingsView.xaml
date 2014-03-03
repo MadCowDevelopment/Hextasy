@@ -43,7 +43,7 @@
               ItemsSource="{Binding CpuPlayers}" SelectedItem="{Binding SelectedCpuPlayer2}"/>
     <ComboBox Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" 
               ItemsSource="{Binding DeckFactories}" SelectedItem="{Binding SelectedPlayer2DeckFactory}"/>
-    <Slider Grid.Row="6" Grid.Column="1" Minimum="1" Maximum="99" Value="{Binding Iterations}"/>
+    <Slider Grid.Row="6" Grid.Column="1" Minimum="1" Maximum="500" Value="{Binding Iterations}"/>
 
     <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding Rows}"/>
     <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding Columns}"/>

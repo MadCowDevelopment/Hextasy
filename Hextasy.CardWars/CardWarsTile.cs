@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using Caliburn.Micro;
@@ -33,6 +34,8 @@ namespace Hextasy.CardWars
 
         public event EventHandler<CardDiedEventArgs> CardDied;
 
+        public IEnumerable<ITrait> Traits { get { return Card != null ? Card.Traits : Enumerable.Empty<ITrait>(); } }
+
         private void RaiseCardDied()
         {
             var handler = CardDied;
@@ -45,7 +48,7 @@ namespace Hextasy.CardWars
             if (card == null) return;
             if (e.PropertyName == card.GetPropertyName(p => p.Health))
             {
-                if (card.Health <= 0) Die();
+                if (card.Health <= 0 && !card.IsKilled) Die();
             }
         }
 
@@ -61,9 +64,8 @@ namespace Hextasy.CardWars
 
         private void Die()
         {
-            Card.Traits.OfType<IActivateTraitOnDeath>().Apply(p => p.Activate(_gameLogic, this));
             Card.IsKilled = true;
-            Card.IsKilled = false;
+            Card.Traits.OfType<IActivateTraitOnDeath>().Apply(p => p.Activate(_gameLogic, this));
             Card = null;
             IsFixed = false;
             IsValidTarget = false;

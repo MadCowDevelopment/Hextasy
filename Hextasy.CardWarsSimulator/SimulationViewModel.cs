@@ -15,7 +15,7 @@ namespace Hextasy.CardWarsSimulator
     {
         private readonly ExportFactory<CardWarsGameLogic> _gameLogicFactory;
 
-        private object _syncObject = new Object();
+        private readonly object _syncObject = new Object();
 
         [ImportingConstructor]
         public SimulationViewModel(ExportFactory<CardWarsGameLogic> gameLogicFactory)
@@ -51,7 +51,7 @@ namespace Hextasy.CardWarsSimulator
 
         public int AverageRemainingLife1
         {
-            get { return NumberOfFinishedGames == 0 ? 0 : Player1RemainingLife.Sum()/NumberOfFinishedGames; }
+            get { return NumberOfFinishedGames == 0 ? 0 : Player1RemainingLife.Sum() / NumberOfFinishedGames; }
         }
 
         public int AverageRemainingLife2
@@ -60,7 +60,7 @@ namespace Hextasy.CardWarsSimulator
         }
 
         public List<int> Player1RemainingLife { get; private set; }
-        public List<int> Player2RemainingLife { get; private set; } 
+        public List<int> Player2RemainingLife { get; private set; }
 
         public int NumberOfFinishedGames { get; set; }
 
@@ -79,7 +79,7 @@ namespace Hextasy.CardWarsSimulator
                 Player2RemainingLife.Add(e.GameStatistics.Player2Life);
 
                 NotifyOfPropertyChange(() => AverageRemainingLife1);
-                NotifyOfPropertyChange(() => AverageRemainingLife2); 
+                NotifyOfPropertyChange(() => AverageRemainingLife2);
             }
         }
     }

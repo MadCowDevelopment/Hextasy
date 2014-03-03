@@ -6,7 +6,7 @@ namespace Hextasy.Trains
 {
     [Export(typeof(TrainsGameViewModel))]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class TrainsGameViewModel : GameViewModel<TrainsGameLogic, TrainsSettings, TrainsTile>
+    public class TrainsGameViewModel : GameViewModel<TrainsGameLogic, TrainsSettings, TrainsTile, TrainsStatistics>
     {
         [ImportingConstructor]
         public TrainsGameViewModel(TrainsGameLogic game, IEventAggregator eventAggregator) 

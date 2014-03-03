@@ -1,16 +1,18 @@
-﻿using System;
-using System.ComponentModel.Composition;
+﻿using System.ComponentModel.Composition;
 using Hextasy.Framework;
 
 namespace Hextasy.JumpToKill
 {
     [Export(typeof(IGame))]
     public class JumpToKillGame
-        : Game<JumpToKillSettingsViewModel, JumpToKillGameViewModel, JumpToKillGameLogic, JumpToKillSettings, JumpToKillTile>
+        : Game<JumpToKillSettingsViewModel, JumpToKillGameViewModel, JumpToKillGameResultViewModel, JumpToKillGameLogic, JumpToKillSettings, JumpToKillTile, JumpToKillStatistics>
     {
         [ImportingConstructor]
-        public JumpToKillGame(ExportFactory<JumpToKillSettingsViewModel> settingsViewModel, ExportFactory<JumpToKillGameViewModel> gameViewModel)
-            : base(settingsViewModel, gameViewModel)
+        public JumpToKillGame(
+            ExportFactory<JumpToKillSettingsViewModel> settingsViewModel,
+            ExportFactory<JumpToKillGameViewModel> gameViewModel,
+            ExportFactory<JumpToKillGameResultViewModel> gameResultViewModel)
+            : base(settingsViewModel, gameViewModel, gameResultViewModel)
         {
         }
 

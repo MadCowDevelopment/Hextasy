@@ -11,7 +11,7 @@ namespace Hextasy.Halma
 {
     [Export(typeof(HalmaGameLogic))]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class HalmaGameLogic : GameLogic<HalmaSettings, HalmaTile>
+    public class HalmaGameLogic : GameLogic<HalmaSettings, HalmaTile, HalmaStatistics>
     {
         #region Fields
 
@@ -108,10 +108,10 @@ namespace Hextasy.Halma
         private void CheckWinCondition()
         {
             if (NotNullTiles.Where(p => p.Owner == Owner.Player1).All(p => HexMap.GetCoordinateByItem(p).X > 11))
-                RaiseFinished(new GameFinishedEventArgs());
+                RaiseFinished(new GameFinishedEventArgs<HalmaStatistics>(new HalmaStatistics()));
 
             if (NotNullTiles.Where(p => p.Owner == Owner.Player2).All(p => HexMap.GetCoordinateByItem(p).X < 5))
-                RaiseFinished(new GameFinishedEventArgs());
+                RaiseFinished(new GameFinishedEventArgs<HalmaStatistics>(new HalmaStatistics()));
         }
 
         private bool IsLegalMove(HalmaTile previousTile, HalmaTile tile)

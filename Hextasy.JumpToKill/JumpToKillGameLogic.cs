@@ -10,7 +10,7 @@ namespace Hextasy.JumpToKill
 {
     [Export(typeof(JumpToKillGameLogic))]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class JumpToKillGameLogic : GameLogic<JumpToKillSettings, JumpToKillTile>
+    public class JumpToKillGameLogic : GameLogic<JumpToKillSettings, JumpToKillTile, JumpToKillStatistics>
     {
         #region Fields
 
@@ -100,10 +100,10 @@ namespace Hextasy.JumpToKill
         private void CheckWinCondition()
         {
             if (Tiles.All(p => p.Owner != Owner.Player1))
-                RaiseFinished(new GameFinishedEventArgs());
+                RaiseFinished(new GameFinishedEventArgs<JumpToKillStatistics>(new JumpToKillStatistics()));
 
             if (Tiles.All(p => p.Owner != Owner.Player2))
-                RaiseFinished(new GameFinishedEventArgs());
+                RaiseFinished(new GameFinishedEventArgs<JumpToKillStatistics>(new JumpToKillStatistics()));
         }
 
         private bool IsLegalMove(JumpToKillTile previousTile, JumpToKillTile tile)

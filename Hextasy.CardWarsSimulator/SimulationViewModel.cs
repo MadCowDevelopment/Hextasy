@@ -39,7 +39,7 @@ namespace Hextasy.CardWarsSimulator
 
         public DispatcherObservableCollection<string> FinishedGames { get; private set; }
 
-        private void gameLogic_Finished(object sender, GameFinishedEventArgs e)
+        private void gameLogic_Finished(object sender, GameFinishedEventArgs<CardWarsStatistics> e)
         {
             (sender as CardWarsGameLogic).Finished -= gameLogic_Finished;
             FinishedGames.Add("Another game finished");

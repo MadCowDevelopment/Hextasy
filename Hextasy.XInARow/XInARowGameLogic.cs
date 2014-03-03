@@ -8,7 +8,7 @@ namespace Hextasy.XInARow
 {
     [Export(typeof(XInARowGameLogic))]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class XInARowGameLogic : GameLogic<XInARowSettings, XInARowTile>
+    public class XInARowGameLogic : GameLogic<XInARowSettings, XInARowTile, XInARowStatistics>
     {
         public XInARowGameLogic()
         {
@@ -71,12 +71,14 @@ namespace Hextasy.XInARow
 
         private void CheckWinCondition(XInARowTile tile)
         {
-            if(HexMap.Tiles.All(p=>p.Owner != Owner.None)) RaiseFinished(new GameFinishedEventArgs());
+            if (HexMap.Tiles.All(p => p.Owner != Owner.None))
+                RaiseFinished(new GameFinishedEventArgs<XInARowStatistics>(new XInARowStatistics()));
 
             var lines = HexMap.GetLines(tile);
             foreach (var line in lines)
             {
-                if(CheckLineForFourInARow(line)) RaiseFinished(new GameFinishedEventArgs());
+                if (CheckLineForFourInARow(line))
+                    RaiseFinished(new GameFinishedEventArgs<XInARowStatistics>(new XInARowStatistics()));
             }
         }
 

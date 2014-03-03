@@ -1,15 +1,17 @@
-﻿using System;
-using System.ComponentModel.Composition;
+﻿using System.ComponentModel.Composition;
 using Hextasy.Framework;
 
 namespace Hextasy.CardWars
 {
     [Export(typeof(IGame))]
-    public class CardWarsGame : Game<CardWarsSettingsViewModel, CardWarsGameViewModel, CardWarsGameLogic, CardWarsSettings, CardWarsTile>
+    public class CardWarsGame : Game<CardWarsSettingsViewModel, CardWarsGameViewModel, CardWarsGameResultViewModel, CardWarsGameLogic, CardWarsSettings, CardWarsTile, CardWarsStatistics>
     {
         [ImportingConstructor]
-        public CardWarsGame(ExportFactory<CardWarsSettingsViewModel> settingsViewModel, ExportFactory<CardWarsGameViewModel> gameViewModel)
-            : base(settingsViewModel, gameViewModel)
+        public CardWarsGame(
+            ExportFactory<CardWarsSettingsViewModel> settingsViewModel,
+            ExportFactory<CardWarsGameViewModel> gameViewModel,
+            ExportFactory<CardWarsGameResultViewModel> gameResultViewModel)
+            : base(settingsViewModel, gameViewModel, gameResultViewModel)
         {
         }
 

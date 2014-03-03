@@ -70,6 +70,7 @@
     <Compile Include="Game.cs" />
     <Compile Include="GameFinishedEventArgs.cs" />
     <Compile Include="GameLogic.cs" />
+    <Compile Include="GameResultViewModel.cs" />
     <Compile Include="GameViewModel.cs" />
     <Compile Include="HexagonTile.cs" />
     <Compile Include="HexGrid.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="RNG.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="SettingsViewModel.cs" />
+    <Compile Include="ShowGameResultRequest.cs" />
     <Compile Include="ShowGameSelectionRequest.cs" />
     <Compile Include="Utils\DispatcherObservableCollection.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">

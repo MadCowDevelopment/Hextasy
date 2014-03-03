@@ -219,6 +219,7 @@
     <Compile Include="CardWarsGame.cs" />
     <Compile Include="CardWarsGameLogic.cs" />
     <Compile Include="CardWarsGameLogicExtensions.cs" />
+    <Compile Include="CardWarsGameResultViewModel.cs" />
     <Compile Include="CardWarsGameView.xaml.cs">
       <DependentUpon>CardWarsGameView.xaml</DependentUpon>
     </Compile>
@@ -228,6 +229,7 @@
       <DependentUpon>CardWarsSettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="CardWarsSettingsViewModel.cs" />
+    <Compile Include="CardWarsStatistics.cs" />
     <Compile Include="CardWarsTile.cs" />
     <Compile Include="AI\CpuPlayer.cs" />
     <Compile Include="CurrentPlayerChangedEventArgs.cs" />

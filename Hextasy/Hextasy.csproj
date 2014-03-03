@@ -69,6 +69,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="GameResultShellView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GameSelectionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -88,6 +92,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GameResultShellView.xaml.cs">
+      <DependentUpon>GameResultShellView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GameResultShellViewModel.cs" />
     <Compile Include="GameSelected.cs" />
     <Compile Include="GameSelectionView.xaml.cs">
       <DependentUpon>GameSelectionView.xaml</DependentUpon>

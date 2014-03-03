@@ -8,7 +8,7 @@ namespace Hextasy.LightsOff
 {
     [Export(typeof(LightsOffGameViewModel))]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class LightsOffGameViewModel : GameViewModel<LightsOffGameLogic, LightsOffSettings, LightsOffTile>
+    public class LightsOffGameViewModel : GameViewModel<LightsOffGameLogic, LightsOffSettings, LightsOffTile, LightsOffStatistics>
     {
         #region Constructors
 

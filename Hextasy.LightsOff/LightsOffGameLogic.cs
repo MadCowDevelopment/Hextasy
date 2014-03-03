@@ -8,11 +8,13 @@ namespace Hextasy.LightsOff
 {
     [Export(typeof(LightsOffGameLogic))]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class LightsOffGameLogic : GameLogic<LightsOffSettings, LightsOffTile>
+    public class LightsOffGameLogic : GameLogic<LightsOffSettings, LightsOffTile, LightsOffStatistics>
     {
         #region Fields
 
         private readonly Random _random = new Random((int)DateTime.Now.Ticks);
+
+        private int _toggles;
 
         #endregion Fields
 
@@ -20,10 +22,11 @@ namespace Hextasy.LightsOff
 
         public void ToggleNeighbors(LightsOffTile item)
         {
+            _toggles++;
             HexMap.GetNeighbours(item).ToList().ForEach(p => p.IsChecked = !p.IsChecked);
             if (HexMap.Tiles.All(p => !p.IsChecked))
             {
-                RaiseFinished(new GameFinishedEventArgs());
+                RaiseFinished(new GameFinishedEventArgs<LightsOffStatistics>(new LightsOffStatistics(_toggles)));
             }
         }
 

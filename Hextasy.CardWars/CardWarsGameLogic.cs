@@ -14,7 +14,7 @@ namespace Hextasy.CardWars
 {
     [Export(typeof(CardWarsGameLogic))]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class CardWarsGameLogic : GameLogic<CardWarsSettings, CardWarsTile>
+    public class CardWarsGameLogic : GameLogic<CardWarsSettings, CardWarsTile, CardWarsStatistics>
     {
         private Player _currentPlayer;
         private int _turns;
@@ -131,13 +131,13 @@ namespace Hextasy.CardWars
             Player1.Died += (sender, args) =>
             {
                 _gameOver = true;
-                RaiseFinished(new GameFinishedEventArgs());
+                RaiseFinished(new GameFinishedEventArgs<CardWarsStatistics>(new CardWarsStatistics()));
             };
 
             Player2.Died += (sender, args) =>
             {
                 _gameOver = true;
-                RaiseFinished(new GameFinishedEventArgs());
+                RaiseFinished(new GameFinishedEventArgs<CardWarsStatistics>(new CardWarsStatistics()));
             };
         }
 

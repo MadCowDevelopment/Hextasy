@@ -1,15 +1,17 @@
-﻿using System;
-using System.ComponentModel.Composition;
+﻿using System.ComponentModel.Composition;
 using Hextasy.Framework;
 
 namespace Hextasy.Halma
 {
     [Export(typeof(IGame))]
-    public class HalmaGame : Game<HalmaSettingsViewModel, HalmaGameViewModel, HalmaGameLogic, HalmaSettings, HalmaTile>
+    public class HalmaGame : Game<HalmaSettingsViewModel, HalmaGameViewModel, HalmaGameResultViewModel, HalmaGameLogic, HalmaSettings, HalmaTile, HalmaStatistics>
     {
         [ImportingConstructor]
-        public HalmaGame(ExportFactory<HalmaSettingsViewModel> settingsViewModel, ExportFactory<HalmaGameViewModel> gameViewModel)
-            : base(settingsViewModel, gameViewModel)
+        public HalmaGame(
+            ExportFactory<HalmaSettingsViewModel> settingsViewModel,
+            ExportFactory<HalmaGameViewModel> gameViewModel,
+            ExportFactory<HalmaGameResultViewModel> gameResultViewModel)
+            : base(settingsViewModel, gameViewModel, gameResultViewModel)
         {
         }
 

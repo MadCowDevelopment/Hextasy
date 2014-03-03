@@ -64,6 +64,8 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="JumpToKillGameResultViewModel.cs" />
+    <Compile Include="JumpToKillStatistics.cs" />
     <Compile Include="JumpToKillTile.cs" />
     <Compile Include="JumpToKillGame.cs" />
     <Compile Include="JumpToKillGameLogic.cs" />

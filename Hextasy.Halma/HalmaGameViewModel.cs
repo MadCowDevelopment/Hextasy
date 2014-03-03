@@ -7,7 +7,7 @@ namespace Hextasy.Halma
 {
     [Export(typeof(HalmaGameViewModel))]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class HalmaGameViewModel : GameViewModel<HalmaGameLogic, HalmaSettings, HalmaTile>
+    public class HalmaGameViewModel : GameViewModel<HalmaGameLogic, HalmaSettings, HalmaTile, HalmaStatistics>
     {
         [ImportingConstructor]
         public HalmaGameViewModel(HalmaGameLogic game, IEventAggregator eventAggregator) : base(game, eventAggregator)

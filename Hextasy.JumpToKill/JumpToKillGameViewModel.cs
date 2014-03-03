@@ -7,7 +7,7 @@ namespace Hextasy.JumpToKill
 {
     [Export(typeof(JumpToKillGameViewModel))]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class JumpToKillGameViewModel : GameViewModel<JumpToKillGameLogic, JumpToKillSettings, JumpToKillTile>
+    public class JumpToKillGameViewModel : GameViewModel<JumpToKillGameLogic, JumpToKillSettings, JumpToKillTile, JumpToKillStatistics>
     {
         [ImportingConstructor]
         public JumpToKillGameViewModel(JumpToKillGameLogic game, IEventAggregator eventAggregator) 

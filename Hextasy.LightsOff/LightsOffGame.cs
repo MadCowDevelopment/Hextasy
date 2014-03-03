@@ -1,20 +1,20 @@
-﻿using System;
-using System.ComponentModel.Composition;
+﻿using System.ComponentModel.Composition;
 
 using Hextasy.Framework;
 
 namespace Hextasy.LightsOff
 {
     [Export(typeof(IGame))]
-    public class LightsOffGame : Game<LightsOffSettingsViewModel, LightsOffGameViewModel, LightsOffGameLogic, LightsOffSettings, LightsOffTile>
+    public class LightsOffGame : Game<LightsOffSettingsViewModel, LightsOffGameViewModel, LightsOffGameResultViewModel, LightsOffGameLogic, LightsOffSettings, LightsOffTile, LightsOffStatistics>
     {
         #region Constructors
 
         [ImportingConstructor]
         public LightsOffGame(
             ExportFactory<LightsOffSettingsViewModel> lightsOffSettingsViewModel,
-            ExportFactory<LightsOffGameViewModel> lightsOffGameViewModel)
-            : base(lightsOffSettingsViewModel, lightsOffGameViewModel)
+            ExportFactory<LightsOffGameViewModel> lightsOffGameViewModel,
+            ExportFactory<LightsOffGameResultViewModel> lightsOffGameResultViewModel)
+            : base(lightsOffSettingsViewModel, lightsOffGameViewModel, lightsOffGameResultViewModel)
         {
         }
 

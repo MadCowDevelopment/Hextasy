@@ -4,10 +4,11 @@ using Caliburn.Micro;
 
 namespace Hextasy.Framework
 {
-    public abstract class GameViewModel<TGameLogic, TSettings, TTile> : Screen
-        where TGameLogic : GameLogic<TSettings, TTile>
+    public abstract class GameViewModel<TGameLogic, TSettings, TTile, TStatistics> : Screen
+        where TGameLogic : GameLogic<TSettings, TTile, TStatistics>
         where TSettings : Settings
         where TTile : HexagonTile
+        where TStatistics : GameStatistics
     {
         #region Fields
 
@@ -49,12 +50,14 @@ namespace Hextasy.Framework
 
         protected TGameLogic Game
         {
-            get; private set;
+            get;
+            private set;
         }
 
         protected TSettings Settings
         {
-            get; private set;
+            get;
+            private set;
         }
 
         #endregion Protected Properties
@@ -81,9 +84,9 @@ namespace Hextasy.Framework
 
         #region Private Methods
 
-        private void GameFinished(object sender, GameFinishedEventArgs e)
+        private void GameFinished(object sender, GameFinishedEventArgs<TStatistics> e)
         {
-            _eventAggregator.Publish(new ShowGameSelectionRequest());
+            _eventAggregator.Publish(new ShowGameResultRequest<TStatistics>(e.GameStatistics));
         }
 
         #endregion Private Methods

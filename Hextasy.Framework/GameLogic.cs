@@ -6,13 +6,14 @@ using Caliburn.Micro;
 
 namespace Hextasy.Framework
 {
-    public abstract class GameLogic<TSettings, TTile> : PropertyChangedBase
+    public abstract class GameLogic<TSettings, TTile, TStatistics> : PropertyChangedBase
         where TSettings : Settings
         where TTile : HexagonTile
+        where TStatistics : GameStatistics
     {
         #region Events
 
-        public event EventHandler<GameFinishedEventArgs> Finished;
+        public event EventHandler<GameFinishedEventArgs<TStatistics>> Finished;
 
         #endregion Events
 
@@ -60,7 +61,7 @@ namespace Hextasy.Framework
         {
         }
 
-        protected void RaiseFinished(GameFinishedEventArgs args)
+        protected void RaiseFinished(GameFinishedEventArgs<TStatistics> args)
         {
             var handler = Finished;
             if (handler != null) handler(this, args);

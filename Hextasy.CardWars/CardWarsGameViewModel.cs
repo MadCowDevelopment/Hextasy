@@ -11,7 +11,7 @@ namespace Hextasy.CardWars
 {
     [Export(typeof(CardWarsGameViewModel))]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class CardWarsGameViewModel : GameViewModel<CardWarsGameLogic, CardWarsSettings, CardWarsTile>
+    public class CardWarsGameViewModel : GameViewModel<CardWarsGameLogic, CardWarsSettings, CardWarsTile, CardWarsStatistics>
     {
         private Card _selectedCard;
         private CardWarsTile _mouseOverTile;

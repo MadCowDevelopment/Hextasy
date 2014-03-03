@@ -87,6 +87,7 @@
     <Compile Include="StationTile.cs" />
     <Compile Include="TrainsGame.cs" />
     <Compile Include="TrainsGameLogic.cs" />
+    <Compile Include="TrainsGameResultViewModel.cs" />
     <Compile Include="TrainsGameView.xaml.cs">
       <DependentUpon>TrainsGameView.xaml</DependentUpon>
     </Compile>
@@ -96,6 +97,7 @@
       <DependentUpon>TrainsSettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="TrainsSettingsViewModel.cs" />
+    <Compile Include="TrainsStatistics.cs" />
     <Compile Include="TrainsTile.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

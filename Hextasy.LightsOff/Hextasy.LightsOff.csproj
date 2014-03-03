@@ -64,6 +64,11 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="LightsOffGameResultView.xaml.cs">
+      <DependentUpon>LightsOffGameResultView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LightsOffGameResultViewModel.cs" />
+    <Compile Include="LightsOffStatistics.cs" />
     <Compile Include="LightsOffTile.cs" />
     <Compile Include="LightsOffGame.cs" />
     <Compile Include="LightsOffGameLogic.cs" />
@@ -102,6 +107,10 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="LightsOffGameResultView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LightsOffSettingsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -66,6 +66,7 @@
     </Compile>
     <Compile Include="HalmaGame.cs" />
     <Compile Include="HalmaGameLogic.cs" />
+    <Compile Include="HalmaGameResultViewModel.cs" />
     <Compile Include="HalmaGameView.xaml.cs">
       <DependentUpon>HalmaGameView.xaml</DependentUpon>
     </Compile>
@@ -75,6 +76,7 @@
       <DependentUpon>HalmaSettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="HalmaSettingsViewModel.cs" />
+    <Compile Include="HalmaStatistics.cs" />
     <Compile Include="HalmaTile.cs" />
     <Compile Include="Owner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

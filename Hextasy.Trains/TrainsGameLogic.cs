@@ -8,7 +8,7 @@ namespace Hextasy.Trains
 {
     [Export(typeof(TrainsGameLogic))]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class TrainsGameLogic : GameLogic<TrainsSettings, TrainsTile>
+    public class TrainsGameLogic : GameLogic<TrainsSettings, TrainsTile, TrainsStatistics>
     {
         private readonly Random _random = new Random((int)DateTime.Now.Ticks);
 
@@ -98,7 +98,7 @@ namespace Hextasy.Trains
             var player1Win = CheckWinCondition(Owner.Player1);
             var player2Win = CheckWinCondition(Owner.Player2);
 
-            if(player1Win || player2Win) RaiseFinished(new GameFinishedEventArgs());
+            if(player1Win || player2Win) RaiseFinished(new GameFinishedEventArgs<TrainsStatistics>(new TrainsStatistics()));
         }
 
         private bool CheckWinCondition(Owner owner)

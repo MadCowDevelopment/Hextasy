@@ -7,12 +7,19 @@ using Hextasy.Framework;
 namespace Hextasy
 {
     [Export(typeof(MainWindowViewModel))]
-    public class MainWindowViewModel : Screen, IHandle<GameSelected>, IHandle<ShowGameSelectionRequest>, IHandle<SettingsConfirmed>
+    public class MainWindowViewModel : Screen,
+        IHandle<GameSelected>,
+        IHandle<ShowGameSelectionRequest>,
+        IHandle<ShowGameResultRequest>,
+        IHandle<SettingsConfirmed>
     {
         #region Fields
 
         private readonly GameSelectionViewModel _gameSelectionViewModel;
         private readonly SettingsShellViewModel _settingsShellViewModel;
+        private readonly GameResultShellViewModel _gameResultShellViewModel;
+
+        private IGame _currentGame;
 
         #endregion Fields
 
@@ -22,11 +29,13 @@ namespace Hextasy
         public MainWindowViewModel(
             IEventAggregator eventAggregator,
             GameSelectionViewModel gameSelectionViewModel,
-            SettingsShellViewModel settingsShellViewModel)
+            SettingsShellViewModel settingsShellViewModel,
+            GameResultShellViewModel gameResultShellViewModel)
         {
             eventAggregator.Subscribe(this);
             _gameSelectionViewModel = gameSelectionViewModel;
             _settingsShellViewModel = settingsShellViewModel;
+            _gameResultShellViewModel = gameResultShellViewModel;
             MainContent = _gameSelectionViewModel;
         }
 
@@ -36,7 +45,8 @@ namespace Hextasy
 
         public IScreen MainContent
         {
-            get; private set;
+            get;
+            private set;
         }
 
         #endregion Public Properties
@@ -50,12 +60,18 @@ namespace Hextasy
 
         public void Handle(GameSelected message)
         {
+            _currentGame = message.Game;
             MainContent = _settingsShellViewModel;
         }
 
         public void Handle(SettingsConfirmed message)
         {
-            MainContent = message.Game.GameScreen;
+            MainContent = _currentGame.GameScreen;
+        }
+
+        public void Handle(ShowGameResultRequest message)
+        {
+            MainContent = _gameResultShellViewModel;
         }
 
         #endregion Public Methods

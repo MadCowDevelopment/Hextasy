@@ -1,4 +1,5 @@
-﻿using Caliburn.Micro;
+﻿using System;
+using Caliburn.Micro;
 
 namespace Hextasy.CardWars.Cards.Traits
 {
@@ -26,6 +27,11 @@ namespace Hextasy.CardWars.Cards.Traits
         {
             cardWarsGameLogic.GetAdjacentMonsterTiles(targetTile).Apply(p => p.Card.TakeFireDamage(Amount));
             CardThatHasTrait.Kill();
+        }
+
+        public override ITrait DeepCopy(MonsterCard monsterCard)
+        {
+            return (SuicideBomberTrait)Activator.CreateInstance(GetType(), CardThatHasTrait, Amount);
         }
     }
 }

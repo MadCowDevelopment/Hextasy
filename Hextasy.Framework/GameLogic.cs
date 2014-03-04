@@ -21,12 +21,14 @@ namespace Hextasy.Framework
 
         protected HexMap<TTile> HexMap
         {
-            get; private set;
+            get;
+            set;
         }
 
         protected TSettings Settings
         {
-            get; private set;
+            get;
+            set;
         }
 
         #endregion Protected Properties

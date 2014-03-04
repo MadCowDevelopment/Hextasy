@@ -82,7 +82,7 @@ namespace Hextasy.CardWars
 
             attacker.Traits.OfType<IActivateTraitOnAttack>().Apply(p => p.Activate(cardWarsGameLogic, targetTile));
             attacker.TakeDamage(defender.Attack);
-            
+
             attacker.IsExhausted = true;
         }
 
@@ -95,6 +95,16 @@ namespace Hextasy.CardWars
         public void AddDebuff(Debuff debuff)
         {
             if (Card != null) Card.AddDebuff(debuff);
+        }
+
+        public CardWarsTile DeepCopy(CardWarsGameLogic cardWarsGameLogic, Player player1, Player player2)
+        {
+            var tile = new CardWarsTile(cardWarsGameLogic);
+            if (Card != null) tile.Card = (MonsterCard)Card.DeepCopy(Owner == Owner.Player1 ? player1 : player2);
+            tile.IsFixed = IsFixed;
+            tile.IsSelected = IsSelected;
+            tile.IsValidTarget = IsValidTarget;
+            return tile;
         }
     }
 }

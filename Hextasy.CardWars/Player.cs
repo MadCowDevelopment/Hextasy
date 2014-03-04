@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Caliburn.Micro;
 using Hextasy.CardWars.Cards;
 using Hextasy.CardWars.Cards.Specials;
@@ -99,6 +100,21 @@ namespace Hextasy.CardWars
                     Hand.AddNotNull(drawnCard);
                 }
             }
+        }
+
+        public Player DeepCopy()
+        {
+            var player = (Player)Activator.CreateInstance(GetType());
+            player.Initialize((KingCard)KingCard.DeepCopy(player));
+            player.Deck = Deck.DeepCopy(player);
+            player.DidMulligan = DidMulligan;
+            player.Hand = new DispatcherObservableCollection<Card>(Hand.Select(p => p.DeepCopy(player)));
+            player.IsActive = IsActive;
+            player.MaximumResources = MaximumResources;
+            player.Name = Name;
+            player.Owner = Owner;
+            player.RemainingResources = RemainingResources;
+            return player;
         }
     }
 }

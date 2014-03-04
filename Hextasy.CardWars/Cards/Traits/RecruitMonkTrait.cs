@@ -5,9 +5,9 @@ using Hextasy.Framework;
 
 namespace Hextasy.CardWars.Cards.Traits
 {
-    public class RecrutMonkTrait : Trait, IActivateTraitOnEndTurn
+    public class RecruitMonkTrait : Trait, IActivateTraitOnEndTurn
     {
-        public RecrutMonkTrait(MonsterCard cardThatHasTrait)
+        public RecruitMonkTrait(MonsterCard cardThatHasTrait)
             : base(cardThatHasTrait)
         {
         }

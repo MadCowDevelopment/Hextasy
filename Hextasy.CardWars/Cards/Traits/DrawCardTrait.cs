@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace Hextasy.CardWars.Cards.Traits
 {
     public class DrawCardTrait : Trait, IActivateTraitOnCardPlayed
@@ -27,6 +29,11 @@ namespace Hextasy.CardWars.Cards.Traits
             {
                 cardWarsGameLogic.CurrentPlayer.DrawCard();
             }
+        }
+
+        public override ITrait DeepCopy(MonsterCard monsterCard)
+        {
+            return (DrawCardTrait)Activator.CreateInstance(GetType(), CardThatHasTrait, Amount);
         }
     }
 }

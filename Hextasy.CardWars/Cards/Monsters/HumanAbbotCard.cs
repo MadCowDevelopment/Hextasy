@@ -8,7 +8,7 @@ namespace Hextasy.CardWars.Cards.Monsters
     {
         public HumanAbbotCard()
         {
-            Traits.Add(new RecrutMonkTrait(this));
+            Traits.Add(new RecruitMonkTrait(this));
         }
 
         public override string Name

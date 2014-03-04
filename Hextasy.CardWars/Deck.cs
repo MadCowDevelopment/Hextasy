@@ -9,7 +9,7 @@ namespace Hextasy.CardWars
     {
         private const int NumberCardsInHandWhenStarting = 4;
 
-        private readonly List<Card> _cards;
+        private List<Card> _cards;
         private Queue<Card> _cardQueue;
 
         public Deck(string name, IEnumerable<Card> cards)
@@ -18,6 +18,8 @@ namespace Hextasy.CardWars
             _cards = cards.ToList();
             InitializeDeck();
         }
+
+        private Deck() { }
 
         private void InitializeDeck()
         {
@@ -44,6 +46,14 @@ namespace Hextasy.CardWars
             var hand = TakeHand().ToList();
             hand.AddNotNull(TakeCard());
             return hand;
+        }
+
+        public Deck DeepCopy(Player player)
+        {
+            var deck = new Deck();
+            deck._cardQueue = new Queue<Card>(_cardQueue.Select(p => p.DeepCopy(player)));
+            deck._cards = new List<Card>(_cards.Select(p => p.DeepCopy(player)));
+            return deck;
         }
     }
 }

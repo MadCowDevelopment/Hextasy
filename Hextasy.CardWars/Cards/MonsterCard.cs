@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Windows.Data;
@@ -122,7 +121,7 @@ namespace Hextasy.CardWars.Cards
 
         public void TakePoisonDamage(int amount)
         {
-            if(HasTrait<ImmunityPoisonTrait>()) return;
+            if (HasTrait<ImmunityPoisonTrait>()) return;
             TakeDamage(amount);
         }
 
@@ -140,6 +139,22 @@ namespace Hextasy.CardWars.Cards
         public override CardType Type
         {
             get { return CardType.Monster; }
+        }
+
+        protected override void OnDeepCopy(Card card)
+        {
+            var monsterCard = (MonsterCard)card;
+            monsterCard.AttackBonus = AttackBonus;
+            monsterCard.DamageDelta = DamageDelta;
+            monsterCard.DamageTaken = DamageTaken;
+            Debuffs.Apply(p => monsterCard.Debuffs.Add(p.DeepCopy()));
+            monsterCard.HealthBonus = HealthBonus;
+            monsterCard.IsExhausted = IsExhausted;
+            monsterCard.IsKilled = IsKilled;
+            monsterCard.IsSelected = IsSelected;
+            Traits.Apply(p => monsterCard.Traits.Add(p.DeepCopy(monsterCard)));
+            monsterCard.WasHealed = WasHealed;
+            monsterCard.WasInjured = WasInjured;
         }
 
         public DispatcherObservableCollection<ITrait> Traits { get; private set; }

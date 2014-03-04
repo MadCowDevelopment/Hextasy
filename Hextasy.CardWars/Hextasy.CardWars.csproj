@@ -67,6 +67,7 @@
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="AI\DeepBlueCpuPlayer.cs" />
+    <Compile Include="AI\SearchCpuPlayer.cs" />
     <Compile Include="CardControl.xaml.cs">
       <DependentUpon>CardControl.xaml</DependentUpon>
     </Compile>
@@ -208,7 +209,7 @@
     <Compile Include="Cards\Traits\PoisonWeaponTrait.cs" />
     <Compile Include="Cards\Traits\DecreaseRaceAttackTrait.cs" />
     <Compile Include="Cards\Traits\PopeTrait.cs" />
-    <Compile Include="Cards\Traits\RecrutMonkTrait.cs" />
+    <Compile Include="Cards\Traits\RecruitMonkTrait.cs" />
     <Compile Include="Cards\Traits\RemoveDefenderTraitFromEnemiesTrait.cs" />
     <Compile Include="Cards\Traits\ShapeshifterTrait.cs" />
     <Compile Include="Cards\Traits\SkeletonKingInitiativeTrait.cs" />

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Caliburn.Micro;
 
 namespace Hextasy.CardWars.Cards.Traits
@@ -31,6 +32,11 @@ namespace Hextasy.CardWars.Cards.Traits
                 cardWarsGameLogic.AllCards.Where(
                     p => p.Player.Owner == targetTile.Owner && p != targetTile.Card && p.Race == Race);
             beastCardsToDebuff.Apply(p => p.AttackBonus -= Amount);
+        }
+
+        public override ITrait DeepCopy(MonsterCard monsterCard)
+        {
+            return (DecreaseRaceAttackTrait) Activator.CreateInstance(GetType(), CardThatHasTrait, Amount, Race);
         }
     }
 }

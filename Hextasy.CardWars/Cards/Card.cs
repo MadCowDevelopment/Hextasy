@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using Caliburn.Micro;
 using Hextasy.Framework;
 
@@ -45,5 +46,17 @@ namespace Hextasy.CardWars.Cards
 
         protected abstract string ImageFilename { get; }
         protected abstract string ImageFolder { get; }
+
+        public Card DeepCopy(Player player)
+        {
+            var card = (Card)Activator.CreateInstance(GetType());
+            card.Player = player;
+            OnDeepCopy(card);
+            return card;
+        }
+
+        protected virtual void OnDeepCopy(Card card)
+        {
+        }
     }
 }

@@ -17,8 +17,8 @@ namespace Hextasy.CardWars
     public class CardWarsGameLogic : GameLogic<CardWarsSettings, CardWarsTile, CardWarsStatistics>
     {
         private Player _currentPlayer;
-        private int _turns;
-        private bool _gameOver;
+        private int Turns { get; set; }
+        private bool GameOver { get; set; }
 
         public DispatcherObservableCollection<Card> CurrentPlayerHand
         {
@@ -28,7 +28,7 @@ namespace Hextasy.CardWars
             }
         }
 
-        private int Turn { get { return (int)Math.Ceiling(_turns / 2.0); } }
+        private int Turn { get { return (int)Math.Ceiling(Turns / 2.0); } }
 
         public Player Player1 { get; private set; }
 
@@ -130,7 +130,7 @@ namespace Hextasy.CardWars
 
             Player1.Died += (sender, args) =>
             {
-                _gameOver = true;
+                GameOver = true;
                 RaiseFinished(
                     new GameFinishedEventArgs<CardWarsStatistics>(
                     new CardWarsStatistics(Owner.Player2, Player1.RemainingLife, Player2.RemainingLife)));
@@ -138,7 +138,7 @@ namespace Hextasy.CardWars
 
             Player2.Died += (sender, args) =>
             {
-                _gameOver = true;
+                GameOver = true;
                 RaiseFinished(
                     new GameFinishedEventArgs<CardWarsStatistics>(new CardWarsStatistics(Owner.Player1,
                         Player1.RemainingLife, Player2.RemainingLife)));
@@ -249,7 +249,7 @@ namespace Hextasy.CardWars
 
         public void EndTurn()
         {
-            if (_gameOver) return;
+            if (GameOver) return;
             UnselectTile();
             ResolveEndTurnEffects();
             ExhaustCards();
@@ -259,7 +259,7 @@ namespace Hextasy.CardWars
 
         private void StartTurn()
         {
-            _turns++;
+            Turns++;
             CardPlayedThisTurn = false;
             SwitchCurrentPlayer();
             ReadyCards();
@@ -366,6 +366,21 @@ namespace Hextasy.CardWars
         public IEnumerable<IEnumerable<CardWarsTile>> GetLinesOfTiles(CardWarsTile targetTile)
         {
             return HexMap.GetLines(targetTile);
+        }
+
+        public CardWarsGameLogic DeepCopy()
+        {
+            var gameLogic = new CardWarsGameLogic();
+            gameLogic.Player1 = Player1.DeepCopy();
+            gameLogic.Player2 = Player2.DeepCopy();
+            gameLogic.CurrentPlayer = CurrentPlayer == Player1 ? gameLogic.Player1 : gameLogic.Player2;
+            gameLogic.Settings = Settings;
+            gameLogic.HexMap =
+                new HexMap<CardWarsTile>(Tiles.Select(p => p.DeepCopy(gameLogic, gameLogic.Player1, gameLogic.Player2)),
+                    Settings.Columns);
+            gameLogic.Turns = Turns;
+            gameLogic.GameOver = GameOver;
+            return gameLogic;
         }
     }
 }

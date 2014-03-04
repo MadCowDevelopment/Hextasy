@@ -1,4 +1,6 @@
 
+using System;
+
 namespace Hextasy.CardWars.Cards
 {
     public abstract class Trait : Effect, ITrait
@@ -16,12 +18,18 @@ namespace Hextasy.CardWars.Cards
         protected MonsterCard CardThatHasTrait { get; private set; }
 
         public abstract void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile);
+        public virtual ITrait DeepCopy(MonsterCard monsterCard)
+        {
+            var instance = (Trait) Activator.CreateInstance(GetType(), monsterCard);
+            return instance;
+        }
     }
 
     public interface ITrait : IEffect
     {
         bool IsUnique { get; }
         void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile);
+        ITrait DeepCopy(MonsterCard monsterCard);
     }
 
     public interface IActivateTraitOnAttack : ITrait { }

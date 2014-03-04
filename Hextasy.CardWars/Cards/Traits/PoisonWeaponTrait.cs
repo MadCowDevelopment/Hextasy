@@ -1,4 +1,5 @@
-﻿using Hextasy.CardWars.Cards.Debuffs;
+﻿using System;
+using Hextasy.CardWars.Cards.Debuffs;
 
 namespace Hextasy.CardWars.Cards.Traits
 {
@@ -27,6 +28,11 @@ namespace Hextasy.CardWars.Cards.Traits
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
             targetTile.AddDebuff(new PoisonDebuff(Amount, Duration));
+        }
+
+        public override ITrait DeepCopy(MonsterCard monsterCard)
+        {
+            return (PoisonWeaponTrait) Activator.CreateInstance(GetType(), CardThatHasTrait, Amount, Duration);
         }
     }
 }

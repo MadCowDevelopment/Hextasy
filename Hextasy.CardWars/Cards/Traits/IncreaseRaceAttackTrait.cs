@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Caliburn.Micro;
 
@@ -37,6 +38,11 @@ namespace Hextasy.CardWars.Cards.Traits
             var beastsToBuff = allCardsOfCurrentPlayerWithRace.Except(_buffedCards).ToList();
             beastsToBuff.Apply(p => p.AttackBonus += Amount);
             _buffedCards.AddRange(beastsToBuff);
+        }
+
+        public override ITrait DeepCopy(MonsterCard monsterCard)
+        {
+            return (IncreaseRaceAttackTrait) Activator.CreateInstance(GetType(), CardThatHasTrait, Amount, Race);
         }
     }
 }

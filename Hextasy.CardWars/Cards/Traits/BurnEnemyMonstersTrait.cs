@@ -1,4 +1,5 @@
-﻿using Caliburn.Micro;
+﻿using System;
+using Caliburn.Micro;
 
 namespace Hextasy.CardWars.Cards.Traits
 {
@@ -25,6 +26,11 @@ namespace Hextasy.CardWars.Cards.Traits
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
             cardWarsGameLogic.OpponentCards.Apply(p => p.TakeFireDamage(Amount));
+        }
+
+        public override ITrait DeepCopy(MonsterCard monsterCard)
+        {
+            return (BurnEnemyMonstersTrait)Activator.CreateInstance(GetType(), CardThatHasTrait, Amount);
         }
     }
 }

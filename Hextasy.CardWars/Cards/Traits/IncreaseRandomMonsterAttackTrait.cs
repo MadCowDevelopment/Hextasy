@@ -1,4 +1,5 @@
-﻿using Hextasy.Framework;
+﻿using System;
+using Hextasy.Framework;
 
 namespace Hextasy.CardWars.Cards.Traits
 {
@@ -26,6 +27,11 @@ namespace Hextasy.CardWars.Cards.Traits
         {
             var friendlyMonster = cardWarsGameLogic.CurrentPlayerCardsExceptKing.RandomOrDefault();
             if (friendlyMonster != null) friendlyMonster.AttackBonus += Amount;
+        }
+
+        public override ITrait DeepCopy(MonsterCard monsterCard)
+        {
+            return (IncreaseRandomMonsterAttackTrait)Activator.CreateInstance(GetType(), CardThatHasTrait, Amount);
         }
     }
 }

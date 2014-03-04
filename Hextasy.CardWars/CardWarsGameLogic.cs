@@ -102,7 +102,7 @@ namespace Hextasy.CardWars
             get { return Tiles.SingleOrDefault(p => p.IsSelected); }
         }
 
-        public bool CanMulligan { get { return Turn == 1 && !CardPlayedThisTurn; } }
+        public bool CanMulligan { get { return Turn == 1 && !CardPlayedThisTurn && !CurrentPlayer.DidMulligan; } }
         private bool CardPlayedThisTurn { get; set; }
 
         public IEnumerable<CardWarsTile> AllFreeTiles

@@ -9,6 +9,7 @@ namespace Hextasy.CardWars
 {
     public class Player : PropertyChangedBase
     {
+        private int _numberOfDrawsWithoutCardLeft;
         private const int MaximumNumberOfCardsInHand = 10;
         private KingCard KingCard { get; set; }
 
@@ -85,7 +86,19 @@ namespace Hextasy.CardWars
 
         public void DrawCard()
         {
-            if (Hand.Count < MaximumNumberOfCardsInHand) Hand.AddNotNull(Deck.TakeCard());
+            var drawnCard = Deck.TakeCard();
+            if (drawnCard == null)
+            {
+                _numberOfDrawsWithoutCardLeft++;
+                KingCard.TakeDamage(_numberOfDrawsWithoutCardLeft);
+            }
+            else
+            {
+                if (Hand.Count <= MaximumNumberOfCardsInHand)
+                {
+                    Hand.AddNotNull(drawnCard);
+                }
+            }
         }
     }
 }

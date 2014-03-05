@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Hextasy.CardWars.Cards;
 using Hextasy.CardWars.Cards.Specials;
 using Hextasy.Framework;
@@ -18,40 +17,48 @@ namespace Hextasy.CardWars.AI
 
         protected override void OnTakeTurn(CardWarsGameLogic cardWarsGameLogic)
         {
-            var initialUtility = CalculateUtilityValue(cardWarsGameLogic);
-            var optimalActions = new List<PlayerAction>();
-            FindBestSolution(optimalActions, cardWarsGameLogic, ref initialUtility, 0, 10);
+            int currentNodeCount = 0;
+            var optimalActions = FindBestSolution(cardWarsGameLogic, 0, 5, 50, ref currentNodeCount);
+            ExecuteActions(cardWarsGameLogic, optimalActions, int.MinValue);
+        }
 
-            foreach (var optimalAction in optimalActions)
+        private void ExecuteActions(CardWarsGameLogic cardWarsGameLogic, List<Node> optimalActions, int bestNodeValue)
+        {
+            if (optimalActions.Count < 1) return;
+            var bestValue = optimalActions.Max(p => p.Value);
+            var bestNodes = optimalActions.Where(p => p.BranchValue == bestValue);
+            var randomNode = bestNodes.RandomOrDefault();
+            if (randomNode != null && randomNode.BranchValue > bestNodeValue)
             {
-                optimalAction.Perform(cardWarsGameLogic);
+                bestNodeValue = randomNode.Value; 
+                randomNode.PlayerAction.Perform(cardWarsGameLogic);
+                ExecuteActions(cardWarsGameLogic, randomNode.Children, bestNodeValue);
             }
         }
 
-        private void FindBestSolution(List<PlayerAction> optimalActions, CardWarsGameLogic cardWarsGameLogic, ref int currentBestUtility, int depth, int maxDepth)
+        private List<Node> FindBestSolution(CardWarsGameLogic cardWarsGameLogic, int depth, int maxDepth, int maxNodeCount, ref int currentNodeCount)
         {
-            if (depth == maxDepth) return;
+            var result = new List<Node>();
+            if (depth == maxDepth || currentNodeCount == maxNodeCount) return result;
             var possibleActions = GetPossibleActions(cardWarsGameLogic).ToList();
             foreach (var currentAction in possibleActions)
             {
+                currentNodeCount++;
+                Console.WriteLine(currentNodeCount);
+                if (currentNodeCount > maxNodeCount) return result;
+
                 var gameLogic = cardWarsGameLogic.DeepCopy();
                 currentAction.Perform(gameLogic);
-                optimalActions.Add(currentAction);
-
+                
                 var utility = CalculateUtilityValue(gameLogic);
-                if (utility > currentBestUtility) currentBestUtility = utility;
 
-                var previousBestUtility = currentBestUtility;
-                FindBestSolution(optimalActions, gameLogic, ref currentBestUtility, depth + 1, maxDepth);
-                if (previousBestUtility < currentBestUtility)
-                {
-                    var indexOfCurrentAction = optimalActions.IndexOf(currentAction);
-                    for (var i = depth; i < indexOfCurrentAction; i++)
-                    {
-                        optimalActions.RemoveAt(depth);
-                    }
-                }
+                var currentNode = new Node(currentAction);
+                currentNode.Value = utility;
+                result.Add(currentNode);
+                currentNode.Children.AddRange(FindBestSolution(gameLogic, depth + 1, maxDepth, 50, ref currentNodeCount));
             }
+
+            return result;
         }
 
         private IEnumerable<PlayerAction> GetPossibleActions(CardWarsGameLogic gameLogic)
@@ -94,6 +101,26 @@ namespace Hextasy.CardWars.AI
             utility -= gameLogic.OpponentCardsExceptKing.Sum(p => p.Cost * p.Health / p.BaseHealth);
 
             return utility;
+        }
+    }
+
+    internal class Node
+    {
+        public PlayerAction PlayerAction { get; private set; }
+
+        public Node(PlayerAction playerAction)
+        {
+            PlayerAction = playerAction;
+            Children = new List<Node>();
+        }
+
+        public int Value { get; set; }
+
+        public List<Node> Children { get; private set; }
+
+        public int BranchValue
+        {
+            get { return Children.Count > 0 ? Children.Max(p => p.BranchValue) : Value; }
         }
     }
 

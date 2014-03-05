@@ -87,7 +87,6 @@ namespace Hextasy.CardWars
                 if (_currentPlayer != null)
                 {
                     _currentPlayer.IsActive = false;
-                    OpponentPlayer = _currentPlayer;
                 }
 
                 _currentPlayer = value;
@@ -95,14 +94,12 @@ namespace Hextasy.CardWars
             }
         }
 
-        public Player OpponentPlayer { get; private set; }
+        public Player OpponentPlayer { get { return _currentPlayer == Player1 ? Player2 : Player1; } }
 
-        public CardWarsTile SelectedTile
-        {
-            get { return Tiles.SingleOrDefault(p => p.IsSelected); }
-        }
+        public CardWarsTile SelectedTile { get { return Tiles.SingleOrDefault(p => p.IsSelected); } }
 
         public bool CanMulligan { get { return Turn == 1 && !CardPlayedThisTurn && !CurrentPlayer.DidMulligan; } }
+
         private bool CardPlayedThisTurn { get; set; }
 
         public IEnumerable<CardWarsTile> AllFreeTiles
@@ -162,19 +159,19 @@ namespace Hextasy.CardWars
         {
             if (column == 0 && row == 0)
             {
-                var tile = new CardWarsTile(this);
+                var tile = new CardWarsTile(this, Guid.NewGuid());
                 tile.AssignCard(new RedKingCard());
                 return tile;
             }
 
             if (column == Settings.Columns - 1 && row == Settings.Rows - 1)
             {
-                var tile = new CardWarsTile(this);
+                var tile = new CardWarsTile(this, Guid.NewGuid());
                 tile.AssignCard(new BlueKingCard());
                 return tile;
             }
 
-            return new CardWarsTile(this);
+            return new CardWarsTile(this, Guid.NewGuid());
         }
 
         public void SelectTile(CardWarsTile tile)
@@ -353,7 +350,7 @@ namespace Hextasy.CardWars
 
         private void ReadyCards()
         {
-            CurrentPlayerTiles.Apply(p => p.Card.IsExhausted = false);
+            CurrentPlayerTiles.Apply(p => p.PrepareTurn());
         }
 
         private void SwitchCurrentPlayer()

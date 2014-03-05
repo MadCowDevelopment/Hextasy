@@ -21,13 +21,13 @@ namespace Hextasy.CardWars
             Player1 = "Player1";
             Player2 = "Player2";
 
-            Player1Human = true;
+            Player1Cpu = true;
             Player2Cpu = true;
 
             Player1CpuPlayers = cpuPlayers1.ToList();
             Player2CpuPlayers = cpuPlayers2.ToList();
 
-            SelectedCpuPlayer1 = Player1CpuPlayers.FirstOrDefault();
+            SelectedCpuPlayer1 = Player1CpuPlayers.LastOrDefault();
             SelectedCpuPlayer2 = Player2CpuPlayers.FirstOrDefault();
 
             Columns = 6;

@@ -8,6 +8,7 @@ namespace Hextasy.CardWars.Cards
     public abstract class Card : PropertyChangedBase
     {
         private Player _player;
+        private Guid? _id;
 
         public abstract string Name { get; }
         public abstract string Description { get; }
@@ -23,6 +24,11 @@ namespace Hextasy.CardWars.Cards
         public bool IsSelected { get; set; }
 
         public abstract CardType Type { get; }
+
+        public Guid Id
+        {
+            get { return _id ?? (_id = Guid.NewGuid()).Value; }
+        }
 
         public Player Player
         {
@@ -51,6 +57,7 @@ namespace Hextasy.CardWars.Cards
         {
             var card = (Card)Activator.CreateInstance(GetType());
             card.Player = player;
+            card._id = Id;
             OnDeepCopy(card);
             return card;
         }

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using Caliburn.Micro;
 using Hextasy.CardWars.Cards;
+using Hextasy.CardWars.Cards.Specials;
 using Hextasy.CardWars.Cards.Traits;
 using Hextasy.Framework;
 
@@ -13,13 +14,17 @@ namespace Hextasy.CardWars
     {
         private readonly CardWarsGameLogic _gameLogic;
         private MonsterCard _card;
+        private bool _isSelected;
 
-        public CardWarsTile(CardWarsGameLogic gameLogic)
+        public CardWarsTile(CardWarsGameLogic gameLogic, Guid id)
         {
+            Id = id;
             _gameLogic = gameLogic;
         }
 
         public Owner Owner { get { return Card != null ? Card.Owner : Owner.None; } }
+
+        public Guid Id { get; private set; }
 
         public MonsterCard Card
         {
@@ -52,7 +57,15 @@ namespace Hextasy.CardWars
             }
         }
 
-        public bool IsSelected { get; set; }
+        public bool IsSelected
+        {
+            get { return _isSelected; }
+            set 
+            { 
+                _isSelected = value;
+                if(_isSelected) WasPreviouslySelectedThisTurn = true;
+            }
+        }
 
         public bool IsFixed { get; set; }
 
@@ -61,6 +74,8 @@ namespace Hextasy.CardWars
         public bool IsValidSpellTarget { get { return Card != null; } }
 
         public bool IsDefender { get { return Card != null && Card.HasTrait<DefenderTrait>(); } }
+
+        public bool WasPreviouslySelectedThisTurn { get; private set; }
 
         private void Die()
         {
@@ -99,12 +114,24 @@ namespace Hextasy.CardWars
 
         public CardWarsTile DeepCopy(CardWarsGameLogic cardWarsGameLogic, Player player1, Player player2)
         {
-            var tile = new CardWarsTile(cardWarsGameLogic);
-            if (Card != null) tile.Card = (MonsterCard)Card.DeepCopy(Owner == Owner.Player1 ? player1 : player2);
+            var tile = new CardWarsTile(cardWarsGameLogic, Id);
+            if (Card != null)
+            {
+                if (Card is KingCard) tile.Card = Owner == Owner.Player1 ? player1.KingCard : player2.KingCard;
+                else tile.Card = (MonsterCard)Card.DeepCopy(Owner == Owner.Player1 ? player1 : player2);
+            }
+
             tile.IsFixed = IsFixed;
             tile.IsSelected = IsSelected;
+            tile.WasPreviouslySelectedThisTurn = WasPreviouslySelectedThisTurn;
             tile.IsValidTarget = IsValidTarget;
             return tile;
+        }
+
+        public void PrepareTurn()
+        {
+            Card.IsExhausted = false;
+            WasPreviouslySelectedThisTurn = false;
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Hextasy.CardWars
     {
         private int _numberOfDrawsWithoutCardLeft;
         private const int MaximumNumberOfCardsInHand = 10;
-        private KingCard KingCard { get; set; }
+        public KingCard KingCard { get; private set; }
 
         public string Name { get; private set; }
         public Owner Owner { get; private set; }

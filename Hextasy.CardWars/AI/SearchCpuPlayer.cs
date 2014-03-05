@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Hextasy.CardWars.Cards;
+using Hextasy.CardWars.Cards.Specials;
 using Hextasy.Framework;
 
 namespace Hextasy.CardWars.AI
@@ -17,43 +18,82 @@ namespace Hextasy.CardWars.AI
 
         protected override void OnTakeTurn(CardWarsGameLogic cardWarsGameLogic)
         {
-            FindBestSolution(cardWarsGameLogic);
+            var initialUtility = CalculateUtilityValue(cardWarsGameLogic);
+            var optimalActions = new List<PlayerAction>();
+            FindBestSolution(optimalActions, cardWarsGameLogic, ref initialUtility, 0, 10);
+
+            foreach (var optimalAction in optimalActions)
+            {
+                optimalAction.Perform(cardWarsGameLogic);
+            }
         }
 
-        private void FindBestSolution(CardWarsGameLogic cardWarsGameLogic)
+        private void FindBestSolution(List<PlayerAction> optimalActions, CardWarsGameLogic cardWarsGameLogic, ref int currentBestUtility, int depth, int maxDepth)
         {
-            var possibleActions = GetPossibleActions(cardWarsGameLogic).Count();
-            for (var i = 0; i < possibleActions; i++)
+            if (depth == maxDepth) return;
+            var possibleActions = GetPossibleActions(cardWarsGameLogic).ToList();
+            foreach (var currentAction in possibleActions)
             {
                 var gameLogic = cardWarsGameLogic.DeepCopy();
-                var actions = GetPossibleActions(gameLogic).ToList();
-                actions[i].Perform(gameLogic);
-                FindBestSolution(gameLogic);
+                currentAction.Perform(gameLogic);
+                optimalActions.Add(currentAction);
+
+                var utility = CalculateUtilityValue(gameLogic);
+                if (utility > currentBestUtility) currentBestUtility = utility;
+
+                var previousBestUtility = currentBestUtility;
+                FindBestSolution(optimalActions, gameLogic, ref currentBestUtility, depth + 1, maxDepth);
+                if (previousBestUtility < currentBestUtility)
+                {
+                    var indexOfCurrentAction = optimalActions.IndexOf(currentAction);
+                    for (var i = depth; i < indexOfCurrentAction; i++)
+                    {
+                        optimalActions.RemoveAt(depth);
+                    }
+                }
             }
         }
 
         private IEnumerable<PlayerAction> GetPossibleActions(CardWarsGameLogic gameLogic)
         {
             var result = new List<PlayerAction>();
-            
-            if(gameLogic.CanMulligan) result.Add(new MulliganPlayerAction());
+
+            if (gameLogic.CanMulligan) result.Add(new MulliganPlayerAction());
 
             result.AddRange((
-                from monsterCard in gameLogic.CurrentPlayerHand.OfType<MonsterCard>().Where(p=>p.CanBePlayed)
-                from freeTile in gameLogic.AllFreeTiles
-                select new PlayMonsterCardAction(freeTile, monsterCard)));
+                from monsterCard in gameLogic.CurrentPlayerHand.OfType<MonsterCard>().Where(p => p.CanBePlayed)
+                select new PlayMonsterCardAction(gameLogic.AllFreeTiles.RandomOrDefault().Id, monsterCard.Id)));
 
             result.AddRange((
-                from spellCard in gameLogic.CurrentPlayerHand.OfType<SpellCard>().Where(p=>p.CanBePlayed)
+                from spellCard in gameLogic.CurrentPlayerHand.OfType<SpellCard>().Where(p => p.CanBePlayed)
                 from validTargetTile in gameLogic.Tiles.Where(p => p.IsValidSpellTarget)
-                select new PlaySpellCardAction(validTargetTile, spellCard)));
+                select new PlaySpellCardAction(validTargetTile.Id, spellCard.Id)));
 
             result.AddRange((
-                from attackerTile in gameLogic.CurrentPlayerTiles.Where(p => p.Card != null && !p.Card.IsExhausted)
+                from attackerTile in
+                    gameLogic.CurrentPlayerTiles.Where(
+                        p => p.Card != null && !(p.Card is KingCard) && !p.Card.IsExhausted && !p.IsSelected && !p.WasPreviouslySelectedThisTurn)
+                select new SelectTileAction(attackerTile.Id)));
+
+            result.AddRange((
+                from attackerTile in gameLogic.CurrentPlayerTiles.Where(p => p.IsSelected)
                 from defenderTile in gameLogic.OpponentTiles.Where(p => p.IsValidTarget)
-                select new AttackAction(attackerTile, defenderTile)));
+                select new AttackAction(defenderTile.Id)));
 
             return result;
+        }
+
+        private int CalculateUtilityValue(CardWarsGameLogic gameLogic)
+        {
+            var utility = 0;
+
+            utility += gameLogic.CurrentPlayer.KingCard.Health;
+            utility -= gameLogic.OpponentPlayer.KingCard.Health;
+
+            utility += gameLogic.CurrentPlayerCardsExceptKing.Sum(p => p.Cost * p.Health / p.BaseHealth);
+            utility -= gameLogic.OpponentCardsExceptKing.Sum(p => p.Cost * p.Health / p.BaseHealth);
+
+            return utility;
         }
     }
 
@@ -64,53 +104,71 @@ namespace Hextasy.CardWars.AI
 
     internal class AttackAction : PlayerAction
     {
-        private readonly CardWarsTile _attackerTile;
-        private readonly CardWarsTile _targetTile;
+        private readonly Guid _targetTileId;
 
-        public AttackAction(CardWarsTile attackerTile, CardWarsTile targetTile)
+        public AttackAction(Guid targetTileId)
         {
-            _attackerTile = attackerTile;
-            _targetTile = targetTile;
+            _targetTileId = targetTileId;
         }
 
         public override void Perform(CardWarsGameLogic gameLogic)
         {
-            gameLogic.SelectTile(_attackerTile);
-            gameLogic.AttackCard(_targetTile);
+            var targetTile = gameLogic.Tiles.SingleOrDefault(p => p.Id == _targetTileId);
+            gameLogic.AttackCard(targetTile);
+        }
+    }
+
+    internal class SelectTileAction : PlayerAction
+    {
+        private readonly Guid _attackerTileId;
+
+        public SelectTileAction(Guid attackerTileId)
+        {
+            _attackerTileId = attackerTileId;
+        }
+
+        public override void Perform(CardWarsGameLogic gameLogic)
+        {
+            var attackerTile = gameLogic.Tiles.SingleOrDefault(p => p.Id == _attackerTileId);
+            gameLogic.SelectTile(attackerTile);
         }
     }
 
     internal class PlaySpellCardAction : PlayerAction
     {
-        private readonly CardWarsTile _tile;
-        private readonly SpellCard _card;
+        private readonly Guid _targetTileId;
+        private readonly Guid _spellCardId;
 
-        public PlaySpellCardAction(CardWarsTile tile, SpellCard card)
+        public PlaySpellCardAction(Guid targetTileId, Guid spellCardId)
         {
-            _tile = tile;
-            _card = card;
+            _targetTileId = targetTileId;
+            _spellCardId = spellCardId;
         }
 
         public override void Perform(CardWarsGameLogic gameLogic)
         {
-            gameLogic.PlaySpellCard(_tile, _card);
+            var targetTile = gameLogic.Tiles.SingleOrDefault(p => p.Id == _targetTileId);
+            var monsterCard = gameLogic.CurrentPlayerHand.Single(p => p.Id == _spellCardId) as SpellCard;
+            gameLogic.PlaySpellCard(targetTile, monsterCard);
         }
     }
 
     internal class PlayMonsterCardAction : PlayerAction
     {
-        private readonly CardWarsTile _tile;
-        private readonly MonsterCard _card;
+        private readonly Guid _targetTileId;
+        private readonly Guid _monsterCardId;
 
-        public PlayMonsterCardAction(CardWarsTile tile, MonsterCard card)
+        public PlayMonsterCardAction(Guid targetTileId, Guid monsterCardId)
         {
-            _tile = tile;
-            _card = card;
+            _targetTileId = targetTileId;
+            _monsterCardId = monsterCardId;
         }
 
         public override void Perform(CardWarsGameLogic gameLogic)
         {
-            gameLogic.PlayMonsterCard(_tile, _card);
+            var targetTile = gameLogic.Tiles.SingleOrDefault(p => p.Id == _targetTileId);
+            var monsterCard = gameLogic.CurrentPlayerHand.Single(p => p.Id == _monsterCardId) as MonsterCard;
+            gameLogic.PlayMonsterCard(targetTile, monsterCard);
         }
     }
 

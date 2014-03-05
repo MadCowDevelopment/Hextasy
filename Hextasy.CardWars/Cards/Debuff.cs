@@ -6,15 +6,10 @@ namespace Hextasy.CardWars.Cards
     {
         public bool IsExpired { get; protected set; }
         public abstract void Activate(MonsterCard affectedCard);
-        public IDebuff DeepCopy()
+        public virtual IDebuff DeepCopy()
         {
             var instance = (IDebuff)Activator.CreateInstance(GetType());
-            OnDeepCopy(instance);
             return instance;
-        }
-
-        protected virtual void OnDeepCopy(IDebuff debuff)
-        {
         }
     }
 

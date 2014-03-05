@@ -27,5 +27,10 @@
             Duration--;
             if (Duration == 0) IsExpired = true;
         }
+
+        public override IDebuff DeepCopy()
+        {
+            return new PoisonDebuff(Amount, Duration);
+        }
     }
 }

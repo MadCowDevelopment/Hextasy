@@ -28,9 +28,9 @@ namespace Hextasy.CardWarsSimulator
 
         public void Start(SettingsViewModel settingsViewModel)
         {
-            var task = new Task(() =>
+            for (int i = 0; i < settingsViewModel.Iterations; i++)
             {
-                for (int i = 0; i < settingsViewModel.Iterations; i++)
+                var task = new Task(() =>
                 {
                     using (var export = _gameLogicFactory.CreateExport())
                     {
@@ -38,10 +38,10 @@ namespace Hextasy.CardWarsSimulator
                         gameLogic.Finished += gameLogic_Finished;
                         gameLogic.Initialize(settingsViewModel.CreateSettings());
                     }
-                }
-            });
+                });
 
-            task.Start();
+                task.Start();
+            }
         }
 
         public DispatcherObservableCollection<string> FinishedGames { get; private set; }

@@ -53,7 +53,7 @@ namespace Hextasy.CardWars.Cards
         protected abstract string ImageFilename { get; }
         protected abstract string ImageFolder { get; }
 
-        public Card DeepCopy(Player player)
+        public virtual Card DeepCopy(Player player)
         {
             var card = (Card)Activator.CreateInstance(GetType());
             card.Player = player;

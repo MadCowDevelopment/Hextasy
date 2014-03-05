@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using Hextasy.CardWars.Cards;
 using Hextasy.CardWars.Cards.Specials;
@@ -17,9 +16,71 @@ namespace Hextasy.CardWars.AI
 
         protected override void OnTakeTurn(CardWarsGameLogic cardWarsGameLogic)
         {
-            int currentNodeCount = 0;
-            var optimalActions = FindBestSolution(cardWarsGameLogic, 0, 5, 50, ref currentNodeCount);
+            var optimalMonsterCardPlayActions = FindBestCardPlayActions(cardWarsGameLogic,
+                GetPossibleMonsterCardPlayActions);
+            ExecuteActions(cardWarsGameLogic, optimalMonsterCardPlayActions, int.MinValue);
+
+            var optimalActions = FindBestAttackActions(cardWarsGameLogic);
             ExecuteActions(cardWarsGameLogic, optimalActions, int.MinValue);
+
+            var remainingAttacks = GetPossibleSelectTileActions(cardWarsGameLogic);
+            var king = cardWarsGameLogic.OpponentTiles.Single(p => (p.Card is KingCard));
+            foreach (var remainingAttack in remainingAttacks)
+            {
+                remainingAttack.Perform(cardWarsGameLogic);
+                cardWarsGameLogic.AttackCard(king);
+            }
+        }
+
+        private List<Node> FindBestCardPlayActions(
+            CardWarsGameLogic cardWarsGameLogic,
+            Func<CardWarsGameLogic, IEnumerable<PlayerAction>> playMonsterCardFunction)
+        {
+            var result = new List<Node>();
+            var possibleActions = playMonsterCardFunction(cardWarsGameLogic).ToList();
+            foreach (var currentAction in possibleActions)
+            {
+                var gameLogic = cardWarsGameLogic.DeepCopy();
+                currentAction.Perform(gameLogic);
+
+                var utility = CalculateUtilityValue(gameLogic);
+
+                var currentNode = new Node(currentAction);
+                currentNode.Value = utility;
+                result.Add(currentNode);
+                currentNode.Children.AddRange(FindBestCardPlayActions(gameLogic, playMonsterCardFunction));
+            }
+
+            return result;
+        }
+
+        private List<Node> FindBestAttackActions(
+            CardWarsGameLogic cardWarsGameLogic)
+        {
+            var result = new List<Node>();
+
+            var possibleSelections = GetPossibleSelectTileActions(cardWarsGameLogic).ToList();
+            foreach (var possibleSelection in possibleSelections)
+            {
+                var selectionNode = new Node(possibleSelection);
+                result.Add(selectionNode);
+                possibleSelection.Perform(cardWarsGameLogic);
+
+                var attackActions = GetPossibleAttackActions(cardWarsGameLogic);
+                foreach (var attackAction in attackActions)
+                {
+                    var gameLogic = cardWarsGameLogic.DeepCopy();
+                    attackAction.Perform(gameLogic);
+                    var utility = CalculateUtilityValue(gameLogic);
+
+                    var attackNode = new Node(attackAction);
+                    attackNode.Value = utility;
+                    selectionNode.Children.Add(attackNode);
+                    selectionNode.Children.AddRange(FindBestAttackActions(cardWarsGameLogic));
+                }
+            }
+
+            return result;
         }
 
         private void ExecuteActions(CardWarsGameLogic cardWarsGameLogic, List<Node> optimalActions, int bestNodeValue)
@@ -36,59 +97,66 @@ namespace Hextasy.CardWars.AI
             }
         }
 
-        private List<Node> FindBestSolution(CardWarsGameLogic cardWarsGameLogic, int depth, int maxDepth, int maxNodeCount, ref int currentNodeCount)
-        {
-            var result = new List<Node>();
-            if (depth == maxDepth || currentNodeCount == maxNodeCount) return result;
-            var possibleActions = GetPossibleActions(cardWarsGameLogic).ToList();
-            foreach (var currentAction in possibleActions)
-            {
-                currentNodeCount++;
-                Console.WriteLine(currentNodeCount);
-                if (currentNodeCount > maxNodeCount) return result;
-
-                var gameLogic = cardWarsGameLogic.DeepCopy();
-                currentAction.Perform(gameLogic);
-                
-                var utility = CalculateUtilityValue(gameLogic);
-
-                var currentNode = new Node(currentAction);
-                currentNode.Value = utility;
-                result.Add(currentNode);
-                currentNode.Children.AddRange(FindBestSolution(gameLogic, depth + 1, maxDepth, 50, ref currentNodeCount));
-            }
-
-            return result;
-        }
-
-        private IEnumerable<PlayerAction> GetPossibleActions(CardWarsGameLogic gameLogic)
+        private IEnumerable<PlayerAction> GetPossibleMonsterCardPlayActions(CardWarsGameLogic gameLogic)
         {
             var result = new List<PlayerAction>();
-
-            if (gameLogic.CanMulligan) result.Add(new MulliganPlayerAction());
-
             result.AddRange((
                 from monsterCard in gameLogic.CurrentPlayerHand.OfType<MonsterCard>().Where(p => p.CanBePlayed)
                 select new PlayMonsterCardAction(gameLogic.AllFreeTiles.RandomOrDefault().Id, monsterCard.Id)));
+            return result;
+        }
 
-            result.AddRange((
-                from spellCard in gameLogic.CurrentPlayerHand.OfType<SpellCard>().Where(p => p.CanBePlayed)
-                from validTargetTile in gameLogic.Tiles.Where(p => p.IsValidSpellTarget)
-                select new PlaySpellCardAction(validTargetTile.Id, spellCard.Id)));
-
+        private IEnumerable<PlayerAction> GetPossibleSelectTileActions(CardWarsGameLogic gameLogic)
+        {
+            var result = new List<PlayerAction>();
             result.AddRange((
                 from attackerTile in
                     gameLogic.CurrentPlayerTiles.Where(
-                        p => p.Card != null && !(p.Card is KingCard) && !p.Card.IsExhausted && !p.IsSelected && !p.WasPreviouslySelectedThisTurn)
+                        p =>
+                            p.Card != null && !(p.Card is KingCard) && !p.Card.IsExhausted && !p.IsSelected)
                 select new SelectTileAction(attackerTile.Id)));
-
-            result.AddRange((
-                from attackerTile in gameLogic.CurrentPlayerTiles.Where(p => p.IsSelected)
-                from defenderTile in gameLogic.OpponentTiles.Where(p => p.IsValidTarget)
-                select new AttackAction(defenderTile.Id)));
 
             return result;
         }
+
+        private IEnumerable<PlayerAction> GetPossibleAttackActions(CardWarsGameLogic gameLogic)
+        {
+            var result = new List<PlayerAction>();
+            result.AddRange((
+                from attackerTile in gameLogic.CurrentPlayerTiles.Where(p => p.IsSelected)
+                from defenderTile in gameLogic.OpponentTiles.Where(p => p.IsValidTarget && p.Card != null && !(p.Card is KingCard))
+                select new AttackAction(defenderTile.Id)));
+            return result;
+        }
+
+        //private IEnumerable<PlayerAction> GetPossibleActions(CardWarsGameLogic gameLogic)
+        //{
+        //    var result = new List<PlayerAction>();
+
+        //    if (gameLogic.CanMulligan) result.Add(new MulliganPlayerAction());
+
+        //    result.AddRange((
+        //        from monsterCard in gameLogic.CurrentPlayerHand.OfType<MonsterCard>().Where(p => p.CanBePlayed)
+        //        select new PlayMonsterCardAction(gameLogic.AllFreeTiles.RandomOrDefault().Id, monsterCard.Id)));
+
+        //    result.AddRange((
+        //        from spellCard in gameLogic.CurrentPlayerHand.OfType<SpellCard>().Where(p => p.CanBePlayed)
+        //        from validTargetTile in gameLogic.Tiles.Where(p => p.IsValidSpellTarget)
+        //        select new PlaySpellCardAction(validTargetTile.Id, spellCard.Id)));
+
+        //    result.AddRange((
+        //        from attackerTile in
+        //            gameLogic.CurrentPlayerTiles.Where(
+        //                p => p.Card != null && !(p.Card is KingCard) && !p.Card.IsExhausted && !p.IsSelected && !p.WasPreviouslySelectedThisTurn)
+        //        select new SelectTileAction(attackerTile.Id)));
+
+        //    result.AddRange((
+        //        from attackerTile in gameLogic.CurrentPlayerTiles.Where(p => p.IsSelected)
+        //        from defenderTile in gameLogic.OpponentTiles.Where(p => p.IsValidTarget)
+        //        select new AttackAction(defenderTile.Id)));
+
+        //    return result;
+        //}
 
         private int CalculateUtilityValue(CardWarsGameLogic gameLogic)
         {

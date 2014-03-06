@@ -71,7 +71,7 @@ namespace Hextasy.CardWars
 
         public bool IsValidTarget { get; set; }
 
-        public bool IsValidSpellTarget { get { return Card != null; } }
+        public bool IsValidSpellTarget { get { return Card != null && !(Card is KingCard); } }
 
         public bool IsDefender { get { return Card != null && Card.HasTrait<DefenderTrait>(); } }
 

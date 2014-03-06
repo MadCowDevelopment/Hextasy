@@ -17,31 +17,28 @@ namespace Hextasy.CardWars.AI
 
         protected override void OnTakeTurn(CardWarsGameLogic cardWarsGameLogic)
         {
-            var optimalMonsterCardPlayActions = FindBestCardPlayActions(cardWarsGameLogic,
-                GetPossibleMonsterCardPlayActions);
+            var optimalMonsterCardPlayActions = FindBestCardPlayActions(cardWarsGameLogic);
             ExecuteActions(cardWarsGameLogic, optimalMonsterCardPlayActions, int.MinValue);
 
             var optimalActions = FindBestAttackActions(cardWarsGameLogic.DeepCopy(), new List<Guid>());
             ExecuteActions(cardWarsGameLogic, optimalActions, int.MinValue);
 
-            var remainingAttacks = GetPossibleSelectTileActions(cardWarsGameLogic);
-            var king = cardWarsGameLogic.OpponentTiles.SingleOrDefault(p => (p.Card is KingCard));
-            if (king == null) return;
-            foreach (var remainingAttack in remainingAttacks)
-            {
-                Wait();
-                remainingAttack.Perform(cardWarsGameLogic);
-                Wait();
-                cardWarsGameLogic.AttackCard(king);
-            }
+            //var remainingAttacks = GetPossibleSelectTileActions(cardWarsGameLogic);
+            //var king = cardWarsGameLogic.OpponentTiles.SingleOrDefault(p => (p.Card is KingCard));
+            //if (king == null) return;
+            //foreach (var remainingAttack in remainingAttacks)
+            //{
+            //    Wait();
+            //    remainingAttack.Perform(cardWarsGameLogic);
+            //    Wait();
+            //    cardWarsGameLogic.AttackCard(king);
+            //}
         }
 
-        private List<Node> FindBestCardPlayActions(
-            CardWarsGameLogic cardWarsGameLogic,
-            Func<CardWarsGameLogic, IEnumerable<PlayerAction>> playMonsterCardFunction)
+        private List<Node> FindBestCardPlayActions(CardWarsGameLogic cardWarsGameLogic)
         {
             var result = new List<Node>();
-            var possibleActions = playMonsterCardFunction(cardWarsGameLogic).ToList();
+            var possibleActions = GetPossibleCardPlayActions(cardWarsGameLogic).ToList();
             foreach (var currentAction in possibleActions)
             {
                 var gameLogic = cardWarsGameLogic.DeepCopy();
@@ -52,7 +49,7 @@ namespace Hextasy.CardWars.AI
                 var currentNode = new Node(currentAction);
                 currentNode.Value = utility;
                 result.Add(currentNode);
-                currentNode.Children.AddRange(FindBestCardPlayActions(gameLogic, playMonsterCardFunction));
+                currentNode.Children.AddRange(FindBestCardPlayActions(gameLogic));
             }
 
             return result;
@@ -100,7 +97,7 @@ namespace Hextasy.CardWars.AI
         private void ExecuteActions(CardWarsGameLogic cardWarsGameLogic, List<Node> optimalActions, double bestNodeValue)
         {
             if (optimalActions.Count < 1) return;
-            var bestValue = optimalActions.Max(p => p.Value);
+            var bestValue = optimalActions.Max(p => p.BranchValue);
             var bestNodes = optimalActions.Where(p => p.BranchValue == bestValue);
             var randomNode = bestNodes.RandomOrDefault();
             if (randomNode != null && randomNode.BranchValue > bestNodeValue)
@@ -112,12 +109,13 @@ namespace Hextasy.CardWars.AI
             }
         }
 
-        private IEnumerable<PlayerAction> GetPossibleMonsterCardPlayActions(CardWarsGameLogic gameLogic)
+        private IEnumerable<PlayerAction> GetPossibleCardPlayActions(CardWarsGameLogic gameLogic)
         {
             var result = new List<PlayerAction>();
             result.AddRange((
                 from monsterCard in gameLogic.CurrentPlayerHand.OfType<MonsterCard>().Where(p => p.CanBePlayed)
-                select new PlayMonsterCardAction(gameLogic.AllFreeTiles.RandomOrDefault().Id, monsterCard.Id)));
+                from tile in gameLogic.AllFreeTiles
+                select new PlayMonsterCardAction(tile.Id, monsterCard.Id)));
             return result;
         }
 
@@ -139,7 +137,7 @@ namespace Hextasy.CardWars.AI
             var result = new List<PlayerAction>();
             result.AddRange((
                 from attackerTile in gameLogic.CurrentPlayerTiles.Where(p => p.IsSelected)
-                from defenderTile in gameLogic.OpponentTiles.Where(p => p.IsValidTarget && p.Card != null && !(p.Card is KingCard))
+                from defenderTile in gameLogic.OpponentTiles.Where(p => p.IsValidTarget && p.Card != null)
                 select new AttackAction(defenderTile.Id)));
             return result;
         }
@@ -162,7 +160,7 @@ namespace Hextasy.CardWars.AI
             utility -= gameLogic.CurrentPlayerCards.Sum(p => p.Debuffs.OfType<FrozenDebuff>().Any() ? 3 : 0);
 
             utility += gameLogic.CurrentPlayerCardsExceptKing.Sum(p => p.Cost * p.Health / p.BaseHealth) * 2;
-            utility -= gameLogic.OpponentCardsExceptKing.Sum(p => p.Cost * p.Health / p.BaseHealth) * 2;
+            utility -= gameLogic.OpponentCardsExceptKing.Sum(p => p.Cost * p.Health / p.BaseHealth) * 2.5;
 
             return utility;
         }

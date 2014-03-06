@@ -45,5 +45,10 @@ namespace Hextasy.CardWars.Cards.Monsters
         {
             get { return "TurtleBrown.png"; }
         }
+
+        protected override Card CreateInstance()
+        {
+            return new TurtleCard();
+        }
     }
 }

@@ -24,6 +24,11 @@ namespace Hextasy.CardWars.Cards.Summoned
             get { return @"HumanPriest01.PNG"; }
         }
 
+        protected override Card CreateInstance()
+        {
+            return new HumanMonkCard();
+        }
+
         public override int BaseAttack
         {
             get { return 0; }

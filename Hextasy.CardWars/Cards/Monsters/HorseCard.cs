@@ -32,6 +32,11 @@ namespace Hextasy.CardWars.Cards.Monsters
             get { return "Horse01.PNG"; }
         }
 
+        protected override Card CreateInstance()
+        {
+            return new HorseCard();
+        }
+
         public override int BaseAttack
         {
             get { return 1; }

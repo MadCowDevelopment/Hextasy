@@ -27,6 +27,11 @@ namespace Hextasy.CardWars.Cards.Spells
             get { return "enchant-blue-3.png"; }
         }
 
+        protected override Card CreateInstance()
+        {
+            return new EnchantWeaponFrostCard();
+        }
+
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
             targetTile.Card.AddTrait(new FrostWeaponTrait(targetTile.Card));

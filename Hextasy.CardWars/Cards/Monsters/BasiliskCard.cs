@@ -26,6 +26,11 @@ namespace Hextasy.CardWars.Cards.Monsters
             get { return @"BasiliskBrown.png"; }
         }
 
+        protected override Card CreateInstance()
+        {
+            return new BasiliskCard();
+        }
+
         public override int BaseAttack
         {
             get { return 1; }

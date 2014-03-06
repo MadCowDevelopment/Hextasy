@@ -51,8 +51,12 @@ namespace Hextasy.CardWars
         public Deck DeepCopy(Player player)
         {
             var deck = new Deck();
-            deck._cardQueue = new Queue<Card>(_cardQueue.Select(p => p.DeepCopy(player)));
             deck._cards = new List<Card>(_cards.Select(p => p.DeepCopy(player)));
+            deck._cardQueue = new Queue<Card>();
+            foreach (var card in _cardQueue)
+            {
+                deck._cardQueue.Enqueue(deck._cards.Single(p => p.Id == card.Id));
+            }
             return deck;
         }
     }

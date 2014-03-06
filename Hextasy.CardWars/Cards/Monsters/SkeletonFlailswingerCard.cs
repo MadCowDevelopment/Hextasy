@@ -25,6 +25,11 @@ namespace Hextasy.CardWars.Cards.Monsters
             get { return "SkeletonFighter11.png"; }
         }
 
+        protected override Card CreateInstance()
+        {
+            return new SkeletonFlailswingerCard();
+        }
+
         public override int BaseAttack
         {
             get { return 3; }

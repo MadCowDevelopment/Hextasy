@@ -46,5 +46,10 @@ namespace Hextasy.CardWars.Cards.Monsters
         {
             get { return "Wolf.png"; }
         }
+
+        protected override Card CreateInstance()
+        {
+            return new WolfCard();
+        }
     }
 }

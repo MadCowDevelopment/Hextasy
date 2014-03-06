@@ -45,5 +45,10 @@ namespace Hextasy.CardWars.Cards.Monsters
         {
             get { return "AntRed2.png"; }
         }
+
+        protected override Card CreateInstance()
+        {
+            return new FireAntCard();
+        }
     }
 }

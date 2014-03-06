@@ -26,6 +26,11 @@ namespace Hextasy.CardWars.Cards.Spells
             get { return "enchant-orange-3.png"; }
         }
 
+        protected override Card CreateInstance()
+        {
+            return new EnchantWeaponDisarmCard();
+        }
+
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
             targetTile.Card.AddTrait(new DisarmWeaponTrait(targetTile.Card));

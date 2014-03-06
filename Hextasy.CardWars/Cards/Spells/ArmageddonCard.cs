@@ -26,6 +26,11 @@ namespace Hextasy.CardWars.Cards.Spells
             get { return "explosion-orange-3.png"; }
         }
 
+        protected override Card CreateInstance()
+        {
+            return new ArmageddonCard();
+        }
+
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
             cardWarsGameLogic.AllCardsExceptKing.Apply(p => p.Kill());

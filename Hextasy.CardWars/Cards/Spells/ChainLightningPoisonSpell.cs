@@ -29,6 +29,11 @@ namespace Hextasy.CardWars.Cards.Spells
             get { return "lightning-acid-3.png"; }
         }
 
+        protected override Card CreateInstance()
+        {
+            return new ChainLightningPoisonSpell();
+        }
+
         protected override int InitialDamage
         {
             get { return 3; }

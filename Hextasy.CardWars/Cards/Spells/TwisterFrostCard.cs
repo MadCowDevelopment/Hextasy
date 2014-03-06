@@ -30,6 +30,11 @@ namespace Hextasy.CardWars.Cards.Spells
             get { return "wind-blue-3.png"; }
         }
 
+        protected override Card CreateInstance()
+        {
+            return new TwisterFrostCard();
+        }
+
         protected override Owner GetTargetOwner(CardWarsGameLogic cardWarsGameLogic)
         {
             return cardWarsGameLogic.OpponentPlayer.Owner;

@@ -28,6 +28,11 @@ namespace Hextasy.CardWars.Cards.Summoned
             get { return "Skeleton.png"; }
         }
 
+        protected override Card CreateInstance()
+        {
+            return new SkeletonCard();
+        }
+
         public override int BaseAttack
         {
             get { return 1; }

@@ -26,6 +26,11 @@ namespace Hextasy.CardWars.Cards.Monsters
             get { return @"FemalePaladin01.PNG"; }
         }
 
+        protected override Card CreateInstance()
+        {
+            return new HumanPaladinFemaleCard();
+        }
+
         public override int BaseAttack
         {
             get { return 2; }

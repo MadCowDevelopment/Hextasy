@@ -26,6 +26,11 @@ namespace Hextasy.CardWars.Cards.Monsters
             get { return @"FemalePriest02.PNG"; }
         }
 
+        protected override Card CreateInstance()
+        {
+            return new HumanInquisitorFemaleCard();
+        }
+
         public override int BaseAttack
         {
             get { return 2; }

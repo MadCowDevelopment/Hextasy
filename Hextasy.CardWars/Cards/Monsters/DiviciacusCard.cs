@@ -31,6 +31,11 @@ namespace Hextasy.CardWars.Cards.Monsters
             get { return "HumanDruid04.png"; }
         }
 
+        protected override Card CreateInstance()
+        {
+            return new DiviciacusCard();
+        }
+
         public override int BaseAttack
         {
             get { return 1; }

@@ -26,6 +26,11 @@ namespace Hextasy.CardWars.Cards.Monsters
             get { return @"BarbarianFighter2.png"; }
         }
 
+        protected override Card CreateInstance()
+        {
+            return new HumanWarriorCard();
+        }
+
         public override int BaseAttack
         {
             get { return 4; }

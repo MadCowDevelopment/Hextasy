@@ -26,6 +26,11 @@ namespace Hextasy.CardWars.Cards.Spells
             get { return "horror-red-3.png"; }
         }
 
+        protected override Card CreateInstance()
+        {
+            return new HorrorFireCard();
+        }
+
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
             targetTile.Card.Kill();

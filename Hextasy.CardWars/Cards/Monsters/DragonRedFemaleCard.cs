@@ -25,6 +25,11 @@ namespace Hextasy.CardWars.Cards.Monsters
             get { return "DragonAdultRed.PNG"; }
         }
 
+        protected override Card CreateInstance()
+        {
+            return new DragonRedFemaleCard();
+        }
+
         public override int BaseAttack
         {
             get { return 3; }

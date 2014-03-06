@@ -27,6 +27,11 @@ namespace Hextasy.CardWars.Cards.Spells
             get { return "horror-acid-3.png"; }
         }
 
+        protected override Card CreateInstance()
+        {
+            return new HorrorPoisonCard();
+        }
+
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
             targetTile.Card.Kill();

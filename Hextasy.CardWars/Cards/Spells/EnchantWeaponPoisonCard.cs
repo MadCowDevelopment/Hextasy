@@ -26,6 +26,11 @@ namespace Hextasy.CardWars.Cards.Spells
             get { return "enchant-acid-3.png"; }
         }
 
+        protected override Card CreateInstance()
+        {
+            return new EnchantWeaponPoisonCard();
+        }
+
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
             targetTile.Card.AddTrait(new PoisonWeaponTrait(targetTile.Card, 2, 2));

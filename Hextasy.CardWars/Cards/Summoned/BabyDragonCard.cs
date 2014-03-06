@@ -16,11 +16,9 @@ namespace Hextasy.CardWars.Cards.Summoned
             Traits.Add(new DragonGrowthTrait(this));
         }
 
-        public override Card DeepCopy(Player player)
+        protected override Card CreateInstance()
         {
-            var card = new BabyDragonCard(DragonFlight, Gender);
-            OnDeepCopy(card);
-            return card;
+            return new BabyDragonCard(DragonFlight, Gender);
         }
 
         public override string Name

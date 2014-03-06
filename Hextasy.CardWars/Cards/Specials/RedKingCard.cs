@@ -7,6 +7,11 @@
             get { return @"crown-red.png"; }
         }
 
+        protected override Card CreateInstance()
+        {
+            return new RedKingCard();
+        }
+
         public override Race Race
         {
             get { return Race.Special; }

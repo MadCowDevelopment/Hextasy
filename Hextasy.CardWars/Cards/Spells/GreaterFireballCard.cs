@@ -26,6 +26,11 @@ namespace Hextasy.CardWars.Cards.Spells
             get { return "fireball-red-3.png"; }
         }
 
+        protected override Card CreateInstance()
+        {
+            return new GreaterFireballCard();
+        }
+
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
             targetTile.Card.TakeFireDamage(5);

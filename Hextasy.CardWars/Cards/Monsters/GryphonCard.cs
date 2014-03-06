@@ -31,6 +31,11 @@ namespace Hextasy.CardWars.Cards.Monsters
             get { return "Gryphon.png"; }
         }
 
+        protected override Card CreateInstance()
+        {
+            return new GryphonCard();
+        }
+
         public override int BaseAttack
         {
             get { return 5; }

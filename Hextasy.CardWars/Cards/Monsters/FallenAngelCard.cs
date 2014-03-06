@@ -10,6 +10,11 @@ namespace Hextasy.CardWars.Cards.Monsters
             get { return @"AngelGray2.png"; }
         }
 
+        protected override Card CreateInstance()
+        {
+            return new FallenAngelCard();
+        }
+
         public override string Name
         {
             get { return "Fallen Angel"; }

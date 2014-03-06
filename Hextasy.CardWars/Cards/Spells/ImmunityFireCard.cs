@@ -27,6 +27,11 @@ namespace Hextasy.CardWars.Cards.Spells
             get { return "protect-red-3.png"; }
         }
 
+        protected override Card CreateInstance()
+        {
+            return new ImmunityFireCard();
+        }
+
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
             cardWarsGameLogic.GetAdjacentFriendlyTiles(targetTile).Apply(

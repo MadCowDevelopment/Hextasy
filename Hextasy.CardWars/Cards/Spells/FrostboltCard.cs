@@ -27,6 +27,11 @@ namespace Hextasy.CardWars.Cards.Spells
             get { return "fireball-eerie-2.png"; }
         }
 
+        protected override Card CreateInstance()
+        {
+            return new FrostboltCard();
+        }
+
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
             targetTile.AddDebuff(new FrozenDebuff());

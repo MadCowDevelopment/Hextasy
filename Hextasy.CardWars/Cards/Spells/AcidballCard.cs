@@ -26,6 +26,11 @@ namespace Hextasy.CardWars.Cards.Spells
             get { return "fireball-acid-2.png"; }
         }
 
+        protected override Card CreateInstance()
+        {
+            return new AcidballCard();
+        }
+
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
             targetTile.AddDebuff(new PoisonDebuff(4, 2));

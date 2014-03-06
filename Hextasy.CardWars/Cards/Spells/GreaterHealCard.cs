@@ -26,6 +26,11 @@ namespace Hextasy.CardWars.Cards.Spells
             get { return "heal-jade-3.png"; }
         }
 
+        protected override Card CreateInstance()
+        {
+            return new GreaterHealCard();
+        }
+
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
             cardWarsGameLogic.Heal(targetTile.Card, 5);

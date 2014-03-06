@@ -27,6 +27,11 @@ namespace Hextasy.CardWars.Cards.Monsters
             get { return @"HumanMage15.PNG"; }
         }
 
+        protected override Card CreateInstance()
+        {
+            return new HumanFrostmageCard();
+        }
+
         public override int BaseAttack
         {
             get { return 4; }

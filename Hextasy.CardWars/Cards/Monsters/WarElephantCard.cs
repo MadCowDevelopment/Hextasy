@@ -46,5 +46,10 @@ namespace Hextasy.CardWars.Cards.Monsters
         {
             get { return "WarElephantGrey.png"; }
         }
+
+        protected override Card CreateInstance()
+        {
+            return new WarElephantCard();
+        }
     }
 }

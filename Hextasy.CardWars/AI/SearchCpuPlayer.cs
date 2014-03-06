@@ -31,7 +31,7 @@ namespace Hextasy.CardWars.AI
             foreach (var currentAction in possibleActions)
             {
                 var gameLogic = cardWarsGameLogic.DeepCopy();
-                currentAction.Perform(gameLogic);
+                currentAction.Perform(gameLogic, false);
 
                 var utility = CalculateUtilityValue(gameLogic);
 
@@ -55,14 +55,15 @@ namespace Hextasy.CardWars.AI
                 var selectedTilesForThisBranch = new List<Guid>(alreadySelectedTiles);
                 selectedTilesForThisBranch.Add(possibleSelection.AttackerTileId);
                 var selectionNode = new Node(possibleSelection);
+                selectionNode.Value = CalculateUtilityValue(cardWarsGameLogic);
                 result.Add(selectionNode);
-                possibleSelection.Perform(cardWarsGameLogic);
+                possibleSelection.Perform(cardWarsGameLogic, false);
 
                 var attackActions = GetPossibleAttackActions(cardWarsGameLogic);
                 foreach (var attackAction in attackActions)
                 {
                     var gameLogic = cardWarsGameLogic.DeepCopy();
-                    attackAction.Perform(gameLogic);
+                    attackAction.Perform(gameLogic, false);
                     var utility = CalculateUtilityValue(gameLogic);
 
                     var attackNode = new Node(attackAction);
@@ -90,7 +91,7 @@ namespace Hextasy.CardWars.AI
             if (randomNode != null && randomNode.BranchValue > bestNodeValue)
             {
                 bestNodeValue = randomNode.Value;
-                randomNode.PlayerAction.Perform(cardWarsGameLogic);
+                randomNode.PlayerAction.Perform(cardWarsGameLogic, true);
                 ExecuteActions(cardWarsGameLogic, randomNode.Children, bestNodeValue);
             }
         }
@@ -100,8 +101,15 @@ namespace Hextasy.CardWars.AI
             var result = new List<PlayerAction>();
             result.AddRange((
                 from monsterCard in gameLogic.CurrentPlayerHand.OfType<MonsterCard>().Where(p => p.CanBePlayed)
-                from tile in gameLogic.AllFreeTiles
-                select new PlayMonsterCardAction(tile.Id, monsterCard.Id)));
+                select new PlayMonsterCardAction(gameLogic.AllFreeTiles.RandomOrDefault().Id, monsterCard.Id)));
+
+            foreach (var spellCard in gameLogic.CurrentPlayerHand.OfType<SpellCard>().Where(p=>p.CanBePlayed))
+            {
+                result.AddRange(
+                    gameLogic.Tiles.Where(p => p.IsValidSpellTarget).Select(
+                        p => new PlaySpellCardAction(p.Id, spellCard.Id)));
+            }
+
             return result;
         }
 

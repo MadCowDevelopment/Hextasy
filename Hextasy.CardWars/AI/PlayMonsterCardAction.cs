@@ -15,13 +15,13 @@ namespace Hextasy.CardWars.AI
             _monsterCardId = monsterCardId;
         }
 
-        public override void Perform(CardWarsGameLogic gameLogic)
+        public override void Perform(CardWarsGameLogic gameLogic, bool delayAction)
         {
             var targetTile = gameLogic.Tiles.SingleOrDefault(p => p.Id == _targetTileId);
             var monsterCard = gameLogic.CurrentPlayerHand.Single(p => p.Id == _monsterCardId) as MonsterCard;
-            Wait();
+            if (delayAction) Wait();
             monsterCard.IsSelected = true;
-            Wait();
+            if (delayAction) Wait();
             gameLogic.PlayMonsterCard(targetTile, monsterCard);
         }
     }

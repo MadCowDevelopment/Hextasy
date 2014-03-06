@@ -12,10 +12,10 @@ namespace Hextasy.CardWars.AI
             _targetTileId = targetTileId;
         }
 
-        public override void Perform(CardWarsGameLogic gameLogic)
+        public override void Perform(CardWarsGameLogic gameLogic, bool delayAction)
         {
             var targetTile = gameLogic.Tiles.SingleOrDefault(p => p.Id == _targetTileId);
-            Wait();
+            if(delayAction) Wait();
             gameLogic.AttackCard(targetTile);
         }
     }

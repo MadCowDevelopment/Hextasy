@@ -2,8 +2,8 @@
 {
     public class PoisonDebuff : Debuff, IActivateDebuffOnEndTurn
     {
-        private int Amount { get; set; }
-        private int Duration { get; set; }
+        public int Amount { get; set; }
+        public int Duration { get; set; }
 
         public PoisonDebuff(int amount, int duration)
         {

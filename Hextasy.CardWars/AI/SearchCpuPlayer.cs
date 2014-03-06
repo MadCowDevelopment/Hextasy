@@ -97,7 +97,7 @@ namespace Hextasy.CardWars.AI
             return result;
         }
 
-        private void ExecuteActions(CardWarsGameLogic cardWarsGameLogic, List<Node> optimalActions, int bestNodeValue)
+        private void ExecuteActions(CardWarsGameLogic cardWarsGameLogic, List<Node> optimalActions, double bestNodeValue)
         {
             if (optimalActions.Count < 1) return;
             var bestValue = optimalActions.Max(p => p.Value);
@@ -144,47 +144,22 @@ namespace Hextasy.CardWars.AI
             return result;
         }
 
-        //private IEnumerable<PlayerAction> GetPossibleActions(CardWarsGameLogic gameLogic)
-        //{
-        //    var result = new List<PlayerAction>();
-
-        //    if (gameLogic.CanMulligan) result.Add(new MulliganPlayerAction());
-
-        //    result.AddRange((
-        //        from monsterCard in gameLogic.CurrentPlayerHand.OfType<MonsterCard>().Where(p => p.CanBePlayed)
-        //        select new PlayMonsterCardAction(gameLogic.AllFreeTiles.RandomOrDefault().Id, monsterCard.Id)));
-
-        //    result.AddRange((
-        //        from spellCard in gameLogic.CurrentPlayerHand.OfType<SpellCard>().Where(p => p.CanBePlayed)
-        //        from validTargetTile in gameLogic.Tiles.Where(p => p.IsValidSpellTarget)
-        //        select new PlaySpellCardAction(validTargetTile.Id, spellCard.Id)));
-
-        //    result.AddRange((
-        //        from attackerTile in
-        //            gameLogic.CurrentPlayerTiles.Where(
-        //                p => p.Card != null && !(p.Card is KingCard) && !p.Card.IsExhausted && !p.IsSelected && !p.WasPreviouslySelectedThisTurn)
-        //        select new SelectTileAction(attackerTile.Id)));
-
-        //    result.AddRange((
-        //        from attackerTile in gameLogic.CurrentPlayerTiles.Where(p => p.IsSelected)
-        //        from defenderTile in gameLogic.OpponentTiles.Where(p => p.IsValidTarget)
-        //        select new AttackAction(defenderTile.Id)));
-
-        //    return result;
-        //}
-
-        private int CalculateUtilityValue(CardWarsGameLogic gameLogic)
+        private double CalculateUtilityValue(CardWarsGameLogic gameLogic)
         {
-            var utility = 0;
+            double utility = 0;
 
             utility += gameLogic.CurrentPlayer.KingCard.Health;
             utility -= gameLogic.OpponentPlayer.KingCard.Health;
 
-            utility += gameLogic.OpponentCards.Sum(p => p.Debuffs.OfType<PoisonDebuff>().Count());
-            utility -= gameLogic.CurrentPlayerCards.Sum(p => p.Debuffs.OfType<PoisonDebuff>().Count());
+            utility +=
+                gameLogic.OpponentCards.SelectMany(p => p.Debuffs.OfType<PoisonDebuff>())
+                    .Sum(debuff => debuff.Amount * debuff.Duration * 0.66);
+            utility -=
+                gameLogic.CurrentPlayerCards.SelectMany(p => p.Debuffs.OfType<PoisonDebuff>())
+                    .Sum(debuff => debuff.Amount * debuff.Duration * 0.66);
 
-            utility += gameLogic.OpponentCards.Sum(p => p.Debuffs.OfType<FrozenDebuff>().Any() ? 1 : 0);
-            utility -= gameLogic.CurrentPlayerCards.Sum(p => p.Debuffs.OfType<FrozenDebuff>().Any() ? 1 : 0);
+            utility += gameLogic.OpponentCards.Sum(p => p.Debuffs.OfType<FrozenDebuff>().Any() ? 3 : 0);
+            utility -= gameLogic.CurrentPlayerCards.Sum(p => p.Debuffs.OfType<FrozenDebuff>().Any() ? 3 : 0);
 
             utility += gameLogic.CurrentPlayerCardsExceptKing.Sum(p => p.Cost * p.Health / p.BaseHealth) * 2;
             utility -= gameLogic.OpponentCardsExceptKing.Sum(p => p.Cost * p.Health / p.BaseHealth) * 2;
@@ -203,11 +178,11 @@ namespace Hextasy.CardWars.AI
             Children = new List<Node>();
         }
 
-        public int Value { get; set; }
+        public double Value { get; set; }
 
         public List<Node> Children { get; private set; }
 
-        public int BranchValue
+        public double BranchValue
         {
             get { return Children.Count > 0 ? Children.Max(p => p.BranchValue) : Value; }
         }

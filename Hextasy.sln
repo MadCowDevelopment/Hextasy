@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30110.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hextasy", "Hextasy\Hextasy.csproj", "{F1A2186A-9020-4289-881B-2139A022ECC9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hextasy.LightsOff", "Hextasy.LightsOff\Hextasy.LightsOff.csproj", "{4DDAF828-7805-4E58-9596-8C935C638175}"
@@ -123,8 +121,5 @@ Global
 		{7C443FFE-19E1-426A-B591-129D065EF44A} = {CDE2A1EE-83B2-4D68-A7BA-711B19E0D80A}
 		{47C2560A-1E0C-4F8A-B371-76A2BB4371E1} = {CDE2A1EE-83B2-4D68-A7BA-711B19E0D80A}
 		{589657D1-28ED-4063-8C32-325D79915D52} = {CDE2A1EE-83B2-4D68-A7BA-711B19E0D80A}
-	EndGlobalSection
-	GlobalSection(Performance) = preSolution
-		HasPerformanceSessions = true
 	EndGlobalSection
 EndGlobal

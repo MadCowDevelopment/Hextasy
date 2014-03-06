@@ -66,8 +66,15 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="AI\AttackAction.cs" />
     <Compile Include="AI\DeepBlueCpuPlayer.cs" />
+    <Compile Include="AI\MulliganPlayerAction.cs" />
+    <Compile Include="AI\Node.cs" />
+    <Compile Include="AI\PlayerAction.cs" />
+    <Compile Include="AI\PlayMonsterCardAction.cs" />
+    <Compile Include="AI\PlaySpellCardAction.cs" />
     <Compile Include="AI\SearchCpuPlayer.cs" />
+    <Compile Include="AI\SelectTileAction.cs" />
     <Compile Include="CardControl.xaml.cs">
       <DependentUpon>CardControl.xaml</DependentUpon>
     </Compile>

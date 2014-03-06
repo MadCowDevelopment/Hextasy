@@ -7,7 +7,7 @@ namespace Hextasy.CardWars.AI
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public abstract class CpuPlayer : Player
     {
-        private const int DurationBetweenActions = 2000;
+        internal const int DurationBetweenActions = 2000;
 
         protected void Wait()
         {

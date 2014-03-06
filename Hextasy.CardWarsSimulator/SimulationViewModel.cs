@@ -28,20 +28,22 @@ namespace Hextasy.CardWarsSimulator
 
         public void Start(SettingsViewModel settingsViewModel)
         {
-            for (int i = 0; i < settingsViewModel.Iterations; i++)
-            {
-                var task = new Task(() =>
-                {
-                    using (var export = _gameLogicFactory.CreateExport())
-                    {
-                        var gameLogic = export.Value;
-                        gameLogic.Finished += gameLogic_Finished;
-                        gameLogic.Initialize(settingsViewModel.CreateSettings());
-                    }
-                });
-
-                task.Start();
-            }
+            var task = new Task(() =>
+                                    {
+                                        var list = Enumerable.Repeat(1, settingsViewModel.Iterations);
+                                        Parallel.ForEach(
+                                            list, p =>
+                                                      {
+                                                          using (var export = _gameLogicFactory.CreateExport())
+                                                          {
+                                                              var gameLogic = export.Value;
+                                                              gameLogic.Finished += gameLogic_Finished;
+                                                              gameLogic.Initialize(
+                                                                  settingsViewModel.CreateSettings());
+                                                          }
+                                                      });
+                                    });
+            task.Start();
         }
 
         public DispatcherObservableCollection<string> FinishedGames { get; private set; }

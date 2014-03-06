@@ -22,17 +22,6 @@ namespace Hextasy.CardWars.AI
 
             var optimalActions = FindBestAttackActions(cardWarsGameLogic.DeepCopy(), new List<Guid>());
             ExecuteActions(cardWarsGameLogic, optimalActions, int.MinValue);
-
-            //var remainingAttacks = GetPossibleSelectTileActions(cardWarsGameLogic);
-            //var king = cardWarsGameLogic.OpponentTiles.SingleOrDefault(p => (p.Card is KingCard));
-            //if (king == null) return;
-            //foreach (var remainingAttack in remainingAttacks)
-            //{
-            //    Wait();
-            //    remainingAttack.Perform(cardWarsGameLogic);
-            //    Wait();
-            //    cardWarsGameLogic.AttackCard(king);
-            //}
         }
 
         private List<Node> FindBestCardPlayActions(CardWarsGameLogic cardWarsGameLogic)
@@ -55,9 +44,7 @@ namespace Hextasy.CardWars.AI
             return result;
         }
 
-        private List<Node> FindBestAttackActions(
-            CardWarsGameLogic cardWarsGameLogic,
-            List<Guid> alreadySelectedTiles)
+        private List<Node> FindBestAttackActions(CardWarsGameLogic cardWarsGameLogic, List<Guid> alreadySelectedTiles)
         {
             var result = new List<Node>();
 
@@ -103,7 +90,6 @@ namespace Hextasy.CardWars.AI
             if (randomNode != null && randomNode.BranchValue > bestNodeValue)
             {
                 bestNodeValue = randomNode.Value;
-                Wait();
                 randomNode.PlayerAction.Perform(cardWarsGameLogic);
                 ExecuteActions(cardWarsGameLogic, randomNode.Children, bestNodeValue);
             }
@@ -163,109 +149,6 @@ namespace Hextasy.CardWars.AI
             utility -= gameLogic.OpponentCardsExceptKing.Sum(p => p.Cost * p.Health / p.BaseHealth) * 2.5;
 
             return utility;
-        }
-    }
-
-    internal class Node
-    {
-        public PlayerAction PlayerAction { get; private set; }
-
-        public Node(PlayerAction playerAction)
-        {
-            PlayerAction = playerAction;
-            Children = new List<Node>();
-        }
-
-        public double Value { get; set; }
-
-        public List<Node> Children { get; private set; }
-
-        public double BranchValue
-        {
-            get { return Children.Count > 0 ? Children.Max(p => p.BranchValue) : Value; }
-        }
-    }
-
-    internal abstract class PlayerAction
-    {
-        public abstract void Perform(CardWarsGameLogic gameLogic);
-    }
-
-    internal class AttackAction : PlayerAction
-    {
-        private readonly Guid _targetTileId;
-
-        public AttackAction(Guid targetTileId)
-        {
-            _targetTileId = targetTileId;
-        }
-
-        public override void Perform(CardWarsGameLogic gameLogic)
-        {
-            var targetTile = gameLogic.Tiles.SingleOrDefault(p => p.Id == _targetTileId);
-            gameLogic.AttackCard(targetTile);
-        }
-    }
-
-    internal class SelectTileAction : PlayerAction
-    {
-        internal Guid AttackerTileId { get; private set; }
-
-        public SelectTileAction(Guid attackerTileId)
-        {
-            AttackerTileId = attackerTileId;
-        }
-
-        public override void Perform(CardWarsGameLogic gameLogic)
-        {
-            var attackerTile = gameLogic.Tiles.SingleOrDefault(p => p.Id == AttackerTileId);
-            gameLogic.SelectTile(attackerTile);
-        }
-    }
-
-    internal class PlaySpellCardAction : PlayerAction
-    {
-        private readonly Guid _targetTileId;
-        private readonly Guid _spellCardId;
-
-        public PlaySpellCardAction(Guid targetTileId, Guid spellCardId)
-        {
-            _targetTileId = targetTileId;
-            _spellCardId = spellCardId;
-        }
-
-        public override void Perform(CardWarsGameLogic gameLogic)
-        {
-            var targetTile = gameLogic.Tiles.SingleOrDefault(p => p.Id == _targetTileId);
-            var monsterCard = gameLogic.CurrentPlayerHand.Single(p => p.Id == _spellCardId) as SpellCard;
-            gameLogic.PlaySpellCard(targetTile, monsterCard);
-        }
-    }
-
-    internal class PlayMonsterCardAction : PlayerAction
-    {
-        private readonly Guid _targetTileId;
-        private readonly Guid _monsterCardId;
-
-        public PlayMonsterCardAction(Guid targetTileId, Guid monsterCardId)
-        {
-            _targetTileId = targetTileId;
-            _monsterCardId = monsterCardId;
-        }
-
-        public override void Perform(CardWarsGameLogic gameLogic)
-        {
-            var targetTile = gameLogic.Tiles.SingleOrDefault(p => p.Id == _targetTileId);
-            var monsterCard = gameLogic.CurrentPlayerHand.Single(p => p.Id == _monsterCardId) as MonsterCard;
-            gameLogic.PlayMonsterCard(targetTile, monsterCard);
-        }
-    }
-
-    internal class MulliganPlayerAction : PlayerAction
-    {
-        public override void Perform(CardWarsGameLogic gameLogic)
-        {
-            gameLogic.Mulligan();
         }
     }
 }

@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using Caliburn.Micro;
-
 namespace Hextasy.Framework
 {
-    public abstract class GameLogic<TSettings, TTile, TStatistics> : PropertyChangedBase
+    public abstract class GameLogic<TSettings, TTile, TStatistics> : ObservableObject
         where TSettings : Settings
         where TTile : HexagonTile
         where TStatistics : GameStatistics

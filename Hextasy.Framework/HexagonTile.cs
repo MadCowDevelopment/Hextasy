@@ -2,7 +2,7 @@
 
 namespace Hextasy.Framework
 {
-    public abstract class HexagonTile : PropertyChangedBase
+    public abstract class HexagonTile : ObservableObject
     {
     }
 }

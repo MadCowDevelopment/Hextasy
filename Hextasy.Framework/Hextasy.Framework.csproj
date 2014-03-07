@@ -79,6 +79,7 @@
     <Compile Include="IsNullConverter.cs" />
     <Compile Include="ListExtensions.cs" />
     <Compile Include="ObjectExtensions.cs" />
+    <Compile Include="ObservableObject.cs" />
     <Compile Include="Owner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

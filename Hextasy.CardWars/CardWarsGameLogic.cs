@@ -227,7 +227,7 @@ namespace Hextasy.CardWars
         {
             if (SelectedTile == null) return;
             SelectedTile.IsSelected = false;
-            NotifyOfPropertyChange(() => SelectedTile);
+            OnPropertyChanged("SelectedTile");
         }
 
         public void PreviewAssignCard(CardWarsTile tile, MonsterCard selectedCard)

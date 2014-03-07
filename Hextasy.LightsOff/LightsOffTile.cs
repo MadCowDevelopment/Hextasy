@@ -19,7 +19,6 @@ namespace Hextasy.LightsOff
             {
                 if (value.Equals(_isChecked)) return;
                 _isChecked = value;
-                NotifyOfPropertyChange(() => IsChecked);
             }
         }
 

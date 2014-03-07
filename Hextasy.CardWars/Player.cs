@@ -8,7 +8,7 @@ using Hextasy.Framework.Utils;
 
 namespace Hextasy.CardWars
 {
-    public class Player : PropertyChangedBase
+    public class Player : ObservableObject
     {
         private int _numberOfDrawsWithoutCardLeft;
         private const int MaximumNumberOfCardsInHand = 10;
@@ -46,7 +46,7 @@ namespace Hextasy.CardWars
             var card = sender as KingCard;
             if (e.PropertyName == card.GetPropertyName(p => p.Health))
             {
-                NotifyOfPropertyChange(() => RemainingLife);
+                OnPropertyChanged("RemainingLife");
                 if (RemainingLife <= 0) RaiseDied();
             }
         }

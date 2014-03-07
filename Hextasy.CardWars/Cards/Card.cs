@@ -1,11 +1,10 @@
 ﻿using System;
 using System.ComponentModel;
-using Caliburn.Micro;
 using Hextasy.Framework;
 
 namespace Hextasy.CardWars.Cards
 {
-    public abstract class Card : PropertyChangedBase
+    public abstract class Card : ObservableObject
     {
         private Player _player;
         private Guid? _id;
@@ -46,7 +45,7 @@ namespace Hextasy.CardWars.Cards
             var player = sender as Player;
             if (e.PropertyName == player.GetPropertyName(p => p.RemainingResources))
             {
-                NotifyOfPropertyChange(() => CanBePlayed);
+                OnPropertyChanged("CanBePlayed");
             }
         }
 

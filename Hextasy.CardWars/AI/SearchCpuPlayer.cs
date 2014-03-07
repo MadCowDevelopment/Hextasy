@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.Composition;
 using System.Linq;
 using Hextasy.CardWars.Cards;
 using Hextasy.CardWars.Cards.Specials;
@@ -11,10 +10,9 @@ namespace Hextasy.CardWars.AI
     {
         private readonly IUtilityFunction _utilityFunction;
 
-        [ImportingConstructor]
-        public SearchCpuPlayer(IUtilityFunction utilityFunction)
+        public SearchCpuPlayer()
         {
-            _utilityFunction = utilityFunction;
+            _utilityFunction = new UtilityFunction();
         }
 
         public override string CpuName

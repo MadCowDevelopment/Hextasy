@@ -33,8 +33,7 @@ namespace Hextasy.CardWarsSimulator
 
         public void Start(SettingsViewModel settingsViewModel)
         {
-            SynchronizationSettings.EnableCollectionSynchronization = false;
-            SynchronizationSettings.EnablePropertyChangedDispatch = false;
+            Synchronization.Enabled = false;
 
             Parallel.For(0, settingsViewModel.Iterations, p =>
             {

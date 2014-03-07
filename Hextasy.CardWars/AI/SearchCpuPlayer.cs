@@ -3,6 +3,7 @@ using System.Linq;
 using Hextasy.CardWars.Cards;
 using Hextasy.CardWars.Cards.Specials;
 using Hextasy.Framework;
+using Hextasy.Framework.Utils;
 
 namespace Hextasy.CardWars.AI
 {
@@ -22,10 +23,14 @@ namespace Hextasy.CardWars.AI
 
         protected override void OnTakeTurn(CardWarsGameLogic cardWarsGameLogic)
         {
+            Synchronization.Enabled = false;
             var optimalMonsterCardPlayActions = FindBestCardPlayActions(cardWarsGameLogic);
+            Synchronization.Enabled = true;
             ExecuteActions(cardWarsGameLogic, optimalMonsterCardPlayActions, int.MinValue);
 
+            Synchronization.Enabled = false;
             var optimalActions = FindBestAttackActions(cardWarsGameLogic.DeepCopy());
+            Synchronization.Enabled = true;
             ExecuteActions(cardWarsGameLogic, optimalActions, int.MinValue);
 
             //AIDebugHelper.LogNumberOfTotalNodes(optimalActions);

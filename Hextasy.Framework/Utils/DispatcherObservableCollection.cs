@@ -16,7 +16,7 @@ namespace Hextasy.Framework.Utils
         /// </summary>
         public DispatcherObservableCollection()
         {
-            if (SynchronizationSettings.EnableCollectionSynchronization)
+            if (Synchronization.Enabled)
                 BindingOperations.EnableCollectionSynchronization(this, _syncLock);
         }
 
@@ -27,7 +27,7 @@ namespace Hextasy.Framework.Utils
         /// <param name="collection">The collection from which the elements are copied.</param>
         public DispatcherObservableCollection(IEnumerable<T> collection) : base(collection)
         {
-            if (SynchronizationSettings.EnableCollectionSynchronization)
+            if (Synchronization.Enabled)
                 BindingOperations.EnableCollectionSynchronization(this, _syncLock);
         }
 

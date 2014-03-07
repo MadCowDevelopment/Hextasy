@@ -100,7 +100,7 @@
     <Compile Include="ShowGameResultRequest.cs" />
     <Compile Include="ShowGameSelectionRequest.cs" />
     <Compile Include="Utils\DispatcherObservableCollection.cs" />
-    <Compile Include="Utils\SynchronizationSettings.cs" />
+    <Compile Include="Utils\Synchronization.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

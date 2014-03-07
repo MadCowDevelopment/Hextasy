@@ -16,7 +16,7 @@ namespace Hextasy.Framework
 
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            if (SynchronizationSettings.EnablePropertyChangedDispatch &&
+            if (Synchronization.Enabled &&
                 Application.Current != null &&
                 Application.Current.Dispatcher != null &&
                 !Application.Current.Dispatcher.CheckAccess())

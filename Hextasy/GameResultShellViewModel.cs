@@ -30,6 +30,7 @@ namespace Hextasy
         public void Handle(GameSelected message)
         {
             Game = message.Game;
+            NotifyOfPropertyChange(() => GameResult);
         }
 
         public void Handle(ShowGameResultRequest message)

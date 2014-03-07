@@ -269,9 +269,7 @@ namespace Hextasy.CardWars
             var cpuPlayer = CurrentPlayer as CpuPlayer;
             if (cpuPlayer != null)
             {
-                var task = new Task(() => cpuPlayer.TakeTurn(this));
-                task.ContinueWith(p => EndTurn());
-                task.Start();
+                Task.Factory.StartNew(() => cpuPlayer.TakeTurn(this)).ContinueWith(p => EndTurn());
             }
         }
 

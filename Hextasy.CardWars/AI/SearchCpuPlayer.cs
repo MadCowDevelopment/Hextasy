@@ -28,7 +28,7 @@ namespace Hextasy.CardWars.AI
             var optimalActions = FindBestAttackActions(cardWarsGameLogic.DeepCopy());
             ExecuteActions(cardWarsGameLogic, optimalActions, int.MinValue);
 
-            AIDebugHelper.LogNumberOfTotalNodes(optimalActions);
+            //AIDebugHelper.LogNumberOfTotalNodes(optimalActions);
         }
 
         private List<Node> FindBestCardPlayActions(CardWarsGameLogic cardWarsGameLogic)
@@ -61,11 +61,12 @@ namespace Hextasy.CardWars.AI
                 var gameLogic = cardWarsGameLogic.DeepCopy();
                 attackAction.Perform(gameLogic, false);
                 var utility = _utilityFunction.Calculate(gameLogic);
-
                 var attackNode = new Node(attackAction);
-                attackNode.Value = utility;
-                attackNode.Children.AddRange(FindBestAttackActions(gameLogic));
                 result.Add(attackNode);
+                attackNode.Value = utility;
+                if (attackNode.BranchValue == double.MaxValue) return result;
+                attackNode.Children.AddRange(FindBestAttackActions(gameLogic));
+                if (attackNode.BranchValue == double.MaxValue) return result;
             }
 
             return result;
@@ -112,16 +113,24 @@ namespace Hextasy.CardWars.AI
             foreach (var attackerTile in attackerTiles)
             {
                 gameLogic.SelectTile(attackerTile);
-                var defenderTiles = gameLogic.OpponentTiles.Where(p => p.IsValidTarget && p.Card != null);
-                foreach (var defenderTile in defenderTiles)
-                {
-                    result.Add(new AttackAction(attackerTile, defenderTile));
-                }
+                var defenderTiles = gameLogic.OpponentTiles.Where(p => p.IsValidTarget && p.Card != null).ToList();
+                defenderTiles.Sort(new AttackTargetComparer());
+                result.AddRange(defenderTiles.Select(defenderTile => new AttackAction(attackerTile, defenderTile)));
             }
 
             return result;
         }
 
 
+    }
+
+    internal class AttackTargetComparer : IComparer<CardWarsTile>
+    {
+        public int Compare(CardWarsTile x, CardWarsTile y)
+        {
+            if (x.Card is KingCard) return -1;
+            if (y.Card is KingCard) return 1;
+            return 0;
+        }
     }
 }

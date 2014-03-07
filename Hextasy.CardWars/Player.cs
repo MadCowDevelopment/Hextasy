@@ -43,8 +43,7 @@ namespace Hextasy.CardWars
 
         private void KingCardPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            var card = sender as KingCard;
-            if (e.PropertyName == card.GetPropertyName(p => p.Health))
+            if (e.PropertyName == "Health")
             {
                 OnPropertyChanged("RemainingLife");
                 if (RemainingLife <= 0) RaiseDied();

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using Hextasy.CardWars;
@@ -15,7 +16,9 @@ namespace Hextasy.CardWarsSimulator
     {
         private readonly ExportFactory<CardWarsGameLogic> _gameLogicFactory;
 
-        private readonly object _syncObject = new Object();
+        private readonly object _syncObject = new object();
+
+        private readonly object _mefSyncObject = new object();
 
         [ImportingConstructor]
         public SimulationViewModel(ExportFactory<CardWarsGameLogic> gameLogicFactory)
@@ -26,24 +29,25 @@ namespace Hextasy.CardWarsSimulator
             Player2RemainingLife = new List<int>();
         }
 
+        private readonly ManualResetEvent _resetEvent = new ManualResetEvent(false);
+
         public void Start(SettingsViewModel settingsViewModel)
         {
-            var task = new Task(() =>
-                                    {
-                                        var list = Enumerable.Repeat(1, settingsViewModel.Iterations);
-                                        Parallel.ForEach(
-                                            list, p =>
-                                                      {
-                                                          using (var export = _gameLogicFactory.CreateExport())
-                                                          {
-                                                              var gameLogic = export.Value;
-                                                              gameLogic.Finished += gameLogic_Finished;
-                                                              gameLogic.Initialize(
-                                                                  settingsViewModel.CreateSettings());
-                                                          }
-                                                      });
-                                    });
-            task.Start();
+            SynchronizationSettings.EnableCollectionSynchronization = false;
+
+            Parallel.For(0, settingsViewModel.Iterations, p =>
+            {
+                lock (_mefSyncObject)
+                {
+                    using (var export = _gameLogicFactory.CreateExport())
+                    {
+                        var gameLogic = export.Value;
+                        gameLogic.Finished += gameLogic_Finished;
+                        gameLogic.Initialize(
+                            settingsViewModel.CreateSettings());
+                    }
+                }
+            });
         }
 
         public DispatcherObservableCollection<string> FinishedGames { get; private set; }
@@ -70,6 +74,8 @@ namespace Hextasy.CardWarsSimulator
         {
             lock (_syncObject)
             {
+                _resetEvent.Set();
+
                 (sender as CardWarsGameLogic).Finished -= gameLogic_Finished;
                 FinishedGames.Add(string.Format("{0} - {1}", e.GameStatistics.Player1Life, e.GameStatistics.Player2Life));
                 if (e.GameStatistics.Winner == Owner.Player1) Player1Wins++;

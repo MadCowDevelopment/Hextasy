@@ -11,6 +11,8 @@ namespace Hextasy.CardWars.AI
         {
             double utility = 0;
 
+            if (gameLogic.OpponentPlayer.KingCard.Health <= 0) return double.MaxValue;
+
             utility += gameLogic.CurrentPlayer.KingCard.Health;
             utility -= gameLogic.OpponentPlayer.KingCard.Health;
 

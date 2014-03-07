@@ -30,7 +30,7 @@ namespace Hextasy.CardWars.Cards.Traits
         {
             var beastCardsToDebuff =
                 cardWarsGameLogic.AllCards.Where(
-                    p => p.Player.Owner == targetTile.Owner && p != targetTile.Card && p.Race == Race);
+                    p => p.Player.Owner == CardThatHasTrait.Owner && p != targetTile.Card && p.Race == Race);
             beastCardsToDebuff.Apply(p => p.AttackBonus -= Amount);
         }
 

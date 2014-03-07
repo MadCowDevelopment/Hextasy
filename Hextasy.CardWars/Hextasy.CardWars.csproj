@@ -66,8 +66,10 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="AI\AIDebugHelper.cs" />
     <Compile Include="AI\AttackAction.cs" />
     <Compile Include="AI\DeepBlueCpuPlayer.cs" />
+    <Compile Include="AI\IUtilityFunction.cs" />
     <Compile Include="AI\MulliganPlayerAction.cs" />
     <Compile Include="AI\Node.cs" />
     <Compile Include="AI\PlayerAction.cs" />
@@ -75,6 +77,7 @@
     <Compile Include="AI\PlaySpellCardAction.cs" />
     <Compile Include="AI\SearchCpuPlayer.cs" />
     <Compile Include="AI\SelectTileAction.cs" />
+    <Compile Include="AI\UtilityFunction.cs" />
     <Compile Include="CardControl.xaml.cs">
       <DependentUpon>CardControl.xaml</DependentUpon>
     </Compile>
@@ -227,6 +230,9 @@
     <Compile Include="CardWarsGame.cs" />
     <Compile Include="CardWarsGameLogic.cs" />
     <Compile Include="CardWarsGameLogicExtensions.cs" />
+    <Compile Include="CardWarsGameResultView.xaml.cs">
+      <DependentUpon>CardWarsGameResultView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CardWarsGameResultViewModel.cs" />
     <Compile Include="CardWarsGameView.xaml.cs">
       <DependentUpon>CardWarsGameView.xaml</DependentUpon>
@@ -296,6 +302,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="CardControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CardWarsGameResultView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

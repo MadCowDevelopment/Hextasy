@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 
 namespace Hextasy.CardWars.AI

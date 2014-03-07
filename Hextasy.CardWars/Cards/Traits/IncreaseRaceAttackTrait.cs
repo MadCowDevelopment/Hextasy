@@ -33,7 +33,7 @@ namespace Hextasy.CardWars.Cards.Traits
         {
             var allCardsOfCurrentPlayerWithRace =
                 cardWarsGameLogic.AllCards.Where(
-                    p => p.Player.Owner == targetTile.Owner && p != CardThatHasTrait && p.Race == Race);
+                    p => p.Player.Owner == CardThatHasTrait.Owner && p != CardThatHasTrait && p.Race == Race);
             if (_buffedCards == null) _buffedCards = new List<MonsterCard>();
             var beastsToBuff = allCardsOfCurrentPlayerWithRace.Except(_buffedCards).ToList();
             beastsToBuff.Apply(p => p.AttackBonus += Amount);

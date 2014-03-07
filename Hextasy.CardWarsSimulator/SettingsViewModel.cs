@@ -50,6 +50,8 @@ namespace Hextasy.CardWarsSimulator
 
         public CardWarsSettings CreateSettings()
         {
+            CpuPlayer.DurationBetweenActions = 0;
+
             var player1 = CreateCpuPlayer(SelectedCpuPlayer1).CreateExport().Value;
             player1.Initialize("A", Owner.Player1, SelectedPlayer1DeckFactory.Create());
 

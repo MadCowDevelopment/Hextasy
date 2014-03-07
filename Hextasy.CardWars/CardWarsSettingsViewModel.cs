@@ -30,8 +30,8 @@ namespace Hextasy.CardWars
             SelectedCpuPlayer1 = Player1CpuPlayers.LastOrDefault();
             SelectedCpuPlayer2 = Player2CpuPlayers.FirstOrDefault();
 
-            Columns = 6;
-            Rows = 6;
+            Columns = 5;
+            Rows = 5;
 
             Player1Decks = new List<Deck>();
             Player2Decks = new List<Deck>();
@@ -43,7 +43,7 @@ namespace Hextasy.CardWars
             }
 
             Player1Deck = Player1Decks.Single(p => p.Name.Contains("Beast"));
-            Player2Deck = Player2Decks.Single(p => p.Name.Contains("Undead"));
+            Player2Deck = Player2Decks.Single(p => p.Name.Contains("Beast"));
         }
 
         public string Player1 { get; set; }

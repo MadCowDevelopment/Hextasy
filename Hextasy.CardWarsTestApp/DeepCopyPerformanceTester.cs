@@ -15,7 +15,7 @@ namespace Hextasy.CardWarsTestApp
         private const int Rows = 5;
         private const int Columns = 5;
 
-        private const int NumberOfDeepCopies = 100;
+        private const int NumberOfDeepCopies = 1000;
 
         private readonly IEnumerable<DeckFactory> _deckFactories;
         private readonly ExportFactory<CardWarsGameLogic> _gameLogicFactory;

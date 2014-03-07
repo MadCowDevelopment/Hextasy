@@ -7,11 +7,6 @@ using System.Windows.Threading;
 
 namespace Hextasy.Framework.Utils
 {
-    public static class SynchronizationSettings
-    {
-        public static bool EnableCollectionSynchronization = true;
-    }
-
     public class DispatcherObservableCollection<T> : ObservableCollection<T>
     {
         private static object _syncLock = new object();

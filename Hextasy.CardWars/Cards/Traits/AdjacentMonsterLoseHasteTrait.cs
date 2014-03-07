@@ -5,7 +5,8 @@ namespace Hextasy.CardWars.Cards.Traits
 {
     public class AdjacentMonsterLoseHasteTrait : Trait, IActivateTraitOnDeath
     {
-        public AdjacentMonsterLoseHasteTrait(MonsterCard cardThatHasTrait) : base(cardThatHasTrait)
+        public AdjacentMonsterLoseHasteTrait(MonsterCard cardThatHasTrait)
+            : base(cardThatHasTrait)
         {
         }
 
@@ -25,6 +26,11 @@ namespace Hextasy.CardWars.Cards.Traits
                 cardWarsGameLogic.GetAdjacentMonsterTiles(targetTile)
                     .Where(p => p.Card.Player == CardThatHasTrait.Player && p.Card.Traits.OfType<HasteTrait>().Any());
             allAdjacentTilesWitHaste.Apply(p => p.Card.RemoveTrait<HasteTrait>());
+        }
+
+        public override ITrait DeepCopy(MonsterCard monsterCard)
+        {
+            return new AdjacentMonsterLoseHasteTrait(monsterCard);
         }
     }
 }

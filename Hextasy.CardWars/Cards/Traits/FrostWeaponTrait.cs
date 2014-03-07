@@ -4,7 +4,8 @@ namespace Hextasy.CardWars.Cards.Traits
 {
     public class FrostWeaponTrait : Trait, IActivateTraitOnAttack, IActivateTraitOnDefense
     {
-        public FrostWeaponTrait(MonsterCard cardThatHasTrait) : base(cardThatHasTrait)
+        public FrostWeaponTrait(MonsterCard cardThatHasTrait)
+            : base(cardThatHasTrait)
         {
         }
 
@@ -21,6 +22,11 @@ namespace Hextasy.CardWars.Cards.Traits
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
             targetTile.AddDebuff(new FrozenDebuff());
+        }
+
+        public override ITrait DeepCopy(MonsterCard monsterCard)
+        {
+            return new FrostWeaponTrait(monsterCard);
         }
     }
 }

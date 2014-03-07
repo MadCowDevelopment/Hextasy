@@ -28,5 +28,10 @@ namespace Hextasy.CardWars.Cards.Traits
             var pickedMonster = damagedFriendlyMonsters[randomIndex];
             cardWarsGameLogic.Heal(pickedMonster, 2);
         }
+
+        public override ITrait DeepCopy(MonsterCard monsterCard)
+        {
+            return new HealRandomFriendlyMonsterTrait(monsterCard);
+        }
     }
 }

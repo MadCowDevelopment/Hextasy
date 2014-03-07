@@ -4,7 +4,8 @@ namespace Hextasy.CardWars.Cards.Traits
 {
     public class StealCardTrait : Trait, IActivateTraitOnStartTurn
     {
-        public StealCardTrait(MonsterCard cardThatHasTrait) : base(cardThatHasTrait)
+        public StealCardTrait(MonsterCard cardThatHasTrait)
+            : base(cardThatHasTrait)
         {
         }
 
@@ -25,6 +26,11 @@ namespace Hextasy.CardWars.Cards.Traits
             cardWarsGameLogic.OpponentPlayer.Hand.Remove(randomEnemyCardFromHand);
             randomEnemyCardFromHand.Player = CardThatHasTrait.Player;
             CardThatHasTrait.Player.Hand.Add(randomEnemyCardFromHand);
+        }
+
+        public override ITrait DeepCopy(MonsterCard monsterCard)
+        {
+            return new StealCardTrait(monsterCard);
         }
     }
 }

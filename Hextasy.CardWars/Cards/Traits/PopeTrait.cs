@@ -24,5 +24,10 @@ namespace Hextasy.CardWars.Cards.Traits
             cardWarsGameLogic.CurrentPlayerCardsExceptKing.Apply(p => p.AttackBonus += 1);
             cardWarsGameLogic.CurrentPlayerCards.Apply(p => cardWarsGameLogic.Heal(p, 2));
         }
+
+        public override ITrait DeepCopy(MonsterCard monsterCard)
+        {
+            return new PopeTrait(monsterCard);
+        }
     }
 }

@@ -29,5 +29,10 @@ namespace Hextasy.CardWars.Cards.Traits
             CardThatHasTrait.Traits.OfType<IActivateTraitOnDodge>().Apply(
                 p => p.Activate(cardWarsGameLogic, targetTile));
         }
+
+        public override ITrait DeepCopy(MonsterCard monsterCard)
+        {
+            return new DodgeTrait(monsterCard);
+        }
     }
 }

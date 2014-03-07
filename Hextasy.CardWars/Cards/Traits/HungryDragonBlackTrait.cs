@@ -30,5 +30,10 @@ namespace Hextasy.CardWars.Cards.Traits
             var randomMonster = enemyMonsters.RandomOrDefault();
             if (randomMonster != null) randomMonster.Kill();
         }
+
+        public override ITrait DeepCopy(MonsterCard monsterCard)
+        {
+            return new HungryDragonBlackTrait(monsterCard);
+        }
     }
 }

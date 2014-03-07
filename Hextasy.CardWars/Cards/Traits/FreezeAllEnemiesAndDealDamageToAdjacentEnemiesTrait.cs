@@ -25,5 +25,10 @@ namespace Hextasy.CardWars.Cards.Traits
             cardWarsGameLogic.OpponentCards.Apply(p => p.AddDebuff(new FrozenDebuff()));
             cardWarsGameLogic.GetAdjacentOpponentTiles(targetTile).Apply(p => p.Card.TakeFrostDamage(1));
         }
+
+        public override ITrait DeepCopy(MonsterCard monsterCard)
+        {
+            return new FreezeAllEnemiesAndDealDamageToAdjacentEnemiesTrait(monsterCard);
+        }
     }
 }

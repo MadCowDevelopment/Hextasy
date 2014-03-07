@@ -22,5 +22,10 @@ namespace Hextasy.CardWars.Cards.Traits
         {
             CardThatHasTrait.Player.DrawCard();
         }
+
+        public override ITrait DeepCopy(MonsterCard monsterCard)
+        {
+            return new DrawCardOnHealTrait(monsterCard);
+        }
     }
 }

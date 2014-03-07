@@ -31,5 +31,10 @@ namespace Hextasy.CardWars.Cards.Traits
             monk.Player = CardThatHasTrait.Player;
             adjacentTile.AssignCard(monk);
         }
+
+        public override ITrait DeepCopy(MonsterCard monsterCard)
+        {
+            return new RecruitMonkTrait(monsterCard);
+        }
     }
 }

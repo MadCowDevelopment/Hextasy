@@ -2,7 +2,8 @@
 {
     public class HasteTrait : Trait, IActivateTraitOnCardPlayed
     {
-        public HasteTrait(MonsterCard cardThatHasTrait) : base(cardThatHasTrait)
+        public HasteTrait(MonsterCard cardThatHasTrait)
+            : base(cardThatHasTrait)
         {
         }
 
@@ -19,6 +20,11 @@
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
             CardThatHasTrait.IsExhausted = false;
+        }
+
+        public override ITrait DeepCopy(MonsterCard monsterCard)
+        {
+            return new HasteTrait(monsterCard);
         }
     }
 }

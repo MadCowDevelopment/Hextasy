@@ -1,5 +1,4 @@
 ﻿
-using System;
 
 namespace Hextasy.CardWars.Cards.Traits
 {
@@ -33,7 +32,7 @@ namespace Hextasy.CardWars.Cards.Traits
 
         public override ITrait DeepCopy(MonsterCard monsterCard)
         {
-            return (DrawCardTrait)Activator.CreateInstance(GetType(), CardThatHasTrait, Amount);
+            return new DrawCardTrait(monsterCard, Amount);
         }
     }
 }

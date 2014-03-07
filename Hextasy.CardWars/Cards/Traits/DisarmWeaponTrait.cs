@@ -19,8 +19,13 @@ namespace Hextasy.CardWars.Cards.Traits
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
-            if(targetTile.Card == null) return;
+            if (targetTile.Card == null) return;
             targetTile.Card.AttackBonus -= 2;
+        }
+
+        public override ITrait DeepCopy(MonsterCard monsterCard)
+        {
+            return new DisarmWeaponTrait(monsterCard);
         }
     }
 }

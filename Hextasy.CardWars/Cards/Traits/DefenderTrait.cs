@@ -2,7 +2,8 @@
 {
     public class DefenderTrait : Trait
     {
-        public DefenderTrait(MonsterCard cardThatHasTrait) : base(cardThatHasTrait)
+        public DefenderTrait(MonsterCard cardThatHasTrait)
+            : base(cardThatHasTrait)
         {
         }
 
@@ -18,6 +19,11 @@
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
+        }
+
+        public override ITrait DeepCopy(MonsterCard monsterCard)
+        {
+            return new DefenderTrait(monsterCard);
         }
     }
 }

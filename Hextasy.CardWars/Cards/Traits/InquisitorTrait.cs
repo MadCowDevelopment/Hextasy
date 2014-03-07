@@ -27,5 +27,10 @@ namespace Hextasy.CardWars.Cards.Traits
             if (randomMonster.Race == Race.Undead) randomMonster.Kill();
             else randomMonster.Player = CardThatHasTrait.Player;
         }
+
+        public override ITrait DeepCopy(MonsterCard monsterCard)
+        {
+            return new InquisitorTrait(monsterCard);
+        }
     }
 }

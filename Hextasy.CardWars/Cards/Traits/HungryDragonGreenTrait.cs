@@ -21,5 +21,10 @@ namespace Hextasy.CardWars.Cards.Traits
             var friendlyMonsters = cardWarsGameLogic.CurrentPlayerCards;
             friendlyMonsters.Apply(p => cardWarsGameLogic.Heal(p, 2));
         }
+
+        public override ITrait DeepCopy(MonsterCard monsterCard)
+        {
+            return new HungryDragonGreenTrait(monsterCard);
+        }
     }
 }

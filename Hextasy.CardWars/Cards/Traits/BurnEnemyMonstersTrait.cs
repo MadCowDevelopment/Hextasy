@@ -1,5 +1,4 @@
-﻿using System;
-using Caliburn.Micro;
+﻿using Caliburn.Micro;
 
 namespace Hextasy.CardWars.Cards.Traits
 {
@@ -30,7 +29,7 @@ namespace Hextasy.CardWars.Cards.Traits
 
         public override ITrait DeepCopy(MonsterCard monsterCard)
         {
-            return (BurnEnemyMonstersTrait)Activator.CreateInstance(GetType(), CardThatHasTrait, Amount);
+            return new BurnEnemyMonstersTrait(monsterCard, Amount);
         }
     }
 }

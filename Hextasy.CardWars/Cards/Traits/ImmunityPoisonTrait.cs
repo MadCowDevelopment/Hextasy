@@ -2,7 +2,8 @@
 {
     public class ImmunityPoisonTrait : Trait
     {
-        public ImmunityPoisonTrait(MonsterCard cardThatHasTrait) : base(cardThatHasTrait)
+        public ImmunityPoisonTrait(MonsterCard cardThatHasTrait)
+            : base(cardThatHasTrait)
         {
         }
 
@@ -18,6 +19,11 @@
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
+        }
+
+        public override ITrait DeepCopy(MonsterCard monsterCard)
+        {
+            return new ImmunityPoisonTrait(monsterCard);
         }
     }
 }

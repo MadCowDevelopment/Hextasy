@@ -34,5 +34,10 @@ namespace Hextasy.CardWars.Cards.Traits
                 targetTile.Card.IsExhausted = false;
             }
         }
+
+        public override ITrait DeepCopy(MonsterCard monsterCard)
+        {
+            return new AdjacentMonsterHaveHasteTrait(monsterCard);
+        }
     }
 }

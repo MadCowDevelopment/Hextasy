@@ -22,5 +22,10 @@ namespace Hextasy.CardWars.Cards.Traits
             MonsterCard eatenMonster)
         {
         }
+
+        public override ITrait DeepCopy(MonsterCard monsterCard)
+        {
+            return new HungryDragonRedTrait(monsterCard);
+        }
     }
 }

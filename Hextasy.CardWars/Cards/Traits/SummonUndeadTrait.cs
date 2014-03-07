@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net.Mime;
 using System.Windows;
 using Hextasy.CardWars.Cards.Summoned;
 using Hextasy.Framework;
@@ -31,6 +30,11 @@ namespace Hextasy.CardWars.Cards.Traits
             Application.Current.Dispatcher.Invoke(new Action(() => skeleton = new SkeletonCard()));
             skeleton.Player = CardThatHasTrait.Player;
             randomTile.AssignCard(skeleton);
+        }
+
+        public override ITrait DeepCopy(MonsterCard monsterCard)
+        {
+            return new SummonUndeadTrait(monsterCard);
         }
     }
 }

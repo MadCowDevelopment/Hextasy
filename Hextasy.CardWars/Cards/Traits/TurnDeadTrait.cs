@@ -29,5 +29,10 @@ namespace Hextasy.CardWars.Cards.Traits
             skeletonCard.Player = CardThatHasTrait.Player;
             targetTile.AssignCard(skeletonCard);
         }
+
+        public override ITrait DeepCopy(MonsterCard monsterCard)
+        {
+            return new TurnDeadTrait(monsterCard);
+        }
     }
 }

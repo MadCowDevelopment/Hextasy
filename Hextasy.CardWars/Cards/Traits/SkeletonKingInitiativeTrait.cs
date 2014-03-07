@@ -5,7 +5,8 @@ namespace Hextasy.CardWars.Cards.Traits
 {
     public class SkeletonKingInitiativeTrait : Trait, IActivateTraitOnCardPlayed
     {
-        public SkeletonKingInitiativeTrait(MonsterCard cardThatHasTrait) : base(cardThatHasTrait)
+        public SkeletonKingInitiativeTrait(MonsterCard cardThatHasTrait)
+            : base(cardThatHasTrait)
         {
         }
 
@@ -24,6 +25,11 @@ namespace Hextasy.CardWars.Cards.Traits
             var neighbours = cardWarsGameLogic.GetAdjacentMonsterTiles(targetTile).ToList();
             neighbours.Where(p => p.Owner != targetTile.Owner).Apply(p => p.Card.AttackBonus -= 2);
             neighbours.Where(p => p.Card.Race == Race.Undead).Apply(p => p.Card.AttackBonus += 3);
+        }
+
+        public override ITrait DeepCopy(MonsterCard monsterCard)
+        {
+            return new SkeletonKingInitiativeTrait(monsterCard);
         }
     }
 }

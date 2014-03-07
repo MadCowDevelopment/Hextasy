@@ -50,5 +50,10 @@ namespace Hextasy.CardWars.Cards.Traits
             randomMonster.IsExhausted = false;
             targetTile.AssignCard(randomMonster);
         }
+
+        public override ITrait DeepCopy(MonsterCard monsterCard)
+        {
+            return new ShapeshifterTrait(monsterCard);
+        }
     }
 }

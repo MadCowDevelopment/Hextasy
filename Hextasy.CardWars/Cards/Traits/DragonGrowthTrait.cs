@@ -62,5 +62,10 @@ namespace Hextasy.CardWars.Cards.Traits
                 targetTile.AssignCard(grownUpDragon);
             }
         }
+
+        public override ITrait DeepCopy(MonsterCard monsterCard)
+        {
+            return new DragonGrowthTrait(monsterCard);
+        }
     }
 }

@@ -17,5 +17,10 @@
             affectedCard.IsExhausted = true;
             IsExpired = true;
         }
+
+        public override IDebuff DeepCopy()
+        {
+            return new FrozenDebuff();
+        }
     }
 }

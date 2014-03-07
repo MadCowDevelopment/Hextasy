@@ -44,5 +44,10 @@ namespace Hextasy.CardWars.Cards.Traits
             babyDragon.Player = CardThatHasTrait.Player;
             cardWarsGameLogic.PlayMonsterCard(placeOfBirth, babyDragon);
         }
+
+        public override ITrait DeepCopy(MonsterCard monsterCard)
+        {
+            return new DragonBabyTrait(monsterCard);
+        }
     }
 }

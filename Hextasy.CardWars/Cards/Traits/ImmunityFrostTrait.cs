@@ -20,5 +20,10 @@ namespace Hextasy.CardWars.Cards.Traits
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
         }
+
+        public override ITrait DeepCopy(MonsterCard monsterCard)
+        {
+            return new ImmunityFrostTrait(monsterCard);
+        }
     }
 }

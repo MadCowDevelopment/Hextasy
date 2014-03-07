@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Caliburn.Micro;
@@ -42,7 +41,7 @@ namespace Hextasy.CardWars.Cards.Traits
 
         public override ITrait DeepCopy(MonsterCard monsterCard)
         {
-            return (IncreaseRaceHealthTrait) Activator.CreateInstance(GetType(), CardThatHasTrait, Amount, Race);
+            return new IncreaseRaceHealthTrait(monsterCard, Amount, Race);
         }
     }
 }

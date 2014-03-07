@@ -27,5 +27,10 @@ namespace Hextasy.CardWars.Cards.Traits
             if (randomOpponent == null) return;
             randomOpponent.TakeDamage(CardThatHasTrait.Attack);
         }
+
+        public override ITrait DeepCopy(MonsterCard monsterCard)
+        {
+            return new CounterAttackOnDodgeTrait(monsterCard);
+        }
     }
 }

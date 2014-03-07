@@ -5,7 +5,8 @@ namespace Hextasy.CardWars.Cards.Traits
 {
     public class RemoveDefenderTraitFromEnemiesTrait : Trait, IActivateTraitOnAnyCardPlayed
     {
-        public RemoveDefenderTraitFromEnemiesTrait(MonsterCard cardThatHasTrait) : base(cardThatHasTrait)
+        public RemoveDefenderTraitFromEnemiesTrait(MonsterCard cardThatHasTrait)
+            : base(cardThatHasTrait)
         {
         }
 
@@ -23,7 +24,12 @@ namespace Hextasy.CardWars.Cards.Traits
         {
             var enemyCardsWithDefenderTrait =
                 cardWarsGameLogic.OpponentCards.Where(p => p.HasTrait<DefenderTrait>());
-            enemyCardsWithDefenderTrait.Apply(p=>p.RemoveTrait<DefenderTrait>());
+            enemyCardsWithDefenderTrait.Apply(p => p.RemoveTrait<DefenderTrait>());
+        }
+
+        public override ITrait DeepCopy(MonsterCard monsterCard)
+        {
+            return new RemoveDefenderTraitFromEnemiesTrait(monsterCard);
         }
     }
 }

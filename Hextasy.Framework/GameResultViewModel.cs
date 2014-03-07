@@ -12,11 +12,11 @@ namespace Hextasy.Framework
         protected abstract void OnInitialize(object statistics);
     }
 
-    public class GameResultViewModel<TStatistics> : GameResultViewModel
+    public class GameResultViewModel<TStatistics> : GameResultViewModel where TStatistics : GameStatistics
     {
         protected override void OnInitialize(object statistics)
         {
-            Statistics = (TStatistics) statistics;
+            Statistics = (TStatistics)statistics;
         }
 
         public TStatistics Statistics { get; private set; }

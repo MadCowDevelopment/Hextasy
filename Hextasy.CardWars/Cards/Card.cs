@@ -42,8 +42,7 @@ namespace Hextasy.CardWars.Cards
 
         private void OnPlayerPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            var player = sender as Player;
-            if (e.PropertyName == player.GetPropertyName(p => p.RemainingResources))
+            if (e.PropertyName == "RemainingResources")
             {
                 OnPropertyChanged("CanBePlayed");
             }

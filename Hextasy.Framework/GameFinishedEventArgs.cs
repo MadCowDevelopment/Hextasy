@@ -10,7 +10,7 @@
         }
     }
 
-    public class GameStatistics
+    public class GameStatistics : ObservableObject
     {
     }
 }

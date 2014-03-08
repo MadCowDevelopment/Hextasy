@@ -1,4 +1,5 @@
 using System.Linq;
+
 using Hextasy.CardWars.Cards;
 using Hextasy.CardWars.Cards.Specials;
 using Hextasy.Framework;
@@ -7,10 +8,16 @@ namespace Hextasy.CardWars.AI
 {
     public class DeepBlueCpuPlayer : CpuPlayer
     {
+        #region Public Properties
+
         public override string CpuName
         {
             get { return "Deep Blue"; }
         }
+
+        #endregion Public Properties
+
+        #region Protected Methods
 
         protected override void OnTakeTurn(CardWarsGameLogic cardWarsGameLogic)
         {
@@ -35,7 +42,6 @@ namespace Hextasy.CardWars.AI
                     break;
                 }
             } while (true);
-            
 
             var cardsThatCanAttack =
                 cardWarsGameLogic.CurrentPlayerTiles.Where(p => !(p.Card is KingCard) && p.Card.IsExhausted == false);
@@ -49,5 +55,7 @@ namespace Hextasy.CardWars.AI
                 cardWarsGameLogic.AttackCard(randomTarget);
             }
         }
+
+        #endregion Protected Methods
     }
 }

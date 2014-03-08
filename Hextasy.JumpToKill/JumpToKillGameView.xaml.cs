@@ -20,9 +20,13 @@ namespace Hextasy.JumpToKill
     /// </summary>
     public partial class JumpToKillGameView : UserControl
     {
+        #region Constructors
+
         public JumpToKillGameView()
         {
             InitializeComponent();
         }
+
+        #endregion Constructors
     }
 }

@@ -1,5 +1,6 @@
 using System.ComponentModel.Composition;
 using System.Linq;
+
 using Hextasy.CardWars.Cards.Debuffs;
 
 namespace Hextasy.CardWars.AI
@@ -7,6 +8,8 @@ namespace Hextasy.CardWars.AI
     [Export(typeof(IUtilityFunction))]
     public class UtilityFunction : IUtilityFunction
     {
+        #region Public Methods
+
         public double Calculate(CardWarsGameLogic gameLogic)
         {
             double utility = 0;
@@ -37,5 +40,7 @@ namespace Hextasy.CardWars.AI
 
             return utility;
         }
+
+        #endregion Public Methods
     }
 }

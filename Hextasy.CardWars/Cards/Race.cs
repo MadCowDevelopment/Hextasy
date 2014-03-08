@@ -1,5 +1,7 @@
 ﻿namespace Hextasy.CardWars.Cards
 {
+    #region Enumerations
+
     public enum Race
     {
         Beast,
@@ -9,4 +11,6 @@
         Dragon,
         Special
     }
+
+    #endregion Enumerations
 }

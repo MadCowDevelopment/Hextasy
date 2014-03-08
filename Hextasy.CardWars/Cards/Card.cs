@@ -1,32 +1,59 @@
 ﻿using System;
 using System.ComponentModel;
+
 using Hextasy.Framework;
 
 namespace Hextasy.CardWars.Cards
 {
     public abstract class Card : ObservableObject
     {
-        private Player _player;
+        #region Fields
+
         private Guid? _id;
+        private Player _player;
 
-        public abstract string Name { get; }
-        public abstract string Description { get; }
+        #endregion Fields
 
-        public abstract int Cost { get; }
+        #region Public Properties
 
-        public string ImageSource { get { return ImageFolder + ImageFilename; } }
+        public bool CanBePlayed
+        {
+            get { return Player != null && Player.RemainingResources >= Cost; }
+        }
 
-        public bool CanBePlayed { get { return Player != null && Player.RemainingResources >= Cost; } }
+        public abstract int Cost
+        {
+            get;
+        }
 
-        public Owner Owner { get { return Player != null ? Player.Owner : Owner.None; } }
-
-        public bool IsSelected { get; set; }
-
-        public abstract CardType Type { get; }
+        public abstract string Description
+        {
+            get;
+        }
 
         public Guid Id
         {
             get { return _id ?? (_id = Guid.NewGuid()).Value; }
+        }
+
+        public string ImageSource
+        {
+            get { return ImageFolder + ImageFilename; }
+        }
+
+        public bool IsSelected
+        {
+            get; set;
+        }
+
+        public abstract string Name
+        {
+            get;
+        }
+
+        public Owner Owner
+        {
+            get { return Player != null ? Player.Owner : Owner.None; }
         }
 
         public Player Player
@@ -40,18 +67,28 @@ namespace Hextasy.CardWars.Cards
             }
         }
 
-        private void OnPlayerPropertyChanged(object sender, PropertyChangedEventArgs e)
+        public abstract CardType Type
         {
-            if (e.PropertyName == "RemainingResources")
-            {
-                OnPropertyChanged("CanBePlayed");
-            }
+            get;
         }
 
-        protected abstract string ImageFilename { get; }
-        protected abstract string ImageFolder { get; }
+        #endregion Public Properties
 
-        protected abstract Card CreateInstance();
+        #region Protected Properties
+
+        protected abstract string ImageFilename
+        {
+            get;
+        }
+
+        protected abstract string ImageFolder
+        {
+            get;
+        }
+
+        #endregion Protected Properties
+
+        #region Public Methods
 
         public Card DeepCopy(Player player)
         {
@@ -62,8 +99,28 @@ namespace Hextasy.CardWars.Cards
             return card;
         }
 
+        #endregion Public Methods
+
+        #region Protected Methods
+
+        protected abstract Card CreateInstance();
+
         protected virtual void OnDeepCopy(Card card)
         {
         }
+
+        #endregion Protected Methods
+
+        #region Private Methods
+
+        private void OnPlayerPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "RemainingResources")
+            {
+                OnPropertyChanged("CanBePlayed");
+            }
+        }
+
+        #endregion Private Methods
     }
 }

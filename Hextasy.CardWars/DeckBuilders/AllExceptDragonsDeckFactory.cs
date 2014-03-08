@@ -2,13 +2,20 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
+
 using Hextasy.CardWars.Cards;
 
 namespace Hextasy.CardWars.DeckBuilders
 {
     public class AllExceptDragonsDeckFactory : DeckFactory
     {
+        #region Fields
+
         private readonly IEnumerable<Card> _cards;
+
+        #endregion Fields
+
+        #region Constructors
 
         [ImportingConstructor]
         public AllExceptDragonsDeckFactory([ImportMany]IEnumerable<Card> cards)
@@ -16,10 +23,9 @@ namespace Hextasy.CardWars.DeckBuilders
             _cards = cards;
         }
 
-        protected override string Name
-        {
-            get { return "All except dragons"; }
-        }
+        #endregion Constructors
+
+        #region Protected Properties
 
         protected override List<Card> Cards
         {
@@ -29,5 +35,12 @@ namespace Hextasy.CardWars.DeckBuilders
                 return new List<Card>(types.Select(p => Activator.CreateInstance(p) as Card));
             }
         }
+
+        protected override string Name
+        {
+            get { return "All except dragons"; }
+        }
+
+        #endregion Protected Properties
     }
 }

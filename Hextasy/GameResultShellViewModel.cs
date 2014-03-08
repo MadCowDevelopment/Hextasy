@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.Composition;
+
 using Caliburn.Micro;
+
 using Hextasy.Framework;
 
 namespace Hextasy
@@ -7,8 +9,13 @@ namespace Hextasy
     [Export(typeof(GameResultShellViewModel))]
     public class GameResultShellViewModel : Screen, IHandle<ShowGameResultRequest>, IHandle<GameSelected>
     {
+        #region Fields
+
         private readonly IEventAggregator _eventAggregator;
-        private IGame Game { get; set; }
+
+        #endregion Fields
+
+        #region Constructors
 
         [ImportingConstructor]
         public GameResultShellViewModel(IEventAggregator eventAggregator)
@@ -17,16 +24,33 @@ namespace Hextasy
             eventAggregator.Subscribe(this);
         }
 
+        #endregion Constructors
+
+        #region Public Properties
+
         public IScreen GameResult
         {
             get { return Game.ResultScreen; }
         }
 
+        #endregion Public Properties
+
+        #region Private Properties
+
+        private IGame Game
+        {
+            get; set;
+        }
+
+        #endregion Private Properties
+
+        #region Public Methods
+
         public void Back()
         {
             _eventAggregator.Publish(new ShowGameSelectionRequest());
         }
-        
+
         public void Handle(GameSelected message)
         {
             Game = message.Game;
@@ -37,5 +61,7 @@ namespace Hextasy
         {
             (GameResult as GameResultViewModel).Initialize(message.Statistics);
         }
+
+        #endregion Public Methods
     }
 }

@@ -1,10 +1,8 @@
-﻿
-
-namespace Hextasy.CardWars.Cards.Traits
+﻿namespace Hextasy.CardWars.Cards.Traits
 {
     public class DrawCardTrait : Trait, IActivateTraitOnCardPlayed
     {
-        private int Amount { get; set; }
+        #region Constructors
 
         public DrawCardTrait(MonsterCard cardThatHasTrait, int amount)
             : base(cardThatHasTrait)
@@ -12,15 +10,36 @@ namespace Hextasy.CardWars.Cards.Traits
             Amount = amount;
         }
 
+        #endregion Constructors
+
+        #region Public Properties
+
         public override string Name
         {
             get { return string.Format("Draw {0} card(s)", Amount); }
         }
 
+        #endregion Public Properties
+
+        #region Protected Properties
+
         protected override string ImageFilename
         {
             get { return "Cards/Traits/drawcard.png"; }
         }
+
+        #endregion Protected Properties
+
+        #region Private Properties
+
+        private int Amount
+        {
+            get; set;
+        }
+
+        #endregion Private Properties
+
+        #region Public Methods
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
@@ -34,5 +53,7 @@ namespace Hextasy.CardWars.Cards.Traits
         {
             return new DrawCardTrait(monsterCard, Amount);
         }
+
+        #endregion Public Methods
     }
 }

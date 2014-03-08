@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+
 using Hextasy.CardWars.Cards;
 using Hextasy.Framework;
 
@@ -7,10 +8,16 @@ namespace Hextasy.CardWars
 {
     public class Deck
     {
+        #region Fields
+
         private const int NumberCardsInHandWhenStarting = 4;
 
-        private List<Card> _cards;
         private Queue<Card> _cardQueue;
+        private List<Card> _cards;
+
+        #endregion Fields
+
+        #region Constructors
 
         public Deck(string name, IEnumerable<Card> cards)
         {
@@ -19,34 +26,27 @@ namespace Hextasy.CardWars
             InitializeDeck();
         }
 
-        private Deck() { }
-
-        private void InitializeDeck()
+        private Deck()
         {
-            _cardQueue = new Queue<Card>(_cards.Shuffle());
         }
 
-        public Card TakeCard()
+        #endregion Constructors
+
+        #region Public Properties
+
+        public IEnumerable<Card> Cards
         {
-            return _cardQueue.Count > 0 ? _cardQueue.Dequeue() : null;
+            get { return _cards; }
         }
 
-        public IEnumerable<Card> TakeHand()
+        public string Name
         {
-            return Enumerable.Repeat(1, NumberCardsInHandWhenStarting).Select(p => TakeCard()).Where(p => p != null);
+            get; private set;
         }
 
-        public string Name { get; private set; }
+        #endregion Public Properties
 
-        public IEnumerable<Card> Cards { get { return _cards; } }
-
-        public IEnumerable<Card> Mulligan()
-        {
-            InitializeDeck();
-            var hand = TakeHand().ToList();
-            hand.AddNotNull(TakeCard());
-            return hand;
-        }
+        #region Public Methods
 
         public Deck DeepCopy(Player player)
         {
@@ -59,5 +59,34 @@ namespace Hextasy.CardWars
             }
             return deck;
         }
+
+        public IEnumerable<Card> Mulligan()
+        {
+            InitializeDeck();
+            var hand = TakeHand().ToList();
+            hand.AddNotNull(TakeCard());
+            return hand;
+        }
+
+        public Card TakeCard()
+        {
+            return _cardQueue.Count > 0 ? _cardQueue.Dequeue() : null;
+        }
+
+        public IEnumerable<Card> TakeHand()
+        {
+            return Enumerable.Repeat(1, NumberCardsInHandWhenStarting).Select(p => TakeCard()).Where(p => p != null);
+        }
+
+        #endregion Public Methods
+
+        #region Private Methods
+
+        private void InitializeDeck()
+        {
+            _cardQueue = new Queue<Card>(_cards.Shuffle());
+        }
+
+        #endregion Private Methods
     }
 }

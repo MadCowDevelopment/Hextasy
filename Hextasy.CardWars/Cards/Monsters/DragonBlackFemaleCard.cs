@@ -5,30 +5,7 @@ namespace Hextasy.CardWars.Cards.Monsters
     [Export(typeof(Card))]
     public class DragonBlackFemaleCard : DragonFemaleCard
     {
-        public override string Name
-        {
-            get { return "Kyaga"; }
-        }
-
-        public override string Description
-        {
-            get { return "Gives birth to a baby dragon at the start of your turn if there is a male dragon present."; }
-        }
-
-        public override int Cost
-        {
-            get { return 10; }
-        }
-
-        protected override string ImageFilename
-        {
-            get { return "DragonAdultBlack.png"; }
-        }
-
-        protected override Card CreateInstance()
-        {
-            return new DragonBlackFemaleCard();
-        }
+        #region Public Properties
 
         public override int BaseAttack
         {
@@ -40,9 +17,44 @@ namespace Hextasy.CardWars.Cards.Monsters
             get { return 7; }
         }
 
+        public override int Cost
+        {
+            get { return 10; }
+        }
+
+        public override string Description
+        {
+            get { return "Gives birth to a baby dragon at the start of your turn if there is a male dragon present."; }
+        }
+
         public override DragonFlight DragonFlight
         {
             get { return DragonFlight.Black; }
         }
+
+        public override string Name
+        {
+            get { return "Kyaga"; }
+        }
+
+        #endregion Public Properties
+
+        #region Protected Properties
+
+        protected override string ImageFilename
+        {
+            get { return "DragonAdultBlack.png"; }
+        }
+
+        #endregion Protected Properties
+
+        #region Protected Methods
+
+        protected override Card CreateInstance()
+        {
+            return new DragonBlackFemaleCard();
+        }
+
+        #endregion Protected Methods
     }
 }

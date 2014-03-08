@@ -6,14 +6,41 @@ namespace Hextasy.Trains
     [Export(typeof(IMap))]
     public class MapChina : IMap
     {
+        #region Fields
+
         private readonly IEnumerable<string> _stations = new[]
         {
             "Urumqi", "Harbin", "Beijing", "Hotan", "Golmud", "Xian",
             "Shanghai", "Lhasa", "Chengdu", "Wuhan", "Kunming", "Guangzhou"
         };
 
-        public string Name { get { return "China"; } }
-        public IEnumerable<string> Stations { get { return _stations; } }
+        #endregion Fields
+
+        #region Public Properties
+
+        public int Columns
+        {
+            get { return 20; }
+        }
+
+        public string Name
+        {
+            get { return "China"; }
+        }
+
+        public int Rows
+        {
+            get { return 13; }
+        }
+
+        public IEnumerable<string> Stations
+        {
+            get { return _stations; }
+        }
+
+        #endregion Public Properties
+
+        #region Public Methods
 
         public TrainsTile CreateTile(int column, int row)
         {
@@ -102,7 +129,6 @@ namespace Hextasy.Trains
             return null;
         }
 
-        public int Columns { get { return 20; } }
-        public int Rows { get { return 13; } }
+        #endregion Public Methods
     }
 }

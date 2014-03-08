@@ -5,20 +5,34 @@ namespace Hextasy.CardWars.Cards.Traits
 {
     public class ShapeshifterTrait : Trait, IActivateTraitOnStartTurn
     {
+        #region Constructors
+
         public ShapeshifterTrait(MonsterCard cardThatHasTrait)
             : base(cardThatHasTrait)
         {
         }
+
+        #endregion Constructors
+
+        #region Public Properties
 
         public override string Name
         {
             get { return "Transform into random beast."; }
         }
 
+        #endregion Public Properties
+
+        #region Protected Properties
+
         protected override string ImageFilename
         {
             get { return "Cards/Monsters/BrownBear.png"; }
         }
+
+        #endregion Protected Properties
+
+        #region Public Methods
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
@@ -55,5 +69,7 @@ namespace Hextasy.CardWars.Cards.Traits
         {
             return new ShapeshifterTrait(monsterCard);
         }
+
+        #endregion Public Methods
     }
 }

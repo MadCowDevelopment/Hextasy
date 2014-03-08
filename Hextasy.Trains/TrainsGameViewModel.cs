@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.Composition;
+
 using Caliburn.Micro;
+
 using Hextasy.Framework;
 
 namespace Hextasy.Trains
@@ -8,11 +10,17 @@ namespace Hextasy.Trains
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class TrainsGameViewModel : GameViewModel<TrainsGameLogic, TrainsSettings, TrainsTile, TrainsStatistics>
     {
+        #region Constructors
+
         [ImportingConstructor]
-        public TrainsGameViewModel(TrainsGameLogic game, IEventAggregator eventAggregator) 
+        public TrainsGameViewModel(TrainsGameLogic game, IEventAggregator eventAggregator)
             : base(game, eventAggregator)
         {
         }
+
+        #endregion Constructors
+
+        #region Public Methods
 
         public void Click(TrainsTile tile)
         {
@@ -31,5 +39,7 @@ namespace Hextasy.Trains
             if (tile.IsFixed) return;
             Game.ReplaceTile(tile, TrainsTile.Empty);
         }
+
+        #endregion Public Methods
     }
 }

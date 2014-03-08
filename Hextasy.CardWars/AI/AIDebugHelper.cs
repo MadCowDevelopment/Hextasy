@@ -5,6 +5,8 @@ namespace Hextasy.CardWars.AI
 {
     internal static class AIDebugHelper
     {
+        #region Public Static Methods
+
         public static void LogNumberOfTotalNodes(IEnumerable<Node> nodes)
         {
             var totalCount = 0;
@@ -18,6 +20,10 @@ namespace Hextasy.CardWars.AI
             Debug.WriteLine("");
         }
 
+        #endregion Public Static Methods
+
+        #region Private Static Methods
+
         private static void CountNodes(Node node, ref int totalCount)
         {
             totalCount++;
@@ -27,5 +33,6 @@ namespace Hextasy.CardWars.AI
             }
         }
 
+        #endregion Private Static Methods
     }
 }

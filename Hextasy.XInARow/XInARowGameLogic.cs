@@ -10,10 +10,14 @@ namespace Hextasy.XInARow
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class XInARowGameLogic : GameLogic<XInARowSettings, XInARowTile, XInARowStatistics>
     {
+        #region Constructors
+
         public XInARowGameLogic()
         {
             Player1Active = true;
         }
+
+        #endregion Constructors
 
         #region Public Properties
 

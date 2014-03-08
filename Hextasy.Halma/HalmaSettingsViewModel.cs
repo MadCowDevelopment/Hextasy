@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.Composition;
+
 using Hextasy.Framework;
 
 namespace Hextasy.Halma
@@ -7,11 +8,17 @@ namespace Hextasy.Halma
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class HalmaSettingsViewModel : SettingsViewModel<HalmaSettings>
     {
+        #region Constructors
+
         public HalmaSettingsViewModel()
         {
             Player1 = "Player 1";
             Player2 = "Player 2";
         }
+
+        #endregion Constructors
+
+        #region Public Properties
 
         public string Player1
         {
@@ -29,5 +36,7 @@ namespace Hextasy.Halma
         {
             get { return new HalmaSettings(Player1, Player2); }
         }
+
+        #endregion Public Properties
     }
 }

@@ -4,10 +4,34 @@ namespace Hextasy.Trains
 {
     public interface IMap
     {
-        string Name { get; }
-        IEnumerable<string> Stations { get; }
+        #region Properties
+
+        int Columns
+        {
+            get;
+        }
+
+        string Name
+        {
+            get;
+        }
+
+        int Rows
+        {
+            get;
+        }
+
+        IEnumerable<string> Stations
+        {
+            get;
+        }
+
+        #endregion Properties
+
+        #region Methods
+
         TrainsTile CreateTile(int column, int row);
-        int Columns { get; }
-        int Rows { get; }
+
+        #endregion Methods
     }
 }

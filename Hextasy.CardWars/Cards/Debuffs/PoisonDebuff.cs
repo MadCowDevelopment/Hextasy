@@ -2,8 +2,7 @@
 {
     public class PoisonDebuff : Debuff, IActivateDebuffOnEndTurn
     {
-        public int Amount { get; set; }
-        public int Duration { get; set; }
+        #region Constructors
 
         public PoisonDebuff(int amount, int duration)
         {
@@ -11,15 +10,37 @@
             Duration = duration;
         }
 
+        #endregion Constructors
+
+        #region Public Properties
+
+        public int Amount
+        {
+            get; set;
+        }
+
+        public int Duration
+        {
+            get; set;
+        }
+
         public override string Name
         {
             get { return "Poisoned"; }
         }
 
+        #endregion Public Properties
+
+        #region Protected Properties
+
         protected override string ImageFilename
         {
             get { return @"Cards/Debuffs/fog-acid-3.png"; }
         }
+
+        #endregion Protected Properties
+
+        #region Public Methods
 
         public override void Activate(MonsterCard affectedCard)
         {
@@ -32,5 +53,7 @@
         {
             return new PoisonDebuff(Amount, Duration);
         }
+
+        #endregion Public Methods
     }
 }

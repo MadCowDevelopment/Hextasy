@@ -20,9 +20,13 @@ namespace Hextasy.Trains
     /// </summary>
     public partial class TrainsGameView : UserControl
     {
+        #region Constructors
+
         public TrainsGameView()
         {
             InitializeComponent();
         }
+
+        #endregion Constructors
     }
 }

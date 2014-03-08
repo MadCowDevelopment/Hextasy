@@ -9,8 +9,14 @@ namespace Hextasy.Framework.Utils
 {
     public class DispatcherObservableCollection<T> : ObservableCollection<T>
     {
+        #region Fields
+
         private static object _syncLock = new object();
-        
+
+        #endregion Fields
+
+        #region Constructors
+
         /// <summary>
         /// Initializes a new instance of the <see cref="DispatcherObservableCollection{T}"/> class.
         /// </summary>
@@ -25,16 +31,25 @@ namespace Hextasy.Framework.Utils
         /// elements copied from the specified collection.
         /// </summary>
         /// <param name="collection">The collection from which the elements are copied.</param>
-        public DispatcherObservableCollection(IEnumerable<T> collection) : base(collection)
+        public DispatcherObservableCollection(IEnumerable<T> collection)
+            : base(collection)
         {
             if (Synchronization.Enabled)
                 BindingOperations.EnableCollectionSynchronization(this, _syncLock);
         }
 
+        #endregion Constructors
+
+        #region Events
+
         /// <summary>
         /// Overridden <see cref="ObservableCollection{T}.CollectionChanged"/>-event to be able to raise it manually.
         /// </summary>
         public override event NotifyCollectionChangedEventHandler CollectionChanged;
+
+        #endregion Events
+
+        #region Protected Methods
 
         /// <summary>
         /// Raise CollectionChanged event to any listeners.
@@ -56,6 +71,10 @@ namespace Hextasy.Framework.Utils
                 InvokeCollectionChangedHandlers(collectionChangedHandlers, eventArgs);
             }
         }
+
+        #endregion Protected Methods
+
+        #region Private Methods
 
         /// <summary>
         /// Calls all of the given event handlers with the specified event arguments.
@@ -79,5 +98,7 @@ namespace Hextasy.Framework.Utils
                 }
             }
         }
+
+        #endregion Private Methods
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using Hextasy.Framework.Utils;
 
 namespace Hextasy.Framework
@@ -48,6 +49,30 @@ namespace Hextasy.Framework
 
         #region Public Methods
 
+        public T GetBottomLeftNeighbour(T item)
+        {
+            var coords = GetCoordinateByItem(item);
+            return GetBottomLeftNeighbour(coords.X, coords.Y);
+        }
+
+        public T GetBottomNeighbour(T item)
+        {
+            var coords = GetCoordinateByItem(item);
+            return GetBottomNeighbour(coords.X, coords.Y);
+        }
+
+        public T GetBottomRightNeighbour(T item)
+        {
+            var coords = GetCoordinateByItem(item);
+            return GetBottomRightNeighbour(coords.X, coords.Y);
+        }
+
+        public Coordinate GetCoordinateByItem(T item)
+        {
+            var indexOfItem = Tiles.IndexOf(item);
+            return GetCoordinateByIndex(indexOfItem);
+        }
+
         public IEnumerable<IEnumerable<T>> GetLines(T item)
         {
             var coordinate = GetCoordinateByItem(item);
@@ -68,26 +93,6 @@ namespace Hextasy.Framework
                              : GetNeighbours(coordinate.X, coordinate.Y, distance).ToList();
             result.Remove(item);
             return result;
-        }
-
-        public IEnumerable<T> GetTilesBetween(T tile1, T tile2)
-        {
-            var tile1Coordinate = GetCoordinateByItem(tile1);
-            var tile2Coordinate = GetCoordinateByItem(tile2);
-            if (tile1Coordinate == null || tile2Coordinate == null ||
-                tile1Coordinate.X == tile2Coordinate.X && tile1Coordinate.Y == tile2Coordinate.Y)
-                return Enumerable.Empty<T>();
-
-            var lines = GetLines(tile1).Select(p => p.ToList());
-            foreach (var line in lines)
-            {
-                if (!line.Contains(tile2)) continue;
-                var min = Math.Min(line.IndexOf(tile1), line.IndexOf(tile2));
-                var max = Math.Max(line.IndexOf(tile1), line.IndexOf(tile2));
-                return line.GetRange(min + 1, max - min - 1);
-            }
-
-            return Enumerable.Empty<T>();
         }
 
         public T GetNextInLine(T tile1, T tile2)
@@ -124,15 +129,47 @@ namespace Hextasy.Framework
             return null;
         }
 
+        public IEnumerable<T> GetTilesBetween(T tile1, T tile2)
+        {
+            var tile1Coordinate = GetCoordinateByItem(tile1);
+            var tile2Coordinate = GetCoordinateByItem(tile2);
+            if (tile1Coordinate == null || tile2Coordinate == null ||
+                tile1Coordinate.X == tile2Coordinate.X && tile1Coordinate.Y == tile2Coordinate.Y)
+                return Enumerable.Empty<T>();
+
+            var lines = GetLines(tile1).Select(p => p.ToList());
+            foreach (var line in lines)
+            {
+                if (!line.Contains(tile2)) continue;
+                var min = Math.Min(line.IndexOf(tile1), line.IndexOf(tile2));
+                var max = Math.Max(line.IndexOf(tile1), line.IndexOf(tile2));
+                return line.GetRange(min + 1, max - min - 1);
+            }
+
+            return Enumerable.Empty<T>();
+        }
+
+        public T GetTopLeftNeighbour(T item)
+        {
+            var coords = GetCoordinateByItem(item);
+            return GetTopLeftNeighbour(coords.X, coords.Y);
+        }
+
+        public T GetTopNeighbour(T item)
+        {
+            var coords = GetCoordinateByItem(item);
+            return GetTopNeighbour(coords.X, coords.Y);
+        }
+
+        public T GetTopRightNeighbour(T item)
+        {
+            var coords = GetCoordinateByItem(item);
+            return GetTopRightNeighbour(coords.X, coords.Y);
+        }
+
         #endregion Public Methods
 
         #region Private Methods
-
-        public T GetBottomLeftNeighbour(T item)
-        {
-            var coords = GetCoordinateByItem(item);
-            return GetBottomLeftNeighbour(coords.X, coords.Y);
-        }
 
         private T GetBottomLeftNeighbour(int x, int y)
         {
@@ -140,27 +177,20 @@ namespace Hextasy.Framework
             return isEvenColumn ? GetTileAt(x - 1, y) : GetTileAt(x - 1, y + 1);
         }
 
-        public T GetBottomNeighbour(T item)
-        {
-            var coords = GetCoordinateByItem(item);
-            return GetBottomNeighbour(coords.X, coords.Y);
-        }
-
         private T GetBottomNeighbour(int x, int y)
         {
             return GetTileAt(x, y + 1);
-        }
-
-        public T GetBottomRightNeighbour(T item)
-        {
-            var coords = GetCoordinateByItem(item);
-            return GetBottomRightNeighbour(coords.X, coords.Y);
         }
 
         private T GetBottomRightNeighbour(int x, int y)
         {
             var isEvenColumn = x % 2 == 0;
             return isEvenColumn ? GetTileAt(x + 1, y) : GetTileAt(x + 1, y + 1);
+        }
+
+        private Coordinate GetCoordinateByIndex(int index)
+        {
+            return index < 0 ? null : new Coordinate(index % _columns, index / _columns);
         }
 
         private List<T> GetDiagonalDownwardsLine(int x, int y)
@@ -292,44 +322,15 @@ namespace Hextasy.Framework
             return tileIndex >= Tiles.Count ? null : Tiles[tileIndex];
         }
 
-        public Coordinate GetCoordinateByItem(T item)
-        {
-            var indexOfItem = Tiles.IndexOf(item);
-            return GetCoordinateByIndex(indexOfItem);
-        }
-
-        private Coordinate GetCoordinateByIndex(int index)
-        {
-            return index < 0 ? null : new Coordinate(index % _columns, index / _columns);
-        }
-
-        public T GetTopLeftNeighbour(T item)
-        {
-            var coords = GetCoordinateByItem(item);
-            return GetTopLeftNeighbour(coords.X, coords.Y);
-        }
-
         private T GetTopLeftNeighbour(int x, int y)
         {
             var isEvenColumn = x % 2 == 0;
             return isEvenColumn ? GetTileAt(x - 1, y - 1) : GetTileAt(x - 1, y);
         }
 
-        public T GetTopNeighbour(T item)
-        {
-            var coords = GetCoordinateByItem(item);
-            return GetTopNeighbour(coords.X, coords.Y);
-        }
-
         private T GetTopNeighbour(int x, int y)
         {
             return GetTileAt(x, y - 1);
-        }
-
-        public T GetTopRightNeighbour(T item)
-        {
-            var coords = GetCoordinateByItem(item);
-            return GetTopRightNeighbour(coords.X, coords.Y);
         }
 
         private T GetTopRightNeighbour(int x, int y)

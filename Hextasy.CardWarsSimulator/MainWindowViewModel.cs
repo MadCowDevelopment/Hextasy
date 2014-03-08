@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.Composition;
+
 using Caliburn.Micro;
 
 namespace Hextasy.CardWarsSimulator
@@ -6,8 +7,14 @@ namespace Hextasy.CardWarsSimulator
     [Export(typeof(MainWindowViewModel))]
     public class MainWindowViewModel : Screen
     {
+        #region Fields
+
         private readonly SettingsViewModel _settingsViewModel;
         private readonly SimulationViewModel _simulationViewModel;
+
+        #endregion Fields
+
+        #region Constructors
 
         [ImportingConstructor]
         public MainWindowViewModel(SettingsViewModel settingsViewModel, SimulationViewModel simulationViewModel)
@@ -18,7 +25,23 @@ namespace Hextasy.CardWarsSimulator
             Screen = _settingsViewModel;
         }
 
-        public Screen Screen { get; set; }
+        #endregion Constructors
+
+        #region Public Properties
+
+        public Screen Screen
+        {
+            get; set;
+        }
+
+        #endregion Public Properties
+
+        #region Public Methods
+
+        public void Back()
+        {
+            Screen = _settingsViewModel;
+        }
 
         public void Start()
         {
@@ -26,9 +49,6 @@ namespace Hextasy.CardWarsSimulator
             _simulationViewModel.Start(_settingsViewModel);
         }
 
-        public void Back()
-        {
-            Screen = _settingsViewModel;
-        }
+        #endregion Public Methods
     }
 }

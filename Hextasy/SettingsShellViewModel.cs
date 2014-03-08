@@ -37,7 +37,10 @@ namespace Hextasy
 
         #region Private Properties
 
-        private IGame Game { get; set; }
+        private IGame Game
+        {
+            get; set;
+        }
 
         #endregion Private Properties
 

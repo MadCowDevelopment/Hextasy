@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.Composition;
+
 using Hextasy.CardWars.Cards.Traits;
 
 namespace Hextasy.CardWars.Cards.Monsters
@@ -6,35 +7,16 @@ namespace Hextasy.CardWars.Cards.Monsters
     [Export(typeof(Card))]
     public class SkeletonKingCard : MonsterCard
     {
+        #region Constructors
+
         public SkeletonKingCard()
         {
             Traits.Add(new SkeletonKingInitiativeTrait(this));
         }
 
-        public override string Name
-        {
-            get { return "Skeleton King"; }
-        }
+        #endregion Constructors
 
-        public override string Description
-        {
-            get { return "Initiative: Gives -2 attack to all adjacent enemies and +3 attack to all adjacent undead."; }
-        }
-
-        public override int Cost
-        {
-            get { return 9; }
-        }
-
-        protected override string ImageFilename
-        {
-            get { return "WraithKing.png"; }
-        }
-
-        protected override Card CreateInstance()
-        {
-            return new SkeletonKingCard();
-        }
+        #region Public Properties
 
         public override int BaseAttack
         {
@@ -46,9 +28,44 @@ namespace Hextasy.CardWars.Cards.Monsters
             get { return 6; }
         }
 
+        public override int Cost
+        {
+            get { return 9; }
+        }
+
+        public override string Description
+        {
+            get { return "Initiative: Gives -2 attack to all adjacent enemies and +3 attack to all adjacent undead."; }
+        }
+
+        public override string Name
+        {
+            get { return "Skeleton King"; }
+        }
+
         public override Race Race
         {
             get { return Race.Undead; }
         }
+
+        #endregion Public Properties
+
+        #region Protected Properties
+
+        protected override string ImageFilename
+        {
+            get { return "WraithKing.png"; }
+        }
+
+        #endregion Protected Properties
+
+        #region Protected Methods
+
+        protected override Card CreateInstance()
+        {
+            return new SkeletonKingCard();
+        }
+
+        #endregion Protected Methods
     }
 }

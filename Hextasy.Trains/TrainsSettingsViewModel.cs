@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
+
 using Hextasy.Framework;
 
 namespace Hextasy.Trains
@@ -9,6 +10,8 @@ namespace Hextasy.Trains
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class TrainsSettingsViewModel : SettingsViewModel<TrainsSettings>
     {
+        #region Constructors
+
         [ImportingConstructor]
         public TrainsSettingsViewModel([ImportMany]IEnumerable<IMap> maps)
         {
@@ -17,6 +20,15 @@ namespace Hextasy.Trains
 
             Player1 = "Player 1";
             Player2 = "Player 2";
+        }
+
+        #endregion Constructors
+
+        #region Public Properties
+
+        public IEnumerable<IMap> Maps
+        {
+            get; set;
         }
 
         public string Player1
@@ -36,14 +48,11 @@ namespace Hextasy.Trains
             get; set;
         }
 
-        public IEnumerable<IMap> Maps
-        {
-            get; set;
-        }
-
         public override TrainsSettings Settings
         {
             get { return new TrainsSettings(Player1, Player2, SelectedMap); }
         }
+
+        #endregion Public Properties
     }
 }

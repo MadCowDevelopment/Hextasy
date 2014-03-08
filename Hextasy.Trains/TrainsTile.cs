@@ -26,7 +26,20 @@ namespace Hextasy.Trains
 
         #endregion Constructors
 
+        public static TrainsTile Empty
+        {
+            get
+            {
+                return new TrainsTile(Owner.None, false, false, false, false, false, false);
+            }
+        }
+
         #region Public Properties
+
+        public bool CanBePlaced
+        {
+            get; set;
+        }
 
         public bool HasBottomExit
         {
@@ -58,24 +71,19 @@ namespace Hextasy.Trains
             get; private set;
         }
 
+        public bool IsFixed
+        {
+            get; set;
+        }
+
         public Owner Owner
         {
             get; internal set;
         }
 
-        public static TrainsTile Empty
-        {
-            get
-            {
-                return new TrainsTile(Owner.None, false, false, false, false, false, false);
-            }
-        }
-
-        public bool IsFixed { get; set; }
-
-        public bool CanBePlaced { get; set; }
-
         #endregion Public Properties
+
+        #region Public Methods
 
         public void CopyExits(TrainsTile newTile)
         {
@@ -86,5 +94,7 @@ namespace Hextasy.Trains
             HasBottomLeftExit = newTile.HasBottomLeftExit;
             HasTopLeftExit = newTile.HasTopLeftExit;
         }
+
+        #endregion Public Methods
     }
 }

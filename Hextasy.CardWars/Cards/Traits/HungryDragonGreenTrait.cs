@@ -4,14 +4,25 @@ namespace Hextasy.CardWars.Cards.Traits
 {
     public class HungryDragonGreenTrait : HungryDragonTrait
     {
+        #region Constructors
+
         public HungryDragonGreenTrait(MonsterCard cardThatHasTrait)
             : base(cardThatHasTrait)
         {
         }
 
-        protected override void ActivateStarvingEffect(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
+        #endregion Constructors
+
+        #region Public Methods
+
+        public override ITrait DeepCopy(MonsterCard monsterCard)
         {
+            return new HungryDragonGreenTrait(monsterCard);
         }
+
+        #endregion Public Methods
+
+        #region Protected Methods
 
         protected override void ActivateSaturatedEffect(
             CardWarsGameLogic cardWarsGameLogic,
@@ -22,9 +33,10 @@ namespace Hextasy.CardWars.Cards.Traits
             friendlyMonsters.Apply(p => cardWarsGameLogic.Heal(p, 2));
         }
 
-        public override ITrait DeepCopy(MonsterCard monsterCard)
+        protected override void ActivateStarvingEffect(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
-            return new HungryDragonGreenTrait(monsterCard);
         }
+
+        #endregion Protected Methods
     }
 }

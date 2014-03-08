@@ -5,9 +5,11 @@ namespace Hextasy.CardWars.Cards.Spells
     [Export(typeof(Card))]
     public class FireballCard : SpellCard
     {
-        public override string Name
+        #region Public Properties
+
+        public override int Cost
         {
-            get { return "Fireball"; }
+            get { return 4; }
         }
 
         public override string Description
@@ -15,24 +17,38 @@ namespace Hextasy.CardWars.Cards.Spells
             get { return "Burns the target monster for 5 damage."; }
         }
 
-        public override int Cost
+        public override string Name
         {
-            get { return 4; }
+            get { return "Fireball"; }
         }
+
+        #endregion Public Properties
+
+        #region Protected Properties
 
         protected override string ImageFilename
         {
             get { return "fireball-red-2.png"; }
         }
 
-        protected override Card CreateInstance()
-        {
-            return new FireballCard();
-        }
+        #endregion Protected Properties
+
+        #region Public Methods
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
             targetTile.Card.TakeFireDamage(5);
         }
+
+        #endregion Public Methods
+
+        #region Protected Methods
+
+        protected override Card CreateInstance()
+        {
+            return new FireballCard();
+        }
+
+        #endregion Protected Methods
     }
 }

@@ -20,9 +20,13 @@ namespace Hextasy.CardWars
     /// </summary>
     public partial class CardWarsGameView : UserControl
     {
+        #region Constructors
+
         public CardWarsGameView()
         {
             InitializeComponent();
         }
+
+        #endregion Constructors
     }
 }

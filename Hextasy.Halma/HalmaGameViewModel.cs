@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.Composition;
 using System.Linq;
+
 using Caliburn.Micro;
+
 using Hextasy.Framework;
 
 namespace Hextasy.Halma
@@ -9,10 +11,17 @@ namespace Hextasy.Halma
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class HalmaGameViewModel : GameViewModel<HalmaGameLogic, HalmaSettings, HalmaTile, HalmaStatistics>
     {
+        #region Constructors
+
         [ImportingConstructor]
-        public HalmaGameViewModel(HalmaGameLogic game, IEventAggregator eventAggregator) : base(game, eventAggregator)
+        public HalmaGameViewModel(HalmaGameLogic game, IEventAggregator eventAggregator)
+            : base(game, eventAggregator)
         {
         }
+
+        #endregion Constructors
+
+        #region Public Methods
 
         public void OnMouseClick(HalmaTile tile)
         {
@@ -30,5 +39,7 @@ namespace Hextasy.Halma
             if (NotNullTiles.Any(p => p.IsSelected)) return;
             NotNullTiles.Apply(p => p.IsLegalMoveTarget = false);
         }
+
+        #endregion Public Methods
     }
 }

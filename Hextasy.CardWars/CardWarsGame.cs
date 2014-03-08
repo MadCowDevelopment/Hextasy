@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.Composition;
+
 using Hextasy.Framework;
 
 namespace Hextasy.CardWars
@@ -6,6 +7,8 @@ namespace Hextasy.CardWars
     [Export(typeof(IGame))]
     public class CardWarsGame : Game<CardWarsSettingsViewModel, CardWarsGameViewModel, CardWarsGameResultViewModel, CardWarsGameLogic, CardWarsSettings, CardWarsTile, CardWarsStatistics>
     {
+        #region Constructors
+
         [ImportingConstructor]
         public CardWarsGame(
             ExportFactory<CardWarsSettingsViewModel> settingsViewModel,
@@ -15,9 +18,15 @@ namespace Hextasy.CardWars
         {
         }
 
+        #endregion Constructors
+
+        #region Public Properties
+
         public override string Name
         {
             get { return "Card Wars"; }
         }
+
+        #endregion Public Properties
     }
 }

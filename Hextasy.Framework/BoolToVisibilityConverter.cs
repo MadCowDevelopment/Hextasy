@@ -11,6 +11,8 @@ namespace Hextasy.Framework
 {
     public class BoolToVisibilityConverter : IValueConverter
     {
+        #region Public Methods
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return (bool) value ? Visibility.Visible : Visibility.Collapsed;
@@ -20,5 +22,7 @@ namespace Hextasy.Framework
         {
             throw new NotImplementedException();
         }
+
+        #endregion Public Methods
     }
 }

@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
+
 using Caliburn.Micro;
+
 using Hextasy.CardWars.Cards.Debuffs;
 using Hextasy.Framework;
 
@@ -10,9 +12,11 @@ namespace Hextasy.CardWars.Cards.Spells
     [Export(typeof(Card))]
     public class TwisterPoisonCard : RandomLineSpellCard
     {
-        public override string Name
+        #region Public Properties
+
+        public override int Cost
         {
-            get { return "Twister: Poison"; }
+            get { return 3; }
         }
 
         public override string Description
@@ -20,14 +24,27 @@ namespace Hextasy.CardWars.Cards.Spells
             get { return "Poisons all enemies in a line for 2 damage for 2 turns."; }
         }
 
-        public override int Cost
+        public override string Name
         {
-            get { return 3; }
+            get { return "Twister: Poison"; }
         }
+
+        #endregion Public Properties
+
+        #region Protected Properties
 
         protected override string ImageFilename
         {
             get { return "wind-green-3.png"; }
+        }
+
+        #endregion Protected Properties
+
+        #region Protected Methods
+
+        protected override void ApplyEffect(IEnumerable<CardWarsTile> randomLine)
+        {
+            randomLine.Where(p => p.Card != null).Apply(p => p.AddDebuff(new PoisonDebuff(2, 2)));
         }
 
         protected override Card CreateInstance()
@@ -40,9 +57,6 @@ namespace Hextasy.CardWars.Cards.Spells
             return cardWarsGameLogic.OpponentPlayer.Owner;
         }
 
-        protected override void ApplyEffect(IEnumerable<CardWarsTile> randomLine)
-        {
-            randomLine.Where(p => p.Card != null).Apply(p => p.AddDebuff(new PoisonDebuff(2, 2)));
-        }
+        #endregion Protected Methods
     }
 }

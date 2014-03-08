@@ -6,18 +6,34 @@ namespace Hextasy.Trains
     [Export(typeof(IMap))]
     public class MapGermany : IMap
     {
+        #region Fields
+
         private readonly IEnumerable<string> _stations = new List<string>
         {
-            "Kiel", "Rostock", "Bremen", "Hannover", "Berlin", "Kassel", 
+            "Kiel", "Rostock", "Bremen", "Hannover", "Berlin", "Kassel",
             "Dresden", "Frankfurt", "Mannheim", "Nürnberg", "Stuttgart", "München"
-        }; 
-        
+        };
+
+        #endregion Fields
+
+        #region Public Properties
+
+        public int Columns
+        {
+            get { return 12; }
+        }
+
         public string Name
         {
             get
             {
                 return "Germany";
             }
+        }
+
+        public int Rows
+        {
+            get { return 14; }
         }
 
         public IEnumerable<string> Stations
@@ -27,6 +43,11 @@ namespace Hextasy.Trains
                 return _stations;
             }
         }
+
+        #endregion Public Properties
+
+        #region Public Methods
+
         public TrainsTile CreateTile(int column, int row)
         {
             switch (row)
@@ -124,7 +145,6 @@ namespace Hextasy.Trains
             return null;
         }
 
-        public int Columns { get { return 12; } }
-        public int Rows { get { return 14; } }
+        #endregion Public Methods
     }
 }

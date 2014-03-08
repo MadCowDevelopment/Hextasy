@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+
 using Hextasy.CardWars.Cards;
 using Hextasy.CardWars.Cards.Monsters;
 using Hextasy.CardWars.Cards.Spells;
@@ -7,10 +8,7 @@ namespace Hextasy.CardWars.DeckBuilders
 {
     public class HumanDeckFactory : DeckFactory
     {
-        protected override string Name
-        {
-            get { return "Human"; }
-        }
+        #region Protected Properties
 
         protected override List<Card> Cards
         {
@@ -52,5 +50,12 @@ namespace Hextasy.CardWars.DeckBuilders
                 };
             }
         }
+
+        protected override string Name
+        {
+            get { return "Human"; }
+        }
+
+        #endregion Protected Properties
     }
 }

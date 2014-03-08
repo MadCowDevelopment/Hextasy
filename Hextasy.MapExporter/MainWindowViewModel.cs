@@ -1,11 +1,18 @@
 ﻿using System.Collections.Generic;
+
 using Hextasy.Framework;
 
 namespace Hextasy.MapExporter
 {
     public class MainWindowViewModel
     {
+        #region Fields
+
         private readonly HexMap<HexTile> _hexmap;
+
+        #endregion Fields
+
+        #region Constructors
 
         public MainWindowViewModel()
         {
@@ -13,9 +20,23 @@ namespace Hextasy.MapExporter
             _hexmap = new HexMap<HexTile>(tiles, 20);
         }
 
-        public IEnumerable<HexTile> Tiles { get { return _hexmap.Tiles; } }
+        #endregion Constructors
 
-        public int Columns { get { return 20; } }
+        #region Public Properties
+
+        public int Columns
+        {
+            get { return 20; }
+        }
+
+        public IEnumerable<HexTile> Tiles
+        {
+            get { return _hexmap.Tiles; }
+        }
+
+        #endregion Public Properties
+
+        #region Private Methods
 
         private IEnumerable<HexTile> CreateTiles()
         {
@@ -30,5 +51,7 @@ namespace Hextasy.MapExporter
 
             return result;
         }
+
+        #endregion Private Methods
     }
 }

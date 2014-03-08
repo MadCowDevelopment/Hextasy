@@ -6,21 +6,33 @@ namespace Hextasy.Framework
     {
         #region Properties
 
-        IScreen GameScreen { get; }
+        IScreen GameScreen
+        {
+            get;
+        }
 
-        string Name { get; }
+        string Name
+        {
+            get;
+        }
 
-        IScreen SettingsScreen { get; }
+        IScreen ResultScreen
+        {
+            get;
+        }
 
-        IScreen ResultScreen { get; }
+        IScreen SettingsScreen
+        {
+            get;
+        }
 
         #endregion Properties
 
         #region Methods
 
-        void Start();
-
         void Initialize();
+
+        void Start();
 
         #endregion Methods
     }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+
 using Hextasy.CardWars.Cards;
 using Hextasy.CardWars.Cards.Specials;
 using Hextasy.Framework;
@@ -9,17 +10,31 @@ namespace Hextasy.CardWars.AI
 {
     public class SearchCpuPlayer : CpuPlayer
     {
+        #region Fields
+
         private readonly IUtilityFunction _utilityFunction;
+
+        #endregion Fields
+
+        #region Constructors
 
         public SearchCpuPlayer()
         {
             _utilityFunction = new UtilityFunction();
         }
 
+        #endregion Constructors
+
+        #region Public Properties
+
         public override string CpuName
         {
             get { return "Search"; }
         }
+
+        #endregion Public Properties
+
+        #region Protected Methods
 
         protected override void OnTakeTurn(CardWarsGameLogic cardWarsGameLogic)
         {
@@ -32,24 +47,22 @@ namespace Hextasy.CardWars.AI
             ExecuteActions(cardWarsGameLogic, optimalActions, int.MinValue);
         }
 
-        private List<Node> FindBestCardPlayActions(CardWarsGameLogic cardWarsGameLogic)
+        #endregion Protected Methods
+
+        #region Private Methods
+
+        private void ExecuteActions(CardWarsGameLogic cardWarsGameLogic, List<Node> optimalActions, double bestNodeValue)
         {
-            var result = new List<Node>();
-            var possibleActions = GetPossibleCardPlayActions(cardWarsGameLogic).ToList();
-            foreach (var currentAction in possibleActions)
+            if (optimalActions.Count < 1) return;
+            var bestValue = optimalActions.Max(p => p.BranchValue);
+            var bestNodes = optimalActions.Where(p => p.BranchValue == bestValue);
+            var randomNode = bestNodes.RandomOrDefault();
+            if (randomNode != null && randomNode.BranchValue > bestNodeValue)
             {
-                var gameLogic = cardWarsGameLogic.DeepCopy();
-                currentAction.Perform(gameLogic, true);
-
-                var utility = _utilityFunction.Calculate(gameLogic);
-
-                var currentNode = new Node(currentAction);
-                currentNode.Value = utility;
-                result.Add(currentNode);
-                currentNode.Children.AddRange(FindBestCardPlayActions(gameLogic));
+                bestNodeValue = randomNode.Value;
+                randomNode.PlayerAction.Perform(cardWarsGameLogic, Simulated);
+                ExecuteActions(cardWarsGameLogic, randomNode.Children, bestNodeValue);
             }
-
-            return result;
         }
 
         private List<Node> FindBestAttackActions(CardWarsGameLogic cardWarsGameLogic)
@@ -73,32 +86,21 @@ namespace Hextasy.CardWars.AI
             return result;
         }
 
-        private void ExecuteActions(CardWarsGameLogic cardWarsGameLogic, List<Node> optimalActions, double bestNodeValue)
+        private List<Node> FindBestCardPlayActions(CardWarsGameLogic cardWarsGameLogic)
         {
-            if (optimalActions.Count < 1) return;
-            var bestValue = optimalActions.Max(p => p.BranchValue);
-            var bestNodes = optimalActions.Where(p => p.BranchValue == bestValue);
-            var randomNode = bestNodes.RandomOrDefault();
-            if (randomNode != null && randomNode.BranchValue > bestNodeValue)
+            var result = new List<Node>();
+            var possibleActions = GetPossibleCardPlayActions(cardWarsGameLogic).ToList();
+            foreach (var currentAction in possibleActions)
             {
-                bestNodeValue = randomNode.Value;
-                randomNode.PlayerAction.Perform(cardWarsGameLogic, Simulated);
-                ExecuteActions(cardWarsGameLogic, randomNode.Children, bestNodeValue);
-            }
-        }
+                var gameLogic = cardWarsGameLogic.DeepCopy();
+                currentAction.Perform(gameLogic, true);
 
-        private IEnumerable<PlayerAction> GetPossibleCardPlayActions(CardWarsGameLogic gameLogic)
-        {
-            var result = new List<PlayerAction>();
-            result.AddRange((
-                from monsterCard in gameLogic.CurrentPlayerHand.OfType<MonsterCard>().Where(p => p.CanBePlayed)
-                select new PlayMonsterCardAction(gameLogic.AllFreeTiles.RandomOrDefault(), monsterCard)));
+                var utility = _utilityFunction.Calculate(gameLogic);
 
-            foreach (var spellCard in gameLogic.CurrentPlayerHand.OfType<SpellCard>().Where(p => p.CanBePlayed))
-            {
-                result.AddRange(
-                    gameLogic.Tiles.Where(tile => tile.IsValidSpellTarget).Select(
-                        tile => new PlaySpellCardAction(tile, spellCard)));
+                var currentNode = new Node(currentAction);
+                currentNode.Value = utility;
+                result.Add(currentNode);
+                currentNode.Children.AddRange(FindBestCardPlayActions(gameLogic));
             }
 
             return result;
@@ -121,15 +123,42 @@ namespace Hextasy.CardWars.AI
 
             return result;
         }
-        
+
+        private IEnumerable<PlayerAction> GetPossibleCardPlayActions(CardWarsGameLogic gameLogic)
+        {
+            var result = new List<PlayerAction>();
+            result.AddRange((
+                from monsterCard in gameLogic.CurrentPlayerHand.OfType<MonsterCard>().Where(p => p.CanBePlayed)
+                select new PlayMonsterCardAction(gameLogic.AllFreeTiles.RandomOrDefault(), monsterCard)));
+
+            foreach (var spellCard in gameLogic.CurrentPlayerHand.OfType<SpellCard>().Where(p => p.CanBePlayed))
+            {
+                result.AddRange(
+                    gameLogic.Tiles.Where(tile => tile.IsValidSpellTarget).Select(
+                        tile => new PlaySpellCardAction(tile, spellCard)));
+            }
+
+            return result;
+        }
+
+        #endregion Private Methods
+
+        #region Nested Types
+
         private class AttackTargetComparer : IComparer<CardWarsTile>
         {
+            #region Public Methods
+
             public int Compare(CardWarsTile x, CardWarsTile y)
             {
                 if (x.Card is KingCard) return -1;
                 if (y.Card is KingCard) return 1;
                 return 0;
             }
+
+            #endregion Public Methods
         }
+
+        #endregion Nested Types
     }
 }

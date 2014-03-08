@@ -1,5 +1,7 @@
 ﻿namespace Hextasy.CardWars.Cards
 {
+    #region Enumerations
+
     public enum DragonFlight
     {
         Red,
@@ -8,4 +10,6 @@
         Blue,
         Gold
     }
+
+    #endregion Enumerations
 }

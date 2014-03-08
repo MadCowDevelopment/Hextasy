@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.Composition;
+
 using Hextasy.Framework;
 
 namespace Hextasy.JumpToKill
@@ -7,6 +8,8 @@ namespace Hextasy.JumpToKill
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class JumpToKillSettingsViewModel : SettingsViewModel<JumpToKillSettings>
     {
+        #region Constructors
+
         public JumpToKillSettingsViewModel()
         {
             Rows = 8;
@@ -14,6 +17,10 @@ namespace Hextasy.JumpToKill
             Player1 = "Player 1";
             Player2 = "Player 2";
         }
+
+        #endregion Constructors
+
+        #region Public Properties
 
         public string Player1
         {
@@ -31,5 +38,7 @@ namespace Hextasy.JumpToKill
         {
             get { return new JumpToKillSettings(Rows, Columns, Player1, Player2); }
         }
+
+        #endregion Public Properties
     }
 }

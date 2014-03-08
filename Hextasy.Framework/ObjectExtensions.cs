@@ -6,6 +6,8 @@ namespace Hextasy.Framework
 {
     public static class ObjectExtensions
     {
+        #region Public Static Methods
+
         public static string GetPropertyName<TSource, TProperty>(
             this TSource obj,
             Expression<Func<TSource, TProperty>> propertyLambda)
@@ -35,5 +37,7 @@ namespace Hextasy.Framework
 
             return propInfo.Name;
         }
+
+        #endregion Public Static Methods
     }
 }

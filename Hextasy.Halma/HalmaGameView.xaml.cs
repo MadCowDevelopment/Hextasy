@@ -20,9 +20,13 @@ namespace Hextasy.Halma
     /// </summary>
     public partial class HalmaGameView : UserControl
     {
+        #region Constructors
+
         public HalmaGameView()
         {
             InitializeComponent();
         }
+
+        #endregion Constructors
     }
 }

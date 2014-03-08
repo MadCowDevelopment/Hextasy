@@ -20,9 +20,13 @@ namespace Hextasy.LightsOff
     /// </summary>
     public partial class LightsOffGameResultView : UserControl
     {
+        #region Constructors
+
         public LightsOffGameResultView()
         {
             InitializeComponent();
         }
+
+        #endregion Constructors
     }
 }

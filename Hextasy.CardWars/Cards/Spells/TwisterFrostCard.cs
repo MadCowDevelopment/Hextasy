@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
+
 using Caliburn.Micro;
+
 using Hextasy.CardWars.Cards.Debuffs;
 using Hextasy.Framework;
 
@@ -10,9 +12,11 @@ namespace Hextasy.CardWars.Cards.Spells
     [Export(typeof(Card))]
     public class TwisterFrostCard : RandomLineSpellCard
     {
-        public override string Name
+        #region Public Properties
+
+        public override int Cost
         {
-            get { return "Twister: Frost"; }
+            get { return 2; }
         }
 
         public override string Description
@@ -20,14 +24,33 @@ namespace Hextasy.CardWars.Cards.Spells
             get { return "Freezes all enemies in a line and deals 1 damage to them."; }
         }
 
-        public override int Cost
+        public override string Name
         {
-            get { return 2; }
+            get { return "Twister: Frost"; }
         }
+
+        #endregion Public Properties
+
+        #region Protected Properties
 
         protected override string ImageFilename
         {
             get { return "wind-blue-3.png"; }
+        }
+
+        #endregion Protected Properties
+
+        #region Protected Methods
+
+        protected override void ApplyEffect(IEnumerable<CardWarsTile> randomLine)
+        {
+            randomLine.Where(p => p.Card != null)
+                .Apply(
+                    p =>
+                        {
+                            p.AddDebuff(new FrozenDebuff());
+                            p.Card.TakeFrostDamage(1);
+                        });
         }
 
         protected override Card CreateInstance()
@@ -40,15 +63,6 @@ namespace Hextasy.CardWars.Cards.Spells
             return cardWarsGameLogic.OpponentPlayer.Owner;
         }
 
-        protected override void ApplyEffect(IEnumerable<CardWarsTile> randomLine)
-        {
-            randomLine.Where(p => p.Card != null)
-                .Apply(
-                    p =>
-                        {
-                            p.AddDebuff(new FrozenDebuff());
-                            p.Card.TakeFrostDamage(1);
-                        });
-        }
+        #endregion Protected Methods
     }
 }

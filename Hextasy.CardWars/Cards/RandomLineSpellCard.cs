@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using Hextasy.Framework;
 
 namespace Hextasy.CardWars.Cards
 {
     public abstract class RandomLineSpellCard : SpellCard
     {
-        protected abstract Owner GetTargetOwner(CardWarsGameLogic cardWarsGameLogic);
+        #region Public Methods
 
         public override sealed void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
@@ -21,6 +22,14 @@ namespace Hextasy.CardWars.Cards
             ApplyEffect(randomLine);
         }
 
+        #endregion Public Methods
+
+        #region Protected Methods
+
         protected abstract void ApplyEffect(IEnumerable<CardWarsTile> randomLine);
+
+        protected abstract Owner GetTargetOwner(CardWarsGameLogic cardWarsGameLogic);
+
+        #endregion Protected Methods
     }
 }

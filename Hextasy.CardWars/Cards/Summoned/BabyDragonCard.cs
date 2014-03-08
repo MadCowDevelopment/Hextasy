@@ -1,12 +1,19 @@
 ﻿using System;
+
 using Hextasy.CardWars.Cards.Traits;
 
 namespace Hextasy.CardWars.Cards.Summoned
 {
     public class BabyDragonCard : DragonCard
     {
+        #region Fields
+
         private readonly DragonFlight _dragonFlight;
         private readonly Gender _gender;
+
+        #endregion Fields
+
+        #region Constructors
 
         public BabyDragonCard(DragonFlight dragonFlight, Gender gender)
         {
@@ -16,14 +23,23 @@ namespace Hextasy.CardWars.Cards.Summoned
             Traits.Add(new DragonGrowthTrait(this));
         }
 
-        protected override Card CreateInstance()
+        #endregion Constructors
+
+        #region Public Properties
+
+        public override int BaseAttack
         {
-            return new BabyDragonCard(DragonFlight, Gender);
+            get { return 1; }
         }
 
-        public override string Name
+        public override int BaseHealth
         {
-            get { return string.Format("{0} {1} Baby Dragon", Gender, DragonFlight); }
+            get { return 3; }
+        }
+
+        public override int Cost
+        {
+            get { return 0; }
         }
 
         public override string Description
@@ -31,10 +47,24 @@ namespace Hextasy.CardWars.Cards.Summoned
             get { return "Just wait until I grow up..."; }
         }
 
-        public override int Cost
+        public override DragonFlight DragonFlight
         {
-            get { return 0; }
+            get { return _dragonFlight; }
         }
+
+        public override Gender Gender
+        {
+            get { return _gender; }
+        }
+
+        public override string Name
+        {
+            get { return string.Format("{0} {1} Baby Dragon", Gender, DragonFlight); }
+        }
+
+        #endregion Public Properties
+
+        #region Protected Properties
 
         protected override string ImageFilename
         {
@@ -58,24 +88,15 @@ namespace Hextasy.CardWars.Cards.Summoned
             }
         }
 
-        public override int BaseAttack
+        #endregion Protected Properties
+
+        #region Protected Methods
+
+        protected override Card CreateInstance()
         {
-            get { return 1; }
+            return new BabyDragonCard(DragonFlight, Gender);
         }
 
-        public override int BaseHealth
-        {
-            get { return 3; }
-        }
-
-        public override DragonFlight DragonFlight
-        {
-            get { return _dragonFlight; }
-        }
-
-        public override Gender Gender
-        {
-            get { return _gender; }
-        }
+        #endregion Protected Methods
     }
 }

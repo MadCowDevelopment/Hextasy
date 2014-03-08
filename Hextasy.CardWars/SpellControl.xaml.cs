@@ -20,9 +20,13 @@ namespace Hextasy.CardWars
     /// </summary>
     public partial class SpellControl : UserControl
     {
+        #region Constructors
+
         public SpellControl()
         {
             InitializeComponent();
         }
+
+        #endregion Constructors
     }
 }

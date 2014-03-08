@@ -4,8 +4,7 @@ namespace Hextasy.CardWars.Cards.Traits
 {
     public class PoisonWeaponTrait : Trait, IActivateTraitOnAttack, IActivateTraitOnDefense
     {
-        private int Amount { get; set; }
-        private int Duration { get; set; }
+        #region Constructors
 
         public PoisonWeaponTrait(MonsterCard cardThatHasTrait, int amount, int duration)
             : base(cardThatHasTrait)
@@ -14,15 +13,41 @@ namespace Hextasy.CardWars.Cards.Traits
             Duration = duration;
         }
 
+        #endregion Constructors
+
+        #region Public Properties
+
         public override string Name
         {
             get { return "Poison Weapon"; }
         }
 
+        #endregion Public Properties
+
+        #region Protected Properties
+
         protected override string ImageFilename
         {
             get { return @"Cards/Spells/enchant-acid-3.png"; }
         }
+
+        #endregion Protected Properties
+
+        #region Private Properties
+
+        private int Amount
+        {
+            get; set;
+        }
+
+        private int Duration
+        {
+            get; set;
+        }
+
+        #endregion Private Properties
+
+        #region Public Methods
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
@@ -33,5 +58,7 @@ namespace Hextasy.CardWars.Cards.Traits
         {
             return new PoisonWeaponTrait(monsterCard, Amount, Duration);
         }
+
+        #endregion Public Methods
     }
 }

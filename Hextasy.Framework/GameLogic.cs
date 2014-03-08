@@ -15,12 +15,26 @@ namespace Hextasy.Framework
 
         #endregion Events
 
+        #region Public Properties
+
+        public IEnumerable<TTile> Tiles
+        {
+            get { return HexMap != null ? HexMap.Tiles : Enumerable.Empty<TTile>(); }
+        }
+
+        #endregion Public Properties
+
         #region Protected Properties
 
         protected HexMap<TTile> HexMap
         {
             get;
             set;
+        }
+
+        protected IEnumerable<TTile> NotNullTiles
+        {
+            get { return Tiles.Where(p => p != null); }
         }
 
         protected TSettings Settings
@@ -32,16 +46,6 @@ namespace Hextasy.Framework
         #endregion Protected Properties
 
         #region Public Methods
-
-        public IEnumerable<TTile> Tiles
-        {
-            get { return HexMap != null ? HexMap.Tiles : Enumerable.Empty<TTile>(); }
-        }
-
-        protected IEnumerable<TTile> NotNullTiles
-        {
-            get { return Tiles.Where(p => p != null); }
-        }
 
         public void Initialize(TSettings settings)
         {

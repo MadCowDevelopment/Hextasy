@@ -4,14 +4,24 @@ namespace Hextasy.CardWars.AI
 {
     internal class AttackAction : PlayerAction
     {
+        #region Fields
+
         private readonly CardWarsTile _attackerTile;
         private readonly CardWarsTile _defenderTile;
+
+        #endregion Fields
+
+        #region Constructors
 
         public AttackAction(CardWarsTile attackerTile, CardWarsTile defenderTile)
         {
             _attackerTile = attackerTile;
             _defenderTile = defenderTile;
         }
+
+        #endregion Constructors
+
+        #region Protected Methods
 
         protected override void OnPerform(CardWarsGameLogic gameLogic, bool simulated)
         {
@@ -24,5 +34,7 @@ namespace Hextasy.CardWars.AI
             if(!simulated) Wait();
             gameLogic.AttackCard(defenderTile);
         }
+
+        #endregion Protected Methods
     }
 }

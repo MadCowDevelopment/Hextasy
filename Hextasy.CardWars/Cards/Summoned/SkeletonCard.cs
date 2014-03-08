@@ -8,30 +8,7 @@ namespace Hextasy.CardWars.Cards.Summoned
 {
     public class SkeletonCard : MonsterCard
     {
-        public override string Name
-        {
-            get { return "Skeleton"; }
-        }
-
-        public override string Description
-        {
-            get { return string.Empty; }
-        }
-
-        public override int Cost
-        {
-            get { return 0; }
-        }
-
-        protected override string ImageFilename
-        {
-            get { return "Skeleton.png"; }
-        }
-
-        protected override Card CreateInstance()
-        {
-            return new SkeletonCard();
-        }
+        #region Public Properties
 
         public override int BaseAttack
         {
@@ -43,9 +20,44 @@ namespace Hextasy.CardWars.Cards.Summoned
             get { return 1; }
         }
 
+        public override int Cost
+        {
+            get { return 0; }
+        }
+
+        public override string Description
+        {
+            get { return string.Empty; }
+        }
+
+        public override string Name
+        {
+            get { return "Skeleton"; }
+        }
+
         public override Race Race
         {
             get { return Race.Undead; }
         }
+
+        #endregion Public Properties
+
+        #region Protected Properties
+
+        protected override string ImageFilename
+        {
+            get { return "Skeleton.png"; }
+        }
+
+        #endregion Protected Properties
+
+        #region Protected Methods
+
+        protected override Card CreateInstance()
+        {
+            return new SkeletonCard();
+        }
+
+        #endregion Protected Methods
     }
 }

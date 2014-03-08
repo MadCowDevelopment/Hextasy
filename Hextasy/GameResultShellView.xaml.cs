@@ -20,9 +20,13 @@ namespace Hextasy
     /// </summary>
     public partial class GameResultShellView : UserControl
     {
+        #region Constructors
+
         public GameResultShellView()
         {
             InitializeComponent();
         }
+
+        #endregion Constructors
     }
 }

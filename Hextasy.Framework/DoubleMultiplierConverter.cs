@@ -6,6 +6,8 @@ namespace Hextasy.Framework
 {
     public class DoubleMultiplierConverter : IValueConverter
     {
+        #region Public Methods
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var dividend = (double) value;
@@ -17,5 +19,7 @@ namespace Hextasy.Framework
         {
             return null;
         }
+
+        #endregion Public Methods
     }
 }

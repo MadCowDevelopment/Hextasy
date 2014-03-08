@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+
 using Hextasy.CardWars.Cards;
 using Hextasy.CardWars.Cards.Monsters;
 using Hextasy.CardWars.Cards.Spells;
@@ -7,10 +8,7 @@ namespace Hextasy.CardWars.DeckBuilders
 {
     public class UndeadDeckFactory : DeckFactory
     {
-        protected override string Name
-        {
-            get { return "Undead"; }
-        }
+        #region Protected Properties
 
         protected override List<Card> Cards
         {
@@ -51,5 +49,12 @@ namespace Hextasy.CardWars.DeckBuilders
                 };
             }
         }
+
+        protected override string Name
+        {
+            get { return "Undead"; }
+        }
+
+        #endregion Protected Properties
     }
 }

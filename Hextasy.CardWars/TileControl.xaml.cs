@@ -20,9 +20,13 @@ namespace Hextasy.CardWars
     /// </summary>
     public partial class TileControl : UserControl
     {
+        #region Constructors
+
         public TileControl()
         {
             InitializeComponent();
         }
+
+        #endregion Constructors
     }
 }

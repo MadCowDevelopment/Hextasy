@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.Linq;
+
 using Hextasy.CardWars;
 using Hextasy.CardWars.DeckBuilders;
 using Hextasy.Framework;
@@ -12,13 +13,18 @@ namespace Hextasy.CardWarsTestApp
     [Export(typeof(DeepCopyPerformanceTester))]
     public class DeepCopyPerformanceTester
     {
-        private const int Rows = 5;
-        private const int Columns = 5;
+        #region Fields
 
+        private const int Columns = 5;
         private const int NumberOfDeepCopies = 1000;
+        private const int Rows = 5;
 
         private readonly IEnumerable<DeckFactory> _deckFactories;
         private readonly ExportFactory<CardWarsGameLogic> _gameLogicFactory;
+
+        #endregion Fields
+
+        #region Constructors
 
         [ImportingConstructor]
         public DeepCopyPerformanceTester(
@@ -28,6 +34,10 @@ namespace Hextasy.CardWarsTestApp
             _deckFactories = deckFactories;
             _gameLogicFactory = gameLogicFactory;
         }
+
+        #endregion Constructors
+
+        #region Public Methods
 
         public TimeSpan Start()
         {
@@ -57,5 +67,7 @@ namespace Hextasy.CardWarsTestApp
                 return stopwatch.Elapsed;
             }
         }
+
+        #endregion Public Methods
     }
 }

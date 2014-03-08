@@ -2,7 +2,9 @@
 using System.Linq;
 using System.Text;
 using System.Windows.Data;
+
 using Caliburn.Micro;
+
 using Hextasy.CardWars.Cards.Debuffs;
 using Hextasy.CardWars.Cards.Traits;
 using Hextasy.Framework;
@@ -12,9 +14,15 @@ namespace Hextasy.CardWars.Cards
 {
     public abstract class MonsterCard : Card
     {
-        private int _damageTaken;
+        #region Fields
+
         private int _attackBonus;
+        private int _damageTaken;
         private bool _dodgeNextDamage;
+
+        #endregion Fields
+
+        #region Constructors
 
         protected MonsterCard()
         {
@@ -27,8 +35,14 @@ namespace Hextasy.CardWars.Cards
             IsExhausted = true;
         }
 
-        public abstract int BaseAttack { get; }
-        public int Attack { get { return BaseAttack + AttackBonus; } }
+        #endregion Constructors
+
+        #region Public Properties
+
+        public int Attack
+        {
+            get { return BaseAttack + AttackBonus; }
+        }
 
         public int AttackBonus
         {
@@ -46,9 +60,123 @@ namespace Hextasy.CardWars.Cards
             }
         }
 
-        public abstract int BaseHealth { get; }
-        public int Health { get { return BaseHealth + HealthBonus - DamageTaken; } }
-        public int HealthBonus { get; set; }
+        public abstract int BaseAttack
+        {
+            get;
+        }
+
+        public abstract int BaseHealth
+        {
+            get;
+        }
+
+        public int DamageDelta
+        {
+            get; set;
+        }
+
+        public DispatcherObservableCollection<IDebuff> Debuffs
+        {
+            get; private set;
+        }
+
+        public bool HasDecreasedAttack
+        {
+            get { return Attack < BaseAttack; }
+        }
+
+        public bool HasDecreasedHealth
+        {
+            get { return Health < BaseHealth; }
+        }
+
+        public bool HasIncreasedAttack
+        {
+            get { return Attack > BaseAttack; }
+        }
+
+        public bool HasIncreasedHealth
+        {
+            get { return Health > BaseHealth; }
+        }
+
+        public int Health
+        {
+            get { return BaseHealth + HealthBonus - DamageTaken; }
+        }
+
+        public int HealthBonus
+        {
+            get; set;
+        }
+
+        public bool IsExhausted
+        {
+            get; protected internal set;
+        }
+
+        public bool IsKilled
+        {
+            get; set;
+        }
+
+        public abstract Race Race
+        {
+            get;
+        }
+
+        public DispatcherObservableCollection<ITrait> Traits
+        {
+            get; private set;
+        }
+
+        public string TraitsDescription
+        {
+            get
+            {
+                var builder = new StringBuilder();
+                foreach (var trait in Traits)
+                {
+                    builder.Append(trait.Name);
+                    if (trait != Traits.Last()) builder.Append("; ");
+                }
+
+                return builder.ToString();
+            }
+        }
+
+        public ListCollectionView TraitsWithIcons
+        {
+            get; private set;
+        }
+
+        public override CardType Type
+        {
+            get { return CardType.Monster; }
+        }
+
+        public bool WasHealed
+        {
+            get; set;
+        }
+
+        public bool WasInjured
+        {
+            get; set;
+        }
+
+        #endregion Public Properties
+
+        #region Protected Properties
+
+        protected override string ImageFolder
+        {
+            get { return @"pack://application:,,,/Hextasy.CardWars;component/Images/Cards/Monsters/"; }
+        }
+
+        #endregion Protected Properties
+
+        #region Private Properties
 
         private int DamageTaken
         {
@@ -73,32 +201,60 @@ namespace Hextasy.CardWars.Cards
             }
         }
 
-        public int DamageDelta { get; set; }
-        public bool WasHealed { get; set; }
-        public bool WasInjured { get; set; }
+        #endregion Private Properties
 
-        public bool IsKilled { get; set; }
+        #region Public Methods
 
-        public bool IsExhausted { get; protected internal set; }
-
-        public bool HasIncreasedAttack
+        public void AddDebuff(IDebuff debuff)
         {
-            get { return Attack > BaseAttack; }
+            if (HasTrait<ImmunityFrostTrait>() && debuff is FrozenDebuff) return;
+            Debuffs.Add(debuff);
         }
 
-        public bool HasDecreasedAttack
+        public void AddTrait(ITrait trait)
         {
-            get { return Attack < BaseAttack; }
+            if (trait.IsUnique && Traits.Any(p => p.GetType() == trait.GetType())) return;
+            Traits.Add(trait);
         }
 
-        public bool HasIncreasedHealth
+        public void CleanupDebuffs()
         {
-            get { return Health > BaseHealth; }
+            var expiredDebuffs = Debuffs.Where(debuff => debuff.IsExpired).ToList();
+            expiredDebuffs.Apply(expiredDebuff => Debuffs.Remove(expiredDebuff));
         }
 
-        public bool HasDecreasedHealth
+        public void ClearTraits()
         {
-            get { return Health < BaseHealth; }
+            Traits.Clear();
+        }
+
+        public void Dodge()
+        {
+            _dodgeNextDamage = true;
+        }
+
+        public bool HasTrait<T>()
+            where T : ITrait
+        {
+            return Traits.OfType<T>().Any();
+        }
+
+        public void Heal(int amount)
+        {
+            var remainingTakenDamage = DamageTaken - amount;
+            DamageTaken = Math.Max(0, remainingTakenDamage);
+            Debuffs.RemoveMany(Debuffs.OfType<PoisonDebuff>());
+        }
+
+        public void Kill()
+        {
+            DamageTaken += Health;
+        }
+
+        public void RemoveTrait<T>()
+            where T : Trait
+        {
+            Traits.RemoveMany(Traits.OfType<T>());
         }
 
         public void TakeDamage(int attackValue)
@@ -119,27 +275,21 @@ namespace Hextasy.CardWars.Cards
             Debuffs.RemoveMany(Debuffs.OfType<FrozenDebuff>());
         }
 
-        public void TakePoisonDamage(int amount)
-        {
-            if (HasTrait<ImmunityPoisonTrait>()) return;
-            TakeDamage(amount);
-        }
-
         public void TakeFrostDamage(int amount)
         {
             if (HasTrait<ImmunityFrostTrait>()) return;
             TakeDamage(amount);
         }
 
-        protected override string ImageFolder
+        public void TakePoisonDamage(int amount)
         {
-            get { return @"pack://application:,,,/Hextasy.CardWars;component/Images/Cards/Monsters/"; }
+            if (HasTrait<ImmunityPoisonTrait>()) return;
+            TakeDamage(amount);
         }
 
-        public override CardType Type
-        {
-            get { return CardType.Monster; }
-        }
+        #endregion Public Methods
+
+        #region Protected Methods
 
         protected override void OnDeepCopy(Card card)
         {
@@ -157,76 +307,6 @@ namespace Hextasy.CardWars.Cards
             monsterCard.WasInjured = WasInjured;
         }
 
-        public DispatcherObservableCollection<ITrait> Traits { get; private set; }
-
-        public ListCollectionView TraitsWithIcons { get; private set; }
-
-        public string TraitsDescription
-        {
-            get
-            {
-                var builder = new StringBuilder();
-                foreach (var trait in Traits)
-                {
-                    builder.Append(trait.Name);
-                    if (trait != Traits.Last()) builder.Append("; ");
-                }
-
-                return builder.ToString();
-            }
-        }
-
-        public DispatcherObservableCollection<IDebuff> Debuffs { get; private set; }
-        public abstract Race Race { get; }
-
-        public void AddTrait(ITrait trait)
-        {
-            if (trait.IsUnique && Traits.Any(p => p.GetType() == trait.GetType())) return;
-            Traits.Add(trait);
-        }
-
-        public void AddDebuff(IDebuff debuff)
-        {
-            if (HasTrait<ImmunityFrostTrait>() && debuff is FrozenDebuff) return;
-            Debuffs.Add(debuff);
-        }
-
-        public void Heal(int amount)
-        {
-            var remainingTakenDamage = DamageTaken - amount;
-            DamageTaken = Math.Max(0, remainingTakenDamage);
-            Debuffs.RemoveMany(Debuffs.OfType<PoisonDebuff>());
-        }
-
-        public void CleanupDebuffs()
-        {
-            var expiredDebuffs = Debuffs.Where(debuff => debuff.IsExpired).ToList();
-            expiredDebuffs.Apply(expiredDebuff => Debuffs.Remove(expiredDebuff));
-        }
-
-        public bool HasTrait<T>() where T : ITrait
-        {
-            return Traits.OfType<T>().Any();
-        }
-
-        public void Kill()
-        {
-            DamageTaken += Health;
-        }
-
-        public void Dodge()
-        {
-            _dodgeNextDamage = true;
-        }
-
-        public void RemoveTrait<T>() where T : Trait
-        {
-            Traits.RemoveMany(Traits.OfType<T>());
-        }
-
-        public void ClearTraits()
-        {
-            Traits.Clear();
-        }
+        #endregion Protected Methods
     }
 }

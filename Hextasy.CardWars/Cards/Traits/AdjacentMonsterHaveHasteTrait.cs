@@ -4,20 +4,34 @@ namespace Hextasy.CardWars.Cards.Traits
 {
     public class AdjacentMonsterHaveHasteTrait : Trait, IActivateTraitOnAnyCardPlayed
     {
+        #region Constructors
+
         public AdjacentMonsterHaveHasteTrait(MonsterCard cardThatHasTrait)
             : base(cardThatHasTrait)
         {
         }
+
+        #endregion Constructors
+
+        #region Public Properties
 
         public override string Name
         {
             get { return "Friendly monsters played adjacent to this get 'Haste'."; }
         }
 
+        #endregion Public Properties
+
+        #region Protected Properties
+
         protected override string ImageFilename
         {
             get { return "Cards/Traits/haste_add.png"; }
         }
+
+        #endregion Protected Properties
+
+        #region Public Methods
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
@@ -39,5 +53,7 @@ namespace Hextasy.CardWars.Cards.Traits
         {
             return new AdjacentMonsterHaveHasteTrait(monsterCard);
         }
+
+        #endregion Public Methods
     }
 }

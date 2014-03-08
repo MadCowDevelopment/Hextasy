@@ -2,7 +2,9 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Linq;
+
 using Caliburn.Micro;
+
 using Hextasy.CardWars.Cards;
 
 namespace Hextasy.CardWarsViewer
@@ -10,6 +12,8 @@ namespace Hextasy.CardWarsViewer
     [Export(typeof(MainWindowViewModel))]
     public class MainWindowViewModel : PropertyChangedBase
     {
+        #region Constructors
+
         [ImportingConstructor]
         public MainWindowViewModel([ImportMany]IEnumerable<Card> cards)
         {
@@ -35,26 +39,84 @@ namespace Hextasy.CardWarsViewer
                 }));
         }
 
-        public ObservableCollection<Monster> MonsterCards { get; set; }
+        #endregion Constructors
 
-        public ObservableCollection<Spell> SpellCards { get; set; }
+        #region Public Properties
+
+        public ObservableCollection<Monster> MonsterCards
+        {
+            get; set;
+        }
+
+        public ObservableCollection<Spell> SpellCards
+        {
+            get; set;
+        }
+
+        #endregion Public Properties
     }
 
     public class Monster
     {
-        public int Cost { get; set; }
-        public string Name { get; set; }
-        public int Attack { get; set; }
-        public int Health { get; set; }
-        public Race Race { get; set; }
-        public string Description { get; set; }
-        public string Traits { get; set; }
+        #region Public Properties
+
+        public int Attack
+        {
+            get; set;
+        }
+
+        public int Cost
+        {
+            get; set;
+        }
+
+        public string Description
+        {
+            get; set;
+        }
+
+        public int Health
+        {
+            get; set;
+        }
+
+        public string Name
+        {
+            get; set;
+        }
+
+        public Race Race
+        {
+            get; set;
+        }
+
+        public string Traits
+        {
+            get; set;
+        }
+
+        #endregion Public Properties
     }
 
     public class Spell
     {
-        public int Cost { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
+        #region Public Properties
+
+        public int Cost
+        {
+            get; set;
+        }
+
+        public string Description
+        {
+            get; set;
+        }
+
+        public string Name
+        {
+            get; set;
+        }
+
+        #endregion Public Properties
     }
 }

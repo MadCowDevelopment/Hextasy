@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.Composition;
+
 using Caliburn.Micro;
 
 namespace Hextasy.Framework
@@ -14,8 +15,8 @@ namespace Hextasy.Framework
     {
         #region Fields
 
-        private readonly ExportFactory<TGameViewModel> _gameViewModel;
         private readonly ExportFactory<TGameResultViewModel> _gameResultViewModel;
+        private readonly ExportFactory<TGameViewModel> _gameViewModel;
         private readonly ExportFactory<TSettingsViewModel> _settingsViewModel;
 
         #endregion Fields
@@ -36,19 +37,14 @@ namespace Hextasy.Framework
 
         #region Public Properties
 
-        public abstract string Name
-        {
-            get;
-        }
-
         public IScreen GameScreen
         {
             get { return GameViewModel; }
         }
 
-        public IScreen SettingsScreen
+        public abstract string Name
         {
-            get { return SettingsViewModel; }
+            get;
         }
 
         public IScreen ResultScreen
@@ -56,15 +52,29 @@ namespace Hextasy.Framework
             get { return GameResultViewModel; }
         }
 
+        public IScreen SettingsScreen
+        {
+            get { return SettingsViewModel; }
+        }
+
         #endregion Public Properties
 
         #region Private Properties
 
-        private GameViewModel<TGameLogic, TSettings, TTile, TStatistics> GameViewModel { get; set; }
+        private GameResultViewModel<TStatistics> GameResultViewModel
+        {
+            get; set;
+        }
 
-        private SettingsViewModel<TSettings> SettingsViewModel { get; set; }
+        private GameViewModel<TGameLogic, TSettings, TTile, TStatistics> GameViewModel
+        {
+            get; set;
+        }
 
-        private GameResultViewModel<TStatistics> GameResultViewModel { get; set; }
+        private SettingsViewModel<TSettings> SettingsViewModel
+        {
+            get; set;
+        }
 
         #endregion Private Properties
 

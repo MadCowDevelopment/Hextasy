@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
+
 using Hextasy.CardWars.AI;
 using Hextasy.CardWars.DeckBuilders;
 using Hextasy.Framework;
@@ -12,6 +13,8 @@ namespace Hextasy.CardWars
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class CardWarsSettingsViewModel : SettingsViewModel<CardWarsSettings>
     {
+        #region Constructors
+
         [ImportingConstructor]
         public CardWarsSettingsViewModel(
             [ImportMany]IEnumerable<DeckFactory> deckFactories,
@@ -46,26 +49,79 @@ namespace Hextasy.CardWars
             Player2Deck = Player2Decks.Single(p => p.Name.Contains("Beast"));
         }
 
-        public string Player1 { get; set; }
-        public string Player2 { get; set; }
+        #endregion Constructors
 
-        public bool Player1Human { get; set; }
-        public bool Player2Human { get; set; }
+        #region Public Properties
 
-        public bool Player1Cpu { get; set; }
-        public bool Player2Cpu { get; set; }
+        public string Player1
+        {
+            get; set;
+        }
 
-        public List<Deck> Player1Decks { get; private set; }
-        public List<Deck> Player2Decks { get; private set; }
+        public bool Player1Cpu
+        {
+            get; set;
+        }
 
-        public List<CpuPlayer> Player1CpuPlayers { get; private set; }
-        public List<CpuPlayer> Player2CpuPlayers { get; private set; }
+        public List<CpuPlayer> Player1CpuPlayers
+        {
+            get; private set;
+        }
 
-        public CpuPlayer SelectedCpuPlayer1 { get; set; }
-        public CpuPlayer SelectedCpuPlayer2 { get; set; }
+        public Deck Player1Deck
+        {
+            get; set;
+        }
 
-        public Deck Player1Deck { get; set; }
-        public Deck Player2Deck { get; set; }
+        public List<Deck> Player1Decks
+        {
+            get; private set;
+        }
+
+        public bool Player1Human
+        {
+            get; set;
+        }
+
+        public string Player2
+        {
+            get; set;
+        }
+
+        public bool Player2Cpu
+        {
+            get; set;
+        }
+
+        public List<CpuPlayer> Player2CpuPlayers
+        {
+            get; private set;
+        }
+
+        public Deck Player2Deck
+        {
+            get; set;
+        }
+
+        public List<Deck> Player2Decks
+        {
+            get; private set;
+        }
+
+        public bool Player2Human
+        {
+            get; set;
+        }
+
+        public CpuPlayer SelectedCpuPlayer1
+        {
+            get; set;
+        }
+
+        public CpuPlayer SelectedCpuPlayer2
+        {
+            get; set;
+        }
 
         public override CardWarsSettings Settings
         {
@@ -98,5 +154,7 @@ namespace Hextasy.CardWars
                 return new CardWarsSettings(Rows, Columns, player1, player2);
             }
         }
+
+        #endregion Public Properties
     }
 }

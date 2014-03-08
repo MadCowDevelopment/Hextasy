@@ -6,13 +6,20 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+
 using Hextasy.Framework.Utils;
 
 namespace Hextasy.Framework
 {
     public class ObservableObject : INotifyPropertyChanged
     {
+        #region Events
+
         public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion Events
+
+        #region Protected Methods
 
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
@@ -34,5 +41,7 @@ namespace Hextasy.Framework
                 if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+
+        #endregion Protected Methods
     }
 }

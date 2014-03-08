@@ -1,6 +1,8 @@
 using System;
 using System.Linq;
+
 using Caliburn.Micro;
+
 using Hextasy.CardWars.Cards;
 using Hextasy.CardWars.Cards.Specials;
 using Hextasy.Framework;
@@ -10,78 +12,89 @@ namespace Hextasy.CardWars
 {
     public class Player : ObservableObject
     {
-        private int _numberOfDrawsWithoutCardLeft;
+        #region Fields
+
         private const int MaximumNumberOfCardsInHand = 10;
-        public KingCard KingCard { get; private set; }
 
-        public string Name { get; private set; }
-        public Owner Owner { get; private set; }
+        private int _numberOfDrawsWithoutCardLeft;
 
-        public int RemainingLife { get { return KingCard.Health; } }
-        public int MaximumResources { get; set; }
-        public int RemainingResources { get; set; }
-        public bool IsActive { get; set; }
-        public Deck Deck { get; private set; }
+        #endregion Fields
 
-        public void Initialize(string name, Owner owner, Deck deck)
-        {
-            Name = name;
-            Owner = owner;
-            Deck = deck;
-            MaximumResources = 0;
-            RemainingResources = 1;
-            deck.Cards.Apply(p => p.Player = this);
-            Hand = new DispatcherObservableCollection<Card>(Deck.TakeHand());
-        }
-
-        public void Initialize(KingCard kingCard)
-        {
-            KingCard = kingCard;
-            KingCard.Player = this;
-            KingCard.PropertyChanged += KingCardPropertyChanged;
-        }
-
-        private void KingCardPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == "Health")
-            {
-                OnPropertyChanged("RemainingLife");
-                if (RemainingLife <= 0) RaiseDied();
-            }
-        }
-
-        public DispatcherObservableCollection<Card> Hand { get; private set; }
-
-        public bool DidMulligan { get; private set; }
+        #region Events
 
         public event EventHandler<EventArgs> Died;
 
-        public void PrepareTurn()
+        #endregion Events
+
+        #region Public Properties
+
+        public Deck Deck
         {
-            RefreshResources();
-            DrawCard();
+            get; private set;
         }
 
-        public void Mulligan()
+        public bool DidMulligan
         {
-            DidMulligan = true;
-            Hand = new DispatcherObservableCollection<Card>(Deck.Mulligan());
+            get; private set;
         }
 
-        public void EndTurn()
+        public DispatcherObservableCollection<Card> Hand
         {
+            get; private set;
         }
 
-        private void RaiseDied()
+        public bool IsActive
         {
-            var handler = Died;
-            if (handler != null) handler(this, EventArgs.Empty);
+            get; set;
         }
 
-        private void RefreshResources()
+        public KingCard KingCard
         {
-            if (MaximumResources < 10) MaximumResources++;
-            RemainingResources = MaximumResources;
+            get; private set;
+        }
+
+        public int MaximumResources
+        {
+            get; set;
+        }
+
+        public string Name
+        {
+            get; private set;
+        }
+
+        public Owner Owner
+        {
+            get; private set;
+        }
+
+        public int RemainingLife
+        {
+            get { return KingCard.Health; }
+        }
+
+        public int RemainingResources
+        {
+            get; set;
+        }
+
+        #endregion Public Properties
+
+        #region Public Methods
+
+        public Player DeepCopy()
+        {
+            var player = (Player)Activator.CreateInstance(GetType());
+            player.Initialize((KingCard)KingCard.DeepCopy(player));
+            player.Deck = Deck.DeepCopy(player);
+            player.DidMulligan = DidMulligan;
+            player.Hand = new DispatcherObservableCollection<Card>(Hand.Select(p => p.DeepCopy(player)));
+            player.IsActive = IsActive;
+            player.MaximumResources = MaximumResources;
+            player.Name = Name;
+            player.Owner = Owner;
+            player.RemainingResources = RemainingResources;
+            return player;
         }
 
         public void DrawCard()
@@ -101,19 +114,65 @@ namespace Hextasy.CardWars
             }
         }
 
-        public Player DeepCopy()
+        public void EndTurn()
         {
-            var player = (Player)Activator.CreateInstance(GetType());
-            player.Initialize((KingCard)KingCard.DeepCopy(player));
-            player.Deck = Deck.DeepCopy(player);
-            player.DidMulligan = DidMulligan;
-            player.Hand = new DispatcherObservableCollection<Card>(Hand.Select(p => p.DeepCopy(player)));
-            player.IsActive = IsActive;
-            player.MaximumResources = MaximumResources;
-            player.Name = Name;
-            player.Owner = Owner;
-            player.RemainingResources = RemainingResources;
-            return player;
         }
+
+        public void Initialize(string name, Owner owner, Deck deck)
+        {
+            Name = name;
+            Owner = owner;
+            Deck = deck;
+            MaximumResources = 0;
+            RemainingResources = 1;
+            deck.Cards.Apply(p => p.Player = this);
+            Hand = new DispatcherObservableCollection<Card>(Deck.TakeHand());
+        }
+
+        public void Initialize(KingCard kingCard)
+        {
+            KingCard = kingCard;
+            KingCard.Player = this;
+            KingCard.PropertyChanged += KingCardPropertyChanged;
+        }
+
+        public void Mulligan()
+        {
+            DidMulligan = true;
+            Hand = new DispatcherObservableCollection<Card>(Deck.Mulligan());
+        }
+
+        public void PrepareTurn()
+        {
+            RefreshResources();
+            DrawCard();
+        }
+
+        #endregion Public Methods
+
+        #region Private Methods
+
+        private void KingCardPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "Health")
+            {
+                OnPropertyChanged("RemainingLife");
+                if (RemainingLife <= 0) RaiseDied();
+            }
+        }
+
+        private void RaiseDied()
+        {
+            var handler = Died;
+            if (handler != null) handler(this, EventArgs.Empty);
+        }
+
+        private void RefreshResources()
+        {
+            if (MaximumResources < 10) MaximumResources++;
+            RemainingResources = MaximumResources;
+        }
+
+        #endregion Private Methods
     }
 }

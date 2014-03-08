@@ -7,9 +7,13 @@ namespace Hextasy.CardWarsViewer
     /// </summary>
     public partial class MainWindowView : Window
     {
+        #region Constructors
+
         public MainWindowView()
         {
             InitializeComponent();
         }
+
+        #endregion Constructors
     }
 }

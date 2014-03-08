@@ -16,21 +16,6 @@ namespace Hextasy.Framework
             }
         }
 
-        public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> enumerable)
-        {
-            var result = new List<T>(enumerable);
-            if (result.Count <= 1) return result;
-
-            for (var i = 0; i < result.Count; i++)
-            {
-                var card = result[i];
-                result.RemoveAt(i);
-                result.Insert(RNG.Next(0, result.Count - 1), card);
-            }
-
-            return result;
-        }
-
         public static T RandomOrDefault<T>(this IEnumerable<T> enumerable)
         {
             var temp = enumerable.ToList();
@@ -48,14 +33,31 @@ namespace Hextasy.Framework
             }
         }
 
-        public static IEnumerable<O> TakeAndRemove<T, O>(this IList<T> list, int amount) where O : T
+        public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> enumerable)
+        {
+            var result = new List<T>(enumerable);
+            if (result.Count <= 1) return result;
+
+            for (var i = 0; i < result.Count; i++)
+            {
+                var card = result[i];
+                result.RemoveAt(i);
+                result.Insert(RNG.Next(0, result.Count - 1), card);
+            }
+
+            return result;
+        }
+
+        public static IEnumerable<O> TakeAndRemove<T, O>(this IList<T> list, int amount)
+            where O : T
         {
             var takenCards = list.OfType<O>().Take(amount).ToList();
             takenCards.ForEach(card => list.Remove(card));
             return takenCards;
         }
 
-        public static IEnumerable<O> TakeAndRemove<T, O>(this IList<T> list) where O : T
+        public static IEnumerable<O> TakeAndRemove<T, O>(this IList<T> list)
+            where O : T
         {
             var takenCards = list.OfType<O>().ToList();
             takenCards.ForEach(card => list.Remove(card));

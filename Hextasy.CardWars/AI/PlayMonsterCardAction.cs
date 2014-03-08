@@ -1,19 +1,30 @@
 using System;
 using System.Linq;
+
 using Hextasy.CardWars.Cards;
 
 namespace Hextasy.CardWars.AI
 {
     internal class PlayMonsterCardAction : PlayerAction
     {
-        private readonly CardWarsTile _targetTile;
+        #region Fields
+
         private readonly MonsterCard _monsterCard;
+        private readonly CardWarsTile _targetTile;
+
+        #endregion Fields
+
+        #region Constructors
 
         public PlayMonsterCardAction(CardWarsTile targetTile, MonsterCard monsterCard)
         {
             _targetTile = targetTile;
             _monsterCard = monsterCard;
         }
+
+        #endregion Constructors
+
+        #region Protected Methods
 
         protected override void OnPerform(CardWarsGameLogic gameLogic, bool simulated)
         {
@@ -24,5 +35,7 @@ namespace Hextasy.CardWars.AI
             if (!simulated) Wait();
             gameLogic.PlayMonsterCard(targetTile, monsterCard);
         }
+
+        #endregion Protected Methods
     }
 }

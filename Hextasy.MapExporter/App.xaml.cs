@@ -9,6 +9,8 @@ namespace Hextasy.MapExporter
     /// </summary>
     public partial class App
     {
+        #region Constructors
+
         public App()
         {
             var mainWindow = new MainWindow();
@@ -28,5 +30,7 @@ namespace Hextasy.MapExporter
 
             mainWindow.Close();
         }
+
+        #endregion Constructors
     }
 }

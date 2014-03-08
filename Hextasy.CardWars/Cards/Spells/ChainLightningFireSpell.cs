@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+
 using Caliburn.Micro;
 
 namespace Hextasy.CardWars.Cards.Spells
@@ -8,9 +9,11 @@ namespace Hextasy.CardWars.Cards.Spells
     [Export(typeof(Card))]
     public class ChainLightningFireSpell : ChainLightningSpell
     {
-        public override string Name
+        #region Public Properties
+
+        public override int Cost
         {
-            get { return "Chain lightning: Fire"; }
+            get { return 3; }
         }
 
         public override string Description
@@ -18,19 +21,18 @@ namespace Hextasy.CardWars.Cards.Spells
             get { return "Deals 3 fire damage to target and decreasing damage to connected monsters."; }
         }
 
-        public override int Cost
+        public override string Name
         {
-            get { return 3; }
+            get { return "Chain lightning: Fire"; }
         }
+
+        #endregion Public Properties
+
+        #region Protected Properties
 
         protected override string ImageFilename
         {
             get { return "lightning-fire-3.png"; }
-        }
-
-        protected override Card CreateInstance()
-        {
-            return new ChainLightningFireSpell();
         }
 
         protected override int InitialDamage
@@ -38,9 +40,20 @@ namespace Hextasy.CardWars.Cards.Spells
             get { return 3; }
         }
 
+        #endregion Protected Properties
+
+        #region Protected Methods
+
         protected override void ApplyDamage(CardWarsGameLogic cardWarsGameLogic, List<Tuple<int, CardWarsTile>> targets)
         {
             targets.Apply(p => p.Item2.Card.TakeFireDamage(InitialDamage - p.Item1));
         }
+
+        protected override Card CreateInstance()
+        {
+            return new ChainLightningFireSpell();
+        }
+
+        #endregion Protected Methods
     }
 }

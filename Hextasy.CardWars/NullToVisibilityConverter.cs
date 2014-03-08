@@ -7,6 +7,8 @@ namespace Hextasy.CardWars
 {
     public class NullToVisibilityConverter : IValueConverter
     {
+        #region Public Methods
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return value == null ? Visibility.Collapsed : Visibility.Visible;
@@ -16,5 +18,7 @@ namespace Hextasy.CardWars
         {
             return null;
         }
+
+        #endregion Public Methods
     }
 }

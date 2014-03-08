@@ -14,8 +14,8 @@ namespace Hextasy.JumpToKill
     {
         #region Fields
 
-        private bool _player1Active = true;
         private bool _killedOpponent;
+        private bool _player1Active = true;
 
         #endregion Fields
 

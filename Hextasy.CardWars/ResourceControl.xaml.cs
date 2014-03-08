@@ -10,10 +10,31 @@ namespace Hextasy.CardWars
     /// </summary>
     public partial class ResourceControl
     {
+        #region Fields
+
+        public static readonly DependencyProperty MaximumResourcesProperty = DependencyProperty.RegisterAttached(
+            "MaximumResources",
+            typeof(int),
+            typeof(ResourceControl),
+            new FrameworkPropertyMetadata(0, OnMaximumResourcesChanged));
+        public static readonly DependencyProperty RemainingResourcesProperty = DependencyProperty.RegisterAttached(
+            "RemainingResources",
+            typeof(int),
+            typeof(ResourceControl),
+            new FrameworkPropertyMetadata(0, OnRemainingResourcesChanged));
+
+        #endregion Fields
+
+        #region Constructors
+
         public ResourceControl()
         {
             InitializeComponent();
         }
+
+        #endregion Constructors
+
+        #region Public Properties
 
         public int MaximumResources
         {
@@ -27,43 +48,9 @@ namespace Hextasy.CardWars
             set { SetValue(RemainingResourcesProperty, value); }
         }
 
-        public static readonly DependencyProperty MaximumResourcesProperty = DependencyProperty.RegisterAttached(
-            "MaximumResources",
-            typeof(int),
-            typeof(ResourceControl),
-            new FrameworkPropertyMetadata(0, OnMaximumResourcesChanged));
+        #endregion Public Properties
 
-        public static readonly DependencyProperty RemainingResourcesProperty = DependencyProperty.RegisterAttached(
-            "RemainingResources",
-            typeof(int),
-            typeof(ResourceControl),
-            new FrameworkPropertyMetadata(0, OnRemainingResourcesChanged));
-
-        private static void OnRemainingResourcesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var resourceControl = d as ResourceControl;
-            UpdateResources(resourceControl);
-        }
-
-        private static void OnMaximumResourcesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var resourceControl = d as ResourceControl;
-            UpdateResources(resourceControl);
-        }
-
-        private static void UpdateResources(ResourceControl control)
-        {
-            control.ResouceList.Items.Clear();
-            for (int i = 0; i < control.RemainingResources; i++)
-            {
-                control.ResouceList.Items.Add(CreateFullResourceImage());
-            }
-
-            for (int i = 0; i < control.MaximumResources - control.RemainingResources; i++)
-            {
-                control.ResouceList.Items.Add(CreateEmptyResourceImage());
-            }
-        }
+        #region Private Static Methods
 
         private static Image CreateEmptyResourceImage()
         {
@@ -87,5 +74,33 @@ namespace Hextasy.CardWars
             finalImage.Source = logo;
             return finalImage;
         }
+
+        private static void OnMaximumResourcesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var resourceControl = d as ResourceControl;
+            UpdateResources(resourceControl);
+        }
+
+        private static void OnRemainingResourcesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var resourceControl = d as ResourceControl;
+            UpdateResources(resourceControl);
+        }
+
+        private static void UpdateResources(ResourceControl control)
+        {
+            control.ResouceList.Items.Clear();
+            for (int i = 0; i < control.RemainingResources; i++)
+            {
+                control.ResouceList.Items.Add(CreateFullResourceImage());
+            }
+
+            for (int i = 0; i < control.MaximumResources - control.RemainingResources; i++)
+            {
+                control.ResouceList.Items.Add(CreateEmptyResourceImage());
+            }
+        }
+
+        #endregion Private Static Methods
     }
 }

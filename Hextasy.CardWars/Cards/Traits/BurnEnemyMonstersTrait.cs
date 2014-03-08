@@ -4,7 +4,7 @@ namespace Hextasy.CardWars.Cards.Traits
 {
     public class BurnEnemyMonstersTrait : Trait, IActivateTraitOnStartTurn
     {
-        private int Amount { get; set; }
+        #region Constructors
 
         public BurnEnemyMonstersTrait(MonsterCard cardThatHasTrait, int amount)
             : base(cardThatHasTrait)
@@ -12,15 +12,36 @@ namespace Hextasy.CardWars.Cards.Traits
             Amount = amount;
         }
 
+        #endregion Constructors
+
+        #region Public Properties
+
         public override string Name
         {
             get { return "Burn enemy monsters."; }
         }
 
+        #endregion Public Properties
+
+        #region Protected Properties
+
         protected override string ImageFilename
         {
             get { return "Cards/Traits/fire-arrows-3.png"; }
         }
+
+        #endregion Protected Properties
+
+        #region Private Properties
+
+        private int Amount
+        {
+            get; set;
+        }
+
+        #endregion Private Properties
+
+        #region Public Methods
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
@@ -31,5 +52,7 @@ namespace Hextasy.CardWars.Cards.Traits
         {
             return new BurnEnemyMonstersTrait(monsterCard, Amount);
         }
+
+        #endregion Public Methods
     }
 }

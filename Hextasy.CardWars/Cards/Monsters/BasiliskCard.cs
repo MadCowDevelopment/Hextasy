@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.Composition;
+
 using Hextasy.CardWars.Cards.Traits;
 
 namespace Hextasy.CardWars.Cards.Monsters
@@ -6,30 +7,16 @@ namespace Hextasy.CardWars.Cards.Monsters
     [Export(typeof(Card))]
     public class BasiliskCard : MonsterCard
     {
+        #region Constructors
+
         public BasiliskCard()
         {
             Traits.Add(new DefenderTrait(this));
         }
 
-        public override string Name
-        {
-            get { return "Basilisk"; }
-        }
+        #endregion Constructors
 
-        public override string Description
-        {
-            get { return string.Empty; }
-        }
-
-        protected override string ImageFilename
-        {
-            get { return @"BasiliskBrown.png"; }
-        }
-
-        protected override Card CreateInstance()
-        {
-            return new BasiliskCard();
-        }
+        #region Public Properties
 
         public override int BaseAttack
         {
@@ -41,14 +28,44 @@ namespace Hextasy.CardWars.Cards.Monsters
             get { return 4; }
         }
 
+        public override int Cost
+        {
+            get { return 3; }
+        }
+
+        public override string Description
+        {
+            get { return string.Empty; }
+        }
+
+        public override string Name
+        {
+            get { return "Basilisk"; }
+        }
+
         public override Race Race
         {
             get { return Race.Beast; }
         }
 
-        public override int Cost
+        #endregion Public Properties
+
+        #region Protected Properties
+
+        protected override string ImageFilename
         {
-            get { return 3; }
+            get { return @"BasiliskBrown.png"; }
         }
+
+        #endregion Protected Properties
+
+        #region Protected Methods
+
+        protected override Card CreateInstance()
+        {
+            return new BasiliskCard();
+        }
+
+        #endregion Protected Methods
     }
 }

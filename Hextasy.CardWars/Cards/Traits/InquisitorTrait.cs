@@ -4,20 +4,34 @@ namespace Hextasy.CardWars.Cards.Traits
 {
     public class InquisitorTrait : Trait, IActivateTraitOnStartTurn
     {
+        #region Constructors
+
         public InquisitorTrait(MonsterCard cardThatHasTrait)
             : base(cardThatHasTrait)
         {
         }
+
+        #endregion Constructors
+
+        #region Public Properties
 
         public override string Name
         {
             get { return "Subdue monsters"; }
         }
 
+        #endregion Public Properties
+
+        #region Protected Properties
+
         protected override string ImageFilename
         {
             get { return string.Empty; }
         }
+
+        #endregion Protected Properties
+
+        #region Public Methods
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
@@ -32,5 +46,7 @@ namespace Hextasy.CardWars.Cards.Traits
         {
             return new InquisitorTrait(monsterCard);
         }
+
+        #endregion Public Methods
     }
 }

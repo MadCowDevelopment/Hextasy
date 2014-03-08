@@ -1,27 +1,64 @@
 namespace Hextasy.CardWars.Cards
 {
+    public interface IEffect
+    {
+        #region Properties
+
+        bool HasIcon
+        {
+            get;
+        }
+
+        string ImageSource
+        {
+            get;
+        }
+
+        string Name
+        {
+            get;
+        }
+
+        #endregion Properties
+    }
+
     public abstract class Effect : IEffect
     {
-        public abstract string Name { get; }
-        protected abstract string ImageFilename { get; }
+        #region Public Properties
+
+        public bool HasIcon
+        {
+            get { return !string.IsNullOrWhiteSpace(ImageFilename); }
+        }
 
         public string ImageSource
         {
             get { return ImageFolder + ImageFilename; }
         }
 
-        public bool HasIcon { get { return !string.IsNullOrWhiteSpace(ImageFilename); } }
+        public abstract string Name
+        {
+            get;
+        }
+
+        #endregion Public Properties
+
+        #region Protected Properties
+
+        protected abstract string ImageFilename
+        {
+            get;
+        }
+
+        #endregion Protected Properties
+
+        #region Private Properties
 
         private string ImageFolder
         {
             get { return "pack://application:,,,/Hextasy.CardWars;component/Images/"; }
         }
-    }
 
-    public interface IEffect
-    {
-        string Name { get; }
-        string ImageSource { get; }
-        bool HasIcon { get; }
+        #endregion Private Properties
     }
 }

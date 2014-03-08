@@ -7,16 +7,27 @@ namespace Hextasy.CardWars.AI
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public abstract class CpuPlayer : Player
     {
-        public static int DurationBetweenActions = 2000;
-        
-        public bool Simulated { get; set; }
+        #region Fields
 
-        protected void Wait()
+        public static int DurationBetweenActions = 2000;
+
+        #endregion Fields
+
+        #region Public Properties
+
+        public abstract string CpuName
         {
-            Thread.Sleep(DurationBetweenActions);
+            get;
         }
 
-        public abstract string CpuName { get; }
+        public bool Simulated
+        {
+            get; set;
+        }
+
+        #endregion Public Properties
+
+        #region Public Methods
 
         public void TakeTurn(CardWarsGameLogic cardWarsGameLogic)
         {
@@ -24,6 +35,17 @@ namespace Hextasy.CardWars.AI
             Wait();
         }
 
+        #endregion Public Methods
+
+        #region Protected Methods
+
         protected abstract void OnTakeTurn(CardWarsGameLogic cardWarsGameLogic);
+
+        protected void Wait()
+        {
+            Thread.Sleep(DurationBetweenActions);
+        }
+
+        #endregion Protected Methods
     }
 }

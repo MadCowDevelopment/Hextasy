@@ -22,7 +22,7 @@ namespace Hextasy.XInARow
         #endregion Constructors
 
         #region Public Properties
-        
+
         public string Player1
         {
             get; set;

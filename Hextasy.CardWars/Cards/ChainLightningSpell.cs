@@ -6,7 +6,16 @@ namespace Hextasy.CardWars.Cards
 {
     public abstract class ChainLightningSpell : SpellCard
     {
-        protected abstract int InitialDamage { get; }
+        #region Protected Properties
+
+        protected abstract int InitialDamage
+        {
+            get;
+        }
+
+        #endregion Protected Properties
+
+        #region Public Methods
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
@@ -27,6 +36,12 @@ namespace Hextasy.CardWars.Cards
             ApplyDamage(cardWarsGameLogic, targets);
         }
 
+        #endregion Public Methods
+
+        #region Protected Methods
+
         protected abstract void ApplyDamage(CardWarsGameLogic cardWarsGameLogic, List<Tuple<int, CardWarsTile>> targets);
+
+        #endregion Protected Methods
     }
 }

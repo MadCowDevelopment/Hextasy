@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.Composition;
 using System.Linq;
+
 using Caliburn.Micro;
+
 using Hextasy.Framework;
 
 namespace Hextasy.JumpToKill
@@ -9,11 +11,17 @@ namespace Hextasy.JumpToKill
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class JumpToKillGameViewModel : GameViewModel<JumpToKillGameLogic, JumpToKillSettings, JumpToKillTile, JumpToKillStatistics>
     {
+        #region Constructors
+
         [ImportingConstructor]
-        public JumpToKillGameViewModel(JumpToKillGameLogic game, IEventAggregator eventAggregator) 
+        public JumpToKillGameViewModel(JumpToKillGameLogic game, IEventAggregator eventAggregator)
             : base(game, eventAggregator)
         {
         }
+
+        #endregion Constructors
+
+        #region Public Methods
 
         public void OnMouseClick(JumpToKillTile tile)
         {
@@ -31,5 +39,7 @@ namespace Hextasy.JumpToKill
             if (Tiles.Any(p => p.IsSelected)) return;
             Tiles.Apply(p => p.IsLegalMoveTarget = false);
         }
+
+        #endregion Public Methods
     }
 }

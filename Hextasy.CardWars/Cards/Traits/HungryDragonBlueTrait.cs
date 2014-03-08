@@ -1,12 +1,35 @@
 ﻿using Caliburn.Micro;
+
 using Hextasy.CardWars.Cards.Debuffs;
 
 namespace Hextasy.CardWars.Cards.Traits
 {
     public class HungryDragonBlueTrait : HungryDragonTrait
     {
+        #region Constructors
+
         public HungryDragonBlueTrait(MonsterCard cardThatHasTrait)
             : base(cardThatHasTrait)
+        {
+        }
+
+        #endregion Constructors
+
+        #region Public Methods
+
+        public override ITrait DeepCopy(MonsterCard monsterCard)
+        {
+            return new HungryDragonBlueTrait(monsterCard);
+        }
+
+        #endregion Public Methods
+
+        #region Protected Methods
+
+        protected override void ActivateSaturatedEffect(
+            CardWarsGameLogic cardWarsGameLogic,
+            CardWarsTile targetTile,
+            MonsterCard eatenMonster)
         {
         }
 
@@ -16,16 +39,6 @@ namespace Hextasy.CardWars.Cards.Traits
             enemyMonsters.Apply(p => p.AddDebuff(new FrozenDebuff()));
         }
 
-        protected override void ActivateSaturatedEffect(
-            CardWarsGameLogic cardWarsGameLogic,
-            CardWarsTile targetTile,
-            MonsterCard eatenMonster)
-        {
-        }
-
-        public override ITrait DeepCopy(MonsterCard monsterCard)
-        {
-            return new HungryDragonBlueTrait(monsterCard);
-        }
+        #endregion Protected Methods
     }
 }

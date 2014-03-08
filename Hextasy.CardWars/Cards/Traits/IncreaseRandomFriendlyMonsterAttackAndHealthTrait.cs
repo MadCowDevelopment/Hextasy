@@ -4,8 +4,7 @@ namespace Hextasy.CardWars.Cards.Traits
 {
     public class IncreaseRandomFriendlyMonsterAttackAndHealthTrait : Trait, IActivateTraitOnStartTurn
     {
-        private int Attack { get; set; }
-        private int Health { get; set; }
+        #region Constructors
 
         public IncreaseRandomFriendlyMonsterAttackAndHealthTrait(MonsterCard cardThatHasTrait, int attack, int health)
             : base(cardThatHasTrait)
@@ -14,15 +13,41 @@ namespace Hextasy.CardWars.Cards.Traits
             Health = health;
         }
 
+        #endregion Constructors
+
+        #region Public Properties
+
         public override string Name
         {
             get { return "Increase attack and health"; }
         }
 
+        #endregion Public Properties
+
+        #region Protected Properties
+
         protected override string ImageFilename
         {
             get { return string.Empty; }
         }
+
+        #endregion Protected Properties
+
+        #region Private Properties
+
+        private int Attack
+        {
+            get; set;
+        }
+
+        private int Health
+        {
+            get; set;
+        }
+
+        #endregion Private Properties
+
+        #region Public Methods
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
@@ -36,5 +61,7 @@ namespace Hextasy.CardWars.Cards.Traits
         {
             return new IncreaseRandomFriendlyMonsterAttackAndHealthTrait(monsterCard, Attack, Health);
         }
+
+        #endregion Public Methods
     }
 }

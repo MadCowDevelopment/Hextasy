@@ -1,15 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+
 using Caliburn.Micro;
 
 namespace Hextasy.CardWars.Cards.Traits
 {
     public class IncreaseRaceAttackTrait : Trait, IActivateTraitOnAnyCardPlayed
     {
-        private int Amount { get; set; }
-        private Race Race { get; set; }
+        #region Fields
 
         private List<MonsterCard> _buffedCards;
+
+        #endregion Fields
+
+        #region Constructors
 
         public IncreaseRaceAttackTrait(MonsterCard cardThatHasTrait, int amount, Race race)
             : base(cardThatHasTrait)
@@ -18,15 +22,41 @@ namespace Hextasy.CardWars.Cards.Traits
             Race = race;
         }
 
+        #endregion Constructors
+
+        #region Public Properties
+
         public override string Name
         {
             get { return "Increase Attack"; }
         }
 
+        #endregion Public Properties
+
+        #region Protected Properties
+
         protected override string ImageFilename
         {
             get { return @"Cards/Traits/enchant-magenta-3.png"; }
         }
+
+        #endregion Protected Properties
+
+        #region Private Properties
+
+        private int Amount
+        {
+            get; set;
+        }
+
+        private Race Race
+        {
+            get; set;
+        }
+
+        #endregion Private Properties
+
+        #region Public Methods
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
@@ -43,5 +73,7 @@ namespace Hextasy.CardWars.Cards.Traits
         {
             return new IncreaseRaceAttackTrait(monsterCard, Amount, Race);
         }
+
+        #endregion Public Methods
     }
 }

@@ -2,11 +2,22 @@ namespace Hextasy.CardWars
 {
     public class CardDiedEventArgs
     {
-        public CardWarsTile TileOnWhichTheCardDied { get; set; }
+        #region Constructors
 
         public CardDiedEventArgs(CardWarsTile tileOnWhichTheCardDied)
         {
             TileOnWhichTheCardDied = tileOnWhichTheCardDied;
         }
+
+        #endregion Constructors
+
+        #region Public Properties
+
+        public CardWarsTile TileOnWhichTheCardDied
+        {
+            get; set;
+        }
+
+        #endregion Public Properties
     }
 }

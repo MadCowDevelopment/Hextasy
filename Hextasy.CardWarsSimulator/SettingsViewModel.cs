@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
+
 using Caliburn.Micro;
+
 using Hextasy.CardWars;
 using Hextasy.CardWars.AI;
 using Hextasy.CardWars.DeckBuilders;
@@ -12,7 +14,14 @@ namespace Hextasy.CardWarsSimulator
     [Export(typeof(SettingsViewModel))]
     public class SettingsViewModel : Screen
     {
+        #region Fields
+
         private readonly IEnumerable<ExportFactory<CpuPlayer>> _cpuPlayers1;
+        private readonly object _syncLock = new object();
+
+        #endregion Fields
+
+        #region Constructors
 
         [ImportingConstructor]
         public SettingsViewModel(
@@ -36,19 +45,63 @@ namespace Hextasy.CardWarsSimulator
             Iterations = 10;
         }
 
-        public int Iterations { get; set; }
-        public DeckFactory SelectedPlayer1DeckFactory { get; set; }
-        public DeckFactory SelectedPlayer2DeckFactory { get; set; }
+        #endregion Constructors
 
-        public List<CpuPlayer> CpuPlayers { get; set; }
+        #region Public Properties
 
-        public List<DeckFactory> DeckFactories { get; set; }
-        public int Rows { get; set; }
-        public int Columns { get; set; }
-        public CpuPlayer SelectedCpuPlayer1 { get; set; }
-        public CpuPlayer SelectedCpuPlayer2 { get; set; }
+        public int Columns
+        {
+            get; set;
+        }
 
-        private readonly object _syncLock = new object();
+        public List<CpuPlayer> CpuPlayers
+        {
+            get; set;
+        }
+
+        public List<DeckFactory> DeckFactories
+        {
+            get; set;
+        }
+
+        public int Iterations
+        {
+            get; set;
+        }
+
+        public int Rows
+        {
+            get; set;
+        }
+
+        public CpuPlayer SelectedCpuPlayer1
+        {
+            get; set;
+        }
+
+        public CpuPlayer SelectedCpuPlayer2
+        {
+            get; set;
+        }
+
+        public DeckFactory SelectedPlayer1DeckFactory
+        {
+            get; set;
+        }
+
+        public DeckFactory SelectedPlayer2DeckFactory
+        {
+            get; set;
+        }
+
+        #endregion Public Properties
+
+        #region Public Methods
+
+        public ExportFactory<CpuPlayer> CreateCpuPlayer(CpuPlayer player)
+        {
+            return _cpuPlayers1.First(p => (p.CreateExport().Value.GetType() == (player.GetType())));
+        }
 
         public CardWarsSettings CreateSettings()
         {
@@ -69,9 +122,6 @@ namespace Hextasy.CardWarsSimulator
             }
         }
 
-        public ExportFactory<CpuPlayer> CreateCpuPlayer(CpuPlayer player)
-        {
-            return _cpuPlayers1.First(p => (p.CreateExport().Value.GetType() == (player.GetType())));
-        }
+        #endregion Public Methods
     }
 }

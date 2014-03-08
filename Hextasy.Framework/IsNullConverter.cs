@@ -6,6 +6,8 @@ namespace Hextasy.Framework
 {
     public class IsNullConverter : IValueConverter
     {
+        #region Public Methods
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return value == null;
@@ -15,5 +17,7 @@ namespace Hextasy.Framework
         {
             return null;
         }
+
+        #endregion Public Methods
     }
 }

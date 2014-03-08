@@ -1,5 +1,7 @@
 using System.ComponentModel.Composition;
+
 using Caliburn.Micro;
+
 using Hextasy.CardWars.Cards.Debuffs;
 
 namespace Hextasy.CardWars.Cards.Spells
@@ -7,9 +9,11 @@ namespace Hextasy.CardWars.Cards.Spells
     [Export(typeof(Card))]
     public class HorrorFrostCard : SpellCard
     {
-        public override string Name
+        #region Public Properties
+
+        public override int Cost
         {
-            get { return "Horror: Frost"; }
+            get { return 6; }
         }
 
         public override string Description
@@ -17,25 +21,39 @@ namespace Hextasy.CardWars.Cards.Spells
             get { return "Kills the target and freezes all adjacent enemies."; }
         }
 
-        public override int Cost
+        public override string Name
         {
-            get { return 6; }
+            get { return "Horror: Frost"; }
         }
+
+        #endregion Public Properties
+
+        #region Protected Properties
 
         protected override string ImageFilename
         {
             get { return "horror-eerie-3.png"; }
         }
 
-        protected override Card CreateInstance()
-        {
-            return new HorrorFrostCard();
-        }
+        #endregion Protected Properties
+
+        #region Public Methods
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
             targetTile.Card.Kill();
             cardWarsGameLogic.GetAdjacentMonsterTiles(targetTile).Apply(p => p.AddDebuff(new FrozenDebuff()));
         }
+
+        #endregion Public Methods
+
+        #region Protected Methods
+
+        protected override Card CreateInstance()
+        {
+            return new HorrorFrostCard();
+        }
+
+        #endregion Protected Methods
     }
 }

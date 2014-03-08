@@ -1,12 +1,35 @@
 ﻿using System.Linq;
+
 using Caliburn.Micro;
 
 namespace Hextasy.CardWars.Cards.Traits
 {
     public class HungryDragonRedTrait : HungryDragonTrait
     {
+        #region Constructors
+
         public HungryDragonRedTrait(MonsterCard cardThatHasTrait)
             : base(cardThatHasTrait)
+        {
+        }
+
+        #endregion Constructors
+
+        #region Public Methods
+
+        public override ITrait DeepCopy(MonsterCard monsterCard)
+        {
+            return new HungryDragonRedTrait(monsterCard);
+        }
+
+        #endregion Public Methods
+
+        #region Protected Methods
+
+        protected override void ActivateSaturatedEffect(
+            CardWarsGameLogic cardWarsGameLogic,
+            CardWarsTile targetTile,
+            MonsterCard eatenMonster)
         {
         }
 
@@ -16,16 +39,6 @@ namespace Hextasy.CardWars.Cards.Traits
             enemyMonsters.Apply(p => p.TakeFireDamage(2));
         }
 
-        protected override void ActivateSaturatedEffect(
-            CardWarsGameLogic cardWarsGameLogic,
-            CardWarsTile targetTile,
-            MonsterCard eatenMonster)
-        {
-        }
-
-        public override ITrait DeepCopy(MonsterCard monsterCard)
-        {
-            return new HungryDragonRedTrait(monsterCard);
-        }
+        #endregion Protected Methods
     }
 }

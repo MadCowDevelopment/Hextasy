@@ -1,5 +1,7 @@
 using System.ComponentModel.Composition;
+
 using Caliburn.Micro;
+
 using Hextasy.CardWars.Cards.Traits;
 
 namespace Hextasy.CardWars.Cards.Spells
@@ -7,9 +9,11 @@ namespace Hextasy.CardWars.Cards.Spells
     [Export(typeof(Card))]
     public class ImmunityFrostCard : SpellCard
     {
-        public override string Name
+        #region Public Properties
+
+        public override int Cost
         {
-            get { return "Immunity: Frost"; }
+            get { return 2; }
         }
 
         public override string Description
@@ -17,20 +21,23 @@ namespace Hextasy.CardWars.Cards.Spells
             get { return "Gives the target and adjacent monsters immunity against frost."; }
         }
 
-        public override int Cost
+        public override string Name
         {
-            get { return 2; }
+            get { return "Immunity: Frost"; }
         }
+
+        #endregion Public Properties
+
+        #region Protected Properties
 
         protected override string ImageFilename
         {
             get { return "protect-blue-3.png"; }
         }
 
-        protected override Card CreateInstance()
-        {
-            return new ImmunityFrostCard();
-        }
+        #endregion Protected Properties
+
+        #region Public Methods
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
@@ -38,5 +45,16 @@ namespace Hextasy.CardWars.Cards.Spells
                 p => p.Card.AddTrait(new ImmunityFrostTrait(targetTile.Card)));
             targetTile.Card.AddTrait(new ImmunityFrostTrait(targetTile.Card));
         }
+
+        #endregion Public Methods
+
+        #region Protected Methods
+
+        protected override Card CreateInstance()
+        {
+            return new ImmunityFrostCard();
+        }
+
+        #endregion Protected Methods
     }
 }

@@ -6,6 +6,8 @@ namespace Hextasy.CardWarsTestApp
 {
     class Program
     {
+        #region Private Static Methods
+
         static void Main(string[] args)
         {
             var catalog =
@@ -17,5 +19,7 @@ namespace Hextasy.CardWarsTestApp
             var perf = compositionContainer.GetExportedValue<DeepCopyPerformanceTester>().Start();
             Console.WriteLine(perf.ToString());
         }
+
+        #endregion Private Static Methods
     }
 }

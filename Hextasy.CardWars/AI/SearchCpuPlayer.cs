@@ -25,15 +25,11 @@ namespace Hextasy.CardWars.AI
         {
             Synchronization.Enabled = false;
             var optimalMonsterCardPlayActions = FindBestCardPlayActions(cardWarsGameLogic);
-            Synchronization.Enabled = true;
             ExecuteActions(cardWarsGameLogic, optimalMonsterCardPlayActions, int.MinValue);
 
             Synchronization.Enabled = false;
             var optimalActions = FindBestAttackActions(cardWarsGameLogic.DeepCopy());
-            Synchronization.Enabled = true;
             ExecuteActions(cardWarsGameLogic, optimalActions, int.MinValue);
-
-            //AIDebugHelper.LogNumberOfTotalNodes(optimalActions);
         }
 
         private List<Node> FindBestCardPlayActions(CardWarsGameLogic cardWarsGameLogic)
@@ -43,7 +39,7 @@ namespace Hextasy.CardWars.AI
             foreach (var currentAction in possibleActions)
             {
                 var gameLogic = cardWarsGameLogic.DeepCopy();
-                currentAction.Perform(gameLogic, false);
+                currentAction.Perform(gameLogic, true);
 
                 var utility = _utilityFunction.Calculate(gameLogic);
 
@@ -64,7 +60,7 @@ namespace Hextasy.CardWars.AI
             foreach (var attackAction in possibleAttackActions)
             {
                 var gameLogic = cardWarsGameLogic.DeepCopy();
-                attackAction.Perform(gameLogic, false);
+                attackAction.Perform(gameLogic, true);
                 var utility = _utilityFunction.Calculate(gameLogic);
                 var attackNode = new Node(attackAction);
                 result.Add(attackNode);
@@ -86,7 +82,7 @@ namespace Hextasy.CardWars.AI
             if (randomNode != null && randomNode.BranchValue > bestNodeValue)
             {
                 bestNodeValue = randomNode.Value;
-                randomNode.PlayerAction.Perform(cardWarsGameLogic, true);
+                randomNode.PlayerAction.Perform(cardWarsGameLogic, Simulated);
                 ExecuteActions(cardWarsGameLogic, randomNode.Children, bestNodeValue);
             }
         }
@@ -96,13 +92,13 @@ namespace Hextasy.CardWars.AI
             var result = new List<PlayerAction>();
             result.AddRange((
                 from monsterCard in gameLogic.CurrentPlayerHand.OfType<MonsterCard>().Where(p => p.CanBePlayed)
-                select new PlayMonsterCardAction(gameLogic.AllFreeTiles.RandomOrDefault().Id, monsterCard.Id)));
+                select new PlayMonsterCardAction(gameLogic.AllFreeTiles.RandomOrDefault(), monsterCard)));
 
             foreach (var spellCard in gameLogic.CurrentPlayerHand.OfType<SpellCard>().Where(p => p.CanBePlayed))
             {
                 result.AddRange(
-                    gameLogic.Tiles.Where(p => p.IsValidSpellTarget).Select(
-                        p => new PlaySpellCardAction(p.Id, spellCard.Id)));
+                    gameLogic.Tiles.Where(tile => tile.IsValidSpellTarget).Select(
+                        tile => new PlaySpellCardAction(tile, spellCard)));
             }
 
             return result;
@@ -125,17 +121,15 @@ namespace Hextasy.CardWars.AI
 
             return result;
         }
-
-
-    }
-
-    internal class AttackTargetComparer : IComparer<CardWarsTile>
-    {
-        public int Compare(CardWarsTile x, CardWarsTile y)
+        
+        private class AttackTargetComparer : IComparer<CardWarsTile>
         {
-            if (x.Card is KingCard) return -1;
-            if (y.Card is KingCard) return 1;
-            return 0;
+            public int Compare(CardWarsTile x, CardWarsTile y)
+            {
+                if (x.Card is KingCard) return -1;
+                if (y.Card is KingCard) return 1;
+                return 0;
+            }
         }
     }
 }

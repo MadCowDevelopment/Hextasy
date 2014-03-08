@@ -8,6 +8,8 @@ namespace Hextasy.CardWars.AI
     public abstract class CpuPlayer : Player
     {
         public static int DurationBetweenActions = 2000;
+        
+        public bool Simulated { get; set; }
 
         protected void Wait()
         {

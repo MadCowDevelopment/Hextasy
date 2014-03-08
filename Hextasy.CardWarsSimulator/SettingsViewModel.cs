@@ -48,7 +48,7 @@ namespace Hextasy.CardWarsSimulator
         public CpuPlayer SelectedCpuPlayer1 { get; set; }
         public CpuPlayer SelectedCpuPlayer2 { get; set; }
 
-        private object _syncLock = new object();
+        private readonly object _syncLock = new object();
 
         public CardWarsSettings CreateSettings()
         {
@@ -58,9 +58,11 @@ namespace Hextasy.CardWarsSimulator
 
                 var player1 = CreateCpuPlayer(SelectedCpuPlayer1).CreateExport().Value;
                 player1.Initialize("A", Owner.Player1, SelectedPlayer1DeckFactory.Create());
+                player1.Simulated = true;
 
                 var player2 = CreateCpuPlayer(SelectedCpuPlayer2).CreateExport().Value;
                 player2.Initialize("B", Owner.Player2, SelectedPlayer2DeckFactory.Create());
+                player2.Simulated = true;
 
                 var settings = new CardWarsSettings(Rows, Columns, player1, player2);
                 return settings;

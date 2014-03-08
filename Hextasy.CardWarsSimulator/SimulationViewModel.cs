@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Threading;
@@ -35,19 +34,20 @@ namespace Hextasy.CardWarsSimulator
         {
             Synchronization.Enabled = false;
 
-            Parallel.For(0, settingsViewModel.Iterations, p =>
-            {
-                lock (_mefSyncObject)
+            Task.Factory.StartNew(() =>
+                Parallel.For(0, settingsViewModel.Iterations, p =>
                 {
-                    using (var export = _gameLogicFactory.CreateExport())
+                    lock (_mefSyncObject)
                     {
-                        var gameLogic = export.Value;
-                        gameLogic.Finished += gameLogic_Finished;
-                        gameLogic.Initialize(
-                            settingsViewModel.CreateSettings());
+                        using (var export = _gameLogicFactory.CreateExport())
+                        {
+                            var gameLogic = export.Value;
+                            gameLogic.Finished += gameLogic_Finished;
+                            gameLogic.Initialize(
+                                settingsViewModel.CreateSettings());
+                        }
                     }
-                }
-            });
+                }));
         }
 
         public DispatcherObservableCollection<string> FinishedGames { get; private set; }

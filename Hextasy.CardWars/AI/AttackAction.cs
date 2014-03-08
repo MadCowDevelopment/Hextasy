@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 
 namespace Hextasy.CardWars.AI
@@ -14,17 +13,15 @@ namespace Hextasy.CardWars.AI
             _defenderTile = defenderTile;
         }
 
-        public Guid AttackerTileId { get { return _attackerTile.Id; } }
-
-        public override void Perform(CardWarsGameLogic gameLogic, bool delayAction)
+        protected override void OnPerform(CardWarsGameLogic gameLogic, bool simulated)
         {
             var attackerTile = gameLogic.Tiles.SingleOrDefault(p => p.Id == _attackerTile.Id);
             var defenderTile = gameLogic.Tiles.SingleOrDefault(p => p.Id == _defenderTile.Id);
 
-            if (delayAction) Wait();
+            if (!simulated) Wait();
             gameLogic.SelectTile(attackerTile);
 
-            if(delayAction) Wait();
+            if(!simulated) Wait();
             gameLogic.AttackCard(defenderTile);
         }
     }

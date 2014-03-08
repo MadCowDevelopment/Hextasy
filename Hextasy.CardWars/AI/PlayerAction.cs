@@ -1,11 +1,18 @@
-using System;
 using System.Threading;
+using Hextasy.Framework.Utils;
 
 namespace Hextasy.CardWars.AI
 {
     internal abstract class PlayerAction
     {
-        public abstract void Perform(CardWarsGameLogic gameLogic, bool delayActions);
+        public void Perform(CardWarsGameLogic gameLogic, bool simulated)
+        {
+            if (!simulated) Synchronization.Enabled = true;
+            OnPerform(gameLogic, simulated);
+            if (simulated) Synchronization.Enabled = false;
+        }
+
+        protected abstract void OnPerform(CardWarsGameLogic gameLogic, bool simulated);
 
         protected void Wait()
         {

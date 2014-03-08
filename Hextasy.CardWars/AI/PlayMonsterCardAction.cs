@@ -6,22 +6,22 @@ namespace Hextasy.CardWars.AI
 {
     internal class PlayMonsterCardAction : PlayerAction
     {
-        private readonly Guid _targetTileId;
-        private readonly Guid _monsterCardId;
+        private readonly CardWarsTile _targetTile;
+        private readonly MonsterCard _monsterCard;
 
-        public PlayMonsterCardAction(Guid targetTileId, Guid monsterCardId)
+        public PlayMonsterCardAction(CardWarsTile targetTile, MonsterCard monsterCard)
         {
-            _targetTileId = targetTileId;
-            _monsterCardId = monsterCardId;
+            _targetTile = targetTile;
+            _monsterCard = monsterCard;
         }
 
-        public override void Perform(CardWarsGameLogic gameLogic, bool delayAction)
+        protected override void OnPerform(CardWarsGameLogic gameLogic, bool simulated)
         {
-            var targetTile = gameLogic.Tiles.SingleOrDefault(p => p.Id == _targetTileId);
-            var monsterCard = gameLogic.CurrentPlayerHand.Single(p => p.Id == _monsterCardId) as MonsterCard;
-            if (delayAction) Wait();
+            var targetTile = gameLogic.Tiles.SingleOrDefault(p => p.Id == _targetTile.Id);
+            var monsterCard = gameLogic.CurrentPlayerHand.Single(p => p.Id == _monsterCard.Id) as MonsterCard;
+            if (!simulated) Wait();
             monsterCard.IsSelected = true;
-            if (delayAction) Wait();
+            if (!simulated) Wait();
             gameLogic.PlayMonsterCard(targetTile, monsterCard);
         }
     }

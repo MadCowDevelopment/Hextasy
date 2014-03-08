@@ -2,9 +2,9 @@ namespace Hextasy.CardWars.AI
 {
     internal class MulliganPlayerAction : PlayerAction
     {
-        public override void Perform(CardWarsGameLogic gameLogic, bool delayAction)
+        protected override void OnPerform(CardWarsGameLogic gameLogic, bool simulated)
         {
-            if(delayAction) Wait();
+            if(!simulated) Wait();
             gameLogic.Mulligan();
         }
     }

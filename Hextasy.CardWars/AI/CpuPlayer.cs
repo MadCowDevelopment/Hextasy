@@ -9,7 +9,7 @@ namespace Hextasy.CardWars.AI
     {
         #region Fields
 
-        public static int DurationBetweenActions = 0;
+        public static int DurationBetweenActions = 1500;
 
         #endregion Fields
 

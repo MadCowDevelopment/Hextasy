@@ -129,7 +129,8 @@ namespace Hextasy.CardWars.AI
             var result = new List<PlayerAction>();
             result.AddRange((
                 from monsterCard in gameLogic.CurrentPlayerHand.OfType<MonsterCard>().Where(p => p.CanBePlayed)
-                select new PlayMonsterCardAction(gameLogic.AllFreeTiles.RandomOrDefault(), monsterCard)));
+                from freeTile in gameLogic.AllFreeTiles
+                select new PlayMonsterCardAction(freeTile, monsterCard)));
 
             foreach (var spellCard in gameLogic.CurrentPlayerHand.OfType<SpellCard>().Where(p => p.CanBePlayed))
             {

@@ -24,17 +24,17 @@ namespace Hextasy.CardWars
             Player1 = "Player1";
             Player2 = "Player2";
 
-            Player1Cpu = true;
+            Player1Human = true;
             Player2Cpu = true;
 
             Player1CpuPlayers = cpuPlayers1.ToList();
             Player2CpuPlayers = cpuPlayers2.ToList();
 
             SelectedCpuPlayer1 = Player1CpuPlayers.LastOrDefault();
-            SelectedCpuPlayer2 = Player2CpuPlayers.FirstOrDefault();
+            SelectedCpuPlayer2 = Player2CpuPlayers.LastOrDefault();
 
-            Columns = 5;
-            Rows = 5;
+            Columns = 4;
+            Rows = 4;
 
             Player1Decks = new List<Deck>();
             Player2Decks = new List<Deck>();
@@ -45,8 +45,8 @@ namespace Hextasy.CardWars
                 Player2Decks.Add(deckBuilder.Create());
             }
 
-            Player1Deck = Player1Decks.Single(p => p.Name.Contains("Beast"));
-            Player2Deck = Player2Decks.Single(p => p.Name.Contains("Beast"));
+            Player1Deck = Player1Decks.Single(p => p.Name.Contains("Undead"));
+            Player2Deck = Player2Decks.Single(p => p.Name.Contains("Human"));
         }
 
         #endregion Constructors

@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 
 using Hextasy.CardWars.Cards;
@@ -29,7 +28,8 @@ namespace Hextasy.CardWars.AI
         protected override void OnPerform(CardWarsGameLogic gameLogic, bool simulated)
         {
             var targetTile = gameLogic.Tiles.SingleOrDefault(p => p.Id == _targetTile.Id);
-            var monsterCard = gameLogic.CurrentPlayerHand.Single(p => p.Id == _monsterCard.Id) as MonsterCard;
+            var monsterCard = gameLogic.CurrentPlayerHand.SingleOrDefault(p => p.Id == _monsterCard.Id) as MonsterCard;
+            if (targetTile == null || monsterCard == null) return;
             if (!simulated) Wait();
             monsterCard.IsSelected = true;
             if (!simulated) Wait();

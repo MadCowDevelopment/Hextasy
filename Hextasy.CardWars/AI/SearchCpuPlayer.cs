@@ -38,6 +38,8 @@ namespace Hextasy.CardWars.AI
 
         protected override void OnTakeTurn(CardWarsGameLogic cardWarsGameLogic)
         {
+            PlayMulligan(cardWarsGameLogic);
+
             Synchronization.Enabled = false;
             var optimalMonsterCardPlayActions = FindBestCardPlayActions(cardWarsGameLogic);
             ExecuteActions(cardWarsGameLogic, optimalMonsterCardPlayActions, int.MinValue);
@@ -45,6 +47,22 @@ namespace Hextasy.CardWars.AI
             Synchronization.Enabled = false;
             var optimalActions = FindBestAttackActions(cardWarsGameLogic.DeepCopy());
             ExecuteActions(cardWarsGameLogic, optimalActions, int.MinValue);
+        }
+
+        private void PlayMulligan(CardWarsGameLogic gameLogic)
+        {
+            if (!gameLogic.CanMulligan) return;
+
+            var numberOfCardsThatCostAtMostThree = gameLogic.CurrentPlayerHand.Count(p => p.Cost <= 3);
+            if (numberOfCardsThatCostAtMostThree == 3) return;
+
+            var averageCostOfCardsInHand = gameLogic.CurrentPlayerHand.Sum(p => p.Cost) /
+                                           gameLogic.CurrentPlayerHand.Count;
+            var averageCostOfCardsInDeck = gameLogic.CurrentPlayer.Deck.Cards.Sum(p => p.Cost) /
+                                           gameLogic.CurrentPlayer.Deck.Cards.Count();
+            if (averageCostOfCardsInHand + 1 < averageCostOfCardsInDeck) return; // Note: +1 because the AI should take a little risk.
+
+            gameLogic.Mulligan();
         }
 
         #endregion Protected Methods

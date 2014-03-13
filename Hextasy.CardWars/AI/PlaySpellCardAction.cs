@@ -28,8 +28,9 @@ namespace Hextasy.CardWars.AI
         protected override void OnPerform(CardWarsGameLogic gameLogic, bool simulated)
         {
             var targetTile = gameLogic.Tiles.SingleOrDefault(p => p.Id == _targetTile.Id);
-            var spellCard = gameLogic.CurrentPlayerHand.Single(p => p.Id == _spellCard.Id) as SpellCard;
-            if(!simulated) Wait();
+            var spellCard = gameLogic.CurrentPlayerHand.SingleOrDefault(p => p.Id == _spellCard.Id) as SpellCard;
+            if (targetTile == null || spellCard == null) return;
+            if (!simulated) Wait();
             spellCard.IsSelected = true;
             if (!simulated) Wait();
             gameLogic.PlaySpellCard(targetTile, spellCard);

@@ -12,7 +12,6 @@ namespace Hextasy.CardWars.Cards.Monsters
         public WarElephantCard()
         {
             Traits.Add(new IncreaseRaceAttackTrait(this, 1, Race.Beast));
-            Traits.Add(new DecreaseRaceAttackTrait(this, 1, Race.Beast));
         }
 
         #endregion Constructors

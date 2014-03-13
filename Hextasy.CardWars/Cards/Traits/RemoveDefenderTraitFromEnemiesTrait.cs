@@ -39,7 +39,7 @@ namespace Hextasy.CardWars.Cards.Traits
         {
             var enemyCardsWithDefenderTrait =
                 cardWarsGameLogic.OpponentCards.Where(p => p.HasTrait<DefenderTrait>());
-            enemyCardsWithDefenderTrait.Apply(p => p.RemoveTrait<DefenderTrait>());
+            enemyCardsWithDefenderTrait.Apply(p => p.RemoveTrait<DefenderTrait>(cardWarsGameLogic));
         }
 
         public override ITrait DeepCopy(MonsterCard monsterCard)

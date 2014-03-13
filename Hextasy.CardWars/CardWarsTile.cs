@@ -54,7 +54,8 @@ namespace Hextasy.CardWars
 
         public Guid Id
         {
-            get; private set;
+            get;
+            private set;
         }
 
         public bool IsDefender
@@ -62,10 +63,7 @@ namespace Hextasy.CardWars
             get { return Card != null && Card.HasTrait<DefenderTrait>(); }
         }
 
-        public bool IsFixed
-        {
-            get; set;
-        }
+        public bool IsFixed { get; set; }
 
         public bool IsSelected
         {
@@ -73,7 +71,7 @@ namespace Hextasy.CardWars
             set
             {
                 _isSelected = value;
-                if(_isSelected) WasPreviouslySelectedThisTurn = true;
+                if (_isSelected) WasPreviouslySelectedThisTurn = true;
             }
         }
 
@@ -84,7 +82,8 @@ namespace Hextasy.CardWars
 
         public bool IsValidTarget
         {
-            get; set;
+            get;
+            set;
         }
 
         public Owner Owner
@@ -99,7 +98,8 @@ namespace Hextasy.CardWars
 
         public bool WasPreviouslySelectedThisTurn
         {
-            get; private set;
+            get;
+            private set;
         }
 
         #endregion Public Properties
@@ -171,6 +171,7 @@ namespace Hextasy.CardWars
         {
             Card.IsKilled = true;
             Card.Traits.OfType<IActivateTraitOnDeath>().Apply(p => p.Activate(_gameLogic, this));
+            Card.Traits.Apply(p => p.Deactivate(_gameLogic));
             Card = null;
             IsFixed = false;
             IsValidTarget = false;

@@ -170,10 +170,8 @@
     <Compile Include="Cards\Traits\FreezeAllEnemiesAndDealDamageToAdjacentEnemiesTrait.cs" />
     <Compile Include="Cards\Traits\InquisitorTrait.cs" />
     <Compile Include="Cards\Traits\AdjacentMonsterHaveHasteTrait.cs" />
-    <Compile Include="Cards\Traits\AdjacentMonsterLoseHasteTrait.cs" />
     <Compile Include="Cards\Traits\BurnEnemyMonstersTrait.cs" />
     <Compile Include="Cards\Traits\CounterAttackOnDodgeTrait.cs" />
-    <Compile Include="Cards\Traits\DecreaseRaceHealthTrait.cs" />
     <Compile Include="Cards\Traits\DisarmWeaponTrait.cs" />
     <Compile Include="Cards\Traits\DodgeTrait.cs" />
     <Compile Include="Cards\Traits\DragonBabyTrait.cs" />
@@ -216,7 +214,6 @@
     <Compile Include="Cards\Traits\IncreaseRandomFriendlyMonsterAttackAndHealthTrait.cs" />
     <Compile Include="Cards\Traits\IncreaseRandomMonsterAttackTrait.cs" />
     <Compile Include="Cards\Traits\PoisonWeaponTrait.cs" />
-    <Compile Include="Cards\Traits\DecreaseRaceAttackTrait.cs" />
     <Compile Include="Cards\Traits\PopeTrait.cs" />
     <Compile Include="Cards\Traits\RecruitMonkTrait.cs" />
     <Compile Include="Cards\Traits\RemoveDefenderTraitFromEnemiesTrait.cs" />

@@ -148,7 +148,7 @@
 
     <ItemsControl x:Name="Traits" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3"
                   FocusVisualStyle="{x:Null}"
-                  ItemsSource="{Binding Card.TraitsWithIcons}"
+                  ItemsSource="{Binding Card.Traits}"
              Margin="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=UserControl}, 
                         Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.1}">
       <ItemsControl.ItemsPanel>

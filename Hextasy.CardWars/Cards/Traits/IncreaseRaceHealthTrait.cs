@@ -9,7 +9,7 @@ namespace Hextasy.CardWars.Cards.Traits
     {
         #region Fields
 
-        private List<MonsterCard> _buffedCards;
+        private readonly List<MonsterCard> _buffedCards = new List<MonsterCard>();
 
         #endregion Fields
 
@@ -63,10 +63,14 @@ namespace Hextasy.CardWars.Cards.Traits
             var allBeastCardsOfCurrentPlayer =
                 cardWarsGameLogic.AllCards.Where(
                     p => p.Player.Owner == CardThatHasTrait.Owner && p != CardThatHasTrait && p.Race == Race);
-            if (_buffedCards == null) _buffedCards = new List<MonsterCard>();
             var beastsToBuff = allBeastCardsOfCurrentPlayer.Except(_buffedCards).ToList();
             beastsToBuff.Apply(p => p.HealthBonus += Amount);
             _buffedCards.AddRange(beastsToBuff);
+        }
+
+        public override void Deactivate(CardWarsGameLogic cardWarsGameLogic)
+        {
+            _buffedCards.Apply(p => p.HealthBonus -= Amount);
         }
 
         public override ITrait DeepCopy(MonsterCard monsterCard)

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
-using System.Windows.Data;
 
 using Caliburn.Micro;
 
@@ -27,10 +26,6 @@ namespace Hextasy.CardWars.Cards
         protected MonsterCard()
         {
             Traits = new DispatcherObservableCollection<ITrait>();
-
-            TraitsWithIcons = new ListCollectionView(Traits);
-            TraitsWithIcons.Filter = o => (o as IEffect).HasIcon;
-
             Debuffs = new DispatcherObservableCollection<IDebuff>();
             IsExhausted = true;
         }
@@ -72,12 +67,14 @@ namespace Hextasy.CardWars.Cards
 
         public int DamageDelta
         {
-            get; set;
+            get;
+            set;
         }
 
         public DispatcherObservableCollection<IDebuff> Debuffs
         {
-            get; private set;
+            get;
+            private set;
         }
 
         public bool HasDecreasedAttack
@@ -107,17 +104,20 @@ namespace Hextasy.CardWars.Cards
 
         public int HealthBonus
         {
-            get; set;
+            get;
+            set;
         }
 
         public bool IsExhausted
         {
-            get; protected internal set;
+            get;
+            protected internal set;
         }
 
         public bool IsKilled
         {
-            get; set;
+            get;
+            set;
         }
 
         public abstract Race Race
@@ -127,7 +127,8 @@ namespace Hextasy.CardWars.Cards
 
         public DispatcherObservableCollection<ITrait> Traits
         {
-            get; private set;
+            get;
+            private set;
         }
 
         public string TraitsDescription
@@ -145,11 +146,6 @@ namespace Hextasy.CardWars.Cards
             }
         }
 
-        public ListCollectionView TraitsWithIcons
-        {
-            get; private set;
-        }
-
         public override CardType Type
         {
             get { return CardType.Monster; }
@@ -157,12 +153,14 @@ namespace Hextasy.CardWars.Cards
 
         public bool WasHealed
         {
-            get; set;
+            get;
+            set;
         }
 
         public bool WasInjured
         {
-            get; set;
+            get;
+            set;
         }
 
         #endregion Public Properties
@@ -251,9 +249,11 @@ namespace Hextasy.CardWars.Cards
             DamageTaken += Health;
         }
 
-        public void RemoveTrait<T>()
+        public void RemoveTrait<T>(CardWarsGameLogic gameLogic)
             where T : Trait
         {
+            var traitsToRemove = Traits.OfType<T>();
+            traitsToRemove.Apply(p => p.Deactivate(gameLogic));
             Traits.RemoveMany(Traits.OfType<T>());
         }
 

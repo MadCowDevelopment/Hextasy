@@ -28,7 +28,7 @@ namespace Hextasy.CardWars.Cards.Traits
 
         protected override string ImageFilename
         {
-            get { return string.Empty; }
+            get { return "Cards/Monsters/WraithKing.png"; }
         }
 
         #endregion Protected Properties

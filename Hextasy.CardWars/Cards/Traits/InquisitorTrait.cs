@@ -26,7 +26,7 @@ namespace Hextasy.CardWars.Cards.Traits
 
         protected override string ImageFilename
         {
-            get { return string.Empty; }
+            get { return "Cards/Monsters/FemalePriest02.PNG"; }
         }
 
         #endregion Protected Properties

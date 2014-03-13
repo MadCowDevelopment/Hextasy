@@ -12,7 +12,6 @@ namespace Hextasy.CardWars.Cards.Monsters
         public DiviciacusCard()
         {
             Traits.Add(new IncreaseRaceAttackTrait(this, 2, Race.Beast));
-            Traits.Add(new DecreaseRaceAttackTrait(this, 2, Race.Beast));
         }
 
         #endregion Constructors

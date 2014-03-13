@@ -54,6 +54,7 @@
         #region Methods
 
         void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile);
+        void Deactivate(CardWarsGameLogic cardWarsGameLogic);
 
         ITrait DeepCopy(MonsterCard monsterCard);
 
@@ -92,6 +93,8 @@
         #region Public Methods
 
         public abstract void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile);
+
+        public virtual void Deactivate(CardWarsGameLogic cardWarsGameLogic) { }
 
         public abstract ITrait DeepCopy(MonsterCard monsterCard);
 

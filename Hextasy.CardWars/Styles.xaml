@@ -83,7 +83,68 @@
     </Setter>
   </Style>
 
-  <Style x:Key="CardSelectionContainerStyle" TargetType="{x:Type ListBoxItem}">
+  <Style x:Key="CpuCardSelectionContainerStyle" TargetType="{x:Type ListBoxItem}">
+    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+    <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+          <Border x:Name="SelectionBorder" Width="400" Height="54" 
+                  Background="LightSlateGray" CornerRadius="10" BorderBrush="Black" BorderThickness="2"
+                   RenderTransformOrigin="0.5, 0.5" Margin="2">
+            <Border.RenderTransform>
+              <ScaleTransform/>
+            </Border.RenderTransform>
+          </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+              <Setter TargetName="SelectionBorder" Property="Background" Value="#FFF79800"/>
+              <Setter Property="RenderTransform">
+                <Setter.Value>
+                  <ScaleTransform CenterX="210" CenterY="25"/>
+                </Setter.Value>
+              </Setter>
+              <Trigger.EnterActions>
+                <BeginStoryboard>
+                  <BeginStoryboard.Storyboard>
+                    <Storyboard>
+                      <DoubleAnimation
+                              Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleX)"
+                              To="1.04" Duration="0:0:0.12" >
+                      </DoubleAnimation>
+                      <DoubleAnimation
+                              Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleY)"
+                              To="1.04" Duration="0:0:0.12" >
+                      </DoubleAnimation>
+                    </Storyboard>
+                  </BeginStoryboard.Storyboard>
+                </BeginStoryboard>
+              </Trigger.EnterActions>
+              <Trigger.ExitActions>
+                <BeginStoryboard>
+                  <BeginStoryboard.Storyboard>
+                    <Storyboard>
+                      <DoubleAnimation
+                              Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleX)"
+                              To="1" Duration="0:0:0.12" >
+                      </DoubleAnimation>
+                      <DoubleAnimation
+                              Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleY)"
+                              To="1" Duration="0:0:0.12" >
+                      </DoubleAnimation>
+                    </Storyboard>
+                  </BeginStoryboard.Storyboard>
+                </BeginStoryboard>
+              </Trigger.ExitActions>
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style x:Key="HumanCardSelectionContainerStyle" TargetType="{x:Type ListBoxItem}">
     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
     <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
     <Setter Property="IsSelected" Value="{Binding IsSelected}"/>

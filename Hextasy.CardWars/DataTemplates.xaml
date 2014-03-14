@@ -28,7 +28,7 @@
     </Button>
   </DataTemplate>
 
-  <DataTemplate DataType="{x:Type cards:MonsterCard}">
+  <DataTemplate x:Name="HumanPlayerCardTemplate" DataType="{x:Type cards:MonsterCard}">
     <cardWars:CardControl/>
   </DataTemplate>
 

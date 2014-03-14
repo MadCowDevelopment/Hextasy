@@ -50,7 +50,7 @@ namespace Hextasy.CardWars
             get { return Game.CurrentPlayer; }
         }
 
-        public bool IsHumanTurn
+        public bool IsPlayerTurn
         {
             get { return !(CurrentPlayer is CpuPlayer); }
         }

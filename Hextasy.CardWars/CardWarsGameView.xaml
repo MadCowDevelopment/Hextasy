@@ -15,6 +15,7 @@
   <UserControl.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="TemplateSelectors.xaml"/>
         <ResourceDictionary Source="Converters.xaml"/>
         <ResourceDictionary Source="Styles.xaml"/>
         <ResourceDictionary Source="DataTemplates.xaml"/>
@@ -45,7 +46,8 @@
       <ListBox Grid.Row="2"
         FocusVisualStyle="{x:Null}"
         ItemsSource="{Binding CurrentCards}" SelectedItem="{Binding SelectedCard}"
-        HorizontalContentAlignment="Center" ItemContainerStyle="{StaticResource CardSelectionContainerStyle}">
+        ItemContainerStyleSelector="{StaticResource CardControlStyleSelector}"
+        HorizontalContentAlignment="Center">
         <ListBox.Resources>
           <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
           <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent" />

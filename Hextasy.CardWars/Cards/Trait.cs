@@ -1,4 +1,6 @@
-﻿namespace Hextasy.CardWars.Cards
+﻿using Hextasy.CardWars.Logic;
+
+namespace Hextasy.CardWars.Cards
 {
     public interface IActivateTraitOnAnyCardDied : ITrait
     {
@@ -85,7 +87,8 @@
 
         protected MonsterCard CardThatHasTrait
         {
-            get; private set;
+            get;
+            private set;
         }
 
         #endregion Protected Properties

@@ -1,4 +1,5 @@
-﻿using Hextasy.Framework;
+﻿using Hextasy.CardWars.Logic;
+using Hextasy.Framework;
 
 namespace Hextasy.CardWars.Cards.Traits
 {

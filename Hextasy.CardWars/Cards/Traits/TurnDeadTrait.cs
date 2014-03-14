@@ -2,6 +2,7 @@
 using System.Windows;
 
 using Hextasy.CardWars.Cards.Summoned;
+using Hextasy.CardWars.Logic;
 
 namespace Hextasy.CardWars.Cards.Traits
 {

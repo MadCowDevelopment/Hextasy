@@ -77,11 +77,11 @@
     <Compile Include="AI\PlaySpellCardAction.cs" />
     <Compile Include="AI\SearchCpuPlayer.cs" />
     <Compile Include="AI\UtilityFunction.cs" />
-    <Compile Include="CardControl.xaml.cs">
+    <Compile Include="Presentation\Controls\CardControl.xaml.cs">
       <DependentUpon>CardControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CardControlStyleSelector.cs" />
-    <Compile Include="CardDiedEventArgs.cs" />
+    <Compile Include="Presentation\Utils\CardControlStyleSelector.cs" />
+    <Compile Include="Logic\CardDiedEventArgs.cs" />
     <Compile Include="Cards\CardType.cs" />
     <Compile Include="Cards\Monsters\HumanAbbotCard.cs" />
     <Compile Include="Cards\Monsters\HumanBishopCard.cs" />
@@ -224,27 +224,27 @@
     <Compile Include="Cards\Traits\SuicideBomberTrait.cs" />
     <Compile Include="Cards\Traits\SummonUndeadTrait.cs" />
     <Compile Include="Cards\Traits\TurnDeadTrait.cs" />
-    <Compile Include="CardWarsGame.cs" />
-    <Compile Include="CardWarsGameLogic.cs" />
-    <Compile Include="CardWarsGameLogicExtensions.cs" />
-    <Compile Include="CardWarsGameResultView.xaml.cs">
+    <Compile Include="Logic\CardWarsGame.cs" />
+    <Compile Include="Logic\CardWarsGameLogic.cs" />
+    <Compile Include="Logic\CardWarsGameLogicExtensions.cs" />
+    <Compile Include="Presentation\Views\CardWarsGameResultView.xaml.cs">
       <DependentUpon>CardWarsGameResultView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CardWarsGameResultViewModel.cs" />
-    <Compile Include="CardWarsGameView.xaml.cs">
+    <Compile Include="Presentation\ViewModels\CardWarsGameResultViewModel.cs" />
+    <Compile Include="Presentation\Views\CardWarsGameView.xaml.cs">
       <DependentUpon>CardWarsGameView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CardWarsGameViewModel.cs" />
-    <Compile Include="CardWarsSettings.cs" />
-    <Compile Include="CardWarsSettingsView.xaml.cs">
+    <Compile Include="Presentation\ViewModels\CardWarsGameViewModel.cs" />
+    <Compile Include="Logic\CardWarsSettings.cs" />
+    <Compile Include="Presentation\Views\CardWarsSettingsView.xaml.cs">
       <DependentUpon>CardWarsSettingsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CardWarsSettingsViewModel.cs" />
-    <Compile Include="CardWarsStatistics.cs" />
-    <Compile Include="CardWarsTile.cs" />
+    <Compile Include="Presentation\ViewModels\CardWarsSettingsViewModel.cs" />
+    <Compile Include="Logic\CardWarsStatistics.cs" />
+    <Compile Include="Logic\CardWarsTile.cs" />
     <Compile Include="AI\CpuPlayer.cs" />
-    <Compile Include="CurrentPlayerChangedEventArgs.cs" />
-    <Compile Include="Deck.cs" />
+    <Compile Include="Logic\CurrentPlayerChangedEventArgs.cs" />
+    <Compile Include="Logic\Deck.cs" />
     <Compile Include="DeckBuilders\AllDeckFactory.cs" />
     <Compile Include="DeckBuilders\AllExceptDragonsDeckFactory.cs" />
     <Compile Include="DeckBuilders\BeastDeckFactory.cs" />
@@ -252,9 +252,9 @@
     <Compile Include="DeckBuilders\HumanDeckFactory.cs" />
     <Compile Include="DeckBuilders\TestDeckFactory.cs" />
     <Compile Include="DeckBuilders\UndeadDeckFactory.cs" />
-    <Compile Include="NullToVisibilityConverter.cs" />
-    <Compile Include="Player.cs" />
-    <Compile Include="PlayerControl.xaml.cs">
+    <Compile Include="Presentation\Utils\NullToVisibilityConverter.cs" />
+    <Compile Include="Logic\Player.cs" />
+    <Compile Include="Presentation\Controls\PlayerControl.xaml.cs">
       <DependentUpon>PlayerControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -270,13 +270,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="ResourceControl.xaml.cs">
+    <Compile Include="Presentation\Controls\ResourceControl.xaml.cs">
       <DependentUpon>ResourceControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SpellControl.xaml.cs">
+    <Compile Include="Presentation\Controls\SpellControl.xaml.cs">
       <DependentUpon>SpellControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TileControl.xaml.cs">
+    <Compile Include="Presentation\Controls\TileControl.xaml.cs">
       <DependentUpon>TileControl.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -298,55 +298,55 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="CardControl.xaml">
+    <Page Include="Presentation\Controls\CardControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CardWarsGameResultView.xaml">
+    <Page Include="Presentation\Views\CardWarsGameResultView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CardWarsGameView.xaml">
+    <Page Include="Presentation\Views\CardWarsGameView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CardWarsSettingsView.xaml">
+    <Page Include="Presentation\Views\CardWarsSettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PlayerControl.xaml">
+    <Page Include="Presentation\Controls\PlayerControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Converters.xaml">
+    <Page Include="Presentation\DataTemplates\Converters.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataTemplates.xaml">
+    <Page Include="Presentation\DataTemplates\DataTemplates.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ResourceControl.xaml">
+    <Page Include="Presentation\Controls\ResourceControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SpellControl.xaml">
+    <Page Include="Presentation\Controls\SpellControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Storyboards.xaml">
+    <Page Include="Presentation\DataTemplates\Storyboards.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles.xaml">
+    <Page Include="Presentation\DataTemplates\Styles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="StyleSelectors.xaml">
+    <Page Include="Presentation\DataTemplates\StyleSelectors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TileControl.xaml">
+    <Page Include="Presentation\Controls\TileControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -585,12 +585,7 @@
   <ItemGroup>
     <Resource Include="Images\Cards\Monsters\HumanPriest31.PNG" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Presentation\DataTemplates\" />
-    <Folder Include="Presentation\Utils\" />
-    <Folder Include="Presentation\ViewModels\" />
-    <Folder Include="Presentation\Views\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Import Project="Fody.targets" />

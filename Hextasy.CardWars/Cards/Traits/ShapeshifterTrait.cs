@@ -1,4 +1,8 @@
-﻿using Hextasy.CardWars.Cards.Monsters;
+﻿using System;
+using System.Windows;
+using Hextasy.CardWars.Cards.Monsters;
+using Hextasy.CardWars.Cards.Summoned;
+using Hextasy.CardWars.Logic;
 using Hextasy.Framework;
 
 namespace Hextasy.CardWars.Cards.Traits
@@ -36,26 +40,26 @@ namespace Hextasy.CardWars.Cards.Traits
 
         public override void Activate(CardWarsGameLogic cardWarsGameLogic, CardWarsTile targetTile)
         {
-            MonsterCard randomMonster;
+            MonsterCard randomMonster = null;
             switch (RNG.Next(0, 4))
             {
                 case 0:
-                    randomMonster = new FireAntCard();
+                    Application.Current.Dispatcher.Invoke(new Action(() => randomMonster = new FireAntCard()));
                     break;
                 case 1:
-                    randomMonster = new BasiliskCard();
+                    Application.Current.Dispatcher.Invoke(new Action(() => randomMonster = new BasiliskCard()));
                     break;
                 case 2:
-                    randomMonster = new SpiderCard();
+                    Application.Current.Dispatcher.Invoke(new Action(() => randomMonster = new SpiderCard()));
                     break;
                 case 3:
-                    randomMonster = new WolfCard();
+                    Application.Current.Dispatcher.Invoke(new Action(() => randomMonster = new WolfCard()));
                     break;
                 case 4:
-                    randomMonster = new BrownBearCard();
+                    Application.Current.Dispatcher.Invoke(new Action(() => randomMonster = new BrownBearCard()));
                     break;
                 default:
-                    randomMonster = new FireAntCard();
+                    Application.Current.Dispatcher.Invoke(new Action(() => randomMonster = new FireAntCard()));
                     break;
             }
 

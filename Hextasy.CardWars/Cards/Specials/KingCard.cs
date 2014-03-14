@@ -40,7 +40,7 @@
 
         protected override string ImageFolder
         {
-            get { return @"Images\Cards\Specials\"; }
+            get { return @"pack://application:,,,/Hextasy.CardWars;component/Images/Cards/Specials/"; }
         }
 
         #endregion Protected Properties

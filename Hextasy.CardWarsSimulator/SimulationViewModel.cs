@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Caliburn.Micro;
 
 using Hextasy.CardWars;
+using Hextasy.CardWars.Logic;
 using Hextasy.Framework;
 using Hextasy.Framework.Utils;
 
@@ -51,32 +52,38 @@ namespace Hextasy.CardWarsSimulator
 
         public DispatcherObservableCollection<string> FinishedGames
         {
-            get; private set;
+            get;
+            private set;
         }
 
         public int NumberOfFinishedGames
         {
-            get; set;
+            get;
+            set;
         }
 
         public List<int> Player1RemainingLife
         {
-            get; private set;
+            get;
+            private set;
         }
 
         public int Player1Wins
         {
-            get; set;
+            get;
+            set;
         }
 
         public List<int> Player2RemainingLife
         {
-            get; private set;
+            get;
+            private set;
         }
 
         public int Player2Wins
         {
-            get; set;
+            get;
+            set;
         }
 
         #endregion Public Properties

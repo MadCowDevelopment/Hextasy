@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Caliburn.Micro;
+using Hextasy.CardWars.Logic;
 
 namespace Hextasy.CardWars.Cards.Traits
 {
@@ -46,12 +47,14 @@ namespace Hextasy.CardWars.Cards.Traits
 
         private int Amount
         {
-            get; set;
+            get;
+            set;
         }
 
         private Race Race
         {
-            get; set;
+            get;
+            set;
         }
 
         #endregion Private Properties

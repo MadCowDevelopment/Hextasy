@@ -1,4 +1,5 @@
 using System.Linq;
+using Hextasy.CardWars.Logic;
 
 namespace Hextasy.CardWars.AI
 {
@@ -31,7 +32,7 @@ namespace Hextasy.CardWars.AI
             if (!simulated) Wait();
             gameLogic.SelectTile(attackerTile);
 
-            if(!simulated) Wait();
+            if (!simulated) Wait();
             gameLogic.AttackCard(defenderTile);
         }
 

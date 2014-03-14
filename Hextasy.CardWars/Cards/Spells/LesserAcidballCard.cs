@@ -1,8 +1,8 @@
 using System.ComponentModel.Composition;
 
-using Caliburn.Micro;
 
 using Hextasy.CardWars.Cards.Debuffs;
+using Hextasy.CardWars.Logic;
 
 namespace Hextasy.CardWars.Cards.Spells
 {

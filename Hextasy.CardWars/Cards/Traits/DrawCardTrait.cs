@@ -1,4 +1,6 @@
-﻿namespace Hextasy.CardWars.Cards.Traits
+﻿using Hextasy.CardWars.Logic;
+
+namespace Hextasy.CardWars.Cards.Traits
 {
     public class DrawCardTrait : Trait, IActivateTraitOnCardPlayed
     {
@@ -34,7 +36,8 @@
 
         private int Amount
         {
-            get; set;
+            get;
+            set;
         }
 
         #endregion Private Properties

@@ -2,6 +2,7 @@ using System.ComponentModel.Composition;
 using System.Linq;
 
 using Hextasy.CardWars.Cards.Debuffs;
+using Hextasy.CardWars.Logic;
 
 namespace Hextasy.CardWars.AI
 {

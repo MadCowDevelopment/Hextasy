@@ -6,6 +6,7 @@ using Caliburn.Micro;
 
 using Hextasy.CardWars.Cards.Debuffs;
 using Hextasy.CardWars.Cards.Traits;
+using Hextasy.CardWars.Logic;
 using Hextasy.Framework;
 using Hextasy.Framework.Utils;
 

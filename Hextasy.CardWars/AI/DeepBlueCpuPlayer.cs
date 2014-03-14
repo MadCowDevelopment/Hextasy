@@ -2,6 +2,7 @@ using System.Linq;
 
 using Hextasy.CardWars.Cards;
 using Hextasy.CardWars.Cards.Specials;
+using Hextasy.CardWars.Logic;
 using Hextasy.Framework;
 
 namespace Hextasy.CardWars.AI
@@ -50,7 +51,7 @@ namespace Hextasy.CardWars.AI
                 Wait();
                 cardWarsGameLogic.SelectTile(monsterCard);
                 var randomTarget = cardWarsGameLogic.OpponentTiles.Where(p => p.IsValidTarget).RandomOrDefault();
-                if(randomTarget == null) continue;
+                if (randomTarget == null) continue;
                 Wait();
                 cardWarsGameLogic.AttackCard(randomTarget);
             }

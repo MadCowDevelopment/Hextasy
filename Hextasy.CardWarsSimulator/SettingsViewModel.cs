@@ -4,9 +4,9 @@ using System.Linq;
 
 using Caliburn.Micro;
 
-using Hextasy.CardWars;
 using Hextasy.CardWars.AI;
 using Hextasy.CardWars.DeckBuilders;
+using Hextasy.CardWars.Logic;
 using Hextasy.Framework;
 
 namespace Hextasy.CardWarsSimulator
@@ -51,47 +51,56 @@ namespace Hextasy.CardWarsSimulator
 
         public int Columns
         {
-            get; set;
+            get;
+            set;
         }
 
         public List<CpuPlayer> CpuPlayers
         {
-            get; set;
+            get;
+            set;
         }
 
         public List<DeckFactory> DeckFactories
         {
-            get; set;
+            get;
+            set;
         }
 
         public int Iterations
         {
-            get; set;
+            get;
+            set;
         }
 
         public int Rows
         {
-            get; set;
+            get;
+            set;
         }
 
         public CpuPlayer SelectedCpuPlayer1
         {
-            get; set;
+            get;
+            set;
         }
 
         public CpuPlayer SelectedCpuPlayer2
         {
-            get; set;
+            get;
+            set;
         }
 
         public DeckFactory SelectedPlayer1DeckFactory
         {
-            get; set;
+            get;
+            set;
         }
 
         public DeckFactory SelectedPlayer2DeckFactory
         {
-            get; set;
+            get;
+            set;
         }
 
         #endregion Public Properties

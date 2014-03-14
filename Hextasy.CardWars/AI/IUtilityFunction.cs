@@ -1,3 +1,5 @@
+using Hextasy.CardWars.Logic;
+
 namespace Hextasy.CardWars.AI
 {
     public interface IUtilityFunction

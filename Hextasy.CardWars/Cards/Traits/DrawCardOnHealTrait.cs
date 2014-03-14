@@ -1,4 +1,6 @@
-﻿namespace Hextasy.CardWars.Cards.Traits
+﻿using Hextasy.CardWars.Logic;
+
+namespace Hextasy.CardWars.Cards.Traits
 {
     public class DrawCardOnHealTrait : Trait, IActivateTraitOnHeal
     {

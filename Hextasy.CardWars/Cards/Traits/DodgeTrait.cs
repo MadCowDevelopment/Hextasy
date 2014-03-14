@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 
 using Caliburn.Micro;
-
+using Hextasy.CardWars.Logic;
 using Hextasy.Framework;
 
 namespace Hextasy.CardWars.Cards.Traits

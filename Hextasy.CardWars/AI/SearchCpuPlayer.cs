@@ -3,6 +3,7 @@ using System.Linq;
 
 using Hextasy.CardWars.Cards;
 using Hextasy.CardWars.Cards.Specials;
+using Hextasy.CardWars.Logic;
 using Hextasy.Framework;
 using Hextasy.Framework.Utils;
 

@@ -1,5 +1,5 @@
 using System.Linq;
-
+using Hextasy.CardWars.Logic;
 using Hextasy.Framework;
 
 namespace Hextasy.CardWars.Cards.Traits

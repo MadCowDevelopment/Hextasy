@@ -6,6 +6,7 @@ using System.Linq;
 
 using Hextasy.CardWars;
 using Hextasy.CardWars.DeckBuilders;
+using Hextasy.CardWars.Logic;
 using Hextasy.Framework;
 
 namespace Hextasy.CardWarsTestApp

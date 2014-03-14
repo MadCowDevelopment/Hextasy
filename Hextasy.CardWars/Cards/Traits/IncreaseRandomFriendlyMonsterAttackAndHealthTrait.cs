@@ -1,4 +1,5 @@
-﻿using Hextasy.Framework;
+﻿using Hextasy.CardWars.Logic;
+using Hextasy.Framework;
 
 namespace Hextasy.CardWars.Cards.Traits
 {
@@ -37,12 +38,14 @@ namespace Hextasy.CardWars.Cards.Traits
 
         private int Attack
         {
-            get; set;
+            get;
+            set;
         }
 
         private int Health
         {
-            get; set;
+            get;
+            set;
         }
 
         #endregion Private Properties

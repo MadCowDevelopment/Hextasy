@@ -1,6 +1,7 @@
 using System.Linq;
 
 using Hextasy.CardWars.Cards;
+using Hextasy.CardWars.Logic;
 
 namespace Hextasy.CardWars.AI
 {

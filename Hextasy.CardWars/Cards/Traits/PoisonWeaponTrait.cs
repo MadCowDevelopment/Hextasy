@@ -1,4 +1,5 @@
 ﻿using Hextasy.CardWars.Cards.Debuffs;
+using Hextasy.CardWars.Logic;
 
 namespace Hextasy.CardWars.Cards.Traits
 {
@@ -37,12 +38,14 @@ namespace Hextasy.CardWars.Cards.Traits
 
         private int Amount
         {
-            get; set;
+            get;
+            set;
         }
 
         private int Duration
         {
-            get; set;
+            get;
+            set;
         }
 
         #endregion Private Properties

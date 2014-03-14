@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.Composition;
+using Hextasy.CardWars.Logic;
 
 namespace Hextasy.CardWars.Cards.Spells
 {

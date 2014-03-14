@@ -5,6 +5,7 @@ using System.Linq;
 using Caliburn.Micro;
 
 using Hextasy.CardWars.Cards.Debuffs;
+using Hextasy.CardWars.Logic;
 using Hextasy.Framework;
 
 namespace Hextasy.CardWars.Cards.Spells

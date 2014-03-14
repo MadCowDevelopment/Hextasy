@@ -1,4 +1,6 @@
-﻿namespace Hextasy.CardWars.Cards
+﻿using Hextasy.CardWars.Logic;
+
+namespace Hextasy.CardWars.Cards
 {
     public abstract class SpellCard : Card
     {

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.Composition;
 using System.Threading;
+using Hextasy.CardWars.Logic;
 
 namespace Hextasy.CardWars.AI
 {
@@ -9,7 +10,7 @@ namespace Hextasy.CardWars.AI
     {
         #region Fields
 
-        public static int DurationBetweenActions = 1500;
+        public static int DurationBetweenActions = 0;
 
         #endregion Fields
 
@@ -22,7 +23,8 @@ namespace Hextasy.CardWars.AI
 
         public bool Simulated
         {
-            get; set;
+            get;
+            set;
         }
 
         #endregion Public Properties

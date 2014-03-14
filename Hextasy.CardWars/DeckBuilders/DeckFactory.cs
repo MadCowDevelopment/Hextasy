@@ -2,6 +2,7 @@
 using System.ComponentModel.Composition;
 
 using Hextasy.CardWars.Cards;
+using Hextasy.CardWars.Logic;
 
 namespace Hextasy.CardWars.DeckBuilders
 {

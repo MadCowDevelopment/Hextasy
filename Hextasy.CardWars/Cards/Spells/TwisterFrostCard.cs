@@ -5,6 +5,7 @@ using System.Linq;
 using Caliburn.Micro;
 
 using Hextasy.CardWars.Cards.Debuffs;
+using Hextasy.CardWars.Logic;
 using Hextasy.Framework;
 
 namespace Hextasy.CardWars.Cards.Spells
@@ -47,10 +48,10 @@ namespace Hextasy.CardWars.Cards.Spells
             randomLine.Where(p => p.Card != null)
                 .Apply(
                     p =>
-                        {
-                            p.AddDebuff(new FrozenDebuff());
-                            p.Card.TakeFrostDamage(1);
-                        });
+                    {
+                        p.AddDebuff(new FrozenDebuff());
+                        p.Card.TakeFrostDamage(1);
+                    });
         }
 
         protected override Card CreateInstance()

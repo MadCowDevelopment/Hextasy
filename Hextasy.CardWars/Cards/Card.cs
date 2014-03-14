@@ -1,6 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
-
+using Hextasy.CardWars.Logic;
 using Hextasy.Framework;
 
 namespace Hextasy.CardWars.Cards
@@ -43,7 +43,8 @@ namespace Hextasy.CardWars.Cards
 
         public bool IsSelected
         {
-            get; set;
+            get;
+            set;
         }
 
         public abstract string Name

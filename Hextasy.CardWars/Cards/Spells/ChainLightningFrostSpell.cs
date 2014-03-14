@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 
 using Caliburn.Micro;
+using Hextasy.CardWars.Logic;
 
 namespace Hextasy.CardWars.Cards.Spells
 {

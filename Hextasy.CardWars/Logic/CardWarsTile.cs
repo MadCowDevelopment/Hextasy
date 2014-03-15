@@ -159,7 +159,7 @@ namespace Hextasy.CardWars.Logic
         {
             var card = sender as MonsterCard;
             if (card == null) return;
-            if (e.PropertyName == card.GetPropertyName(p => p.Health))
+            if (e.PropertyName == "Health")
             {
                 if (card.Health <= 0 && !card.IsKilled) Die();
             }

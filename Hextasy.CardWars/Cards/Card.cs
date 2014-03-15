@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using Hextasy.CardWars.Logic;
 using Hextasy.Framework;
 
@@ -9,7 +8,7 @@ namespace Hextasy.CardWars.Cards
     {
         #region Fields
 
-        private Guid? _id;
+        private long _id = -1;
         private Player _player;
 
         #endregion Fields
@@ -31,9 +30,9 @@ namespace Hextasy.CardWars.Cards
             get;
         }
 
-        public Guid Id
+        public long Id
         {
-            get { return _id ?? (_id = Guid.NewGuid()).Value; }
+            get { return _id == -1 ? (_id = IdCreator.Next()) : _id; }
         }
 
         public string ImageSource
@@ -94,7 +93,7 @@ namespace Hextasy.CardWars.Cards
         public Card DeepCopy(Player player)
         {
             var card = CreateInstance();
-            card.Player = player;
+            card._player = player;
             card._id = Id;
             OnDeepCopy(card);
             return card;

@@ -77,6 +77,7 @@
     <Compile Include="AI\PlaySpellCardAction.cs" />
     <Compile Include="AI\SearchCpuPlayer.cs" />
     <Compile Include="AI\UtilityFunction.cs" />
+    <Compile Include="Logic\IdCreator.cs" />
     <Compile Include="Presentation\Controls\CardControl.xaml.cs">
       <DependentUpon>CardControl.xaml</DependentUpon>
     </Compile>

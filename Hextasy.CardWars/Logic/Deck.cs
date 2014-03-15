@@ -12,7 +12,7 @@ namespace Hextasy.CardWars.Logic
         private const int NumberCardsInHandWhenStarting = 4;
 
         private Queue<Card> _cardQueue;
-        private List<Card> _cards;
+        private Dictionary<long, Card> _cards;
 
         #endregion Fields
 
@@ -21,7 +21,7 @@ namespace Hextasy.CardWars.Logic
         public Deck(string name, IEnumerable<Card> cards)
         {
             Name = name;
-            _cards = cards.ToList();
+            _cards = cards.ToDictionary(p => p.Id, p => p);
             InitializeDeck();
         }
 
@@ -35,7 +35,7 @@ namespace Hextasy.CardWars.Logic
 
         public IEnumerable<Card> Cards
         {
-            get { return _cards; }
+            get { return _cards.Values; }
         }
 
         public string Name
@@ -51,12 +51,13 @@ namespace Hextasy.CardWars.Logic
         public Deck DeepCopy(Player player)
         {
             var deck = new Deck();
-            deck._cards = new List<Card>(_cards.Select(p => p.DeepCopy(player)));
+            deck._cards = _cards.Values.ToDictionary(p => p.Id, p => p.DeepCopy(player));
             deck._cardQueue = new Queue<Card>();
             foreach (var card in _cardQueue)
             {
-                deck._cardQueue.Enqueue(deck._cards.Single(p => p.Id == card.Id));
+                deck._cardQueue.Enqueue(deck._cards[card.Id]);
             }
+
             return deck;
         }
 
@@ -84,7 +85,7 @@ namespace Hextasy.CardWars.Logic
 
         private void InitializeDeck()
         {
-            _cardQueue = new Queue<Card>(_cards.Shuffle());
+            _cardQueue = new Queue<Card>(_cards.Values.Shuffle());
         }
 
         #endregion Private Methods

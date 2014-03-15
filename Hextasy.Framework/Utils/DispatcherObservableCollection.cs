@@ -90,7 +90,7 @@ namespace Hextasy.Framework.Utils
                 var dispatcherObject = collectionChangedHandler.Target as DispatcherObject;
                 if (dispatcherObject != null && !dispatcherObject.CheckAccess())
                 {
-                    dispatcherObject.Dispatcher.BeginInvoke(DispatcherPriority.DataBind, collectionChangedHandler, this, eventArgs);
+                    dispatcherObject.Dispatcher.Invoke(DispatcherPriority.DataBind, collectionChangedHandler, this, eventArgs);
                 }
                 else
                 {

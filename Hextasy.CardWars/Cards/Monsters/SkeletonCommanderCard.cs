@@ -11,8 +11,8 @@ namespace Hextasy.CardWars.Cards.Monsters
 
         public SkeletonCommanderCard()
         {
-            Traits.Add(new IncreaseRaceAttackTrait(this, 2, Race.Undead));
-            Traits.Add(new IncreaseRaceHealthTrait(this, 2, Race.Undead));
+            Traits.Add(new IncreaseRaceAttackTrait(this, 1, Race.Undead));
+            Traits.Add(new IncreaseRaceHealthTrait(this, 1, Race.Undead));
         }
 
         #endregion Constructors

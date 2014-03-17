@@ -67,14 +67,14 @@
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="AI\AIDebugHelper.cs" />
-    <Compile Include="AI\AttackAction.cs" />
+    <Compile Include="AI\AttackCommand.cs" />
     <Compile Include="AI\DeepBlueCpuPlayer.cs" />
     <Compile Include="AI\IUtilityFunction.cs" />
-    <Compile Include="AI\MulliganPlayerAction.cs" />
+    <Compile Include="AI\MulliganCommand.cs" />
     <Compile Include="AI\Node.cs" />
-    <Compile Include="AI\PlayerAction.cs" />
-    <Compile Include="AI\PlayMonsterCardAction.cs" />
-    <Compile Include="AI\PlaySpellCardAction.cs" />
+    <Compile Include="AI\CpuPlayerCommand.cs" />
+    <Compile Include="AI\PlayMonsterCardCommand.cs" />
+    <Compile Include="AI\PlaySpellCardCommand.cs" />
     <Compile Include="AI\SearchCpuPlayer.cs" />
     <Compile Include="AI\UtilityFunction.cs" />
     <Compile Include="Logic\IdCreator.cs" />

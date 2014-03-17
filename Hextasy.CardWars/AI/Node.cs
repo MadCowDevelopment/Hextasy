@@ -7,7 +7,7 @@ namespace Hextasy.CardWars.AI
     {
         #region Constructors
 
-        public Node(PlayerAction playerAction)
+        public Node(CpuPlayerCommand playerAction)
         {
             PlayerAction = playerAction;
             Children = new List<Node>();
@@ -27,7 +27,7 @@ namespace Hextasy.CardWars.AI
             get; private set;
         }
 
-        public PlayerAction PlayerAction
+        public CpuPlayerCommand PlayerAction
         {
             get; private set;
         }

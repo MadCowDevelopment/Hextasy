@@ -4,7 +4,7 @@ using Hextasy.Framework.Utils;
 
 namespace Hextasy.CardWars.AI
 {
-    internal abstract class PlayerAction
+    internal abstract class CpuPlayerCommand
     {
         #region Public Methods
 

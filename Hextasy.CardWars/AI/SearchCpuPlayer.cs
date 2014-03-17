@@ -109,9 +109,9 @@ namespace Hextasy.CardWars.AI
             return result;
         }
 
-        private IEnumerable<AttackAction> GetPossibleAttackActions(CardWarsGameLogic gameLogic)
+        private IEnumerable<AttackCommand> GetPossibleAttackActions(CardWarsGameLogic gameLogic)
         {
-            var result = new List<AttackAction>();
+            var result = new List<AttackCommand>();
 
             var attackerTiles =
                 gameLogic.CurrentPlayerTiles.Where(p => p.Card != null && !(p.Card is KingCard) && !p.Card.IsExhausted);
@@ -121,25 +121,25 @@ namespace Hextasy.CardWars.AI
                 gameLogic.SelectTile(attackerTile);
                 var defenderTiles = gameLogic.OpponentTiles.Where(p => p.IsValidTarget && p.Card != null).ToList();
                 defenderTiles.Sort(new AttackTargetComparer());
-                result.AddRange(defenderTiles.Select(defenderTile => new AttackAction(attackerTile, defenderTile)));
+                result.AddRange(defenderTiles.Select(defenderTile => new AttackCommand(attackerTile, defenderTile)));
             }
 
             return result;
         }
 
-        private IEnumerable<PlayerAction> GetPossibleCardPlayActions(CardWarsGameLogic gameLogic)
+        private IEnumerable<CpuPlayerCommand> GetPossibleCardPlayActions(CardWarsGameLogic gameLogic)
         {
-            var result = new List<PlayerAction>();
+            var result = new List<CpuPlayerCommand>();
             result.AddRange((
                 from monsterCard in gameLogic.CurrentPlayerHand.OfType<MonsterCard>().Where(p => p.CanBePlayed)
                 from freeTile in gameLogic.AllFreeTiles
-                select new PlayMonsterCardAction(freeTile, monsterCard)));
+                select new PlayMonsterCardCommand(freeTile, monsterCard)));
 
             foreach (var spellCard in gameLogic.CurrentPlayerHand.OfType<SpellCard>().Where(p => p.CanBePlayed))
             {
                 result.AddRange(
                     gameLogic.Tiles.Where(tile => tile.IsValidSpellTarget).Select(
-                        tile => new PlaySpellCardAction(tile, spellCard)));
+                        tile => new PlaySpellCardCommand(tile, spellCard)));
             }
 
             return result;

@@ -5,21 +5,21 @@ using Hextasy.CardWars.Logic;
 
 namespace Hextasy.CardWars.AI
 {
-    internal class PlayMonsterCardAction : PlayerAction
+    internal class PlaySpellCardCommand : CpuPlayerCommand
     {
         #region Fields
 
-        private readonly MonsterCard _monsterCard;
+        private readonly SpellCard _spellCard;
         private readonly CardWarsTile _targetTile;
 
         #endregion Fields
 
         #region Constructors
 
-        public PlayMonsterCardAction(CardWarsTile targetTile, MonsterCard monsterCard)
+        public PlaySpellCardCommand(CardWarsTile targetTile, SpellCard spellCard)
         {
             _targetTile = targetTile;
-            _monsterCard = monsterCard;
+            _spellCard = spellCard;
         }
 
         #endregion Constructors
@@ -29,12 +29,12 @@ namespace Hextasy.CardWars.AI
         protected override void OnPerform(CardWarsGameLogic gameLogic, bool simulated)
         {
             var targetTile = gameLogic.Tiles.SingleOrDefault(p => p.Id == _targetTile.Id);
-            var monsterCard = gameLogic.CurrentPlayerHand.SingleOrDefault(p => p.Id == _monsterCard.Id) as MonsterCard;
-            if (targetTile == null || monsterCard == null) return;
+            var spellCard = gameLogic.CurrentPlayerHand.SingleOrDefault(p => p.Id == _spellCard.Id) as SpellCard;
+            if (targetTile == null || spellCard == null) return;
             if (!simulated) Wait();
-            monsterCard.IsSelected = true;
+            spellCard.IsSelected = true;
             if (!simulated) Wait();
-            gameLogic.PlayMonsterCard(targetTile, monsterCard);
+            gameLogic.PlaySpellCard(targetTile, spellCard);
         }
 
         #endregion Protected Methods

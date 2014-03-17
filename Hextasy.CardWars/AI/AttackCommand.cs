@@ -3,7 +3,7 @@ using Hextasy.CardWars.Logic;
 
 namespace Hextasy.CardWars.AI
 {
-    internal class AttackAction : PlayerAction
+    internal class AttackCommand : CpuPlayerCommand
     {
         #region Fields
 
@@ -14,7 +14,7 @@ namespace Hextasy.CardWars.AI
 
         #region Constructors
 
-        public AttackAction(CardWarsTile attackerTile, CardWarsTile defenderTile)
+        public AttackCommand(CardWarsTile attackerTile, CardWarsTile defenderTile)
         {
             _attackerTile = attackerTile;
             _defenderTile = defenderTile;

@@ -2,7 +2,7 @@ using Hextasy.CardWars.Logic;
 
 namespace Hextasy.CardWars.AI
 {
-    internal class MulliganPlayerAction : PlayerAction
+    internal class MulliganCommand : CpuPlayerCommand
     {
         #region Protected Methods
 

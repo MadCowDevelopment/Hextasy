@@ -1,4 +1,5 @@
 using System.Linq;
+
 using Hextasy.CardWars.Logic;
 using Hextasy.Framework;
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using Hextasy.CardWars.Logic;
 
 namespace Hextasy.CardWars.Cards

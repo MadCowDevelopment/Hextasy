@@ -1,7 +1,9 @@
 using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.Windows.Input;
+
 using Caliburn.Micro;
+
 using Hextasy.CardWars.AI;
 using Hextasy.CardWars.Cards;
 using Hextasy.CardWars.Logic;
@@ -34,6 +36,11 @@ namespace Hextasy.CardWars.Presentation.ViewModels
 
         #region Public Properties
 
+        public DispatcherObservableCollection<PlayerAction> Actions
+        {
+            get { return Game.TakenActions; }
+        }
+
         public bool CanMulligan
         {
             get { return Game.CanMulligan && !CurrentPlayer.DidMulligan; }
@@ -49,11 +56,6 @@ namespace Hextasy.CardWars.Presentation.ViewModels
             get { return Game.CurrentPlayer; }
         }
 
-        public bool IsPlayerTurn
-        {
-            get { return !(CurrentPlayer is CpuPlayer); }
-        }
-
         public bool IsInCardPlacementMode
         {
             get { return SelectedCard is MonsterCard; }
@@ -67,6 +69,11 @@ namespace Hextasy.CardWars.Presentation.ViewModels
         public bool IsInTargetMode
         {
             get { return Game.SelectedTile != null; }
+        }
+
+        public bool IsPlayerTurn
+        {
+            get { return !(CurrentPlayer is CpuPlayer); }
         }
 
         public Player Player1

@@ -3,6 +3,7 @@ using System.ComponentModel.Composition;
 using System.Linq;
 
 using Caliburn.Micro;
+
 using Hextasy.CardWars.Logic;
 using Hextasy.Framework;
 

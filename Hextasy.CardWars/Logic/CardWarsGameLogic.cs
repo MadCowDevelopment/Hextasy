@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Threading.Tasks;
+
 using Caliburn.Micro;
+
 using Hextasy.CardWars.AI;
 using Hextasy.CardWars.Cards;
 using Hextasy.CardWars.Cards.Specials;
@@ -21,6 +23,15 @@ namespace Hextasy.CardWars.Logic
         private Player _currentPlayer;
 
         #endregion Fields
+
+        #region Constructors
+
+        public CardWarsGameLogic()
+        {
+            TakenActions = new DispatcherObservableCollection<PlayerAction>();
+        }
+
+        #endregion Constructors
 
         #region Public Properties
 
@@ -92,6 +103,11 @@ namespace Hextasy.CardWars.Logic
         public CardWarsTile SelectedTile
         {
             get { return Tiles.SingleOrDefault(p => p.IsSelected); }
+        }
+
+        public DispatcherObservableCollection<PlayerAction> TakenActions
+        {
+            get; set;
         }
 
         #endregion Public Properties
@@ -172,6 +188,7 @@ namespace Hextasy.CardWars.Logic
             if (!tile.IsValidTarget) return;
 
             SelectedTile.Attack(this, tile);
+            AddLogEntry(new AttackAction(CurrentPlayer.Owner, SelectedTile.Card, tile.Card));
             UnselectTile();
         }
 
@@ -235,6 +252,7 @@ namespace Hextasy.CardWars.Logic
         public void Mulligan()
         {
             if (CanMulligan) CurrentPlayer.Mulligan();
+            AddLogEntry(new MulliganAction(CurrentPlayer.Owner));
         }
 
         public void PlayMonsterCard(CardWarsTile tile, MonsterCard selectedCard)
@@ -246,6 +264,7 @@ namespace Hextasy.CardWars.Logic
             CurrentPlayerHand.Remove(selectedCard);
             selectedCard.Traits.OfType<IActivateTraitOnCardPlayed>().Apply(trait => trait.Activate(this, tile));
             ActivateTraits<IActivateTraitOnAnyCardPlayed>(Tiles, tile);
+            AddLogEntry(new PlayMonsterCardAction(CurrentPlayer.Owner, selectedCard));
         }
 
         public void PlaySpellCard(CardWarsTile tile, SpellCard selectedCard)
@@ -255,6 +274,7 @@ namespace Hextasy.CardWars.Logic
             CurrentPlayer.RemainingResources -= selectedCard.Cost;
             CurrentPlayerHand.Remove(selectedCard);
             selectedCard.Activate(this, tile);
+            AddLogEntry(new PlaySpellCardAction(CurrentPlayer.Owner, selectedCard));
         }
 
         public void PreviewAssignCard(CardWarsTile tile, MonsterCard selectedCard)
@@ -357,6 +377,11 @@ namespace Hextasy.CardWars.Logic
         {
             tiles.Where(p => p.Card != null && p.Card.Traits.OfType<T>().Any()).ToList().Apply(
                 tile => tile.Traits.OfType<T>().ToList().Apply(trait => trait.Activate(this, tile)));
+        }
+
+        private void AddLogEntry(PlayerAction action)
+        {
+            TakenActions.Insert(0, action);
         }
 
         private void CleanupDebuffs()

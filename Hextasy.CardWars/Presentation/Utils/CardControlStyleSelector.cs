@@ -1,12 +1,15 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+
 using Hextasy.CardWars.Presentation.ViewModels;
 
 namespace Hextasy.CardWars.Presentation.Utils
 {
     public class CardControlStyleSelector : StyleSelector
     {
+        #region Public Methods
+
         public override Style SelectStyle(object item, DependencyObject container)
         {
             var element = container as FrameworkElement;
@@ -26,5 +29,6 @@ namespace Hextasy.CardWars.Presentation.Utils
             return style;
         }
 
+        #endregion Public Methods
     }
 }

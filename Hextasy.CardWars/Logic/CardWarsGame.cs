@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.Composition;
+
 using Hextasy.CardWars.Presentation.ViewModels;
 using Hextasy.Framework;
 

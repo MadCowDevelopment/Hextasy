@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+
 using Caliburn.Micro;
+
 using Hextasy.CardWars.Cards;
 using Hextasy.CardWars.Cards.Specials;
 using Hextasy.CardWars.Cards.Traits;
@@ -61,7 +63,10 @@ namespace Hextasy.CardWars.Logic
             get { return Card != null && Card.HasTrait<DefenderTrait>(); }
         }
 
-        public bool IsFixed { get; set; }
+        public bool IsFixed
+        {
+            get; set;
+        }
 
         public bool IsSelected
         {

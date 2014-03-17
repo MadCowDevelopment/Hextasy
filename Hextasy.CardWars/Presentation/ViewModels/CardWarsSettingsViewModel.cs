@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
+
 using Hextasy.CardWars.AI;
 using Hextasy.CardWars.DeckBuilders;
 using Hextasy.CardWars.Logic;

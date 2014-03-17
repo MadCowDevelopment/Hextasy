@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.Composition;
 using System.Threading;
+
 using Hextasy.CardWars.Logic;
 
 namespace Hextasy.CardWars.AI

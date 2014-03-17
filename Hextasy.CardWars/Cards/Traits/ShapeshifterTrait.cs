@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+
 using Hextasy.CardWars.Cards.Monsters;
 using Hextasy.CardWars.Cards.Summoned;
 using Hextasy.CardWars.Logic;

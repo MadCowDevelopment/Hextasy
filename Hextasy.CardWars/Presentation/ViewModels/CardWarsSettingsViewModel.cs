@@ -33,7 +33,7 @@ namespace Hextasy.CardWars.Presentation.ViewModels
             SelectedCpuPlayer1 = Player1CpuPlayers.LastOrDefault();
             SelectedCpuPlayer2 = Player2CpuPlayers.LastOrDefault();
 
-            Columns = 4;
+            Columns = 3;
             Rows = 4;
 
             Player1Decks = new List<Deck>();

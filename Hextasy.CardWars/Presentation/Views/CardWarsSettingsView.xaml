@@ -36,7 +36,7 @@
     <TextBlock Grid.Row="7" Grid.Column="0" Text="Player 2 deck: "/>
     
     <Slider Grid.Row="0" Grid.Column="1" Minimum="4" Maximum="12" Value="{Binding Rows}"/>
-    <Slider Grid.Row="1" Grid.Column="1" Minimum="4" Maximum="15" Value="{Binding Columns}"/>
+    <Slider Grid.Row="1" Grid.Column="1" Minimum="3" Maximum="15" Value="{Binding Columns}"/>
     <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal">
       <RadioButton GroupName="Player1" IsChecked="{Binding Player1Human}">Human</RadioButton>
       <RadioButton GroupName="Player1" IsChecked="{Binding Player1Cpu}">CPU</RadioButton>

@@ -79,8 +79,20 @@
     <Compile Include="AI\UtilityFunction.cs" />
     <Compile Include="Logic\IdCreator.cs" />
     <Compile Include="Logic\PlayerAction.cs" />
+    <Compile Include="Presentation\Controls\AttackActionControl.xaml.cs">
+      <DependentUpon>AttackActionControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\Controls\CardControl.xaml.cs">
       <DependentUpon>CardControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Controls\MulliganActionControl.xaml.cs">
+      <DependentUpon>MulliganActionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Controls\PlayMonsterCardActionControl.xaml.cs">
+      <DependentUpon>PlayMonsterCardActionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Controls\PlaySpellCardActionControl.xaml.cs">
+      <DependentUpon>PlaySpellCardActionControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Utils\CardControlStyleSelector.cs" />
     <Compile Include="Logic\CardDiedEventArgs.cs" />
@@ -300,7 +312,23 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Presentation\Controls\AttackActionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Presentation\Controls\CardControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Presentation\Controls\MulliganActionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Presentation\Controls\PlayMonsterCardActionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Presentation\Controls\PlaySpellCardActionControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

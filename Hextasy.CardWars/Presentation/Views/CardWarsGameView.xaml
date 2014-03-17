@@ -27,7 +27,7 @@
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="420"/>
       <ColumnDefinition Width="*"/>
-      <ColumnDefinition Width="80"/>
+      <ColumnDefinition Width="100"/>
     </Grid.ColumnDefinitions>
 
     <Grid>
@@ -62,7 +62,8 @@
               cal:Message.Attach="[Event Click] = [Action EndTurn()]"/>
     </Grid>
 
-    <ItemsControl Grid.Column="1" ItemsSource="{Binding Tiles}" HorizontalAlignment="Center" VerticalAlignment="Center">
+    <ItemsControl FocusVisualStyle="{x:Null}"
+      Grid.Column="1" ItemsSource="{Binding Tiles}" HorizontalAlignment="Center" VerticalAlignment="Center">
       <ItemsControl.ItemsPanel>
         <ItemsPanelTemplate>
           <framework:HexGrid Columns="{Binding Columns}"/>
@@ -71,11 +72,6 @@
     </ItemsControl>
     
     <ItemsControl Grid.Column="2" ItemsSource="{Binding Actions}">
-      <ItemsControl.ItemTemplate>
-        <DataTemplate>
-          <Image Source="{Binding Image}"/>
-        </DataTemplate>
-      </ItemsControl.ItemTemplate>
       <ItemsControl.ItemsPanel>
         <ItemsPanelTemplate>
           <StackPanel/>

@@ -27,7 +27,7 @@
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="420"/>
       <ColumnDefinition Width="*"/>
-      <ColumnDefinition Width="100"/>
+      <ColumnDefinition Width="70"/>
     </Grid.ColumnDefinitions>
 
     <Grid>
@@ -72,6 +72,11 @@
     </ItemsControl>
     
     <ItemsControl Grid.Column="2" ItemsSource="{Binding Actions}">
+      <ItemsControl.ItemContainerStyle>
+        <Style TargetType="{x:Type FrameworkElement}">
+          <Setter Property="Margin" Value="5"/>
+        </Style>
+      </ItemsControl.ItemContainerStyle>
       <ItemsControl.ItemsPanel>
         <ItemsPanelTemplate>
           <StackPanel/>

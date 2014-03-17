@@ -21,6 +21,8 @@ namespace Hextasy.CardWars.Logic
             get; private set;
         }
 
+        public abstract string PreviewImage { get; }
+
         #endregion Public Properties
     }
 
@@ -34,6 +36,11 @@ namespace Hextasy.CardWars.Logic
         }
 
         #endregion Constructors
+
+        public override string PreviewImage
+        {
+            get { return string.Empty; }
+        }
     }
 
     public class AttackAction : PlayerAction
@@ -62,6 +69,11 @@ namespace Hextasy.CardWars.Logic
         }
 
         #endregion Public Properties
+
+        public override string PreviewImage
+        {
+            get { return Attacker.ImageSource; }
+        }
     }
 
     public class PlayMonsterCardAction : PlayerAction
@@ -84,6 +96,11 @@ namespace Hextasy.CardWars.Logic
         }
 
         #endregion Public Properties
+
+        public override string PreviewImage
+        {
+            get { return PlayedCard.ImageSource; }
+        }
     }
 
     public class PlaySpellCardAction : PlayerAction
@@ -106,5 +123,10 @@ namespace Hextasy.CardWars.Logic
         }
 
         #endregion Public Properties
+
+        public override string PreviewImage
+        {
+            get { return PlayedCard.ImageSource; }
+        }
     }
 }

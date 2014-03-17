@@ -187,8 +187,13 @@ namespace Hextasy.CardWars.Logic
 
             if (!tile.IsValidTarget) return;
 
+            var attackerCard = SelectedTile.Card;
+            var defenderCard = tile.Card;
+
             SelectedTile.Attack(this, tile);
-            AddLogEntry(new AttackAction(CurrentPlayer.Owner, SelectedTile.Card, tile.Card));
+
+            AddLogEntry(new AttackAction(CurrentPlayer.Owner, attackerCard, defenderCard));
+
             UnselectTile();
         }
 
@@ -264,6 +269,7 @@ namespace Hextasy.CardWars.Logic
             CurrentPlayerHand.Remove(selectedCard);
             selectedCard.Traits.OfType<IActivateTraitOnCardPlayed>().Apply(trait => trait.Activate(this, tile));
             ActivateTraits<IActivateTraitOnAnyCardPlayed>(Tiles, tile);
+
             AddLogEntry(new PlayMonsterCardAction(CurrentPlayer.Owner, selectedCard));
         }
 

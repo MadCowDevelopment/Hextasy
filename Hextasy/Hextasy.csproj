@@ -166,6 +166,10 @@
       <Project>{8ad4738d-0fc5-4b1f-ab22-9f3d0ec379a9}</Project>
       <Name>Hextasy.Trains</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Hextasy.Villagers\Hextasy.Villagers.csproj">
+      <Project>{1317e798-00ca-43e5-98a9-5859fcb059fa}</Project>
+      <Name>Hextasy.Villagers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Hextasy.XInARow\Hextasy.XInARow.csproj">
       <Project>{a30347e1-ea0e-4945-a50a-98f37bfd79b2}</Project>
       <Name>Hextasy.XInARow</Name>

@@ -11,7 +11,7 @@
 
         public override int BaseHealth
         {
-            get { return 30; }
+            get { return 60; }
         }
 
         public override int Cost

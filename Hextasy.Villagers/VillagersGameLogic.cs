@@ -11,5 +11,20 @@ namespace Hextasy.Villagers
         {
             return new VillagersTile();
         }
+
+        public void PlaceItem(VillagersTile tile)
+        {
+            
+        }
+
+        public void PreviewPlaceItem(VillagersTile tile)
+        {
+            
+        }
+
+        public void PreviewRemoveItem(VillagersTile tile)
+        {
+            
+        }
     }
 }

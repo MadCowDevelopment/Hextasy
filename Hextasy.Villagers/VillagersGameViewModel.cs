@@ -12,5 +12,20 @@ namespace Hextasy.Villagers
         public VillagersGameViewModel(VillagersGameLogic game, IEventAggregator eventAggregator) : base(game, eventAggregator)
         {
         }
+
+        public void OnTileClick(VillagersTile tile)
+        {
+            Game.PlaceItem(tile);
+        }
+
+        public void OnTileEnter(VillagersTile tile)
+        {
+            Game.PreviewPlaceItem(tile);
+        }
+
+        public void OnTileLeave(VillagersTile tile)
+        {
+            Game.PreviewRemoveItem(tile);
+        }
     }
 }

@@ -1,0 +1,10 @@
+The following files are all downloaded from www.iconarchive.com and have the following licence information:
+Filename 	- Artist 			- License
+upgrade.png - Hopstarter 		- CC Attribution-Noncommercial-No Derivate 4.0
+stone.png 	- Anton Gerasimenko - Free for non commercial use
+bucket.png 	- ChrisL21 			- CC Attribution-Noncommercial-No Derivate 4.0
+food.png 	- PixelMixer 		- Freeware
+
+The remaining images have been downloaded from https://openclipart.org, and are published under the public domain.
+The author of all images is nicubunu: http://nicubunu.ro
+Thank you very much for releasing all your wonderful work to the public domain!

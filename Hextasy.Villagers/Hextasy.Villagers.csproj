@@ -81,6 +81,26 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
+    <Resource Include="Images\combo1.png" />
+    <Resource Include="Images\combo2.png" />
+    <Resource Include="Images\combo3.png" />
+    <Resource Include="Images\combo4.png" />
+    <Resource Include="Images\combo5.png" />
+    <Resource Include="Images\food1.png" />
+    <Resource Include="Images\food2.png" />
+    <Resource Include="Images\food3.png" />
+    <Resource Include="Images\food4.png" />
+    <Resource Include="Images\food5.png" />
+    <Resource Include="Images\stone1.png" />
+    <Resource Include="Images\stone2.png" />
+    <Resource Include="Images\stone3.png" />
+    <Resource Include="Images\stone4.png" />
+    <Resource Include="Images\stone5.png" />
+    <Resource Include="Images\water1.png" />
+    <Resource Include="Images\water2.png" />
+    <Resource Include="Images\water3.png" />
+    <Resource Include="Images\water4.png" />
+    <Resource Include="Images\water5.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Hextasy.Framework\Hextasy.Framework.csproj">

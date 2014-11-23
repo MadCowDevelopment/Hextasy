@@ -72,7 +72,7 @@
         
         <DataTemplate DataType="{x:Type villagers:Building}">
             <Image Source="{Binding ImageSource}" Margin="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Button}, 
-                        Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.25}"/>
+                        Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.20}"/>
         </DataTemplate>
 
     </UserControl.Resources>

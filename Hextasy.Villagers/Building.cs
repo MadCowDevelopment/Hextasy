@@ -2,7 +2,7 @@ using Hextasy.Framework;
 
 namespace Hextasy.Villagers
 {
-    public class Building
+    public class Building : ObservableObject
     {
         private Building(ResourceType type, int level)
         {
@@ -24,8 +24,16 @@ namespace Hextasy.Villagers
             return new Building(type, 1);
         }
 
-        private int Level { get; set; }
+        public void LevelUp()
+        {
+            if (Level >= MaxLevel) return;
+            Level++;
+        }
 
-        private ResourceType Type { get; set; }
+        public int Level { get; private set; }
+
+        public ResourceType Type { get; private set; }
+
+        public int MaxLevel { get { return 5; } }
     }
 }

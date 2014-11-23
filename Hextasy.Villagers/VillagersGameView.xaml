@@ -65,8 +65,14 @@
         <DataTemplate DataType="{x:Type villagers:VillagersTile}">
             <Button x:Name="B1" Style="{StaticResource HexagonButtonStyle}" Background="LightGray"
             FocusVisualStyle="{x:Null}" Focusable="False"
-                    cal:Message.Attach="[Event Click] = [Action OnTileClick($dataContext)];[Event MouseEnter] = [Action OnTileEnter($dataContext)];[Event MouseLeave] = [Action OnTileLeave($dataContext)]">
+                    cal:Message.Attach="[Event Click] = [Action OnTileClick($dataContext)];[Event MouseEnter] = [Action OnTileEnter($dataContext)];[Event MouseLeave] = [Action OnTileLeave($dataContext)]"
+                    Content="{Binding Building}">
             </Button>
+        </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type villagers:Building}">
+            <Image Source="{Binding ImageSource}" Margin="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Button}, 
+                        Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.25}"/>
         </DataTemplate>
 
     </UserControl.Resources>

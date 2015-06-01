@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hextasy", "Hextasy\Hextasy.csproj", "{F1A2186A-9020-4289-881B-2139A022ECC9}"
 EndProject
@@ -48,6 +48,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hextasy.CardWarsTestApp", "Hextasy.CardWarsTestApp\Hextasy.CardWarsTestApp.csproj", "{589657D1-28ED-4063-8C32-325D79915D52}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hextasy.Villagers", "Hextasy.Villagers\Hextasy.Villagers.csproj", "{1317E798-00CA-43E5-98A9-5859FCB059FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hextasy.MiningBot", "Hextasy.MiningBot\Hextasy.MiningBot.csproj", "{ED015B88-C70D-456F-88A5-0C9E75C70C63}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -111,6 +113,10 @@ Global
 		{1317E798-00CA-43E5-98A9-5859FCB059FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1317E798-00CA-43E5-98A9-5859FCB059FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1317E798-00CA-43E5-98A9-5859FCB059FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED015B88-C70D-456F-88A5-0C9E75C70C63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED015B88-C70D-456F-88A5-0C9E75C70C63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED015B88-C70D-456F-88A5-0C9E75C70C63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED015B88-C70D-456F-88A5-0C9E75C70C63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -130,5 +136,6 @@ Global
 		{47C2560A-1E0C-4F8A-B371-76A2BB4371E1} = {CDE2A1EE-83B2-4D68-A7BA-711B19E0D80A}
 		{589657D1-28ED-4063-8C32-325D79915D52} = {CDE2A1EE-83B2-4D68-A7BA-711B19E0D80A}
 		{1317E798-00CA-43E5-98A9-5859FCB059FA} = {55D77D55-902E-464E-9CD3-BDBD31641C81}
+		{ED015B88-C70D-456F-88A5-0C9E75C70C63} = {55D77D55-902E-464E-9CD3-BDBD31641C81}
 	EndGlobalSection
 EndGlobal

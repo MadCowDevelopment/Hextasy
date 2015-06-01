@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="Hextasy.MiningBot.MiningBotGameView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:framework="clr-namespace:Hextasy.Framework;assembly=Hextasy.Framework"
+             xmlns:miningBot="clr-namespace:Hextasy.MiningBot"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+  <UserControl.Resources>
+    <Style x:Key="HexagonButtonStyle" TargetType="{x:Type Button}">
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="{x:Type Button}">
+            <Grid>
+              <Path 
+                Fill="{TemplateBinding Background}" 
+                HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" 
+                Height="Auto" x:Name="Path" Stretch="Fill"
+                RenderTransformOrigin="0.5, 0.5"
+                Data="M 250,0 L 750,0 L 1000,433 L 750,866 L 250,866 L 0,433 Z">
+              </Path>
+              <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+    <DataTemplate DataType="{x:Type miningBot:MiningBotTile}">
+      <Button Style="{StaticResource HexagonButtonStyle}"
+                          Background="Transparent"
+                          cal:Message.Attach="ToggleButton($dataContext)">
+        <Grid>
+          <Image Source="{Binding BackgroundImage}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Fill"/>
+          <ItemsControl ItemsSource="{Binding Overlays}">
+            <ItemsControl.ItemTemplate>
+              <DataTemplate>
+                <Image Source="{Binding}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Fill"/>
+              </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemsPanel>
+              <ItemsPanelTemplate>
+                <Grid/>
+              </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+          </ItemsControl>
+        </Grid>
+        
+      </Button>
+    </DataTemplate>
+
+  </UserControl.Resources>
+
+  <Grid Background="SaddleBrown">
+    <ItemsControl ItemsSource="{Binding Tiles}" HorizontalAlignment="Center" VerticalAlignment="Center">
+      <ItemsControl.ItemsPanel>
+        <ItemsPanelTemplate>
+          <framework:HexGrid Columns="{Binding Columns}"/>
+        </ItemsPanelTemplate>
+      </ItemsControl.ItemsPanel>
+    </ItemsControl>
+  </Grid>
+
+</UserControl>

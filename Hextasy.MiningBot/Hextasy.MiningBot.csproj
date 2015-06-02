@@ -66,6 +66,11 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Constants.cs" />
+    <Compile Include="ViewModels\FunctionStatementViewModel.cs" />
+    <Compile Include="ViewModels\FunctionViewModel.cs" />
+    <Compile Include="ViewModels\FunctionViewModelFactory.cs" />
+    <Compile Include="ViewModels\MainFunctionViewModel.cs" />
     <Compile Include="MiningBotGameView.xaml.cs">
       <DependentUpon>MiningBotGameView.xaml</DependentUpon>
     </Compile>
@@ -80,6 +85,7 @@
     <Compile Include="MiningBotSettingsViewModel.cs" />
     <Compile Include="MiningBotStatistic.cs" />
     <Compile Include="MiningBotTile.cs" />
+    <Compile Include="ViewModels\NorthStatementViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -93,6 +99,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ViewModels\RegularFunctionViewModel.cs" />
+    <Compile Include="ViewModels\StatementSelectorViewModel.cs" />
+    <Compile Include="ViewModels\StatementViewModel.cs" />
+    <Compile Include="ViewModels\VoidStatementViewModel.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

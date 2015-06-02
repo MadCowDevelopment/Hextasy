@@ -6,15 +6,50 @@
              xmlns:cal="http://www.caliburnproject.org"
              xmlns:framework="clr-namespace:Hextasy.Framework;assembly=Hextasy.Framework"
              xmlns:miningBot="clr-namespace:Hextasy.MiningBot"
+             xmlns:viewModels="clr-namespace:Hextasy.MiningBot.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             Background="#FF444444"
+             d:DesignHeight="768" d:DesignWidth="1024">
   <UserControl.Resources>
+    
+    <framework:DoubleMultiplierConverter x:Key="DoubleMultiplierConverter"/>
+
+    <DataTemplate DataType="{x:Type viewModels:FunctionViewModel}">
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Column="0" Content="{Binding Title}" FontSize="42" HorizontalAlignment="Right" FontFamily="Stencil" Foreground="Black"/>
+
+        <ItemsControl Grid.Column="1" ItemsSource="{Binding StatementSelectors}">
+          <ItemsControl.ItemTemplate>
+            <DataTemplate>
+              <ComboBox Height="Auto" Margin="5" ItemsSource="{Binding AvailableStatements}" SelectedItem="{Binding SelectedStatement}"/>
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+          <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+              <UniformGrid Columns="4" Rows="1"/>
+            </ItemsPanelTemplate>
+          </ItemsControl.ItemsPanel>
+        </ItemsControl>
+      </Grid>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewModels:FunctionStatementViewModel}">
+      <Label Content="{Binding Icon}" FontSize="42" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Stencil" Foreground="Black"/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type viewModels:StatementViewModel}">
+      <Image Source="{Binding Icon}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+    </DataTemplate>
+    
     <Style x:Key="HexagonButtonStyle" TargetType="{x:Type Button}">
       <Setter Property="Template">
         <Setter.Value>
           <ControlTemplate TargetType="{x:Type Button}">
             <Grid>
-              <Path 
+              <Path StrokeThickness="2" Stroke="Black"
                 Fill="{TemplateBinding Background}" 
                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" 
                 Height="Auto" x:Name="Path" Stretch="Fill"
@@ -29,9 +64,7 @@
     </Style>
 
     <DataTemplate DataType="{x:Type miningBot:MiningBotTile}">
-      <Button Style="{StaticResource HexagonButtonStyle}"
-                          Background="Transparent"
-                          cal:Message.Attach="ToggleButton($dataContext)">
+      <Button Style="{StaticResource HexagonButtonStyle}" Background="Transparent">
         <Grid>
           <Image Source="{Binding BackgroundImage}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Fill"/>
           <ItemsControl ItemsSource="{Binding Overlays}">
@@ -47,20 +80,69 @@
             </ItemsControl.ItemsPanel>
           </ItemsControl>
         </Grid>
-        
+
       </Button>
     </DataTemplate>
 
   </UserControl.Resources>
 
-  <Grid Background="SaddleBrown">
-    <ItemsControl ItemsSource="{Binding Tiles}" HorizontalAlignment="Center" VerticalAlignment="Center">
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*"/>
+      <ColumnDefinition Width="650"/>
+    </Grid.ColumnDefinitions>
+    
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="30"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="2*"/>
+      </Grid.ColumnDefinitions>
+      <Label Grid.ColumnSpan="2" Content="Programming" FontSize="48" HorizontalAlignment="Center" FontFamily="Stencil" Foreground="Black"/>
+      
+      <ItemsControl Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding Functions}"/>
+   
+      <Border Grid.Row="4" Grid.Column="0" BorderThickness="4" CornerRadius="2" Grid.ColumnSpan="2" BorderBrush="Black" Margin="20,0,20,0"/>
+      
+      <ContentControl Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Content="{Binding Main}"/>
+      
+      <Button Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Margin="50,10,50,10">
+        <Label Content="Execute" FontSize="36" HorizontalAlignment="Right" FontFamily="Stencil" Foreground="Black"/>
+      </Button>
+      
+    </Grid>
+    
+    <ItemsControl Grid.Column="1" ItemsSource="{Binding Tiles}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="650" Height="740">
+      <ItemsControl.Template>
+        <ControlTemplate TargetType="{x:Type ItemsControl}">
+          <Grid>
+            <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
+              <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+            </Border>
+            <Border BorderBrush="#FF444444"
+                    BorderThickness="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Grid}, 
+                        Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.04}"/>
+            <Border BorderBrush="#FF444444" CornerRadius="75" 
+                    BorderThickness="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Grid}, 
+                        Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.04}"/>
+          </Grid>
+        </ControlTemplate>
+      </ItemsControl.Template>
       <ItemsControl.ItemsPanel>
         <ItemsPanelTemplate>
           <framework:HexGrid Columns="{Binding Columns}"/>
         </ItemsPanelTemplate>
       </ItemsControl.ItemsPanel>
     </ItemsControl>
+
   </Grid>
 
 </UserControl>

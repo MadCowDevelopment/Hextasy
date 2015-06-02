@@ -130,7 +130,7 @@ namespace Hextasy.MiningBot
 
         private string GetBackgroundImageForSoilType(SoilType soilType)
         {
-            const string basePath = @"pack://application:,,,/Hextasy.MiningBot;component/Images/";
+            string basePath = Constants.ImagePath;
             switch (soilType)
             {
                 case SoilType.None:

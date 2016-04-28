@@ -49,9 +49,9 @@ namespace Hextasy.Yinsh
             set
             {
                 if (_selectedTile == value) return;
-                if (_selectedTile != null) _selectedTile.IsChecked = false;
+                if (_selectedTile != null) _selectedTile.IsSelected = false;
                 _selectedTile = value;
-                if (_selectedTile != null) _selectedTile.IsChecked = true;
+                if (_selectedTile != null) _selectedTile.IsSelected = true;
             }
         }
 
@@ -118,10 +118,16 @@ namespace Hextasy.Yinsh
                 SelectedTile.Ring = null;
                 SelectedTile = null;
 
-                // TODO: Check for any 5 in a row
+                CheckForFiveInARow();
+                
 
                 CurrentPlayer = OpponentPlayer;
             }
+        }
+
+        private void CheckForFiveInARow()
+        {
+            // TODO: Check for any 5 in a row
         }
 
         private bool MovementIsValid(YinshTile tile)
@@ -150,7 +156,7 @@ namespace Hextasy.Yinsh
         private void SelectTile(YinshTile tile)
         {
             SelectedTile = tile;
-            tile.IsChecked = true;
+            tile.IsSelected = true;
         }
 
         private void PlaceRing(YinshTile tile)

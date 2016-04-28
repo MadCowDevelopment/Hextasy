@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Hextasy.Yinsh"
-             xmlns:system="clr-namespace:System;assembly=mscorlib"
              xmlns:cal="http://www.caliburnproject.org"
              xmlns:framework="clr-namespace:Hextasy.Framework;assembly=Hextasy.Framework"
              mc:Ignorable="d" 
@@ -57,17 +56,25 @@
                             </PathSegmentCollection>
                           </PathFigure.Segments>
                         </PathFigure>
+                        <PathFigure IsFilled="True" IsClosed="True" StartPoint="480,0">
+                          <PathFigure.Segments>
+                            <PathSegmentCollection>
+                              <LineSegment Point="520,0" />
+                              <LineSegment Point="520,866" />
+                              <LineSegment Point="480,866" />
+                            </PathSegmentCollection>
+                          </PathFigure.Segments>
+                        </PathFigure>
                       </PathFigureCollection>
                     </PathGeometry.Figures>
                   </PathGeometry>
                 </Path.Data>
               </Path>
-              <Path Margin="1" 
-                              Fill="WhiteSmoke" 
-                              HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" 
-                              Height="Auto" x:Name="Overlay" Stretch="Fill" Opacity="0"
-                                  RenderTransformOrigin="0.5, 0.5"
-                              Data="M 250,0 L 750,0 L 1000,433 L 750,866 L 250,866 L 0,433 Z">
+              <Path Margin="1" Fill="WhiteSmoke" 
+                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" 
+                    Height="Auto" x:Name="Overlay" Stretch="Fill" Opacity="0"
+                    RenderTransformOrigin="0.5, 0.5"
+                    Data="M 250,0 L 750,0 L 1000,433 L 750,866 L 250,866 L 0,433 Z">
               </Path>
               <Ellipse x:Name="Ring" Stroke="White"
                        StrokeThickness="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Grid}, 
@@ -108,8 +115,8 @@
                 <Setter TargetName="Disc" Property="Stroke" Value="White"/>
                 <Setter TargetName="Disc" Property="Fill" Value="Black"/>
               </DataTrigger>
-              <DataTrigger Binding="{Binding IsChecked}" Value="True">
-                <Setter TargetName="Disc" Property="Fill" Value="Red"/>
+              <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                <Setter TargetName="Path" Property="Fill" Value="GreenYellow"/>
               </DataTrigger>
               <Trigger Property="IsMouseOver" Value="True">
                 <Setter TargetName="Overlay" Property="Opacity" Value="0.5"/>

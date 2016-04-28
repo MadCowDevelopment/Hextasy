@@ -148,6 +148,11 @@ namespace Hextasy.Framework
 
             return Enumerable.Empty<T>();
         }
+        public bool TilesAreInSameLine(T tile1, T tile2)
+        {
+            var lines = GetLines(tile1).Select(p => p.ToList());
+            return lines.Any(p => p.Contains(tile2));
+        }
 
         public T GetTopLeftNeighbour(T item)
         {

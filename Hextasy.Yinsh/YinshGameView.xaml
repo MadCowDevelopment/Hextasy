@@ -8,18 +8,20 @@
              xmlns:cal="http://www.caliburnproject.org"
              xmlns:framework="clr-namespace:Hextasy.Framework;assembly=Hextasy.Framework"
              mc:Ignorable="d" 
+             Background="BurlyWood"
              d:DesignHeight="300" d:DesignWidth="300">
   <UserControl.Resources>
-    <Style x:Key="HexagonButtonStyle" TargetType="{x:Type ToggleButton}">
+    <framework:DoubleMultiplierConverter x:Key="DoubleMultiplierConverter"/>
+    <Style x:Key="HexagonButtonStyle" TargetType="{x:Type Button}">
       <Setter Property="BorderBrush" Value="Black"/>
       <Setter Property="BorderThickness" Value="29"></Setter>
       <Setter Property="Template">
         <Setter.Value>
-          <ControlTemplate TargetType="{x:Type ToggleButton}">
+          <ControlTemplate TargetType="{x:Type Button}">
             <Grid>
               <Path Margin="1" x:Name="Path" 
                               StrokeThickness="0"
-                              Fill="Black" Visibility="Visible" RenderTransformOrigin="0.5, 0.5"
+                              Fill="Gray" Visibility="Visible" RenderTransformOrigin="0.5, 0.5"
                               HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" 
                               Height="Auto" Stretch="Fill">
                 <Path.Data>
@@ -67,12 +69,48 @@
                                   RenderTransformOrigin="0.5, 0.5"
                               Data="M 250,0 L 750,0 L 1000,433 L 750,866 L 250,866 L 0,433 Z">
               </Path>
+              <Ellipse x:Name="Ring" Stroke="White"
+                       StrokeThickness="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Grid}, 
+                        Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.08}"
+                       Height="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Grid}, 
+                        Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.96}"
+                       Width="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Grid}, 
+                        Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.96}">
+              </Ellipse>
+              <Ellipse x:Name="Disc" Stroke="White" Fill="Black"
+                       StrokeThickness="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Grid}, 
+                        Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.08}"
+                       Height="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Grid}, 
+                        Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.8}"
+                       Width="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Grid}, 
+                        Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.8}">
+              </Ellipse>
               <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Grid>
             <ControlTemplate.Triggers>
-              <Trigger Property="IsChecked" Value="True">
-                <Setter TargetName="Path" Property="Fill" Value="Red"/>
-              </Trigger>
+              <DataTrigger Binding="{Binding Ring}" Value="{x:Null}">
+                <Setter TargetName="Ring" Property="Opacity" Value="0"/>
+              </DataTrigger>
+              <DataTrigger Binding="{Binding Ring.Color}" Value="White">
+                <Setter TargetName="Ring" Property="Stroke" Value="White"/>
+              </DataTrigger>
+              <DataTrigger Binding="{Binding Ring.Color}" Value="Black">
+                <Setter TargetName="Ring" Property="Stroke" Value="Black"/>
+              </DataTrigger>
+              <DataTrigger Binding="{Binding Disc}" Value="{x:Null}">
+                <Setter TargetName="Disc" Property="Opacity" Value="0"/>
+              </DataTrigger>
+              <DataTrigger Binding="{Binding Disc.Color}" Value="White">
+                <Setter TargetName="Disc" Property="Stroke" Value="Black"/>
+                <Setter TargetName="Disc" Property="Fill" Value="White"/>
+              </DataTrigger>
+              <DataTrigger Binding="{Binding Disc.Color}" Value="Black">
+                <Setter TargetName="Disc" Property="Stroke" Value="White"/>
+                <Setter TargetName="Disc" Property="Fill" Value="Black"/>
+              </DataTrigger>
+              <DataTrigger Binding="{Binding IsChecked}" Value="True">
+                <Setter TargetName="Disc" Property="Fill" Value="Red"/>
+              </DataTrigger>
               <Trigger Property="IsMouseOver" Value="True">
                 <Setter TargetName="Overlay" Property="Opacity" Value="0.5"/>
               </Trigger>
@@ -96,10 +134,9 @@
     </Style>
 
     <DataTemplate DataType="{x:Type local:YinshTile}">
-      <ToggleButton Style="{StaticResource HexagonButtonStyle}"
-                          Background="DarkGray"
-                          IsChecked="{Binding IsChecked}"
-                          cal:Message.Attach="ToggleButton($dataContext)"/>
+      <Button Style="{StaticResource HexagonButtonStyle}"
+              Background="DarkGray"
+              cal:Message.Attach="ToggleButton($dataContext)"/>
     </DataTemplate>
 
   </UserControl.Resources>

@@ -14,11 +14,9 @@ namespace Hextasy.Yinsh
         {
         }
 
-        public void ToggleButton(YinshTile item)
+        public void ToggleButton(YinshTile tile)
         {
-            Game.Tiles.Where(p => p != item).ForEach(p => p.IsChecked = false);
-
-            //Game.ToggleNeighbors(item);
+            Game.ActivateTile(tile);
         }
     }
 }

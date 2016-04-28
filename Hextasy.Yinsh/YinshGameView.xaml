@@ -17,14 +17,48 @@
         <Setter.Value>
           <ControlTemplate TargetType="{x:Type ToggleButton}">
             <Grid>
-              <Path Margin="1" 
-                              StrokeThickness="{TemplateBinding BorderThickness}" 
-                              Stroke="{TemplateBinding BorderBrush}" 
-                              Fill="{TemplateBinding Background}" 
+              <Path Margin="1" x:Name="Path" 
+                              StrokeThickness="0"
+                              Fill="Black" Visibility="Visible" RenderTransformOrigin="0.5, 0.5"
                               HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" 
-                              Height="Auto" x:Name="Path" Stretch="Fill"
-                                  RenderTransformOrigin="0.5, 0.5"
-                              Data="M 250,0 L 750,0 L 1000,433 L 750,866 L 250,866 L 0,433 Z">
+                              Height="Auto" Stretch="Fill">
+                <Path.Data>
+                  <PathGeometry>
+                    <PathGeometry.Figures>
+                      <PathFigureCollection>
+                        <PathFigure IsFilled="False" IsClosed="True" StartPoint="250,0">
+                          <PathFigure.Segments>
+                            <PathSegmentCollection>
+                              <LineSegment Point="750,0" />
+                              <LineSegment Point="1000,433" />
+                              <LineSegment Point="750,866" />
+                              <LineSegment Point="250,866" />
+                              <LineSegment Point="0,433" />
+                            </PathSegmentCollection>
+                          </PathFigure.Segments>
+                        </PathFigure>
+                        <PathFigure IsFilled="True" IsClosed="True" StartPoint="115,234">
+                          <PathFigure.Segments>
+                            <PathSegmentCollection>
+                              <LineSegment Point="135,199" />
+                              <LineSegment Point="885,632" />
+                              <LineSegment Point="865,667" />
+                            </PathSegmentCollection>
+                          </PathFigure.Segments>
+                        </PathFigure>
+                        <PathFigure IsFilled="True" IsClosed="True" StartPoint="865,199">
+                          <PathFigure.Segments>
+                            <PathSegmentCollection>
+                              <LineSegment Point="885,234" />
+                              <LineSegment Point="135,667" />
+                              <LineSegment Point="115,632" />
+                            </PathSegmentCollection>
+                          </PathFigure.Segments>
+                        </PathFigure>
+                      </PathFigureCollection>
+                    </PathGeometry.Figures>
+                  </PathGeometry>
+                </Path.Data>
               </Path>
               <Path Margin="1" 
                               Fill="WhiteSmoke" 

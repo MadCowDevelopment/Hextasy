@@ -7,6 +7,6 @@ namespace Hextasy.Yinsh
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class YinshSettingsViewModel : SettingsViewModel<YinshSettings>
     {
-        public override YinshSettings Settings => new YinshSettings(10, 10);
+        public override YinshSettings Settings => new YinshSettings(10, 11);
     }
 }

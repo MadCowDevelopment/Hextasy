@@ -6,14 +6,16 @@
              xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <ItemsControl x:Name="Games">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Button Content="{Binding Name}" Margin="10" FontSize="20" 
-                            cal:Message.Attach="StartGame($dataContext)"/>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-    </Grid>
+  <Grid>
+    <ScrollViewer>
+      <ItemsControl x:Name="Games">
+        <ItemsControl.ItemTemplate>
+          <DataTemplate>
+            <Button Content="{Binding Name}" Margin="10" FontSize="20" cal:Message.Attach="StartGame($dataContext)"/>
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ItemsControl>
+    </ScrollViewer>
+  </Grid>
+
 </UserControl>

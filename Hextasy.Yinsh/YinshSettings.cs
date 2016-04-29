@@ -1,4 +1,5 @@
 using Hextasy.Framework;
+using Hextasy.Yinsh.AI;
 
 namespace Hextasy.Yinsh
 {

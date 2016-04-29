@@ -62,7 +62,10 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="CpuPlayer.cs" />
+    <Compile Include="AI\CpuPlayer.cs" />
+    <Compile Include="AI\MoveRingAction.cs" />
+    <Compile Include="AI\PlaceRingAction.cs" />
+    <Compile Include="AI\PlayerAction.cs" />
     <Compile Include="Disc.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PlayerColor.cs" />
@@ -105,6 +108,7 @@
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.1.28.3\build\Fody.targets" Condition="Exists('..\packages\Fody.1.28.3\build\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

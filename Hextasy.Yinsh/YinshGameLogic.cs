@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using Hextasy.Framework;
@@ -119,7 +120,7 @@ namespace Hextasy.Yinsh
                 SelectedTile = null;
 
                 CheckForFiveInARow();
-                
+
 
                 CurrentPlayer = OpponentPlayer;
             }
@@ -166,6 +167,34 @@ namespace Hextasy.Yinsh
             CurrentPlayer.UnplacedRings--;
             CurrentPlayer = OpponentPlayer;
             if (CurrentPlayer.UnplacedRings == 0) IsRingPlacementPhase = false;
+        }
+
+        public IEnumerable<YinshTile> GetValidTargets(YinshTile start)
+        {
+            var targets = new List<YinshTile>();
+            var lines = HexMap.GetLines(start);
+            foreach (var line in lines)
+            {
+                var currentLine = line.ToList();
+                var indexOfStart = currentLine.IndexOf(start);
+                if (indexOfStart > 0)
+                {
+                    for (int i = indexOfStart; i >= 0; i--)
+                    {
+                        // TODO: Find valid targets in front of start tile
+                    }
+                }
+
+                if (indexOfStart < currentLine.Count)
+                {
+                    for (int i = indexOfStart + 1; i < currentLine.Count; i++)
+                    {
+                        // TODO: Find valid targets behind start tile
+                    }
+                }
+            }
+
+            return targets;
         }
     }
 }

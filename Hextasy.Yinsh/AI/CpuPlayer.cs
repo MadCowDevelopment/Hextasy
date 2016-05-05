@@ -40,7 +40,7 @@ namespace Hextasy.Yinsh.AI
         {
             if (UnplacedRings > 0)
             {
-                var tile = gameLogic.Tiles.Where(p => p.Ring == null).RandomOrDefault();
+                var tile = gameLogic.YinshTiles.Where(p => p.Ring == null).RandomOrDefault();
                 return new PlaceRingAction(gameLogic, tile);
             }
 
@@ -48,7 +48,7 @@ namespace Hextasy.Yinsh.AI
             YinshTile end;
             do
             {
-                start = gameLogic.Tiles.Where(p => p.Ring != null && p.Ring.Color == Color).RandomOrDefault();
+                start = gameLogic.YinshTiles.Where(p => p.Ring != null && p.Ring.Color == Color).RandomOrDefault();
                 end = gameLogic.GetValidTargets(start).RandomOrDefault();
             } while (start == null || end == null);
 

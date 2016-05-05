@@ -14,15 +14,13 @@ namespace Hextasy.Yinsh
 
         public YinshGameLogic()
         {
-            IsRingPlacementPhase = true;
+            GameState = new PlaceRingGameState(this);
         }
-
-        public bool IsRingPlacementPhase { get; private set; }
 
         public Player CurrentPlayer
         {
             get { return _currentPlayer; }
-            private set
+            set
             {
                 if (_currentPlayer == value) return;
                 if (_currentPlayer != null)
@@ -55,6 +53,8 @@ namespace Hextasy.Yinsh
                 if (_selectedTile != null) _selectedTile.IsSelected = true;
             }
         }
+
+        public IEnumerable<YinshTile> YinshTiles { get { return Tiles.Where(p => p != null); } }
 
         protected override YinshTile CreateTile(int column, int row)
         {
@@ -92,81 +92,14 @@ namespace Hextasy.Yinsh
 
         public void ActivateTile(YinshTile tile)
         {
-            if (IsRingPlacementPhase)
-            {
-                PlaceRing(tile);
-            }
-            else
-            {
-                if (tile.Ring != null && tile.Ring.Color == CurrentPlayer.Color)
-                {
-                    SelectTile(tile);
-                }
-                else if (SelectedTile != null)
-                {
-                    MoveRing(tile);
-                }
-            }
+            GameState.Activate(tile);
         }
 
-        private void MoveRing(YinshTile tile)
+        public GameState GameState { get; set; }
+
+        public List<IEnumerable<YinshTile>> GetAllLines()
         {
-            if (MovementIsValid(tile))
-            {
-                SelectedTile.Disc = new Disc(CurrentPlayer.Color);
-                HexMap.GetTilesBetween(SelectedTile, tile).Where(p => p.Disc != null).ForEach(p => p.Disc.Flip());
-                tile.Ring = SelectedTile.Ring;
-                SelectedTile.Ring = null;
-                SelectedTile = null;
-
-                CheckForFiveInARow();
-
-
-                CurrentPlayer = OpponentPlayer;
-            }
-        }
-
-        private void CheckForFiveInARow()
-        {
-            // TODO: Check for any 5 in a row
-        }
-
-        private bool MovementIsValid(YinshTile tile)
-        {
-            var start = SelectedTile;
-            var end = tile;
-
-            if (end.Ring != null) return false;
-            if (end.Disc != null) return false;
-            if (!HexMap.TilesAreInSameLine(start, end)) return false;
-            var tiles = HexMap.GetTilesBetween(start, end);
-
-            var foundDisc = false;
-            foreach (var yinshTile in tiles)
-            {
-                if (yinshTile.Disc != null)
-                {
-                    if (foundDisc) return false;
-                    foundDisc = true;
-                }
-            }
-
-            return true;
-        }
-
-        private void SelectTile(YinshTile tile)
-        {
-            SelectedTile = tile;
-            tile.IsSelected = true;
-        }
-
-        private void PlaceRing(YinshTile tile)
-        {
-            if (tile.Ring != null) return;
-            tile.Ring = new Ring(CurrentPlayer.Color);
-            CurrentPlayer.UnplacedRings--;
-            CurrentPlayer = OpponentPlayer;
-            if (CurrentPlayer.UnplacedRings == 0) IsRingPlacementPhase = false;
+            return YinshTiles.SelectMany(p => HexMap.GetLines(p)).Distinct(new LineEqualityComparer()).ToList();
         }
 
         public IEnumerable<YinshTile> GetValidTargets(YinshTile start)
@@ -179,22 +112,160 @@ namespace Hextasy.Yinsh
                 var indexOfStart = currentLine.IndexOf(start);
                 if (indexOfStart > 0)
                 {
-                    for (int i = indexOfStart; i >= 0; i--)
+                    var foundDisc = false;
+                    for (var i = indexOfStart - 1; i >= 0; i--)
                     {
-                        // TODO: Find valid targets in front of start tile
+                        var tile = currentLine[i];
+                        if (tile.Ring != null)
+                        {
+                            break;
+                        }
+
+                        if (tile.Disc == null)
+                        {
+                            targets.Add(tile);
+                            if (foundDisc)
+                            {
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            foundDisc = true;
+                        }
                     }
                 }
 
                 if (indexOfStart < currentLine.Count)
                 {
-                    for (int i = indexOfStart + 1; i < currentLine.Count; i++)
+                    var foundDisc = false;
+                    for (var i = indexOfStart + 1; i < currentLine.Count; i++)
                     {
-                        // TODO: Find valid targets behind start tile
+                        var tile = currentLine[i];
+                        if (tile.Ring != null)
+                        {
+                            break;
+                        }
+
+                        if (tile.Disc == null)
+                        {
+                            targets.Add(tile);
+                            if (foundDisc)
+                            {
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            foundDisc = true;
+                        }
                     }
                 }
             }
 
             return targets;
+        }
+
+        public bool GameOver()
+        {
+            var winner = CurrentPlayer.Score == 3 ? CurrentPlayer : (OpponentPlayer.Score == 3 ? OpponentPlayer : null);
+            if (winner != null)
+                RaiseFinished(new GameFinishedEventArgs<YinshStatistics>(new YinshStatistics(winner)));
+
+            return winner != null;
+        }
+
+        public void FlipDiscs(YinshTile selectedTile, YinshTile tile)
+        {
+            HexMap.GetTilesBetween(selectedTile, tile).Where(p => p.Disc != null).ForEach(p => p.Disc.Flip());
+        }
+
+        public void CheckForFiveInARow(YinshTile tile)
+        {
+            var allFives = GetAllFiveInARow();
+            if (!allFives.Any())
+            {
+                CurrentPlayer = OpponentPlayer;
+                GameState = new MoveRingGameState(this);
+                return;
+            }
+
+            var currentPlayerHasFiveInARow = allFives.Any(p => p[0].Disc.Color == CurrentPlayer.Color);
+            if (currentPlayerHasFiveInARow)
+            {
+                RemoveRing(tile);
+                if (GameOver()) return;
+            }
+
+            if (allFives.Count == 1 && allFives[0].Count == 5)
+            {
+                allFives[0].ForEach(p => p.Disc = null);
+
+                if (currentPlayerHasFiveInARow)
+                {
+                    CheckForFiveInARow(tile);
+                }
+                else
+                {
+                    GameState = new SelectRingToRemoveGameState(this, OpponentPlayer);
+                }
+            }
+            else
+            {
+                GameState = new SelectDiscsToRemoveGameState(this, allFives);
+            }
+        }
+
+        private List<List<YinshTile>> GetAllFiveInARow()
+        {
+            var result = new List<List<YinshTile>>();
+            var allLines = GetAllLines();
+
+            foreach (var line in allLines)
+            {
+                var candidates = new List<YinshTile>();
+                var currentColor = PlayerColor.Black;
+                foreach (var tile in line)
+                {
+                    if (tile.Disc != null)
+                    {
+                        if (tile.Disc.Color != currentColor)
+                        {
+                            if (candidates.Count >= 5)
+                            {
+                                result.Add(candidates.ToList());
+                            }
+
+                            candidates.Clear();
+                            currentColor = tile.Disc.Color;
+                        }
+
+                        candidates.Add(tile);
+                    }
+                    else
+                    {
+                        if (candidates.Count >= 5)
+                        {
+                            result.Add(candidates.ToList());
+                        }
+
+                        candidates.Clear();
+                    }
+                }
+
+                if (candidates.Count >= 5) result.Add(candidates.ToList());
+            }
+
+            return result;
+        }
+
+        public void RemoveRing(YinshTile tile)
+        {
+            if (tile.Ring == null) return;
+            var color = tile.Ring.Color;
+            tile.Ring = null;
+            if (CurrentPlayer.Color == color) CurrentPlayer.Score++;
+            else OpponentPlayer.Score++;
         }
     }
 }

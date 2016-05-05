@@ -76,6 +76,12 @@
                     RenderTransformOrigin="0.5, 0.5"
                     Data="M 250,0 L 750,0 L 1000,433 L 750,866 L 250,866 L 0,433 Z">
               </Path>
+              <Path Margin="1" Fill="Transparent" 
+                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" 
+                    Height="Auto" x:Name="ValidTargetIndicator" Stretch="Fill" Opacity="0.3"
+                    RenderTransformOrigin="0.5, 0.5"
+                    Data="M 250,0 L 750,0 L 1000,433 L 750,866 L 250,866 L 0,433 Z">
+              </Path>
               <Ellipse x:Name="Ring" Stroke="White"
                        StrokeThickness="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Grid}, 
                         Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.08}"
@@ -115,8 +121,14 @@
                 <Setter TargetName="Disc" Property="Stroke" Value="White"/>
                 <Setter TargetName="Disc" Property="Fill" Value="Black"/>
               </DataTrigger>
+              <DataTrigger Binding="{Binding Disc.IsSelected}" Value="True">
+                <Setter TargetName="Disc" Property="Stroke" Value="GreenYellow"/>
+              </DataTrigger>
               <DataTrigger Binding="{Binding IsSelected}" Value="True">
-                <Setter TargetName="Path" Property="Fill" Value="GreenYellow"/>
+                <Setter TargetName="Path" Property="Fill" Value="Yellow"/>
+              </DataTrigger>
+              <DataTrigger Binding="{Binding IsValidTarget}" Value="True">
+                <Setter TargetName="ValidTargetIndicator" Property="Fill" Value="GreenYellow"/>
               </DataTrigger>
               <Trigger Property="IsMouseOver" Value="True">
                 <Setter TargetName="Overlay" Property="Opacity" Value="0.5"/>
@@ -143,12 +155,16 @@
     <DataTemplate DataType="{x:Type local:YinshTile}">
       <Button Style="{StaticResource HexagonButtonStyle}"
               Background="DarkGray"
-              cal:Message.Attach="ToggleButton($dataContext)"/>
+              cal:Message.Attach="ToggleButton($dataContext);[Event MouseEnter] = [Action OnMouseEnter($dataContext)]"/>
     </DataTemplate>
 
   </UserControl.Resources>
 
   <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
     <ItemsControl ItemsSource="{Binding Tiles}" HorizontalAlignment="Center" VerticalAlignment="Center">
       <ItemsControl.ItemsPanel>
         <ItemsPanelTemplate>
@@ -156,6 +172,8 @@
         </ItemsPanelTemplate>
       </ItemsControl.ItemsPanel>
     </ItemsControl>
+    <TextBlock Grid.Row="1" Text="{Binding Logic.GameState.Message}" FontSize="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=Grid}, 
+                        Path=ActualHeight, Converter={StaticResource DoubleMultiplierConverter},ConverterParameter=0.06}" HorizontalAlignment="Center"/>
   </Grid>
 
 </UserControl>

@@ -6,6 +6,8 @@ namespace Hextasy.Yinsh
     {
         public PlayerColor Color { get; private set; }
 
+        public bool IsSelected { get; set; }
+
         public Disc(PlayerColor color)
         {
             Color = color;

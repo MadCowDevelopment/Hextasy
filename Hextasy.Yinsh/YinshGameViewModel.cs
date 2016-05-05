@@ -18,5 +18,11 @@ namespace Hextasy.Yinsh
         {
             Game.ActivateTile(tile);
         }
+
+        public void OnMouseEnter(YinshTile tile)
+        {
+        }
+
+        public YinshGameLogic Logic => Game;
     }
 }

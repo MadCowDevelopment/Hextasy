@@ -67,10 +67,16 @@
     <Compile Include="AI\PlaceRingAction.cs" />
     <Compile Include="AI\PlayerAction.cs" />
     <Compile Include="Disc.cs" />
+    <Compile Include="GameState.cs" />
+    <Compile Include="LineEqualityComparer.cs" />
+    <Compile Include="MoveRingGameState.cs" />
+    <Compile Include="PlaceRingGameState.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PlayerColor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ring.cs" />
+    <Compile Include="SelectDiscsToRemoveGameState.cs" />
+    <Compile Include="SelectRingToRemoveGameState.cs" />
     <Compile Include="YinshGame.cs" />
     <Compile Include="YinshGameLogic.cs" />
     <Compile Include="YinshGameResultViewModel.cs" />

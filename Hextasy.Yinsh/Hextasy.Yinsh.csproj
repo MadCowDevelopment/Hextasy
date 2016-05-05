@@ -66,6 +66,8 @@
     <Compile Include="AI\MoveRingAction.cs" />
     <Compile Include="AI\PlaceRingAction.cs" />
     <Compile Include="AI\PlayerAction.cs" />
+    <Compile Include="AI\SelectDiscsToRemoveAction.cs" />
+    <Compile Include="AI\SelectRingToRemoveAction.cs" />
     <Compile Include="Disc.cs" />
     <Compile Include="GameState.cs" />
     <Compile Include="LineEqualityComparer.cs" />

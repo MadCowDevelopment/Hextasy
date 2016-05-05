@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using Hextasy.Framework;
+using Hextasy.Yinsh.AI;
 
 namespace Hextasy.Yinsh
 {
@@ -30,6 +31,10 @@ namespace Hextasy.Yinsh
 
                 _currentPlayer = value;
                 _currentPlayer.IsActive = true;
+                if (_currentPlayer is CpuPlayer)
+                {
+                    (_currentPlayer as CpuPlayer).TakeTurn(this);
+                }
             }
         }
 

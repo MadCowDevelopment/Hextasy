@@ -2,6 +2,7 @@
 using System.Linq;
 using Caliburn.Micro;
 using Hextasy.Framework;
+using Hextasy.Yinsh.AI;
 
 namespace Hextasy.Yinsh
 {
@@ -16,6 +17,8 @@ namespace Hextasy.Yinsh
 
         public void ToggleButton(YinshTile tile)
         {
+            if (Game.CurrentPlayer is CpuPlayer) return;
+
             Game.ActivateTile(tile);
         }
 

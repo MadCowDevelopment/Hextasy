@@ -6,8 +6,11 @@ namespace Hextasy.Yinsh
 {
     internal class SelectDiscsToRemoveGameState : GameState
     {
+        public List<List<YinshTile>> AllFives { get; }
+
         public SelectDiscsToRemoveGameState(YinshGameLogic gameLogic, List<List<YinshTile>> allFives) : base(gameLogic)
         {
+            AllFives = allFives;
             if (allFives.Any(p => p[0].Disc.Color == GameLogic.CurrentPlayer.Color))
             {
                 ActingPlayer = GameLogic.CurrentPlayer;

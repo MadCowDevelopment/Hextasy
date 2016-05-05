@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using Hextasy.Framework;
 
 namespace Hextasy.Yinsh.AI
@@ -17,18 +18,24 @@ namespace Hextasy.Yinsh.AI
 
         public void TakeTurn(YinshGameLogic gameLogic)
         {
-            Thinking = true;
-            var startTime = DateTime.Now;
-            var action = CalculateAction(gameLogic);
-            var endTime = DateTime.Now;
-            if (endTime - startTime < TimeSpan.FromSeconds(3))
+            var scheduler = TaskScheduler.FromCurrentSynchronizationContext();
+            var task = new Task<PlayerAction>(() =>
             {
-                Thread.Sleep(TimeSpan.FromSeconds(3) - (endTime - startTime));
-            }
+                Thinking = true;
+                var startTime = DateTime.Now;
+                var action = CalculateAction(gameLogic);
+                var endTime = DateTime.Now;
+                if (endTime - startTime < TimeSpan.FromSeconds(3))
+                {
+                    Thread.Sleep(TimeSpan.FromSeconds(3) - (endTime - startTime));
+                }
 
-            Thinking = false;
+                Thinking = false;
 
-            PeformAction(action);
+                return action;
+            });
+            task.ContinueWith(t => PeformAction(t.Result), scheduler);
+            task.Start();
         }
 
         private void PeformAction(PlayerAction action)
@@ -38,21 +45,39 @@ namespace Hextasy.Yinsh.AI
 
         private PlayerAction CalculateAction(YinshGameLogic gameLogic)
         {
-            if (UnplacedRings > 0)
+            if (gameLogic.GameState is PlaceRingGameState)
             {
                 var tile = gameLogic.YinshTiles.Where(p => p.Ring == null).RandomOrDefault();
                 return new PlaceRingAction(gameLogic, tile);
             }
 
-            YinshTile start;
-            YinshTile end;
-            do
+            if (gameLogic.GameState is MoveRingGameState)
             {
-                start = gameLogic.YinshTiles.Where(p => p.Ring != null && p.Ring.Color == Color).RandomOrDefault();
-                end = gameLogic.GetValidTargets(start).RandomOrDefault();
-            } while (start == null || end == null);
+                YinshTile start;
+                YinshTile end;
+                do
+                {
+                    start = gameLogic.YinshTiles.Where(p => p.Ring != null && p.Ring.Color == Color).RandomOrDefault();
+                    end = gameLogic.GetValidTargets(start).RandomOrDefault();
+                } while (start == null || end == null);
 
-            return new MoveRingAction(gameLogic, start, end);
+                return new MoveRingAction(gameLogic, start, end);
+            }
+
+            if (gameLogic.GameState is SelectRingToRemoveGameState)
+            {
+                var tileWithRing = gameLogic.YinshTiles.Where(p => p.Ring?.Color == Color).RandomOrDefault();
+                return new SelectRingToRemoveAction(gameLogic, tileWithRing);
+            }
+
+            var selectDiscsToRemoveGameState = gameLogic.GameState as SelectDiscsToRemoveGameState;
+            if (selectDiscsToRemoveGameState != null)
+            {
+                var lineToRemove = selectDiscsToRemoveGameState.AllFives.Where(p => p[0].Disc?.Color == Color).RandomOrDefault();
+                return new SelectDiscsToRemoveAction(gameLogic, lineToRemove);
+            }
+
+            return null;
         }
     }
 }

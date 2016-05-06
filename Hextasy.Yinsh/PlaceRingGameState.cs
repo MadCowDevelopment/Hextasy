@@ -12,7 +12,7 @@ namespace Hextasy.Yinsh
             if (tile.Ring != null) return;
             tile.Ring = new Ring(GameLogic.CurrentPlayer.Color);
             GameLogic.CurrentPlayer.UnplacedRings--;
-            GameLogic.CurrentPlayer = GameLogic.OpponentPlayer;
+            GameLogic.ChangePlayer();
             if (GameLogic.CurrentPlayer.UnplacedRings == 0)
             {
                 GameLogic.GameState = new MoveRingGameState(GameLogic);
@@ -21,6 +21,12 @@ namespace Hextasy.Yinsh
             {
                 GameLogic.GameState = new PlaceRingGameState(GameLogic);
             }
+        }
+
+        public override GameState DeepCopy(YinshGameLogic gameLogic)
+        {
+            var copy = new PlaceRingGameState(gameLogic);
+            return copy;
         }
     }
 }

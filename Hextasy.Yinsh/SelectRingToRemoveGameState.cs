@@ -16,5 +16,12 @@ namespace Hextasy.Yinsh
             GameLogic.RemoveRing(tile);
             GameLogic.CheckForFiveInARow(tile);
         }
+
+        public override GameState DeepCopy(YinshGameLogic gameLogic)
+        {
+            var copy = new SelectRingToRemoveGameState(gameLogic,
+                gameLogic.Player1.Color == Player.Color ? gameLogic.Player1 : gameLogic.Player2);
+            return copy;
+        }
     }
 }

@@ -12,5 +12,7 @@ namespace Hextasy.Yinsh
         public abstract string Message { get; }
 
         public abstract void Activate(YinshTile tile);
+
+        public abstract GameState DeepCopy(YinshGameLogic gameLogic);
     }
 }

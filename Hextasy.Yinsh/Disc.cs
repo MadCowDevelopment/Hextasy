@@ -17,5 +17,12 @@ namespace Hextasy.Yinsh
         {
             Color = Color == PlayerColor.Black ? PlayerColor.White : PlayerColor.Black;
         }
+
+        public Disc DeepCopy()
+        {
+            var copy = new Disc(Color);
+            copy.IsSelected = IsSelected;
+            return copy;
+        }
     }
 }

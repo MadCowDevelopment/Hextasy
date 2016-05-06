@@ -31,10 +31,6 @@ namespace Hextasy.Yinsh
 
                 _currentPlayer = value;
                 _currentPlayer.IsActive = true;
-                if (_currentPlayer is CpuPlayer)
-                {
-                    (_currentPlayer as CpuPlayer).TakeTurn(this);
-                }
             }
         }
 
@@ -190,7 +186,7 @@ namespace Hextasy.Yinsh
             var allFives = GetAllFiveInARow();
             if (!allFives.Any())
             {
-                CurrentPlayer = OpponentPlayer;
+                ChangePlayer();
                 GameState = new MoveRingGameState(this);
                 return;
             }
@@ -271,6 +267,26 @@ namespace Hextasy.Yinsh
             tile.Ring = null;
             if (CurrentPlayer.Color == color) CurrentPlayer.Score++;
             else OpponentPlayer.Score++;
+        }
+
+        public YinshGameLogic DeepCopy()
+        {
+            var copy = new YinshGameLogic();
+            copy.Player1 = Player1.DeepCopy();
+            copy.Player2 = Player2.DeepCopy();
+            copy.GameState = GameState.DeepCopy(copy);
+            copy.CurrentPlayer = CurrentPlayer == Player1 ? copy.Player1 : copy.Player2;
+            copy.HexMap = new HexMap<YinshTile>(Tiles.Select(p => p?.DeepCopy()), Settings.Columns);
+            copy.SelectedTile = SelectedTile != null
+                ? copy.YinshTiles.FirstOrDefault(p => p.Id == SelectedTile.Id)
+                : null;
+            return copy;
+        }
+
+        public void ChangePlayer()
+        {
+            CurrentPlayer = OpponentPlayer;
+            (_currentPlayer as CpuPlayer)?.TakeTurn(this);
         }
     }
 }

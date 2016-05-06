@@ -10,5 +10,11 @@ namespace Hextasy.Yinsh
         {
             Color = color;
         }
+
+        public Ring DeepCopy()
+        {
+            var copy = new Ring(Color);
+            return copy;
+        }
     }
 }

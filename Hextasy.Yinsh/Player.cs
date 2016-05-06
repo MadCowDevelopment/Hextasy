@@ -7,7 +7,7 @@ namespace Hextasy.Yinsh
         public Player()
         {
             Name = "Player 1";
-            UnplacedRings = 3;
+            UnplacedRings = 1;
             Color = PlayerColor.White;
             Score = 0;
         }
@@ -20,5 +20,16 @@ namespace Hextasy.Yinsh
 
         public int UnplacedRings { get; set; }
         public int Score { get; set; }
+
+        public Player DeepCopy()
+        {
+            var copy = new Player();
+            copy.Color = Color;
+            copy.Score = Score;
+            copy.IsActive = IsActive;
+            copy.Name = Name;
+            copy.UnplacedRings = UnplacedRings;
+            return copy;
+        }
     }
 }

@@ -45,6 +45,24 @@ namespace Hextasy.Yinsh
             else GameLogic.CheckForFiveInARow(tile);
         }
 
+        public override GameState DeepCopy(YinshGameLogic gameLogic)
+        {
+            var allFivesCopy = new List<List<YinshTile>>();
+            foreach (var allFive in AllFives)
+            {
+                var copyList = new List<YinshTile>();
+                foreach (var yinshTile in allFive)
+                {
+                    copyList.Add(gameLogic.YinshTiles.First(p => p.Id == yinshTile.Id));
+                }
+
+                allFivesCopy.Add(copyList);
+            }
+
+            var copy = new SelectDiscsToRemoveGameState(gameLogic, allFivesCopy);
+            return copy;
+        }
+
         private bool FiveConsecutiveDiscsAreSelected(YinshTile tile)
         {
             var selectedTiles = GameLogic.YinshTiles.Where(p => p.Disc?.IsSelected == true);

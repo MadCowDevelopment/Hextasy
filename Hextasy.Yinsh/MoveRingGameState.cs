@@ -24,6 +24,12 @@ namespace Hextasy.Yinsh
             }
         }
 
+        public override GameState DeepCopy(YinshGameLogic gameLogic)
+        {
+            var copy = new MoveRingGameState(gameLogic);
+            return copy;
+        }
+
         private void MoveRing(YinshTile tile)
         {
             if (MovementIsValid(tile))
